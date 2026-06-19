@@ -1,0 +1,88 @@
+name: Library submission
+about: Suggest a library for the PreactHub directory
+labels: [library-submission]
+body:
+  - type: input
+    id: library-name
+    attributes:
+      label: Library name
+    validations:
+      required: true
+  - type: input
+    id: package-name
+    attributes:
+      label: Package name
+  - type: input
+    id: repository
+    attributes:
+      label: Repository
+  - type: input
+    id: documentation
+    attributes:
+      label: Documentation
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - ui
+        - state-management
+        - data-fetching
+        - routing
+        - forms
+        - testing
+        - ssr
+        - animation
+        - i18n
+        - charts
+        - developer-tools
+    validations:
+      required: true
+  - type: dropdown
+    id: compatibility
+    attributes:
+      label: Preact compatibility
+      options:
+        - native
+        - compat
+        - partial
+        - incompatible
+        - unknown
+    validations:
+      required: true
+  - type: input
+    id: tested-preact-version
+    attributes:
+      label: Tested Preact version
+  - type: input
+    id: tested-library-version
+    attributes:
+      label: Tested library version
+  - type: dropdown
+    id: ssr-support
+    attributes:
+      label: SSR support
+      options:
+        - yes
+        - no
+        - unknown
+  - type: dropdown
+    id: islands-support
+    attributes:
+      label: Islands support
+      options:
+        - yes
+        - no
+        - unknown
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Known limitations
+  - type: input
+    id: example-repository
+    attributes:
+      label: Example repository
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes

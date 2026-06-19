@@ -1,0 +1,31 @@
+{
+  "name": "preacthub",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "preactpress dev",
+    "check": "preactpress check",
+    "build": "preactpress build",
+    "preview": "preactpress preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "oxlint . --ignore-pattern node_modules --ignore-pattern dist"
+  },
+  "dependencies": {
+    "@kamod-ch/ui": "file:../kamod-ui/packages/core",
+    "@preact/signals": "^2.9.1",
+    "gray-matter": "^4.0.3",
+    "preact": "^10.29.2",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@kamod-ch/preactpress": "file:../preactpress",
+    "@preact/preset-vite": "^2.10.5",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/node": "^25.9.2",
+    "oxlint": "^1.69.0",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  }
+}
