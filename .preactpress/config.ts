@@ -1,10 +1,12 @@
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "@kamod-ch/preactpress/config";
 import type { PageView } from "@kamod-ch/preactpress/client";
+import { getLibraryContentRewrites } from "../src/lib/library-node";
 import { attachLibraryPageMeta, structuredDataHead } from "../src/lib/theme-data";
 
 export default defineConfig({
   srcDir: "content",
+  rewrites: getLibraryContentRewrites(process.cwd()),
   site: {
     title: "PreactHub",
     description: "Curated Preact libraries with compatibility notes, SSR guidance, and practical examples.",

@@ -1,6 +1,9 @@
 import type { PageView } from "@kamod-ch/preactpress/client";
 
-type HeadTag = ["script", Record<string, string | boolean | undefined>, string?];
+type HeadTag =
+  | ["meta", Record<string, string | boolean | undefined>]
+  | ["link", Record<string, string | boolean | undefined>]
+  | ["script", Record<string, string | boolean | undefined>, string?];
 import { categories, getCategory } from "./categories";
 import { computeHealthScore, resolveAlternatives, type LibraryDirectory, type PreactLibrary } from "./libraries";
 import { loadLibraryDirectory } from "./library-node";
@@ -12,10 +15,21 @@ export interface RouteLibraryData {
   categoryLibraries?: PreactLibrary[];
 }
 
+function normalizeLibraryRoute(route: string): string {
+  if (route.startsWith("/libraries/entries/")) {
+    return `/libraries/${route.replace(/^\/libraries\/entries\//, "")}`;
+  }
+  if (route.startsWith("/libraries/categories/")) {
+    return `/libraries/${route.replace(/^\/libraries\/categories\//, "")}`;
+  }
+  return route;
+}
+
 export function getRouteLibraryData(root: string, route: string): RouteLibraryData {
   const directory = loadLibraryDirectory(root);
-  const currentLibrary = directory.bySlug.get(route.replace(/^\/libraries\//, ""));
-  const currentCategory = categories.find((category) => route === `/libraries/${category.slug}`);
+  const normalizedRoute = normalizeLibraryRoute(route);
+  const currentLibrary = directory.bySlug.get(normalizedRoute.replace(/^\/libraries\//, ""));
+  const currentCategory = categories.find((category) => normalizedRoute === `/libraries/${category.slug}`);
   const categoryLibraries = currentCategory
     ? directory.libraries.filter((library) => library.category === currentCategory.slug)
     : undefined;
@@ -71,7 +85,7 @@ export function attachLibraryPageMeta(root: string, route: string, page: PageVie
     };
   }
 
-  if (route === "/libraries/submit") {
+  if (normalizeLibraryRoute(route) === "/libraries/submit") {
     nextMeta.librarySubmission = {
       issueTemplate: "/.github/ISSUE_TEMPLATE/library-submission.yml",
       issueUrl: "https://github.com/kamod-ch/preacthub/issues/new?template=library-submission.yml",
@@ -82,16 +96,24 @@ export function attachLibraryPageMeta(root: string, route: string, page: PageVie
 }
 
 export function structuredDataHead(root: string, route: string): HeadTag[] {
+  const normalizedRoute = normalizeLibraryRoute(route);
   const { directory, currentLibrary, currentCategory } = getRouteLibraryData(root, route);
+  const internalRouteTags: HeadTag[] = normalizedRoute !== route
+    ? [
+        ["link", { rel: "canonical", href: normalizedRoute }],
+        ["meta", { name: "robots", content: "noindex" }],
+      ]
+    : [];
 
-  if (route === "/" || route === "/libraries") {
-    const title = route === "/"
+  if (normalizedRoute === "/" || normalizedRoute === "/libraries") {
+    const title = normalizedRoute === "/"
       ? "PreactHub – Curated Preact Libraries and Compatibility Guides"
       : "Best Preact Libraries – Curated and Compatibility Tested";
-    const description = route === "/"
+    const description = normalizedRoute === "/"
       ? "Explore curated Preact libraries, compatibility notes, SSR guidance and implementation recommendations for real-world Preact projects."
       : "Discover maintained libraries for Preact, including native Preact packages and React libraries verified with preact/compat.";
     return [
+      ...internalRouteTags,
       [
         "script",
         { type: "application/ld+json" },
@@ -109,6 +131,7 @@ export function structuredDataHead(root: string, route: string): HeadTag[] {
 
   if (currentCategory) {
     return [
+      ...internalRouteTags,
       [
         "script",
         { type: "application/ld+json" },
@@ -124,6 +147,7 @@ export function structuredDataHead(root: string, route: string): HeadTag[] {
 
   if (currentLibrary) {
     return [
+      ...internalRouteTags,
       [
         "script",
         { type: "application/ld+json" },
@@ -142,5 +166,5 @@ export function structuredDataHead(root: string, route: string): HeadTag[] {
     ];
   }
 
-  return [];
+  return internalRouteTags;
 }

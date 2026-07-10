@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   compareUrl,
@@ -8,7 +11,12 @@ import {
   sortLibraries,
   type PreactLibrary,
 } from "../src/lib/libraries";
-import { parseLibraryFrontmatter, validateLibraryCollection } from "../src/lib/library-node";
+import {
+  getLibraryContentRewrites,
+  loadLibraryDirectory,
+  parseLibraryFrontmatter,
+  validateLibraryCollection,
+} from "../src/lib/library-node";
 
 function sample(overrides: Partial<PreactLibrary> = {}): PreactLibrary {
   return {
@@ -170,5 +178,38 @@ describe("routing and linking", () => {
 
   it("detects duplicate slugs", () => {
     expect(() => validateLibraryCollection([sample(), sample({ file: "duplicate.md" })])).toThrow(/Duplicate/);
+  });
+
+  it("detects category slug collisions", () => {
+    expect(() =>
+      validateLibraryCollection([
+        sample({ slug: "ui", category: "ui", route: "/libraries/ui", file: "entries/ui.md" }),
+      ]),
+    ).toThrow(/collides with category/i);
+  });
+});
+
+describe("directory loading", () => {
+  it("loads nested entries and builds rewrites", () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "preacthub-"));
+    fs.mkdirSync(path.join(root, "content", "libraries", "entries"), { recursive: true });
+    fs.mkdirSync(path.join(root, "content", "libraries", "categories"), { recursive: true });
+    fs.writeFileSync(path.join(root, "content", "libraries", "index.md"), "# Libraries\n");
+    fs.writeFileSync(path.join(root, "content", "libraries", "submit.md"), "# Submit\n");
+    fs.writeFileSync(
+      path.join(root, "content", "libraries", "entries", "demo.md"),
+      `---\nentryType: library\nname: Demo\nslug: demo\ndescription: Demo library.\ncategory: ui\ncompatibility: native\nstatus: stable\ntypescript: true\nssr: true\nislands: true\nesm: true\ntags:\n  - demo\n---\n`,
+    );
+    fs.writeFileSync(
+      path.join(root, "content", "libraries", "categories", "ui.md"),
+      `---\nentryType: category\ntitle: UI\ndescription: UI category.\n---\n`,
+    );
+
+    const directory = loadLibraryDirectory(root);
+    const rewrites = getLibraryContentRewrites(root);
+
+    expect(directory.libraries.map((item) => item.slug)).toEqual(["demo"]);
+    expect(rewrites["/libraries/demo"]).toBe("/libraries/entries/demo");
+    expect(rewrites["/libraries/ui"]).toBe("/libraries/categories/ui");
   });
 });
