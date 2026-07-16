@@ -25,7 +25,7 @@ At audit time these commands were verified:
 | 005 | Cache library directory data during page metadata generation | P2 | M | 001 | TODO |
 | 006 | Clean lint warnings and make lint failures actionable | P3 | S | — | TODO |
 | 007 | Review and resolve the transitive js-yaml advisory | P3 | S | 003 | TODO |
-| 008 | Design and implement first-class library compare pages | P2 | L | 001, 005 | TODO |
+| 008 | Design and implement first-class library compare pages | P2 | L | 001, 005 | DONE |
 | 009 | Add a reproducible library verification workflow | P2 | M | 004 | TODO |
 | 010 | Add a helper for turning library submission issues into draft entries | P3 | M | 003, 004 | TODO |
 

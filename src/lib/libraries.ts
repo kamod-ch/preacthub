@@ -6,6 +6,16 @@ export type LibraryCompatibility = (typeof compatibilityValues)[number];
 export const statusValues = ["recommended", "stable", "experimental", "deprecated"] as const;
 export type LibraryStatus = (typeof statusValues)[number];
 
+export const qualityBadgeValues = [
+  "verified-for-preact",
+  "ssr-ready",
+  "signals-compatible",
+  "tree-shakeable",
+  "docs-complete",
+  "ai-ready",
+] as const;
+export type LibraryQualityBadge = (typeof qualityBadgeValues)[number];
+
 export interface TestedWith {
   preact: string;
   library: string;
@@ -30,6 +40,7 @@ export interface PreactLibrary {
   license?: string;
   bundleSize?: string;
   lastVerified?: string;
+  qualityBadges: LibraryQualityBadge[];
   tags: string[];
   notes?: string[];
   limitations?: string[];
@@ -100,6 +111,7 @@ export interface LibraryFilterState {
   islands?: boolean;
   status?: LibraryStatus | "all";
   sort?: LibrarySort;
+  page?: number;
 }
 
 export type LibrarySort = "recommended" | "name" | "recently-verified" | "native-first";
@@ -117,6 +129,41 @@ export function libraryUrl(slug: string): string {
 
 export function compareUrl(a: string, b: string): string {
   return `/compare/${a}-vs-${b}`;
+}
+
+export function parseCompareSlug(value: string): [string, string] | undefined {
+  const marker = "-vs-";
+  const idx = value.indexOf(marker);
+  if (idx <= 0) return undefined;
+  const a = value.slice(0, idx);
+  const b = value.slice(idx + marker.length);
+  if (!a || !b || a === b) return undefined;
+  return [a, b];
+}
+
+export function sortLabel(value: LibrarySort): string {
+  switch (value) {
+    case "recommended":
+      return "Recommended";
+    case "name":
+      return "Name (A–Z)";
+    case "recently-verified":
+      return "Recently verified";
+    case "native-first":
+      return "Native Preact first";
+  }
+}
+
+export const DIRECTORY_PAGE_SIZE = 24;
+
+export function paginateItems<T>(items: T[], page: number, pageSize = DIRECTORY_PAGE_SIZE): T[] {
+  const safePage = Math.max(1, page);
+  const start = (safePage - 1) * pageSize;
+  return items.slice(start, start + pageSize);
+}
+
+export function totalPages(count: number, pageSize = DIRECTORY_PAGE_SIZE): number {
+  return Math.max(1, Math.ceil(count / pageSize));
 }
 
 export function resolveAlternatives(
@@ -280,5 +327,22 @@ export function statusLabel(value: LibraryStatus): string {
       return "Experimental";
     case "deprecated":
       return "Deprecated";
+  }
+}
+
+export function qualityBadgeLabel(value: LibraryQualityBadge): string {
+  switch (value) {
+    case "verified-for-preact":
+      return "Verified for Preact";
+    case "ssr-ready":
+      return "SSR Ready";
+    case "signals-compatible":
+      return "Signals Compatible";
+    case "tree-shakeable":
+      return "Tree-shakeable";
+    case "docs-complete":
+      return "Documentation Complete";
+    case "ai-ready":
+      return "AI Ready";
   }
 }

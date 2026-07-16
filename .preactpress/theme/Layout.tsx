@@ -10,22 +10,26 @@ import {
   CardTitle,
   Separator,
 } from "@kamod-ch/ui";
-import { withBase, type LayoutProps } from "@kamod-ch/preactpress/client";
+import { type LayoutProps } from "@kamod-ch/preactpress/client";
 import { getCategory } from "../../src/lib/categories";
-import { compatibilityLabel, formatDate, statusLabel } from "../../src/lib/libraries";
+import { compareUrl, formatDate } from "../../src/lib/libraries";
 import { SiteBreadcrumbs } from "./libraries/Breadcrumbs";
 import { CodeBlock } from "./libraries/CodeBlock";
 import { HealthScore } from "./libraries/HealthScore";
-import { CompatibilityBadge, StatusBadge } from "./libraries/LibraryBadge";
+import { CompatibilityBadge, QualityBadge, StatusBadge } from "./libraries/LibraryBadge";
+import { LibraryCompare } from "./libraries/LibraryCompare";
 import { LibraryFilters } from "./libraries/LibraryFilters";
+import { SubmitForm } from "./libraries/SubmitForm";
 import { CategoriesSection } from "./sections/CategoriesSection";
 import { FeaturedSection } from "./sections/FeaturedSection";
 import { HeroSection } from "./sections/HeroSection";
+import { HomeCtaSection } from "./sections/HomeCtaSection";
+import { LibrariesIntroSection } from "./sections/LibrariesIntroSection";
 import { SiteFooter } from "./sections/SiteFooter";
 import { SiteHeader } from "./sections/SiteHeader";
 import { StatsSection } from "./sections/StatsSection";
 import type { ThemeMetaRecord } from "./types";
-import { libraryLinks, tagUrl, yesNoUnknown } from "./utils";
+import { libraryLinks, tagUrl } from "./utils";
 import { renderPageContent } from "./page-content";
 import { startThemeSync } from "./theme-sync";
 import "./theme.css";
@@ -35,14 +39,16 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
   const meta = (page?.meta ?? {}) as ThemeMetaRecord;
   const directory = meta.libraryDirectory;
   const currentLibrary = meta.library;
+  const compareLibraries = meta.compareLibraries;
   const currentCategory = meta.libraryCategory ?? directory?.currentCategory;
   const isLibrariesLanding = routePath === "/libraries";
   const isHome = routePath === "/";
   const isSubmit = routePath === "/libraries/submit";
+  const isCompare = Boolean(compareLibraries);
   const isLibraryDetail = Boolean(currentLibrary);
-  const isCategoryPage = Boolean(!currentLibrary && currentCategory);
-  const showLandingSections = Boolean(directory && (isHome || isLibrariesLanding));
-  const showDirectory = Boolean(directory && (isHome || isLibrariesLanding || isCategoryPage));
+  const isCategoryPage = Boolean(!currentLibrary && !isCompare && currentCategory);
+  const showHomeLanding = Boolean(directory && isHome);
+  const showLibrariesDirectory = Boolean(directory && (isLibrariesLanding || isCategoryPage));
 
   const renderedPage = renderPageContent(page);
   const alternatives = meta.libraryAlternatives ?? [];
@@ -52,6 +58,13 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
   const aliasSnippet = `resolve: {\n  alias: {\n    react: "preact/compat",\n    "react-dom/test-utils": "preact/test-utils",\n    "react-dom": "preact/compat",\n    "react/jsx-runtime": "preact/jsx-runtime"\n  }\n}`;
 
   const breadcrumbItems = useMemo(() => {
+    if (isCompare && compareLibraries) {
+      return [
+        { label: "Home", href: "/" },
+        { label: "Libraries", href: "/libraries" },
+        { label: `${compareLibraries[0].name} vs ${compareLibraries[1].name}` },
+      ];
+    }
     if (!isLibraryDetail && !isCategoryPage) return [];
     return [
       { label: "Home", href: "/" },
@@ -59,7 +72,7 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
       ...(category ? [{ label: category.name, href: `/libraries/${category.slug}` }] : []),
       ...(currentLibrary ? [{ label: currentLibrary.name }] : []),
     ];
-  }, [category, currentLibrary, isCategoryPage, isLibraryDetail]);
+  }, [category, compareLibraries, currentLibrary, isCategoryPage, isCompare, isLibraryDetail]);
 
   return (
     <div class="ph-site">
@@ -69,14 +82,18 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
       <main id="content" class="ph-shell ph-main">
         {breadcrumbItems.length > 0 ? <SiteBreadcrumbs items={breadcrumbItems} /> : null}
 
-        {showLandingSections && directory ? (
+        {showHomeLanding && directory ? (
           <>
-            <HeroSection directory={directory} isHome={isHome} inlineDirectorySearch={isHome || isLibrariesLanding} />
+            <HeroSection directory={directory} isHome inlineDirectorySearch={false} />
             <StatsSection directory={directory} />
             <FeaturedSection directory={directory} />
             <CategoriesSection directory={directory} />
+            <HomeCtaSection directory={directory} />
+            <article class="ph-home-about ph-prose">{renderedPage}</article>
           </>
         ) : null}
+
+        {isLibrariesLanding && directory ? <LibrariesIntroSection directory={directory} /> : null}
 
         {isCategoryPage && directory && currentCategory ? (
           <section class="ph-page-intro">
@@ -86,7 +103,9 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
           </section>
         ) : null}
 
-        {showDirectory && directory ? <LibraryFilters directory={directory} /> : null}
+        {showLibrariesDirectory && directory ? <LibraryFilters directory={directory} /> : null}
+
+        {isCompare && compareLibraries ? <LibraryCompare libraries={compareLibraries} /> : null}
 
         {isLibraryDetail && currentLibrary && score ? (
           <article class="ph-library-page">
@@ -103,13 +122,19 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
                 {currentLibrary.packageName ? <p class="ph-package-name">{currentLibrary.packageName}</p> : null}
                 <div class="ph-link-row">
                   {libraryLinks(currentLibrary).map((link) => (
-                    <Button key={link.href} href={link.href} variant="outline" size="sm">{link.label}</Button>
+                    <Button key={link.href} href={link.href} variant="outline" size="sm" target="_blank" rel="noopener noreferrer">{link.label}</Button>
                   ))}
                 </div>
+                {currentLibrary.qualityBadges.length ? (
+                  <div class="ph-quality-badge-list" aria-label="Quality badges">
+                    {currentLibrary.qualityBadges.map((badge) => <QualityBadge key={badge} value={badge} />)}
+                  </div>
+                ) : null}
                 <div class="ph-library-meta-inline">
                   <span>Last verified: {formatDate(currentLibrary.lastVerified)}</span>
-                  <span>ESM: {yesNoUnknown(currentLibrary.esm)}</span>
-                  <span>TypeScript: {yesNoUnknown(currentLibrary.typescript)}</span>
+                  {currentLibrary.testedWith ? (
+                    <span>Tested: Preact {currentLibrary.testedWith.preact} · {currentLibrary.testedWith.library}</span>
+                  ) : null}
                 </div>
               </div>
               <HealthScore value={score} />
@@ -117,20 +142,8 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
 
             <section class="ph-detail-grid">
               <div class="ph-detail-main">
-                <Card>
-                  <CardHeader>
-                    <div class="ph-section-eyebrow ph-section-eyebrow-muted">Compatibility</div>
-                    <CardTitle>Compatibility summary</CardTitle>
-                  </CardHeader>
-                  <CardContent class="ph-compatibility-grid">
-                    <div><span>Preact compatibility</span><strong>{compatibilityLabel(currentLibrary.compatibility)}</strong></div>
-                    <div><span>Tested with</span><strong>{currentLibrary.testedWith ? `Preact ${currentLibrary.testedWith.preact} · ${currentLibrary.testedWith.library}` : "No version verified yet"}</strong></div>
-                    <div><span>TypeScript</span><strong>{currentLibrary.typescript ? "Supported" : "Not documented"}</strong></div>
-                    <div><span>SSR</span><strong>{currentLibrary.ssr ? "Supported" : "Limited or unknown"}</strong></div>
-                    <div><span>Islands</span><strong>{currentLibrary.islands ? "Supported" : "Limited or unknown"}</strong></div>
-                    <div><span>ES modules</span><strong>{currentLibrary.esm ? "Supported" : "Unknown"}</strong></div>
-                  </CardContent>
-                </Card>
+                {installCommand ? <CodeBlock title="Installation" code={installCommand} /> : null}
+                {currentLibrary.compatibility === "compat" ? <CodeBlock title="Vite configuration" code={aliasSnippet} language="ts" /> : null}
 
                 <section class="ph-detail-section-intro">
                   <div class="ph-section-eyebrow ph-section-eyebrow-muted">Implementation</div>
@@ -138,25 +151,10 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
                   <p class="ph-muted">Practical installation notes, compatibility guidance and content-specific implementation details.</p>
                 </section>
 
-                {installCommand ? <CodeBlock title="Installation" code={installCommand} /> : null}
-                {currentLibrary.compatibility === "compat" ? <CodeBlock title="Vite configuration" code={aliasSnippet} language="ts" /> : null}
-
                 <section class="ph-library-article-shell">{renderedPage}</section>
               </div>
 
               <aside class="ph-detail-sidebar">
-                <Card>
-                  <CardHeader>
-                    <div class="ph-section-eyebrow ph-section-eyebrow-muted">Snapshot</div>
-                    <CardTitle>Quick facts</CardTitle>
-                  </CardHeader>
-                  <CardContent class="ph-fact-grid">
-                    <div><span>Status</span><strong>{statusLabel(currentLibrary.status)}</strong></div>
-                    <div><span>Compatibility</span><strong>{compatibilityLabel(currentLibrary.compatibility)}</strong></div>
-                    <div><span>Last verified</span><strong>{formatDate(currentLibrary.lastVerified)}</strong></div>
-                    <div><span>Tested with</span><strong>{currentLibrary.testedWith ? `${currentLibrary.testedWith.preact} · ${currentLibrary.testedWith.library}` : "Not documented"}</strong></div>
-                  </CardContent>
-                </Card>
                 <Card>
                   <CardHeader>
                     <div class="ph-section-eyebrow ph-section-eyebrow-muted">Metadata</div>
@@ -166,21 +164,8 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
                     <p><strong>Package:</strong> {currentLibrary.packageName ?? currentLibrary.slug}</p>
                     <p><strong>License:</strong> {currentLibrary.license ?? "Unknown"}</p>
                     <p><strong>Bundle size:</strong> {currentLibrary.bundleSize ?? "Not documented"}</p>
-                    <p><strong>Repository:</strong> {currentLibrary.repository ? <a href={currentLibrary.repository}>{currentLibrary.repository}</a> : "—"}</p>
-                    <p><strong>Documentation:</strong> {currentLibrary.documentation ? <a href={currentLibrary.documentation}>{currentLibrary.documentation}</a> : "—"}</p>
-                    <p><strong>Homepage:</strong> {currentLibrary.homepage ? <a href={currentLibrary.homepage}>{currentLibrary.homepage}</a> : "—"}</p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <div class="ph-section-eyebrow ph-section-eyebrow-muted">Runtime</div>
-                    <CardTitle>Environment support</CardTitle>
-                  </CardHeader>
-                  <CardContent class="ph-meta-list">
-                    <p><strong>TypeScript:</strong> {yesNoUnknown(currentLibrary.typescript)}</p>
-                    <p><strong>SSR:</strong> {yesNoUnknown(currentLibrary.ssr, "Limited or unknown")}</p>
-                    <p><strong>Islands:</strong> {yesNoUnknown(currentLibrary.islands, "Limited or unknown")}</p>
-                    <p><strong>ES modules:</strong> {yesNoUnknown(currentLibrary.esm)}</p>
+                    <p><strong>Repository:</strong> {currentLibrary.repository ? <a href={currentLibrary.repository} target="_blank" rel="noopener noreferrer">{currentLibrary.repository}</a> : "—"}</p>
+                    <p><strong>Documentation:</strong> {currentLibrary.documentation ? <a href={currentLibrary.documentation} target="_blank" rel="noopener noreferrer">{currentLibrary.documentation}</a> : "—"}</p>
                   </CardContent>
                 </Card>
                 {currentLibrary.tags.length ? (
@@ -212,7 +197,10 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
                     </CardHeader>
                     <CardContent class="ph-alt-list">
                       {alternatives.map((entry) => (
-                        <a key={entry.route} href={entry.route}>{entry.name}</a>
+                        <div class="ph-alt-item" key={entry.route}>
+                          <a href={entry.route}>{entry.name}</a>
+                          <a class="ph-alt-compare" href={compareUrl(currentLibrary.slug, entry.slug)}>Compare</a>
+                        </div>
                       ))}
                     </CardContent>
                   </Card>
@@ -228,7 +216,7 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
               <div class="ph-section-eyebrow">Contribute</div>
               <h1>Submit a library</h1>
               <p>
-                PreactHub is curated in GitHub. Open an issue with compatibility notes, a working example and any known limitations so the directory stays useful.
+                PreactHub is curated in GitHub. Fill in the form below to generate a prefilled issue with compatibility notes, a working example and known limitations.
               </p>
             </div>
             <Card>
@@ -241,18 +229,17 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
                   <li>Library name, package name and repository</li>
                   <li>Category and Preact compatibility status</li>
                   <li>Tested Preact version and tested library version</li>
+                  <li>Requested quality badges with evidence</li>
                   <li>SSR and islands notes</li>
                   <li>Known limitations and example repository</li>
                 </ul>
-                <p>
-                  <Button href={meta.librarySubmission.issueUrl}>Submit via GitHub</Button>
-                </p>
+                <SubmitForm issueUrl={meta.librarySubmission.issueUrl} />
               </CardContent>
             </Card>
           </section>
         ) : null}
 
-        {!showLandingSections && !isCategoryPage && !isLibraryDetail && !isSubmit ? (
+        {!showHomeLanding && !showLibrariesDirectory && !isCategoryPage && !isLibraryDetail && !isSubmit && !isCompare ? (
           <article class="ph-generic-page">
             <header class="ph-page-intro">
               {page?.title ? <h1>{page.title}</h1> : null}

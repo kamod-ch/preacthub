@@ -15,6 +15,11 @@ ssr: true
 islands: true
 esm: true
 license: MIT
+qualityBadges:
+  - ssr-ready
+  - signals-compatible
+  - tree-shakeable
+  - docs-complete
 tags:
   - signals
   - state

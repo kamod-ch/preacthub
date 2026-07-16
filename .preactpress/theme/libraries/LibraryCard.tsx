@@ -1,10 +1,14 @@
-import { Button, Card, CardHeader, CardTitle } from "@kamod-ch/ui";
+import { Card, CardHeader, CardTitle } from "@kamod-ch/ui";
 import { formatDate, type PreactLibrary } from "../../../src/lib/libraries";
 import { getCategory } from "../../../src/lib/categories";
-import { CompatibilityBadge, StatusBadge } from "./LibraryBadge";
+import { CompatibilityBadge, QualityBadge, StatusBadge } from "./LibraryBadge";
+
+const MAX_VISIBLE_BADGES = 3;
 
 export function LibraryCard({ library }: { library: PreactLibrary }) {
   const category = getCategory(library.category);
+  const hiddenBadgeCount = Math.max(0, library.qualityBadges.length - MAX_VISIBLE_BADGES);
+
   return (
     <a href={library.route} class="ph-library-card-link">
       <Card class="ph-library-card">
@@ -26,6 +30,16 @@ export function LibraryCard({ library }: { library: PreactLibrary }) {
             <span class="ph-category-chip">{category?.name ?? library.category}</span>
             <CompatibilityBadge value={library.compatibility} />
           </div>
+          {library.qualityBadges.length ? (
+            <div class="ph-quality-badge-list ph-quality-badge-list-card" aria-label="Quality badges">
+              {library.qualityBadges.slice(0, MAX_VISIBLE_BADGES).map((badge) => <QualityBadge key={badge} value={badge} />)}
+              {hiddenBadgeCount > 0 ? (
+                <span class="ph-badge ph-quality-more" title={library.qualityBadges.slice(MAX_VISIBLE_BADGES).join(", ")}>
+                  +{hiddenBadgeCount} more
+                </span>
+              ) : null}
+            </div>
+          ) : null}
           <div class="ph-library-card-footer-meta">
             <span>{library.packageName ?? library.slug}</span>
             <span>{formatDate(library.lastVerified)}</span>

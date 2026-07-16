@@ -3,7 +3,15 @@ import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
 import { categories, getCategory, type LibraryCategorySlug } from "./categories";
-import { libraryUrl, sortLibraries, type LibraryDirectory, type LibraryStats, type PreactLibrary } from "./libraries";
+import {
+  compareUrl,
+  libraryUrl,
+  qualityBadgeValues,
+  sortLibraries,
+  type LibraryDirectory,
+  type LibraryStats,
+  type PreactLibrary,
+} from "./libraries";
 
 const testedWithSchema = z.object({
   preact: z.string().min(1),
@@ -30,6 +38,7 @@ const frontmatterSchema = z.object({
   license: z.string().min(1).optional(),
   bundleSize: z.string().min(1).optional(),
   lastVerified: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  qualityBadges: z.array(z.enum(qualityBadgeValues)).default([]),
   tags: z.array(z.string().min(1)).default([]),
   notes: z.array(z.string().min(1)).optional(),
   limitations: z.array(z.string().min(1)).optional(),
@@ -123,6 +132,25 @@ export function getLibraryContentRewrites(root: string): Record<string, string> 
   }
 
   return rewrites;
+}
+
+export function getComparePaths(root: string): Array<{ params: { pair: string } }> {
+  const directory = loadLibraryDirectory(root);
+  const seen = new Set<string>();
+  const paths: Array<{ params: { pair: string } }> = [];
+
+  for (const library of directory.libraries) {
+    for (const altSlug of library.alternatives ?? []) {
+      if (library.slug === altSlug) continue;
+      if (!directory.bySlug.has(altSlug)) continue;
+      const pair = compareUrl(library.slug, altSlug).replace("/compare/", "");
+      if (seen.has(pair)) continue;
+      seen.add(pair);
+      paths.push({ params: { pair } });
+    }
+  }
+
+  return paths.sort((a, b) => a.params.pair.localeCompare(b.params.pair));
 }
 
 export function loadLibraryDirectory(root: string): LibraryDirectory {

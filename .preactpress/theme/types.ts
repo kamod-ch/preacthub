@@ -26,4 +26,5 @@ export interface ThemeMetaRecord extends Record<string, unknown> {
   libraryHealthScore?: HealthScoreResult;
   libraryCategory?: LibraryCategory;
   librarySubmission?: SubmissionMeta;
+  compareLibraries?: [PreactLibrary, PreactLibrary];
 }

@@ -1,5 +1,5 @@
 import type { FunctionalComponent } from "preact";
-import { useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { Button } from "@kamod-ch/ui";
 import {
   isActive,
@@ -21,6 +21,7 @@ function SiteThemeToggle() {
         if (typeof window !== "undefined") toggleStoredTheme();
       }}
       aria-label="Toggle light and dark mode"
+      aria-pressed={typeof document !== "undefined" ? document.documentElement.dataset.theme === "dark" : undefined}
     >
       <span class="ph-theme-moon" aria-hidden="true">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
@@ -44,19 +45,47 @@ function GitHubIcon() {
   );
 }
 
+function MenuIcon({ open }: { open: boolean }) {
+  if (open) {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 6l12 12M18 6 6 18" stroke-linecap="round" />
+      </svg>
+    );
+  }
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+    </svg>
+  );
+}
+
 export const SiteHeader: FunctionalComponent<{
   site: LayoutProps["site"];
   themeConfig: LayoutProps["themeConfig"];
   routePath: string;
 }> = ({ site, themeConfig, routePath }) => {
   const isHome = routePath === "/";
-  const navItems = themeConfig.nav ?? [
+  const navItems = (themeConfig.nav ?? [
     { text: "Browse", link: "/libraries" },
     { text: "Categories", link: "/libraries#categories" },
     { text: "Submit", link: "/libraries/submit" },
-  ];
+  ]).filter((item) => item.link !== "/libraries/submit");
   const githubLink = themeConfig.socialLinks?.find((link) => link.icon === "github");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!mobileNavOpen || typeof window === "undefined") return;
+    function onKeyDown(event: KeyboardEvent): void {
+      if (event.key === "Escape") {
+        setMobileNavOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [mobileNavOpen]);
 
   return (
     <header class="ph-header">
@@ -84,6 +113,8 @@ export const SiteHeader: FunctionalComponent<{
               class="ph-github-link"
               href={githubLink.link}
               aria-label={githubLink.ariaLabel ?? "GitHub"}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <GitHubIcon />
             </a>
@@ -93,18 +124,20 @@ export const SiteHeader: FunctionalComponent<{
             Submit Library
           </Button>
           <button
+            ref={menuButtonRef}
             type="button"
             class="ph-mobile-menu-button"
-            aria-label="Toggle navigation"
+            aria-label={mobileNavOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={mobileNavOpen}
+            aria-controls="ph-mobile-nav"
             onClick={() => setMobileNavOpen((value) => !value)}
           >
-            {mobileNavOpen ? "Close" : "Menu"}
+            <MenuIcon open={mobileNavOpen} />
           </button>
         </div>
       </div>
       {mobileNavOpen ? (
-        <div class="ph-shell ph-mobile-nav" aria-label="Mobile navigation">
+        <div id="ph-mobile-nav" class="ph-shell ph-mobile-nav" aria-label="Mobile navigation">
           {navItems.map((item) => {
             const href = resolveNavLink(item.link ?? "/", isHome);
             return (
@@ -119,7 +152,7 @@ export const SiteHeader: FunctionalComponent<{
             );
           })}
           {githubLink ? (
-            <a href={githubLink.link} onClick={() => setMobileNavOpen(false)}>
+            <a href={githubLink.link} target="_blank" rel="noopener noreferrer" onClick={() => setMobileNavOpen(false)}>
               GitHub
             </a>
           ) : null}

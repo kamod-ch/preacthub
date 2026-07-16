@@ -15,6 +15,7 @@ ssr: __SSR__
 islands: __ISLANDS__
 esm: __ESM__
 license: __LICENSE__
+qualityBadges: []
 tags:
   - __TAG_ONE__
 featured: false

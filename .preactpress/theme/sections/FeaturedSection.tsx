@@ -5,7 +5,7 @@ import type { LibraryDirectoryMeta } from "../types";
 
 export const FeaturedSection: FunctionalComponent<{ directory: LibraryDirectoryMeta }> = ({ directory }) => {
   const featuredLibraries = directory.featured.slice(0, 6);
-  const viewAllHref = directory.libraries.length ? "#all-libraries-title" : "/libraries";
+  const viewAllHref = "/libraries";
 
   return (
     <section class="ph-section ph-landing-section">

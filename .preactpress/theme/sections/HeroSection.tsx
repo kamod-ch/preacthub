@@ -1,4 +1,5 @@
 import type { FunctionalComponent } from "preact";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { Badge, Button, InputGroup, InputGroupAddon, InputGroupInput } from "@kamod-ch/ui";
 import type { LibraryDirectoryMeta } from "../types";
 import { applyDirectorySearch, tagUrl, topTags } from "../utils";
@@ -29,6 +30,32 @@ export const HeroSection: FunctionalComponent<{
 }> = ({ directory, isHome, inlineDirectorySearch = false }) => {
   const popularTags = topTags(directory.libraries);
   const formAction = isHome ? "/" : "/libraries";
+  const [query, setQuery] = useState("");
+  const debounceRef = useRef<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    setQuery(params.get("q") ?? "");
+  }, []);
+
+  function submitSearch(value: string): void {
+    if (inlineDirectorySearch) {
+      applyDirectorySearch(value);
+      return;
+    }
+    const url = new URL(formAction, window.location.origin);
+    const trimmed = value.trim();
+    if (trimmed) url.searchParams.set("q", trimmed);
+    window.location.href = `${url.pathname}${url.search}`;
+  }
+
+  function handleInput(value: string): void {
+    setQuery(value);
+    if (!inlineDirectorySearch) return;
+    window.clearTimeout(debounceRef.current);
+    debounceRef.current = window.setTimeout(() => submitSearch(value), 300);
+  }
 
   return (
     <section class="ph-hero ph-libraries-hero">
@@ -44,19 +71,16 @@ export const HeroSection: FunctionalComponent<{
         Discover libraries that <span class="ph-hero-accent">actually work</span> with Preact.
       </h1>
       <p>
-        A curated directory with verified compatibility ratings, real-world download data,
-        and clear upgrade paths for the entire Preact ecosystem.
+        A curated directory with verified compatibility ratings, SSR and islands guidance,
+        and practical setup notes for the entire Preact ecosystem.
       </p>
       <form
         class="ph-hero-search"
         action={formAction}
         method="get"
         onSubmit={(event) => {
-          if (!inlineDirectorySearch || typeof window === "undefined") return;
           event.preventDefault();
-          const form = event.currentTarget;
-          const q = new FormData(form).get("q");
-          applyDirectorySearch(typeof q === "string" ? q : "");
+          submitSearch(query);
         }}
       >
         <div class="ph-hero-search-field">
@@ -67,10 +91,12 @@ export const HeroSection: FunctionalComponent<{
             <InputGroupInput
               name="q"
               type="search"
+              value={query}
               placeholder={`Search ${directory.stats.total} libraries...`}
               class="ph-hero-search-input"
               autocomplete="off"
               spellcheck={false}
+              onInput={(event) => handleInput(event.currentTarget.value)}
             />
           </InputGroup>
         </div>
@@ -83,7 +109,7 @@ export const HeroSection: FunctionalComponent<{
           <span>Popular:</span>
           {popularTags.map((tag) =>
             inlineDirectorySearch ? (
-              <button key={tag} type="button" class="ph-popular-tag" onClick={() => applyDirectorySearch(tag)}>
+              <button key={tag} type="button" class="ph-popular-tag" onClick={() => { setQuery(tag); submitSearch(tag); }}>
                 {tag}
               </button>
             ) : (

@@ -5,7 +5,13 @@ type HeadTag =
   | ["link", Record<string, string | boolean | undefined>]
   | ["script", Record<string, string | boolean | undefined>, string?];
 import { categories, getCategory } from "./categories";
-import { computeHealthScore, resolveAlternatives, type LibraryDirectory, type PreactLibrary } from "./libraries";
+import {
+  computeHealthScore,
+  parseCompareSlug,
+  resolveAlternatives,
+  type LibraryDirectory,
+  type PreactLibrary,
+} from "./libraries";
 import { loadLibraryDirectory } from "./library-node";
 
 export interface RouteLibraryData {
@@ -13,6 +19,7 @@ export interface RouteLibraryData {
   currentLibrary?: PreactLibrary;
   currentCategory?: ReturnType<typeof getCategory>;
   categoryLibraries?: PreactLibrary[];
+  compareLibraries?: [PreactLibrary, PreactLibrary];
 }
 
 function normalizeLibraryRoute(route: string): string {
@@ -25,11 +32,33 @@ function normalizeLibraryRoute(route: string): string {
   return route;
 }
 
+function parseCompareRoute(route: string): [string, string] | undefined {
+  if (!route.startsWith("/compare/")) return undefined;
+  return parseCompareSlug(route.slice("/compare/".length));
+}
+
 export function getRouteLibraryData(root: string, route: string): RouteLibraryData {
   const directory = loadLibraryDirectory(root);
   const normalizedRoute = normalizeLibraryRoute(route);
-  const currentLibrary = directory.bySlug.get(normalizedRoute.replace(/^\/libraries\//, ""));
+
+  const comparePair = parseCompareRoute(normalizedRoute);
+  if (comparePair) {
+    const [slugA, slugB] = comparePair;
+    const libA = directory.bySlug.get(slugA);
+    const libB = directory.bySlug.get(slugB);
+    if (libA && libB) {
+      return { directory, compareLibraries: [libA, libB] };
+    }
+    return { directory };
+  }
+
+  const librarySlug = normalizedRoute.startsWith("/libraries/")
+    ? normalizedRoute.replace(/^\/libraries\//, "")
+    : undefined;
   const currentCategory = categories.find((category) => normalizedRoute === `/libraries/${category.slug}`);
+  const currentLibrary = librarySlug && !currentCategory
+    ? directory.bySlug.get(librarySlug)
+    : undefined;
   const categoryLibraries = currentCategory
     ? directory.libraries.filter((library) => library.category === currentCategory.slug)
     : undefined;
@@ -70,6 +99,16 @@ export function attachLibraryPageMeta(root: string, route: string, page: PageVie
       ...page,
       title: `Best ${data.currentCategory.name} Libraries for Preact`,
       description: data.currentCategory.description,
+    };
+  }
+
+  if (data.compareLibraries) {
+    const [libA, libB] = data.compareLibraries;
+    nextMeta.compareLibraries = data.compareLibraries;
+    page = {
+      ...page,
+      title: `Compare ${libA.name} and ${libB.name} for Preact`,
+      description: `Side-by-side compatibility, SSR, TypeScript and maintenance notes for ${libA.name} and ${libB.name}.`,
     };
   }
 

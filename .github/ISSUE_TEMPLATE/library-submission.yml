@@ -66,6 +66,18 @@ body:
         - yes
         - no
         - unknown
+  - type: checkboxes
+    id: quality-badges
+    attributes:
+      label: Requested quality badges
+      description: Select only badges backed by docs, examples, metadata or a reproducible local verification.
+      options:
+        - label: ✅ Verified for Preact
+        - label: ⚡ SSR Ready
+        - label: 🧩 Signals Compatible
+        - label: 📦 Tree-shakeable
+        - label: 📚 Documentation Complete
+        - label: 🤖 AI Ready
   - type: dropdown
     id: islands-support
     attributes:
