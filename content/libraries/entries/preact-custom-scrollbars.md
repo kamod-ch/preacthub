@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'preact-custom-scrollbars'
+name: preact-custom-scrollbars
 slug: preact-custom-scrollbars
-description: 'Custom scrollbar components for Preact interfaces.'
+shortDescription: Custom scrollbar components for Preact interfaces.
 category: ui
-packageName: 'preact-custom-scrollbars'
-compatibility: native
-status: stable
-typescript: false
-ssr: false
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - scrollbars
   - ui
+packageName: preact-custom-scrollbars
+npmUrl: 'https://www.npmjs.com/package/preact-custom-scrollbars'
+installCommand: npm install preact-custom-scrollbars
+islands: true
+esm: true
 ---
 
 ## Introduction

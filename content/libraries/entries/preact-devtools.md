@@ -2,24 +2,26 @@
 entryType: library
 name: Preact DevTools
 slug: preact-devtools
-description: Development-time inspection helpers for Preact component trees.
+shortDescription: Development-time inspection helpers for Preact component trees.
 category: developer-tools
-packageName: "preact/devtools"
-repository: "https://github.com/preactjs/preact"
-documentation: "https://preactjs.com/guide/v10/devtools/"
-compatibility: native
-status: experimental
-typescript: false
-ssr: false
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: experimental
+typescriptSupport: none
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - devtools
   - debugging
   - inspection
+packageName: preact/devtools
+repositoryUrl: 'https://github.com/preactjs/preact'
+npmUrl: 'https://www.npmjs.com/package/preact%2Fdevtools'
+documentationUrl: 'https://preactjs.com/guide/v10/devtools/'
+license: MIT
+installCommand: npm install preact/devtools
 alternatives:
   - prefresh
+islands: true
+esm: true
 ---
 
 ## Introduction

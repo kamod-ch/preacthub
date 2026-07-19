@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Storeon'
+name: Storeon
 slug: storeon
-description: 'Event-based state manager with a small footprint.'
+shortDescription: Event-based state manager with a small footprint.
 category: state-management
-packageName: 'storeon'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - state
   - events
+packageName: storeon
+npmUrl: 'https://www.npmjs.com/package/storeon'
+installCommand: npm install storeon
+islands: true
+esm: true
 ---
 
 ## Introduction

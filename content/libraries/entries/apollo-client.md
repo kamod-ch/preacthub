@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Apollo Client'
+name: Apollo Client
 slug: apollo-client
-description: 'Full-featured GraphQL client usually used through React compatibility.'
+shortDescription: Full-featured GraphQL client usually used through React compatibility.
 category: data-fetching
-packageName: '@apollo/client'
-compatibility: compat
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: compat
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - graphql
   - cache
+packageName: '@apollo/client'
+npmUrl: 'https://www.npmjs.com/package/%40apollo%2Fclient'
+installCommand: npm install @apollo/client
+islands: true
+esm: true
 ---
 
 ## Introduction

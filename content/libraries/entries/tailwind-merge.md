@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'tailwind-merge'
+name: tailwind-merge
 slug: tailwind-merge
-description: 'Merges conflicting Tailwind utility classes at runtime.'
+shortDescription: Merges conflicting Tailwind utility classes at runtime.
 category: ui
-packageName: 'tailwind-merge'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - tailwind
   - classes
+packageName: tailwind-merge
+npmUrl: 'https://www.npmjs.com/package/tailwind-merge'
+installCommand: npm install tailwind-merge
+islands: true
+esm: true
 ---
 
 ## Introduction

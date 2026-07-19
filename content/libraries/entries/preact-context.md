@@ -1,20 +1,21 @@
 ---
 entryType: library
-name: 'preact-context'
+name: preact-context
 slug: preact-context
-description: 'Historical context helper predating modern Preact context APIs.'
+shortDescription: Historical context helper predating modern Preact context APIs.
 category: state-management
-packageName: 'preact-context'
-compatibility: native
-status: deprecated
-typescript: false
-ssr: true
-islands: true
-esm: false
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: supported
+maintenanceStatus: archived
 tags:
   - context
   - legacy
   - state
+packageName: preact-context
+npmUrl: 'https://www.npmjs.com/package/preact-context'
+installCommand: npm install preact-context
+islands: true
 ---
 
 ## Introduction

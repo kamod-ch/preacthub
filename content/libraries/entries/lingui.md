@@ -2,25 +2,29 @@
 entryType: library
 name: Lingui
 slug: lingui
-description: Message-based internationalization with extraction tooling and compile-time workflows.
+shortDescription: >-
+  Message-based internationalization with extraction tooling and compile-time
+  workflows.
 category: i18n
-packageName: "@lingui/core"
-repository: "https://github.com/lingui/js-lingui"
-documentation: "https://lingui.dev"
-homepage: "https://lingui.dev"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - i18n
   - messages
   - extraction
+packageName: '@lingui/core'
+repositoryUrl: 'https://github.com/lingui/js-lingui'
+npmUrl: 'https://www.npmjs.com/package/%40lingui%2Fcore'
+documentationUrl: 'https://lingui.dev'
+homepageUrl: 'https://lingui.dev'
+license: MIT
+installCommand: npm install @lingui/core
 alternatives:
   - i18next
+islands: true
+esm: true
 ---
 
 ## Introduction

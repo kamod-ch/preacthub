@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'Astro Preact Integration'
+name: Astro Preact Integration
 slug: astro-preact
-description: 'Astro integration for rendering Preact components and islands.'
+shortDescription: Astro integration for rendering Preact components and islands.
 category: ssr
-packageName: '@astrojs/preact'
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - astro
   - islands
   - integration
+packageName: '@astrojs/preact'
+npmUrl: 'https://www.npmjs.com/package/%40astrojs%2Fpreact'
+installCommand: npm install @astrojs/preact
+islands: true
+esm: true
 ---
 
 ## Introduction

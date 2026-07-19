@@ -2,8 +2,8 @@ import { useMemo } from "preact/hooks";
 import { Button } from "@kamod-ch/ui";
 import { categories } from "../../../src/lib/categories";
 import {
-  compatibilityLabel,
-  statusLabel,
+  compatibilityStatusLabel,
+  maintenanceStatusLabel,
   type LibraryFilterState,
 } from "../../../src/lib/libraries";
 import type { FilterHistoryMode } from "./filter-url-state";
@@ -11,12 +11,14 @@ import type { FilterHistoryMode } from "./filter-url-state";
 export function countActiveFilters(filters: LibraryFilterState, lockedCategory?: string): number {
   let count = 0;
   if (filters.q?.trim()) count += 1;
+  if (filters.compatibilityStatus && filters.compatibilityStatus !== "all") count += 1;
   if (filters.compatibility && filters.compatibility !== "all") count += 1;
   if (filters.category && filters.category !== "all" && filters.category !== lockedCategory) count += 1;
-  if (filters.status && filters.status !== "all") count += 1;
+  if (filters.maintenanceStatus && filters.maintenanceStatus !== "all") count += 1;
   if (filters.typescript) count += 1;
   if (filters.ssr) count += 1;
   if (filters.islands) count += 1;
+  if (filters.aiReady) count += 1;
   return count;
 }
 
@@ -40,11 +42,11 @@ export function ActiveFilterChips({
         remove: () => onUpdate((value) => ({ ...value, q: undefined, page: 1 }), "push"),
       });
     }
-    if (filters.compatibility && filters.compatibility !== "all") {
+    if (filters.compatibilityStatus && filters.compatibilityStatus !== "all") {
       items.push({
-        key: "compatibility",
-        label: compatibilityLabel(filters.compatibility),
-        remove: () => onUpdate((value) => ({ ...value, compatibility: "all", page: 1 }), "push"),
+        key: "compatibilityStatus",
+        label: compatibilityStatusLabel(filters.compatibilityStatus),
+        remove: () => onUpdate((value) => ({ ...value, compatibilityStatus: "all", page: 1 }), "push"),
       });
     }
     if (filters.category && filters.category !== "all" && filters.category !== lockedCategory) {
@@ -55,11 +57,11 @@ export function ActiveFilterChips({
         remove: () => onUpdate((value) => ({ ...value, category: lockedCategory, page: 1 }), "push"),
       });
     }
-    if (filters.status && filters.status !== "all") {
+    if (filters.maintenanceStatus && filters.maintenanceStatus !== "all") {
       items.push({
-        key: "status",
-        label: statusLabel(filters.status),
-        remove: () => onUpdate((value) => ({ ...value, status: "all", page: 1 }), "push"),
+        key: "maintenanceStatus",
+        label: maintenanceStatusLabel(filters.maintenanceStatus),
+        remove: () => onUpdate((value) => ({ ...value, maintenanceStatus: "all", page: 1 }), "push"),
       });
     }
     if (filters.typescript) {
@@ -81,6 +83,13 @@ export function ActiveFilterChips({
         key: "islands",
         label: "Islands",
         remove: () => onUpdate((value) => ({ ...value, islands: false, page: 1 }), "push"),
+      });
+    }
+    if (filters.aiReady) {
+      items.push({
+        key: "aiReady",
+        label: "AI Ready",
+        remove: () => onUpdate((value) => ({ ...value, aiReady: false, page: 1 }), "push"),
       });
     }
     return items;

@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'preact-portal'
+name: preact-portal
 slug: preact-portal
-description: 'Portal utility for modals, overlays and detached DOM rendering.'
+shortDescription: 'Portal utility for modals, overlays and detached DOM rendering.'
 category: ui
-packageName: 'preact-portal'
-compatibility: native
-status: stable
-typescript: false
-ssr: false
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - portal
   - overlay
+packageName: preact-portal
+npmUrl: 'https://www.npmjs.com/package/preact-portal'
+installCommand: npm install preact-portal
+islands: true
+esm: true
 ---
 
 ## Introduction

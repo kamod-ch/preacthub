@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'ofetch'
+name: ofetch
 slug: ofetch
-description: 'Universal fetch wrapper that stays independent of UI frameworks.'
+shortDescription: Universal fetch wrapper that stays independent of UI frameworks.
 category: data-fetching
-packageName: 'ofetch'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - http
   - fetch
+packageName: ofetch
+npmUrl: 'https://www.npmjs.com/package/ofetch'
+installCommand: npm install ofetch
+islands: true
+esm: true
 ---
 
 ## Introduction

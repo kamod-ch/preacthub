@@ -93,6 +93,7 @@ export const HeroSection: FunctionalComponent<{
               type="search"
               value={query}
               placeholder={`Search ${directory.stats.total} libraries...`}
+              aria-label="Search Preact libraries"
               class="ph-hero-search-input"
               autocomplete="off"
               spellcheck={false}
@@ -101,7 +102,10 @@ export const HeroSection: FunctionalComponent<{
           </InputGroup>
         </div>
         <Button type="submit" class="ph-hero-search-button ph-button-primary">
-          Search <span aria-hidden="true">→</span>
+          Search libraries <span aria-hidden="true">→</span>
+        </Button>
+        <Button href="/libraries" variant="outline" class="ph-hero-browse-button">
+          Start browsing libraries
         </Button>
       </form>
       {popularTags.length ? (

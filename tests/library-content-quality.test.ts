@@ -77,4 +77,19 @@ describe("library content quality", () => {
 
     expect(invalid).toEqual([]);
   });
+
+  it("requires audit evidence when ai-ready badge is set", () => {
+    const invalid = entries
+      .filter((entry) => Array.isArray(entry.data.qualityBadges) && entry.data.qualityBadges.includes("ai-ready"))
+      .flatMap((entry) => {
+        const issues: string[] = [];
+        if (!entry.data.auditDate) issues.push(`${entry.file}: ai-ready missing auditDate`);
+        if (typeof entry.data.auditScore !== "number" || entry.data.auditScore < 80) {
+          issues.push(`${entry.file}: ai-ready missing auditScore >= 80`);
+        }
+        return issues;
+      });
+
+    expect(invalid).toEqual([]);
+  });
 });

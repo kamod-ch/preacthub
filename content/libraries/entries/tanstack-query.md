@@ -2,27 +2,29 @@
 entryType: library
 name: TanStack Query
 slug: tanstack-query
-description: Async state management and data fetching for Preact applications.
+shortDescription: Async state management and data fetching for Preact applications.
 category: data-fetching
-packageName: "@tanstack/react-query"
-repository: "https://github.com/TanStack/query"
-documentation: "https://tanstack.com/query/latest"
-homepage: "https://tanstack.com/query"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
-bundleSize: Medium
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - data-fetching
   - async-state
   - cache
-featured: true
+packageName: '@tanstack/react-query'
+repositoryUrl: 'https://github.com/TanStack/query'
+npmUrl: 'https://www.npmjs.com/package/%40tanstack%2Freact-query'
+documentationUrl: 'https://tanstack.com/query/latest'
+homepageUrl: 'https://tanstack.com/query'
+license: MIT
+installCommand: npm install @tanstack/react-query
 alternatives:
   - swr
+featured: true
+islands: true
+esm: true
+bundleSize: Medium
 ---
 
 ## Introduction

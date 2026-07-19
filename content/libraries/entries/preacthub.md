@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'PreactHub'
+name: PreactHub
 slug: preacthub
-description: 'Discovery directory for Preact-compatible libraries and tools.'
+shortDescription: Discovery directory for Preact-compatible libraries and tools.
 category: developer-tools
-packageName: 'preacthub'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - directory
   - discovery
+packageName: preacthub
+npmUrl: 'https://www.npmjs.com/package/preacthub'
+installCommand: npm install preacthub
+islands: true
+esm: true
 ---
 
 ## Introduction

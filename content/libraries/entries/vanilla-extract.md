@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'vanilla-extract'
+name: vanilla-extract
 slug: vanilla-extract
-description: 'Zero-runtime CSS-in-TypeScript solution independent of Preact.'
+shortDescription: Zero-runtime CSS-in-TypeScript solution independent of Preact.
 category: developer-tools
-packageName: '@vanilla-extract/css'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - css
   - typescript
+packageName: '@vanilla-extract/css'
+npmUrl: 'https://www.npmjs.com/package/%40vanilla-extract%2Fcss'
+installCommand: npm install @vanilla-extract/css
+islands: true
+esm: true
 ---
 
 ## Introduction

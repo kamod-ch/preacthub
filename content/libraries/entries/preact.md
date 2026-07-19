@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'Preact'
+name: Preact
 slug: preact
-description: 'Core library for building fast Preact applications.'
+shortDescription: Core library for building fast Preact applications.
 category: developer-tools
-packageName: 'preact'
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - core
   - framework
   - vdom
+packageName: preact
+npmUrl: 'https://www.npmjs.com/package/preact'
+installCommand: npm install preact
+islands: true
+esm: true
 ---
 
 ## Introduction

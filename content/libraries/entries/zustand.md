@@ -2,26 +2,28 @@
 entryType: library
 name: Zustand
 slug: zustand
-description: Small store-based state management library with selector-friendly APIs.
+shortDescription: Small store-based state management library with selector-friendly APIs.
 category: state-management
-packageName: "zustand"
-repository: "https://github.com/pmndrs/zustand"
-documentation: "https://zustand.docs.pmnd.rs/"
-homepage: "https://zustand.docs.pmnd.rs/"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - state-management
   - stores
   - selectors
+packageName: zustand
+repositoryUrl: 'https://github.com/pmndrs/zustand'
+npmUrl: 'https://www.npmjs.com/package/zustand'
+documentationUrl: 'https://zustand.docs.pmnd.rs/'
+homepageUrl: 'https://zustand.docs.pmnd.rs/'
+license: MIT
+installCommand: npm install zustand
 alternatives:
   - preact-signals
   - nanostores
+islands: true
+esm: true
 ---
 
 ## Introduction

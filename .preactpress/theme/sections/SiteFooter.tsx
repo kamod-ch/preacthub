@@ -2,7 +2,7 @@ import type { FunctionalComponent } from "preact";
 import { CodeBlock } from "../libraries/CodeBlock";
 import { CompatibilityBadge } from "../libraries/LibraryBadge";
 import type { LibraryDirectoryMeta } from "../types";
-import logoUrl from "../preacthub-logo.svg";
+import { BrandLogo } from "../BrandLogo";
 
 export const SiteFooter: FunctionalComponent<{ directory?: LibraryDirectoryMeta }> = ({ directory }) => (
   <footer class="ph-footer">
@@ -10,7 +10,7 @@ export const SiteFooter: FunctionalComponent<{ directory?: LibraryDirectoryMeta 
       <div class="ph-footer-grid">
         <div>
           <a class="ph-footer-brand ph-brand" href="/" aria-label="PreactHub home">
-            <img class="ph-brand-logo" src={logoUrl} alt="PreactHub" />
+            <BrandLogo />
           </a>
           <p class="ph-footer-copy">
             The curated directory for the Preact ecosystem. Community-maintained, compatibility-aware and focused on practical implementation guidance.
@@ -33,6 +33,8 @@ export const SiteFooter: FunctionalComponent<{ directory?: LibraryDirectoryMeta 
             <li><a href="https://preactjs.com/guide/v10/getting-started/" target="_blank" rel="noopener noreferrer">Preact docs</a></li>
             <li><a href="https://preactjs.com/guide/v10/switching-to-preact/" target="_blank" rel="noopener noreferrer">Switching to Preact</a></li>
             <li><a href="https://github.com/kamod-ch/preacthub" target="_blank" rel="noopener noreferrer">GitHub repository</a></li>
+            <li><a href="/libraries/kamod-ai-audit">Kamod AI Audit</a></li>
+            <li><a href="https://github.com/kamod-ch/kamod-ai-audit" target="_blank" rel="noopener noreferrer">Audit your site</a></li>
           </ul>
         </div>
         <div>
@@ -45,7 +47,7 @@ export const SiteFooter: FunctionalComponent<{ directory?: LibraryDirectoryMeta 
           <div class="ph-footer-badges">
             <CompatibilityBadge value="native" />
             <CompatibilityBadge value="compat" />
-            <CompatibilityBadge value="partial" />
+            <CompatibilityBadge value="unverified" />
           </div>
         </div>
       </div>

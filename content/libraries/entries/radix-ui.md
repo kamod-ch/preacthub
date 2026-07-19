@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'Radix UI'
+name: Radix UI
 slug: radix-ui
-description: 'React-focused headless primitives important for compatibility benchmarking.'
+shortDescription: React-focused headless primitives important for compatibility benchmarking.
 category: ui
-packageName: '@radix-ui/react-slot'
-compatibility: partial
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: experimental
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - ui
   - primitives
   - a11y
+packageName: '@radix-ui/react-slot'
+npmUrl: 'https://www.npmjs.com/package/%40radix-ui%2Freact-slot'
+installCommand: npm install @radix-ui/react-slot
+islands: true
+esm: true
 ---
 
 ## Introduction

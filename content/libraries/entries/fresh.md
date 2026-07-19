@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'Fresh'
+name: Fresh
 slug: fresh
-description: 'Deno web framework that uses Preact for interactive islands.'
+shortDescription: Deno web framework that uses Preact for interactive islands.
 category: ssr
-packageName: 'fresh'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - framework
   - deno
   - islands
+packageName: fresh
+npmUrl: 'https://www.npmjs.com/package/fresh'
+installCommand: npm install fresh
+islands: true
+esm: true
 ---
 
 ## Introduction

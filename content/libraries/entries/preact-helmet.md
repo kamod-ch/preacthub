@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'preact-helmet'
+name: preact-helmet
 slug: preact-helmet
-description: 'Head management for titles, meta tags and SEO in Preact.'
+shortDescription: 'Head management for titles, meta tags and SEO in Preact.'
 category: ssr
-packageName: 'preact-helmet'
-compatibility: native
-status: stable
-typescript: false
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - head
   - seo
+packageName: preact-helmet
+npmUrl: 'https://www.npmjs.com/package/preact-helmet'
+installCommand: npm install preact-helmet
+islands: true
+esm: true
 ---
 
 ## Introduction

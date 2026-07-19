@@ -24,9 +24,10 @@ export const CategoriesSection: FunctionalComponent<{ directory: LibraryDirector
       <div class="ph-card-badges">
         <CompatibilityBadge value="native" />
         <CompatibilityBadge value="compat" />
-        <CompatibilityBadge value="partial" />
-        <CompatibilityBadge value="incompatible" />
-        <CompatibilityBadge value="unknown" />
+        <CompatibilityBadge value="community-tested" />
+        <CompatibilityBadge value="experimental" />
+        <CompatibilityBadge value="unverified" />
+        <CompatibilityBadge value="inactive" />
       </div>
     </div>
   </section>

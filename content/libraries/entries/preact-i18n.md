@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'preact-i18n'
+name: preact-i18n
 slug: preact-i18n
-description: 'Internationalization helpers built for Preact.'
+shortDescription: Internationalization helpers built for Preact.
 category: i18n
-packageName: 'preact-i18n'
-compatibility: native
-status: stable
-typescript: false
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - i18n
   - localization
+packageName: preact-i18n
+npmUrl: 'https://www.npmjs.com/package/preact-i18n'
+installCommand: npm install preact-i18n
+islands: true
+esm: true
 ---
 
 ## Introduction

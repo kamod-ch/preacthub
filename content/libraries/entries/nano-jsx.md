@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'nano-jsx'
+name: nano-jsx
 slug: nano-jsx
-description: 'Small JSX/VDOM alternative useful as a comparison point.'
+shortDescription: Small JSX/VDOM alternative useful as a comparison point.
 category: developer-tools
-packageName: 'nano-jsx'
-compatibility: partial
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: experimental
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - vdom
   - jsx
   - alternative
+packageName: nano-jsx
+npmUrl: 'https://www.npmjs.com/package/nano-jsx'
+installCommand: npm install nano-jsx
+islands: true
+esm: true
 ---
 
 ## Introduction

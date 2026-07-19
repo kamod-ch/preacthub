@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'ArkType'
+name: ArkType
 slug: arktype
-description: 'TypeScript-oriented runtime validation library.'
+shortDescription: TypeScript-oriented runtime validation library.
 category: forms
-packageName: 'arktype'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - validation
   - typescript
+packageName: arktype
+npmUrl: 'https://www.npmjs.com/package/arktype'
+installCommand: npm install arktype
+islands: true
+esm: true
 ---
 
 ## Introduction

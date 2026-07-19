@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'TanStack Table'
+name: TanStack Table
 slug: tanstack-table
-description: 'Headless table logic that can power custom Preact grids.'
+shortDescription: Headless table logic that can power custom Preact grids.
 category: ui
-packageName: '@tanstack/table-core'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - tables
   - headless
+packageName: '@tanstack/table-core'
+npmUrl: 'https://www.npmjs.com/package/%40tanstack%2Ftable-core'
+installCommand: npm install @tanstack/table-core
+islands: true
+esm: true
 ---
 
 ## Introduction

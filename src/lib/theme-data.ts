@@ -7,6 +7,7 @@ type HeadTag =
 import { categories, getCategory } from "./categories";
 import {
   computeHealthScore,
+  healthScoreInputFromLibrary,
   parseCompareSlug,
   resolveAlternatives,
   type LibraryDirectory,
@@ -115,7 +116,7 @@ export function attachLibraryPageMeta(root: string, route: string, page: PageVie
   if (data.currentLibrary) {
     nextMeta.library = data.currentLibrary;
     nextMeta.libraryAlternatives = resolveAlternatives(data.currentLibrary, data.directory.bySlug);
-    nextMeta.libraryHealthScore = computeHealthScore(data.currentLibrary);
+    nextMeta.libraryHealthScore = computeHealthScore(healthScoreInputFromLibrary(data.currentLibrary));
     nextMeta.libraryCategory = getCategory(data.currentLibrary.category);
     page = {
       ...page,
@@ -196,10 +197,10 @@ export function structuredDataHead(root: string, route: string): HeadTag[] {
           name: currentLibrary.name,
           applicationCategory: getCategory(currentLibrary.category)?.name,
           description: currentLibrary.description,
-          softwareVersion: currentLibrary.testedWith?.library,
+          softwareVersion: currentLibrary.testedPreactVersions[0],
           license: currentLibrary.license,
-          url: currentLibrary.homepage ?? currentLibrary.documentation ?? currentLibrary.repository,
-          sameAs: [currentLibrary.repository, currentLibrary.documentation, currentLibrary.homepage].filter(Boolean),
+          url: currentLibrary.homepageUrl ?? currentLibrary.documentationUrl ?? currentLibrary.repositoryUrl,
+          sameAs: [currentLibrary.repositoryUrl, currentLibrary.documentationUrl, currentLibrary.homepageUrl, currentLibrary.npmUrl].filter(Boolean),
         }),
       ],
     ];

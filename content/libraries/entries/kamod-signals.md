@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'kamod-signals'
+name: kamod-signals
 slug: kamod-signals
-description: 'Persisted signals utilities from the Kamod ecosystem.'
+shortDescription: Persisted signals utilities from the Kamod ecosystem.
 category: state-management
-packageName: 'kamod-signals'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - signals
   - persistence
   - kamod
+packageName: kamod-signals
+npmUrl: 'https://www.npmjs.com/package/kamod-signals'
+installCommand: npm install kamod-signals
+islands: true
+esm: true
 ---
 
 ## Introduction

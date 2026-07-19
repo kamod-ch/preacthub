@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'preact-richtextarea'
+name: preact-richtextarea
 slug: preact-richtextarea
-description: 'Rich textarea input component for Preact applications.'
+shortDescription: Rich textarea input component for Preact applications.
 category: forms
-packageName: 'preact-richtextarea'
-compatibility: native
-status: stable
-typescript: false
-ssr: false
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - editor
   - textarea
+packageName: preact-richtextarea
+npmUrl: 'https://www.npmjs.com/package/preact-richtextarea'
+installCommand: npm install preact-richtextarea
+islands: true
+esm: true
 ---
 
 ## Introduction

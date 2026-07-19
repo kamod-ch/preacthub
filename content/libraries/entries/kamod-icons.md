@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'kamod-icons'
+name: kamod-icons
 slug: kamod-icons
-description: 'Preact-native icon package from the Kamod ecosystem.'
+shortDescription: Preact-native icon package from the Kamod ecosystem.
 category: ui
-packageName: 'kamod-icons'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - icons
   - kamod
+packageName: kamod-icons
+npmUrl: 'https://www.npmjs.com/package/kamod-icons'
+installCommand: npm install kamod-icons
+islands: true
+esm: true
 ---
 
 ## Introduction

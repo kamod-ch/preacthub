@@ -2,32 +2,34 @@
 entryType: library
 name: Preact Signals
 slug: preact-signals
-description: Fine-grained reactive state primitives built by the Preact team.
+shortDescription: Fine-grained reactive state primitives built by the Preact team.
 category: state-management
-packageName: "@preact/signals"
-repository: "https://github.com/preactjs/signals"
-documentation: "https://preactjs.com/guide/v10/signals/"
-homepage: "https://preactjs.com"
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
+tags:
+  - signals
+  - state
+  - reactivity
+packageName: '@preact/signals'
+repositoryUrl: 'https://github.com/preactjs/signals'
+npmUrl: 'https://www.npmjs.com/package/%40preact%2Fsignals'
+documentationUrl: 'https://preactjs.com/guide/v10/signals/'
+homepageUrl: 'https://preactjs.com'
+license: MIT
+installCommand: npm install @preact/signals
+alternatives:
+  - nanostores
+  - zustand
+featured: true
 islands: true
 esm: true
-license: MIT
 qualityBadges:
   - ssr-ready
   - signals-compatible
   - tree-shakeable
   - docs-complete
-tags:
-  - signals
-  - state
-  - reactivity
-featured: true
-alternatives:
-  - nanostores
-  - zustand
 ---
 
 ## Introduction

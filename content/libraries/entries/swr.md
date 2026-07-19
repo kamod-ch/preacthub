@@ -2,25 +2,27 @@
 entryType: library
 name: SWR
 slug: swr
-description: Data fetching with stale-while-revalidate semantics and a small API surface.
+shortDescription: Data fetching with stale-while-revalidate semantics and a small API surface.
 category: data-fetching
-packageName: "swr"
-repository: "https://github.com/vercel/swr"
-documentation: "https://swr.vercel.app"
-homepage: "https://swr.vercel.app"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - data-fetching
   - caching
   - hooks
+packageName: swr
+repositoryUrl: 'https://github.com/vercel/swr'
+npmUrl: 'https://www.npmjs.com/package/swr'
+documentationUrl: 'https://swr.vercel.app'
+homepageUrl: 'https://swr.vercel.app'
+license: MIT
+installCommand: npm install swr
 alternatives:
   - tanstack-query
+islands: true
+esm: true
 ---
 
 ## Introduction

@@ -2,27 +2,29 @@
 entryType: library
 name: Nanostores
 slug: nanostores
-description: Tiny state manager with optional framework adapters and a small mental model.
+shortDescription: Tiny state manager with optional framework adapters and a small mental model.
 category: state-management
-packageName: "nanostores"
-repository: "https://github.com/nanostores/nanostores"
-documentation: "https://nanostores.github.io/nanostores/"
-homepage: "https://nanostores.github.io/nanostores/"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - stores
   - state-management
   - tiny
-featured: true
+packageName: nanostores
+repositoryUrl: 'https://github.com/nanostores/nanostores'
+npmUrl: 'https://www.npmjs.com/package/nanostores'
+documentationUrl: 'https://nanostores.github.io/nanostores/'
+homepageUrl: 'https://nanostores.github.io/nanostores/'
+license: MIT
+installCommand: npm install nanostores
 alternatives:
   - preact-signals
   - zustand
+featured: true
+islands: true
+esm: true
 ---
 
 ## Introduction

@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Felte'
+name: Felte
 slug: felte
-description: 'Framework-spanning form library worth tracking for Preact usage.'
+shortDescription: Framework-spanning form library worth tracking for Preact usage.
 category: forms
-packageName: 'felte'
-compatibility: partial
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: experimental
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - forms
   - validation
+packageName: felte
+npmUrl: 'https://www.npmjs.com/package/felte'
+installCommand: npm install felte
+islands: true
+esm: true
 ---
 
 ## Introduction

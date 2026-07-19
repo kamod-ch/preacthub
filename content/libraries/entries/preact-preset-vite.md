@@ -2,19 +2,21 @@
 entryType: library
 name: '@preact/preset-vite'
 slug: preact-preset-vite
-description: 'Official Vite preset for Preact projects.'
+shortDescription: Official Vite preset for Preact projects.
 category: developer-tools
-packageName: '@preact/preset-vite'
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - vite
   - tooling
   - build
+packageName: '@preact/preset-vite'
+npmUrl: 'https://www.npmjs.com/package/%40preact%2Fpreset-vite'
+installCommand: npm install @preact/preset-vite
+islands: true
+esm: true
 ---
 
 ## Introduction

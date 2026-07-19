@@ -2,26 +2,27 @@
 entryType: library
 name: preact-router
 slug: preact-router
-description: Lightweight router for classic Preact single-page applications.
+shortDescription: Lightweight router for classic Preact single-page applications.
 category: routing
-packageName: "preact-router"
-repository: "https://github.com/preactjs/preact-router"
-documentation: "https://github.com/preactjs/preact-router"
-compatibility: native
-status: stable
-typescript: true
-ssr: false
-islands: false
-esm: true
-license: MIT
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - routing
   - spa
   - navigation
-featured: true
+packageName: preact-router
+repositoryUrl: 'https://github.com/preactjs/preact-router'
+npmUrl: 'https://www.npmjs.com/package/preact-router'
+documentationUrl: 'https://github.com/preactjs/preact-router'
+license: MIT
+installCommand: npm install preact-router
 alternatives:
   - wouter-preact
   - preact-iso
+featured: true
+esm: true
 ---
 
 ## Introduction

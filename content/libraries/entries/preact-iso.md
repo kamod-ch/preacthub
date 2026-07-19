@@ -2,26 +2,30 @@
 entryType: library
 name: preact-iso
 slug: preact-iso
-description: Small toolkit for routing, lazy loading and server rendering patterns in Preact apps.
+shortDescription: >-
+  Small toolkit for routing, lazy loading and server rendering patterns in
+  Preact apps.
 category: ssr
-packageName: "preact-iso"
-repository: "https://github.com/preactjs/wmr/tree/main/packages/preact-iso"
-documentation: "https://github.com/preactjs/wmr/tree/main/packages/preact-iso"
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - ssr
   - routing
   - islands
-featured: true
+packageName: preact-iso
+repositoryUrl: 'https://github.com/preactjs/wmr/tree/main/packages/preact-iso'
+npmUrl: 'https://www.npmjs.com/package/preact-iso'
+documentationUrl: 'https://github.com/preactjs/wmr/tree/main/packages/preact-iso'
+license: MIT
+installCommand: npm install preact-iso
 alternatives:
   - preact-router
   - preact-render-to-string
+featured: true
+islands: true
+esm: true
 ---
 
 ## Introduction

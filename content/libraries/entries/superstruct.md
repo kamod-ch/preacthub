@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Superstruct'
+name: Superstruct
 slug: superstruct
-description: 'Composable validation library for JavaScript and TypeScript data.'
+shortDescription: Composable validation library for JavaScript and TypeScript data.
 category: forms
-packageName: 'superstruct'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - validation
   - schema
+packageName: superstruct
+npmUrl: 'https://www.npmjs.com/package/superstruct'
+installCommand: npm install superstruct
+islands: true
+esm: true
 ---
 
 ## Introduction

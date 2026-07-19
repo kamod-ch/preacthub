@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'AG Grid'
+name: AG Grid
 slug: ag-grid
-description: 'Enterprise-grade data grid relevant for comparison and compat testing.'
+shortDescription: Enterprise-grade data grid relevant for comparison and compat testing.
 category: ui
-packageName: 'ag-grid-community'
-compatibility: compat
-status: stable
-typescript: true
-ssr: false
-islands: true
-esm: true
+compatibilityStatus: compat
+typescriptSupport: native
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - grid
   - tables
+packageName: ag-grid-community
+npmUrl: 'https://www.npmjs.com/package/ag-grid-community'
+installCommand: npm install ag-grid-community
+islands: true
+esm: true
 ---
 
 ## Introduction

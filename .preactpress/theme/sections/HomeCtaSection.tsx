@@ -13,7 +13,7 @@ export const HomeCtaSection: FunctionalComponent<{ directory: LibraryDirectoryMe
             Filter by compatibility, SSR support, TypeScript and category. Every entry includes setup notes and verified integration guidance.
           </p>
         </div>
-        <Button href="/libraries" class="ph-button-primary">Open full directory</Button>
+        <Button href="/libraries" class="ph-button-primary">Start browsing libraries</Button>
       </CardContent>
     </Card>
   </section>

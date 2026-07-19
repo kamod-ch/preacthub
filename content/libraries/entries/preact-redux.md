@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'preact-redux'
+name: preact-redux
 slug: preact-redux
-description: 'Redux bindings tailored for Preact applications.'
+shortDescription: Redux bindings tailored for Preact applications.
 category: state-management
-packageName: 'preact-redux'
-compatibility: native
-status: stable
-typescript: false
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - redux
   - state
+packageName: preact-redux
+npmUrl: 'https://www.npmjs.com/package/preact-redux'
+installCommand: npm install preact-redux
+islands: true
+esm: true
 ---
 
 ## Introduction

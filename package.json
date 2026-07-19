@@ -6,13 +6,20 @@
   "scripts": {
     "dev": "preactpress dev",
     "check": "preactpress check",
-    "build": "preactpress build",
+    "validate:catalog": "tsx scripts/validate-catalog.ts",
+    "check:links": "tsx scripts/check-library-links.ts",
+    "migrate:catalog": "tsx scripts/migrate-library-catalog.ts",
+    "build": "npm run validate:catalog && preactpress build",
     "preview": "preactpress preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "lint": "oxlint . --ignore-pattern node_modules --ignore-pattern dist",
     "new:library": "node scripts/new-library.mjs",
-    "new:category": "node scripts/new-category.mjs"
+    "new:category": "node scripts/new-category.mjs",
+    "verify:library": "node scripts/verify-library.mjs",
+    "prepare:audit": "npm run build --prefix ../kamod-ai-audit/packages/core",
+    "audit:site": "node scripts/audit-site.mjs",
+    "audit:site:report": "node scripts/audit-site.mjs --output reports/audit"
   },
   "dependencies": {
     "@kamod-ch/ui": "^0.2.1",
@@ -22,12 +29,14 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@kamod-ai-audit/core": "file:../kamod-ai-audit/packages/core",
     "@kamod-ch/preactpress": "^2.0.0",
     "@preact/preset-vite": "^2.10.5",
     "@tailwindcss/vite": "^4.3.0",
     "@types/node": "^25.9.2",
     "oxlint": "^1.69.0",
     "tailwindcss": "^4.3.0",
+    "tsx": "^4.23.1",
     "typescript": "^6.0.3",
     "vitest": "^4.1.9"
   }

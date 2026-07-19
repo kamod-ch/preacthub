@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Jotai'
+name: Jotai
 slug: jotai
-description: 'Atomic state library generally evaluated through preact/compat.'
+shortDescription: Atomic state library generally evaluated through preact/compat.
 category: state-management
-packageName: 'jotai'
-compatibility: compat
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: compat
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - state
   - atoms
+packageName: jotai
+npmUrl: 'https://www.npmjs.com/package/jotai'
+installCommand: npm install jotai
+islands: true
+esm: true
 ---
 
 ## Introduction

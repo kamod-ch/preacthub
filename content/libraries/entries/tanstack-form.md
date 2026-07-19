@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'TanStack Form'
+name: TanStack Form
 slug: tanstack-form
-description: 'Modern headless form state tooling with framework-independent pieces.'
+shortDescription: Modern headless form state tooling with framework-independent pieces.
 category: forms
-packageName: '@tanstack/form-core'
-compatibility: native
-status: experimental
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: experimental
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - forms
   - tanstack
+packageName: '@tanstack/form-core'
+npmUrl: 'https://www.npmjs.com/package/%40tanstack%2Fform-core'
+installCommand: npm install @tanstack/form-core
+islands: true
+esm: true
 ---
 
 ## Introduction

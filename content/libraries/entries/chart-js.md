@@ -2,25 +2,27 @@
 entryType: library
 name: Chart.js
 slug: chart-js
-description: Widely used canvas charting library with many available adapters.
+shortDescription: Widely used canvas charting library with many available adapters.
 category: charts
-packageName: "chart.js"
-repository: "https://github.com/chartjs/Chart.js"
-documentation: "https://www.chartjs.org/"
-homepage: "https://www.chartjs.org/"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: false
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - charts
   - canvas
   - visualization
+packageName: chart.js
+repositoryUrl: 'https://github.com/chartjs/Chart.js'
+npmUrl: 'https://www.npmjs.com/package/chart.js'
+documentationUrl: 'https://www.chartjs.org/'
+homepageUrl: 'https://www.chartjs.org/'
+license: MIT
+installCommand: npm install chart.js
 alternatives:
   - echarts
+islands: true
+esm: true
 ---
 
 ## Introduction

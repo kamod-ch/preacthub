@@ -20,7 +20,7 @@ export function LibraryCard({ library }: { library: PreactLibrary }) {
                 {library.testedWith?.library ? <span class="ph-library-version">v{library.testedWith.library}</span> : null}
               </div>
               <div class="ph-library-status-row">
-                <StatusBadge value={library.status} />
+                <StatusBadge value={library.maintenanceStatus} />
               </div>
             </div>
             <span class="ph-library-external" aria-hidden="true">↗</span>
@@ -28,7 +28,7 @@ export function LibraryCard({ library }: { library: PreactLibrary }) {
           <p class="ph-library-description">{library.description}</p>
           <div class="ph-card-topline">
             <span class="ph-category-chip">{category?.name ?? library.category}</span>
-            <CompatibilityBadge value={library.compatibility} />
+            <CompatibilityBadge value={library.compatibilityStatus} />
           </div>
           {library.qualityBadges.length ? (
             <div class="ph-quality-badge-list ph-quality-badge-list-card" aria-label="Quality badges">
@@ -42,7 +42,7 @@ export function LibraryCard({ library }: { library: PreactLibrary }) {
           ) : null}
           <div class="ph-library-card-footer-meta">
             <span>{library.packageName ?? library.slug}</span>
-            <span>{formatDate(library.lastVerified)}</span>
+            <span>{formatDate(library.lastVerifiedAt)}</span>
           </div>
         </CardHeader>
       </Card>

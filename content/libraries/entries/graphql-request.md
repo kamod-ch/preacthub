@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'graphql-request'
+name: graphql-request
 slug: graphql-request
-description: 'Minimal framework-independent GraphQL request client.'
+shortDescription: Minimal framework-independent GraphQL request client.
 category: data-fetching
-packageName: 'graphql-request'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - graphql
   - http
+packageName: graphql-request
+npmUrl: 'https://www.npmjs.com/package/graphql-request'
+installCommand: npm install graphql-request
+islands: true
+esm: true
 ---
 
 ## Introduction

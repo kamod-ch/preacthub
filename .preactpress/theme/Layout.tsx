@@ -12,7 +12,7 @@ import {
 } from "@kamod-ch/ui";
 import { type LayoutProps } from "@kamod-ch/preactpress/client";
 import { getCategory } from "../../src/lib/categories";
-import { compareUrl, formatDate } from "../../src/lib/libraries";
+import { compareUrl, formatAuditSummary, formatDate } from "../../src/lib/libraries";
 import { SiteBreadcrumbs } from "./libraries/Breadcrumbs";
 import { CodeBlock } from "./libraries/CodeBlock";
 import { HealthScore } from "./libraries/HealthScore";
@@ -113,8 +113,8 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
               <div class="ph-library-header-main">
                 <div class="ph-section-eyebrow">Library profile</div>
                 <div class="ph-card-badges">
-                  <CompatibilityBadge value={currentLibrary.compatibility} />
-                  <StatusBadge value={currentLibrary.status} />
+                  <CompatibilityBadge value={currentLibrary.compatibilityStatus} />
+                  <StatusBadge value={currentLibrary.maintenanceStatus} />
                   <Badge variant="outline">{category?.name ?? currentLibrary.category}</Badge>
                 </div>
                 <h1>{currentLibrary.name}</h1>
@@ -124,16 +124,25 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
                   {libraryLinks(currentLibrary).map((link) => (
                     <Button key={link.href} href={link.href} variant="outline" size="sm" target="_blank" rel="noopener noreferrer">{link.label}</Button>
                   ))}
+                  <Button href="/libraries" size="sm" class="ph-button-primary">Start browsing libraries</Button>
                 </div>
                 {currentLibrary.qualityBadges.length ? (
                   <div class="ph-quality-badge-list" aria-label="Quality badges">
                     {currentLibrary.qualityBadges.map((badge) => <QualityBadge key={badge} value={badge} />)}
                   </div>
                 ) : null}
+                {formatAuditSummary(currentLibrary) ? (
+                  <p class="ph-audit-summary">
+                    AI audit: <strong>{formatAuditSummary(currentLibrary)}</strong>
+                    {currentLibrary.auditUrl ? (
+                      <> · <a href={currentLibrary.auditUrl} target="_blank" rel="noopener noreferrer">View report</a></>
+                    ) : null}
+                  </p>
+                ) : null}
                 <div class="ph-library-meta-inline">
-                  <span>Last verified: {formatDate(currentLibrary.lastVerified)}</span>
-                  {currentLibrary.testedWith ? (
-                    <span>Tested: Preact {currentLibrary.testedWith.preact} · {currentLibrary.testedWith.library}</span>
+                  <span>Last verified: {formatDate(currentLibrary.lastVerifiedAt)}</span>
+                  {currentLibrary.testedPreactVersions.length ? (
+                    <span>Tested: Preact {currentLibrary.testedPreactVersions.join(", ")}</span>
                   ) : null}
                 </div>
               </div>
@@ -143,7 +152,7 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
             <section class="ph-detail-grid">
               <div class="ph-detail-main">
                 {installCommand ? <CodeBlock title="Installation" code={installCommand} /> : null}
-                {currentLibrary.compatibility === "compat" ? <CodeBlock title="Vite configuration" code={aliasSnippet} language="ts" /> : null}
+                {currentLibrary.compatibilityStatus === "compat" ? <CodeBlock title="Vite configuration" code={aliasSnippet} language="ts" /> : null}
 
                 <section class="ph-detail-section-intro">
                   <div class="ph-section-eyebrow ph-section-eyebrow-muted">Implementation</div>
@@ -164,8 +173,8 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
                     <p><strong>Package:</strong> {currentLibrary.packageName ?? currentLibrary.slug}</p>
                     <p><strong>License:</strong> {currentLibrary.license ?? "Unknown"}</p>
                     <p><strong>Bundle size:</strong> {currentLibrary.bundleSize ?? "Not documented"}</p>
-                    <p><strong>Repository:</strong> {currentLibrary.repository ? <a href={currentLibrary.repository} target="_blank" rel="noopener noreferrer">{currentLibrary.repository}</a> : "—"}</p>
-                    <p><strong>Documentation:</strong> {currentLibrary.documentation ? <a href={currentLibrary.documentation} target="_blank" rel="noopener noreferrer">{currentLibrary.documentation}</a> : "—"}</p>
+                    <p><strong>Repository:</strong> {currentLibrary.repositoryUrl ? <a href={currentLibrary.repositoryUrl} target="_blank" rel="noopener noreferrer">{currentLibrary.repositoryUrl}</a> : "—"}</p>
+                    <p><strong>Documentation:</strong> {currentLibrary.documentationUrl ? <a href={currentLibrary.documentationUrl} target="_blank" rel="noopener noreferrer">{currentLibrary.documentationUrl}</a> : "—"}</p>
                   </CardContent>
                 </Card>
                 {currentLibrary.tags.length ? (
@@ -218,6 +227,9 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
               <p>
                 PreactHub is curated in GitHub. Fill in the form below to generate a prefilled issue with compatibility notes, a working example and known limitations.
               </p>
+              <div class="ph-submit-intro-actions">
+                <Button href={meta.librarySubmission.issueUrl} class="ph-button-primary">Create GitHub submission</Button>
+              </div>
             </div>
             <Card>
               <CardHeader>

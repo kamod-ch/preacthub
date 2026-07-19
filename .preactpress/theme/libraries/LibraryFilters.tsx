@@ -14,21 +14,21 @@ import {
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import { categories } from "../../../src/lib/categories";
 import {
-  compatibilityLabel,
-  compatibilityValues,
+  compatibilityStatusLabel,
+  compatibilityStatusValues,
   DIRECTORY_PAGE_SIZE,
   filterLibraries,
   formatDate,
   librarySortOptions,
+  maintenanceStatusLabel,
+  maintenanceStatusValues,
   paginateItems,
   sortLabel,
   sortLibraries,
-  statusLabel,
-  statusValues,
   totalPages,
-  type LibraryCompatibility,
+  type CompatibilityStatus,
   type LibraryFilterState,
-  type PreactLibrary,
+  type MaintenanceStatus,
 } from "../../../src/lib/libraries";
 import type { LibraryDirectoryMeta } from "../types";
 import { ActiveFilterChips, CategoryContextBanner, countActiveFilters } from "./ActiveFilterChips";
@@ -37,9 +37,9 @@ import { CompatibilityBadge, StatusBadge } from "./LibraryBadge";
 import { DIRECTORY_SEARCH_EVENT } from "../utils";
 import { readFilters, writeFilters, type FilterHistoryMode } from "./filter-url-state";
 
-const compatPillOptions: Array<{ value: LibraryFilterState["compatibility"]; label: string }> = [
+const compatPillOptions: Array<{ value: CompatibilityStatus | "all"; label: string }> = [
   { value: "all", label: "All" },
-  ...compatibilityValues.map((value) => ({ value, label: compatibilityLabel(value) })),
+  ...compatibilityStatusValues.map((value) => ({ value, label: compatibilityStatusLabel(value) })),
 ];
 
 function RuntimePill({ supported, label }: { supported: boolean; label: string }) {
@@ -79,13 +79,13 @@ function FilterFields({
         </label>
       ) : null}
       <label class="ph-filter-field">
-        <span>Status</span>
+        <span>Maintenance</span>
         <NativeSelect
-          value={filters.status ?? "all"}
-          onChange={(event) => onUpdate((value) => ({ ...value, status: event.currentTarget.value as LibraryFilterState["status"], page: 1 }), "push")}
+          value={filters.maintenanceStatus ?? "all"}
+          onChange={(event) => onUpdate((value) => ({ ...value, maintenanceStatus: event.currentTarget.value as MaintenanceStatus | "all", page: 1 }), "push")}
         >
-          <option value="all">All statuses</option>
-          {statusValues.map((value) => <option key={value} value={value}>{statusLabel(value)}</option>)}
+          <option value="all">All maintenance states</option>
+          {maintenanceStatusValues.map((value) => <option key={value} value={value}>{maintenanceStatusLabel(value)}</option>)}
         </NativeSelect>
       </label>
       <label class="ph-filter-field">
@@ -122,6 +122,14 @@ function FilterFields({
           />
           Islands
         </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={filters.aiReady ?? false}
+            onChange={(event) => onUpdate((value) => ({ ...value, aiReady: event.currentTarget.checked, page: 1 }), "push")}
+          />
+          AI Ready
+        </label>
       </div>
     </div>
   );
@@ -130,8 +138,8 @@ function FilterFields({
 function clearFilters(lockedCategory?: string): LibraryFilterState {
   return {
     sort: "recommended",
-    compatibility: "all",
-    status: "all",
+    compatibilityStatus: "all",
+    maintenanceStatus: "all",
     category: lockedCategory,
   };
 }
@@ -140,8 +148,8 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
   const lockedCategory = directory.currentCategory?.slug;
   const [filters, setFilters] = useState<LibraryFilterState>(() => ({
     sort: "recommended",
-    compatibility: "all",
-    status: "all",
+    compatibilityStatus: "all",
+    maintenanceStatus: "all",
     category: lockedCategory,
   }));
 
@@ -225,9 +233,9 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
             key={option.value}
             type="button"
             size="sm"
-            variant={(filters.compatibility ?? "all") === option.value ? "default" : "outline"}
+            variant={(filters.compatibilityStatus ?? "all") === option.value ? "default" : "outline"}
             class="ph-compat-pill"
-            onClick={() => updateFilters((value) => ({ ...value, compatibility: option.value, page: 1 }), "push")}
+            onClick={() => updateFilters((value) => ({ ...value, compatibilityStatus: option.value, page: 1 }), "push")}
           >
             {option.label}
           </Button>
@@ -296,8 +304,8 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
                     </TableCell>
                     <TableCell>
                       <div class="ph-directory-compat">
-                        <CompatibilityBadge value={library.compatibility} />
-                        <StatusBadge value={library.status} />
+                        <CompatibilityBadge value={library.compatibilityStatus} />
+                        <StatusBadge value={library.maintenanceStatus} />
                       </div>
                     </TableCell>
                     <TableCell>
@@ -307,7 +315,7 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
                         <RuntimePill supported={library.islands} label="Islands" />
                       </div>
                     </TableCell>
-                    <TableCell>{formatDate(library.lastVerified)}</TableCell>
+                    <TableCell>{formatDate(library.lastVerifiedAt)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

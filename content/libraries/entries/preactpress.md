@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'PreactPress'
+name: PreactPress
 slug: preactpress
-description: 'Preact-based static site generator and documentation framework.'
+shortDescription: Preact-based static site generator and documentation framework.
 category: ssr
-packageName: '@kamod-ch/preactpress'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - ssg
   - docs
   - kamod
+packageName: '@kamod-ch/preactpress'
+npmUrl: 'https://www.npmjs.com/package/%40kamod-ch%2Fpreactpress'
+installCommand: npm install @kamod-ch/preactpress
+islands: true
+esm: true
 ---
 
 ## Introduction

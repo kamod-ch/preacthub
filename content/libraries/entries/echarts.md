@@ -2,25 +2,27 @@
 entryType: library
 name: ECharts
 slug: echarts
-description: Feature-rich charting toolkit for interactive visualizations.
+shortDescription: Feature-rich charting toolkit for interactive visualizations.
 category: charts
-packageName: "echarts"
-repository: "https://github.com/apache/echarts"
-documentation: "https://echarts.apache.org/"
-homepage: "https://echarts.apache.org/"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: false
-islands: true
-esm: true
-license: Apache-2.0
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - charts
   - visualization
   - dashboards
+packageName: echarts
+repositoryUrl: 'https://github.com/apache/echarts'
+npmUrl: 'https://www.npmjs.com/package/echarts'
+documentationUrl: 'https://echarts.apache.org/'
+homepageUrl: 'https://echarts.apache.org/'
+license: Apache-2.0
+installCommand: npm install echarts
 alternatives:
   - chart-js
+islands: true
+esm: true
 ---
 
 ## Introduction

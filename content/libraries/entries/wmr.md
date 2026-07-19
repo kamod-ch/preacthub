@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'WMR'
+name: WMR
 slug: wmr
-description: 'Historical zero-config build tool created around Preact workflows.'
+shortDescription: Historical zero-config build tool created around Preact workflows.
 category: developer-tools
-packageName: 'wmr'
-compatibility: native
-status: deprecated
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: archived
 tags:
   - build
   - tooling
   - legacy
+packageName: wmr
+npmUrl: 'https://www.npmjs.com/package/wmr'
+installCommand: npm install wmr
+islands: true
+esm: true
 ---
 
 ## Introduction

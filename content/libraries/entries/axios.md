@@ -1,19 +1,20 @@
 ---
 entryType: library
-name: 'Axios'
+name: Axios
 slug: axios
-description: 'Popular promise-based HTTP client independent of Preact.'
+shortDescription: Popular promise-based HTTP client independent of Preact.
 category: data-fetching
-packageName: 'axios'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: false
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - http
   - client
+packageName: axios
+npmUrl: 'https://www.npmjs.com/package/axios'
+installCommand: npm install axios
+islands: true
 ---
 
 ## Introduction

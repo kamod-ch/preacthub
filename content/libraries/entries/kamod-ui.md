@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'kamod-ui'
+name: kamod-ui
 slug: kamod-ui
-description: 'Preact UI component library from the Kamod ecosystem.'
+shortDescription: Preact UI component library from the Kamod ecosystem.
 category: ui
-packageName: 'kamod-ui'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - ui
   - components
   - kamod
+packageName: kamod-ui
+npmUrl: 'https://www.npmjs.com/package/kamod-ui'
+installCommand: npm install kamod-ui
+islands: true
+esm: true
 ---
 
 ## Introduction

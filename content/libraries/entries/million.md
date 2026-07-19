@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Million.js'
+name: Million.js
 slug: million
-description: 'Performance-focused virtual DOM tooling relevant to Preact comparisons.'
+shortDescription: Performance-focused virtual DOM tooling relevant to Preact comparisons.
 category: developer-tools
-packageName: 'million'
-compatibility: partial
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: experimental
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - performance
   - compiler
+packageName: million
+npmUrl: 'https://www.npmjs.com/package/million'
+installCommand: npm install million
+islands: true
+esm: true
 ---
 
 ## Introduction

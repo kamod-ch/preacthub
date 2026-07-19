@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Phosphor Icons'
+name: Phosphor Icons
 slug: phosphor-icons
-description: 'Flexible icon family to evaluate via SVG or compatibility adapters.'
+shortDescription: Flexible icon family to evaluate via SVG or compatibility adapters.
 category: ui
-packageName: 'phosphor-icons'
-compatibility: partial
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: experimental
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - icons
   - svg
+packageName: phosphor-icons
+npmUrl: 'https://www.npmjs.com/package/phosphor-icons'
+installCommand: npm install phosphor-icons
+islands: true
+esm: true
 ---
 
 ## Introduction

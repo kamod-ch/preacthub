@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Ariakit'
+name: Ariakit
 slug: ariakit
-description: 'Accessible React component toolkit relevant as a benchmark.'
+shortDescription: Accessible React component toolkit relevant as a benchmark.
 category: ui
-packageName: 'ariakit'
-compatibility: partial
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: experimental
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - ui
   - a11y
+packageName: ariakit
+npmUrl: 'https://www.npmjs.com/package/ariakit'
+installCommand: npm install ariakit
+islands: true
+esm: true
 ---
 
 ## Introduction

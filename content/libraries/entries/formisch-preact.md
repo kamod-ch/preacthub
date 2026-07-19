@@ -2,18 +2,20 @@
 entryType: library
 name: '@formisch/preact'
 slug: formisch-preact
-description: 'Type-safe form state library with a dedicated Preact package.'
+shortDescription: Type-safe form state library with a dedicated Preact package.
 category: forms
-packageName: '@formisch/preact'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - forms
   - validation
+packageName: '@formisch/preact'
+npmUrl: 'https://www.npmjs.com/package/%40formisch%2Fpreact'
+installCommand: npm install @formisch/preact
+islands: true
+esm: true
 ---
 
 ## Introduction

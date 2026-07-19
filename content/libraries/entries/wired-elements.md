@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'wired-elements'
+name: wired-elements
 slug: wired-elements
-description: 'Sketch-style Web Components that can be used in Preact markup.'
+shortDescription: Sketch-style Web Components that can be used in Preact markup.
 category: ui
-packageName: 'wired-elements'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - web-components
   - ui
+packageName: wired-elements
+npmUrl: 'https://www.npmjs.com/package/wired-elements'
+installCommand: npm install wired-elements
+islands: true
+esm: true
 ---
 
 ## Introduction

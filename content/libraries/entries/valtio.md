@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Valtio'
+name: Valtio
 slug: valtio
-description: 'Proxy-based state library usable with compatibility considerations.'
+shortDescription: Proxy-based state library usable with compatibility considerations.
 category: state-management
-packageName: 'valtio'
-compatibility: compat
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: compat
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - state
   - proxy
+packageName: valtio
+npmUrl: 'https://www.npmjs.com/package/valtio'
+installCommand: npm install valtio
+islands: true
+esm: true
 ---
 
 ## Introduction

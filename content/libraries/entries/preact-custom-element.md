@@ -2,24 +2,26 @@
 entryType: library
 name: preact-custom-element
 slug: preact-custom-element
-description: Wrap Preact components as standards-based custom elements.
+shortDescription: Wrap Preact components as standards-based custom elements.
 category: developer-tools
-packageName: "preact-custom-element"
-repository: "https://github.com/preactjs/preact-custom-element"
-documentation: "https://github.com/preactjs/preact-custom-element"
-compatibility: native
-status: stable
-typescript: true
-ssr: false
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - custom-elements
   - web-components
   - integration
+packageName: preact-custom-element
+repositoryUrl: 'https://github.com/preactjs/preact-custom-element'
+npmUrl: 'https://www.npmjs.com/package/preact-custom-element'
+documentationUrl: 'https://github.com/preactjs/preact-custom-element'
+license: MIT
+installCommand: npm install preact-custom-element
 alternatives:
   - htm
+islands: true
+esm: true
 ---
 
 ## Introduction

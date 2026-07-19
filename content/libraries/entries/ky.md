@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'ky'
+name: ky
 slug: ky
-description: 'Small Fetch-based HTTP client for browser and server code.'
+shortDescription: Small Fetch-based HTTP client for browser and server code.
 category: data-fetching
-packageName: 'ky'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - http
   - fetch
+packageName: ky
+npmUrl: 'https://www.npmjs.com/package/ky'
+installCommand: npm install ky
+islands: true
+esm: true
 ---
 
 ## Introduction

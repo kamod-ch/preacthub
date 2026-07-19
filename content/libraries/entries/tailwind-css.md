@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Tailwind CSS'
+name: Tailwind CSS
 slug: tailwind-css
-description: 'Utility-first CSS framework that pairs naturally with Preact.'
+shortDescription: Utility-first CSS framework that pairs naturally with Preact.
 category: developer-tools
-packageName: 'tailwindcss'
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - css
   - styling
+packageName: tailwindcss
+npmUrl: 'https://www.npmjs.com/package/tailwindcss'
+installCommand: npm install tailwindcss
+islands: true
+esm: true
 ---
 
 ## Introduction

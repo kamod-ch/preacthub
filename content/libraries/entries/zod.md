@@ -2,26 +2,28 @@
 entryType: library
 name: Zod
 slug: zod
-description: TypeScript-first schema validation often paired with Preact forms and loaders.
+shortDescription: TypeScript-first schema validation often paired with Preact forms and loaders.
 category: forms
-packageName: "zod"
-repository: "https://github.com/colinhacks/zod"
-documentation: "https://zod.dev"
-homepage: "https://zod.dev"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - validation
   - typescript
   - forms
-featured: true
+packageName: zod
+repositoryUrl: 'https://github.com/colinhacks/zod'
+npmUrl: 'https://www.npmjs.com/package/zod'
+documentationUrl: 'https://zod.dev'
+homepageUrl: 'https://zod.dev'
+license: MIT
+installCommand: npm install zod
 alternatives:
   - valibot
+featured: true
+islands: true
+esm: true
 ---
 
 ## Introduction

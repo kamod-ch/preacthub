@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'preact-habitat'
+name: preact-habitat
 slug: preact-habitat
-description: 'Mounts Preact widgets into existing server-rendered pages.'
+shortDescription: Mounts Preact widgets into existing server-rendered pages.
 category: ui
-packageName: 'preact-habitat'
-compatibility: native
-status: stable
-typescript: false
-ssr: false
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - widgets
   - mounting
+packageName: preact-habitat
+npmUrl: 'https://www.npmjs.com/package/preact-habitat'
+installCommand: npm install preact-habitat
+islands: true
+esm: true
 ---
 
 ## Introduction

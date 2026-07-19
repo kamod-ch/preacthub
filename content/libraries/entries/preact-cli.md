@@ -1,20 +1,20 @@
 ---
 entryType: library
-name: 'preact-cli'
+name: preact-cli
 slug: preact-cli
-description: 'Historical command-line tooling for Preact projects.'
+shortDescription: Historical command-line tooling for Preact projects.
 category: developer-tools
-packageName: 'preact-cli'
-compatibility: native
-status: deprecated
-typescript: false
-ssr: true
-islands: false
-esm: false
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: supported
+maintenanceStatus: archived
 tags:
   - cli
   - tooling
   - legacy
+packageName: preact-cli
+npmUrl: 'https://www.npmjs.com/package/preact-cli'
+installCommand: npm install preact-cli
 ---
 
 ## Introduction

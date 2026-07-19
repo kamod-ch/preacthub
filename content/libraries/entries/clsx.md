@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'clsx'
+name: clsx
 slug: clsx
-description: 'Tiny conditional class name utility for Preact components.'
+shortDescription: Tiny conditional class name utility for Preact components.
 category: ui
-packageName: 'clsx'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - classnames
   - utility
+packageName: clsx
+npmUrl: 'https://www.npmjs.com/package/clsx'
+installCommand: npm install clsx
+islands: true
+esm: true
 ---
 
 ## Introduction

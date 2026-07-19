@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'UnoCSS'
+name: UnoCSS
 slug: unocss
-description: 'On-demand atomic CSS engine independent of UI frameworks.'
+shortDescription: On-demand atomic CSS engine independent of UI frameworks.
 category: developer-tools
-packageName: 'unocss'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - css
   - atomic
+packageName: unocss
+npmUrl: 'https://www.npmjs.com/package/unocss'
+installCommand: npm install unocss
+islands: true
+esm: true
 ---
 
 ## Introduction

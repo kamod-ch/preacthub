@@ -2,18 +2,22 @@
 entryType: library
 name: '@iconify-icon/react'
 slug: iconify-icon-react
-description: 'Iconify component package relevant through React compatibility and web components.'
+shortDescription: >-
+  Iconify component package relevant through React compatibility and web
+  components.
 category: ui
-packageName: '@iconify-icon/react'
-compatibility: compat
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: compat
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - icons
   - iconify
+packageName: '@iconify-icon/react'
+npmUrl: 'https://www.npmjs.com/package/%40iconify-icon%2Freact'
+installCommand: npm install @iconify-icon/react
+islands: true
+esm: true
 ---
 
 ## Introduction

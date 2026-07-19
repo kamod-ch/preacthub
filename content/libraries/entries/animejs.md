@@ -1,18 +1,20 @@
 ---
 entryType: library
-name: 'animejs'
+name: animejs
 slug: animejs
-description: 'Framework-independent JavaScript animation engine.'
+shortDescription: Framework-independent JavaScript animation engine.
 category: animation
-packageName: 'animejs'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - animation
+packageName: animejs
+npmUrl: 'https://www.npmjs.com/package/animejs'
+installCommand: npm install animejs
+islands: true
+esm: true
 ---
 
 ## Introduction

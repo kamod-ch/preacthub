@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'Preact Signals Core'
+name: Preact Signals Core
 slug: preact-signals-core
-description: 'Framework-agnostic signals primitives used by Preact Signals.'
+shortDescription: Framework-agnostic signals primitives used by Preact Signals.
 category: state-management
-packageName: '@preact/signals-core'
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - signals
   - state
   - framework-agnostic
+packageName: '@preact/signals-core'
+npmUrl: 'https://www.npmjs.com/package/%40preact%2Fsignals-core'
+installCommand: npm install @preact/signals-core
+islands: true
+esm: true
 ---
 
 ## Introduction

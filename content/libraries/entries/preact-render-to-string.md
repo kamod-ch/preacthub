@@ -2,25 +2,29 @@
 entryType: library
 name: preact-render-to-string
 slug: preact-render-to-string
-description: Official HTML rendering package for server-side rendering and static generation.
+shortDescription: >-
+  Official HTML rendering package for server-side rendering and static
+  generation.
 category: ssr
-packageName: "preact-render-to-string"
-repository: "https://github.com/preactjs/preact-render-to-string"
-documentation: "https://preactjs.com/guide/v10/server-side-rendering/"
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - ssr
   - rendering
   - html
-featured: true
+packageName: preact-render-to-string
+repositoryUrl: 'https://github.com/preactjs/preact-render-to-string'
+npmUrl: 'https://www.npmjs.com/package/preact-render-to-string'
+documentationUrl: 'https://preactjs.com/guide/v10/server-side-rendering/'
+license: MIT
+installCommand: npm install preact-render-to-string
 alternatives:
   - preact-iso
+featured: true
+islands: true
+esm: true
 ---
 
 ## Introduction

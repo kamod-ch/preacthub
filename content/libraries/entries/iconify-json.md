@@ -2,18 +2,20 @@
 entryType: library
 name: '@iconify-json/*'
 slug: iconify-json
-description: 'Framework-independent Iconify icon data packages.'
+shortDescription: Framework-independent Iconify icon data packages.
 category: ui
-packageName: '@iconify-json/mdi'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - icons
   - data
+packageName: '@iconify-json/mdi'
+npmUrl: 'https://www.npmjs.com/package/%40iconify-json%2Fmdi'
+installCommand: npm install @iconify-json/mdi
+islands: true
+esm: true
 ---
 
 ## Introduction

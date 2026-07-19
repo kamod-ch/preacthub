@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'DaisyUI'
+name: DaisyUI
 slug: daisyui
-description: 'CSS-first component classes that work independently of frameworks.'
+shortDescription: CSS-first component classes that work independently of frameworks.
 category: ui
-packageName: 'daisyui'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - css
   - ui
   - tailwind
+packageName: daisyui
+npmUrl: 'https://www.npmjs.com/package/daisyui'
+installCommand: npm install daisyui
+islands: true
+esm: true
 ---
 
 ## Introduction

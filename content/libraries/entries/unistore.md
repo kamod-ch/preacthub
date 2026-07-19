@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Unistore'
+name: Unistore
 slug: unistore
-description: 'Tiny centralized store historically associated with Preact.'
+shortDescription: Tiny centralized store historically associated with Preact.
 category: state-management
-packageName: 'unistore'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - store
   - state
+packageName: unistore
+npmUrl: 'https://www.npmjs.com/package/unistore'
+installCommand: npm install unistore
+islands: true
+esm: true
 ---
 
 ## Introduction

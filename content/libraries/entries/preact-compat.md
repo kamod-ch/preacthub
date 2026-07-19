@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'preact/compat'
+name: preact/compat
 slug: preact-compat
-description: 'Compatibility layer that lets many React libraries run on Preact.'
+shortDescription: Compatibility layer that lets many React libraries run on Preact.
 category: developer-tools
-packageName: 'preact'
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - compat
   - react
+packageName: preact
+npmUrl: 'https://www.npmjs.com/package/preact'
+installCommand: npm install preact
+islands: true
+esm: true
 ---
 
 ## Introduction

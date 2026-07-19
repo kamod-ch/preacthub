@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Tabler Icons'
+name: Tabler Icons
 slug: tabler-icons
-description: 'Large SVG icon collection suitable for Preact UI.'
+shortDescription: Large SVG icon collection suitable for Preact UI.
 category: ui
-packageName: '@tabler/icons'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - icons
   - svg
+packageName: '@tabler/icons'
+npmUrl: 'https://www.npmjs.com/package/%40tabler%2Ficons'
+installCommand: npm install @tabler/icons
+islands: true
+esm: true
 ---
 
 ## Introduction

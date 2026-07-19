@@ -2,25 +2,29 @@
 entryType: library
 name: Valibot
 slug: valibot
-description: Lightweight schema validation library focused on small bundles and composable parsing.
+shortDescription: >-
+  Lightweight schema validation library focused on small bundles and composable
+  parsing.
 category: forms
-packageName: "valibot"
-repository: "https://github.com/fabian-hiller/valibot"
-documentation: "https://valibot.dev"
-homepage: "https://valibot.dev"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - validation
   - forms
   - schema
+packageName: valibot
+repositoryUrl: 'https://github.com/fabian-hiller/valibot'
+npmUrl: 'https://www.npmjs.com/package/valibot'
+documentationUrl: 'https://valibot.dev'
+homepageUrl: 'https://valibot.dev'
+license: MIT
+installCommand: npm install valibot
 alternatives:
   - zod
+islands: true
+esm: true
 ---
 
 ## Introduction

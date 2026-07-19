@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Vest'
+name: Vest
 slug: vest
-description: 'Framework-independent validation suite for form workflows.'
+shortDescription: Framework-independent validation suite for form workflows.
 category: forms
-packageName: 'vest'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - validation
   - forms
+packageName: vest
+npmUrl: 'https://www.npmjs.com/package/vest'
+installCommand: npm install vest
+islands: true
+esm: true
 ---
 
 ## Introduction

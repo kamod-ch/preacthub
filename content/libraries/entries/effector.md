@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Effector'
+name: Effector
 slug: effector
-description: 'Reactive state manager with framework-independent core APIs.'
+shortDescription: Reactive state manager with framework-independent core APIs.
 category: state-management
-packageName: 'effector'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - state
   - reactive
+packageName: effector
+npmUrl: 'https://www.npmjs.com/package/effector'
+installCommand: npm install effector
+islands: true
+esm: true
 ---
 
 ## Introduction

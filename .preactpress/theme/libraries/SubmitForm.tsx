@@ -99,7 +99,7 @@ export function SubmitForm({ issueUrl }: { issueUrl: string }) {
       </div>
 
       <div class="ph-submit-actions">
-        <Button href={previewUrl} class="ph-button-primary">Open prefilled GitHub issue</Button>
+        <Button href={previewUrl} class="ph-button-primary">Create GitHub submission</Button>
         <a class="ph-submit-fallback" href={issueUrl}>Use blank issue template instead</a>
       </div>
     </div>

@@ -2,26 +2,28 @@
 entryType: library
 name: React Hook Form
 slug: react-hook-form
-description: Popular form state and validation workflow for hook-based component trees.
+shortDescription: Popular form state and validation workflow for hook-based component trees.
 category: forms
-packageName: "react-hook-form"
-repository: "https://github.com/react-hook-form/react-hook-form"
-documentation: "https://react-hook-form.com"
-homepage: "https://react-hook-form.com"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - forms
   - validation
   - hooks
+packageName: react-hook-form
+repositoryUrl: 'https://github.com/react-hook-form/react-hook-form'
+npmUrl: 'https://www.npmjs.com/package/react-hook-form'
+documentationUrl: 'https://react-hook-form.com'
+homepageUrl: 'https://react-hook-form.com'
+license: MIT
+installCommand: npm install react-hook-form
 alternatives:
   - zod
   - valibot
+islands: true
+esm: true
 ---
 
 ## Introduction

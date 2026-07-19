@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Formik'
+name: Formik
 slug: formik
-description: 'Established React form library relevant for compatibility checks.'
+shortDescription: Established React form library relevant for compatibility checks.
 category: forms
-packageName: 'formik'
-compatibility: compat
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: compat
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - forms
   - react
+packageName: formik
+npmUrl: 'https://www.npmjs.com/package/formik'
+installCommand: npm install formik
+islands: true
+esm: true
 ---
 
 ## Introduction

@@ -1,18 +1,20 @@
 ---
 entryType: library
-name: 'Lit'
+name: Lit
 slug: lit
-description: 'Web Components authoring library complementary to Preact.'
+shortDescription: Web Components authoring library complementary to Preact.
 category: ui
-packageName: 'lit'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - web-components
+packageName: lit
+npmUrl: 'https://www.npmjs.com/package/lit'
+installCommand: npm install lit
+islands: true
+esm: true
 ---
 
 ## Introduction

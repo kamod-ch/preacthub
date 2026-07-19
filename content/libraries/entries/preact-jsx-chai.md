@@ -1,20 +1,20 @@
 ---
 entryType: library
-name: 'preact-jsx-chai'
+name: preact-jsx-chai
 slug: preact-jsx-chai
-description: 'Chai assertions for checking Preact JSX output in tests.'
+shortDescription: Chai assertions for checking Preact JSX output in tests.
 category: testing
-packageName: 'preact-jsx-chai'
-compatibility: native
-status: stable
-typescript: false
-ssr: false
-islands: false
-esm: false
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - testing
   - assertions
   - jsx
+packageName: preact-jsx-chai
+npmUrl: 'https://www.npmjs.com/package/preact-jsx-chai'
+installCommand: npm install preact-jsx-chai
 ---
 
 ## Introduction

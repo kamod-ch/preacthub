@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'uPlot'
+name: uPlot
 slug: uplot
-description: 'Very small and fast time-series charting library.'
+shortDescription: Very small and fast time-series charting library.
 category: charts
-packageName: 'uplot'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - charts
   - performance
+packageName: uplot
+npmUrl: 'https://www.npmjs.com/package/uplot'
+installCommand: npm install uplot
+islands: true
+esm: true
 ---
 
 ## Introduction

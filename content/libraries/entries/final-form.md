@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Final Form'
+name: Final Form
 slug: final-form
-description: 'Framework-agnostic form state core usable from Preact.'
+shortDescription: Framework-agnostic form state core usable from Preact.
 category: forms
-packageName: 'final-form'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - forms
   - state
+packageName: final-form
+npmUrl: 'https://www.npmjs.com/package/final-form'
+installCommand: npm install final-form
+islands: true
+esm: true
 ---
 
 ## Introduction

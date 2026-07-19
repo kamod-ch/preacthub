@@ -2,10 +2,13 @@ import type { ComponentChildren } from "preact";
 import { Button, Card, CardContent, CardHeader, CardTitle } from "@kamod-ch/ui";
 import { getCategory } from "../../../src/lib/categories";
 import {
-  compatibilityLabel,
+  compatibilityStatusLabel,
   computeHealthScore,
+  formatAuditSummary,
   formatDate,
-  statusLabel,
+  maintenanceStatusLabel,
+  ssrSupportLabel,
+  typescriptSupportLabel,
   type PreactLibrary,
 } from "../../../src/lib/libraries";
 import { CompatibilityBadge, QualityBadge, StatusBadge } from "./LibraryBadge";
@@ -41,18 +44,29 @@ export function LibraryCompare({ libraries }: { libraries: [PreactLibrary, Preac
         <div class="ph-section-eyebrow">Compare</div>
         <h1>{left.name} vs {right.name}</h1>
         <p class="ph-muted">Side-by-side compatibility, runtime support and editorial notes for Preact projects.</p>
+        <div class="ph-compare-actions">
+          <Button href="/libraries" class="ph-button-primary">Start browsing libraries</Button>
+        </div>
       </header>
 
       <div class="ph-compare-grid">
         {[left, right].map((library) => {
           const category = getCategory(library.category);
-          const score = computeHealthScore(library);
+          const score = computeHealthScore({
+            compatibilityStatus: library.compatibilityStatus,
+            maintenanceStatus: library.maintenanceStatus,
+            typescriptSupport: library.typescriptSupport,
+            ssrSupport: library.ssrSupport,
+            islands: library.islands,
+            esm: library.esm,
+            lastVerifiedAt: library.lastVerifiedAt,
+          });
           return (
             <Card key={library.slug} class="ph-compare-card">
               <CardHeader>
                 <div class="ph-card-badges">
-                  <CompatibilityBadge value={library.compatibility} />
-                  <StatusBadge value={library.status} />
+                  <CompatibilityBadge value={library.compatibilityStatus} />
+                  <StatusBadge value={library.maintenanceStatus} />
                 </div>
                 <CardTitle>{library.name}</CardTitle>
                 <p class="ph-library-description">{library.description}</p>
@@ -60,12 +74,12 @@ export function LibraryCompare({ libraries }: { libraries: [PreactLibrary, Preac
               </CardHeader>
               <CardContent class="ph-compare-card-body">
                 <CompareCell label="Category"><strong>{category?.name ?? library.category}</strong></CompareCell>
-                <CompareCell label="Compatibility"><strong>{compatibilityLabel(library.compatibility)}</strong></CompareCell>
-                <CompareCell label="Status"><strong>{statusLabel(library.status)}</strong></CompareCell>
+                <CompareCell label="Compatibility"><strong>{compatibilityStatusLabel(library.compatibilityStatus)}</strong></CompareCell>
+                <CompareCell label="Maintenance"><strong>{maintenanceStatusLabel(library.maintenanceStatus)}</strong></CompareCell>
                 <CompareCell label="Runtime"><RuntimeRow library={library} /></CompareCell>
-                <CompareCell label="Verified"><strong>{formatDate(library.lastVerified)}</strong></CompareCell>
+                <CompareCell label="Verified"><strong>{formatDate(library.lastVerifiedAt)}</strong></CompareCell>
                 <CompareCell label="Tested with">
-                  <strong>{library.testedWith ? `Preact ${library.testedWith.preact} · ${library.testedWith.library}` : "Not documented"}</strong>
+                  <strong>{library.testedPreactVersions.length ? `Preact ${library.testedPreactVersions.join(", ")}` : "Not documented"}</strong>
                 </CompareCell>
                 <CompareCell label="License"><strong>{library.license ?? "Unknown"}</strong></CompareCell>
                 <CompareCell label="Bundle size"><strong>{library.bundleSize ?? "Not documented"}</strong></CompareCell>
@@ -74,6 +88,14 @@ export function LibraryCompare({ libraries }: { libraries: [PreactLibrary, Preac
                     <div class="ph-quality-badge-list">
                       {library.qualityBadges.map((badge) => <QualityBadge key={badge} value={badge} />)}
                     </div>
+                  </CompareCell>
+                ) : null}
+                {formatAuditSummary(library) ? (
+                  <CompareCell label="AI audit">
+                    <strong>{formatAuditSummary(library)}</strong>
+                    {library.auditUrl ? (
+                      <div><a href={library.auditUrl} target="_blank" rel="noopener noreferrer">View report</a></div>
+                    ) : null}
                   </CompareCell>
                 ) : null}
                 {library.limitations?.length ? (
@@ -109,23 +131,23 @@ export function LibraryCompare({ libraries }: { libraries: [PreactLibrary, Preac
             <tbody>
               <tr>
                 <th scope="row">Compatibility</th>
-                <td>{compatibilityLabel(left.compatibility)}</td>
-                <td>{compatibilityLabel(right.compatibility)}</td>
+                <td>{compatibilityStatusLabel(left.compatibilityStatus)}</td>
+                <td>{compatibilityStatusLabel(right.compatibilityStatus)}</td>
               </tr>
               <tr>
-                <th scope="row">Status</th>
-                <td>{statusLabel(left.status)}</td>
-                <td>{statusLabel(right.status)}</td>
+                <th scope="row">Maintenance</th>
+                <td>{maintenanceStatusLabel(left.maintenanceStatus)}</td>
+                <td>{maintenanceStatusLabel(right.maintenanceStatus)}</td>
               </tr>
               <tr>
                 <th scope="row">TypeScript</th>
-                <td>{yesNoUnknown(left.typescript)}</td>
-                <td>{yesNoUnknown(right.typescript)}</td>
+                <td>{typescriptSupportLabel(left.typescriptSupport)}</td>
+                <td>{typescriptSupportLabel(right.typescriptSupport)}</td>
               </tr>
               <tr>
                 <th scope="row">SSR</th>
-                <td>{yesNoUnknown(left.ssr, "Limited")}</td>
-                <td>{yesNoUnknown(right.ssr, "Limited")}</td>
+                <td>{ssrSupportLabel(left.ssrSupport)}</td>
+                <td>{ssrSupportLabel(right.ssrSupport)}</td>
               </tr>
               <tr>
                 <th scope="row">Islands</th>
@@ -134,8 +156,13 @@ export function LibraryCompare({ libraries }: { libraries: [PreactLibrary, Preac
               </tr>
               <tr>
                 <th scope="row">Last verified</th>
-                <td>{formatDate(left.lastVerified)}</td>
-                <td>{formatDate(right.lastVerified)}</td>
+                <td>{formatDate(left.lastVerifiedAt)}</td>
+                <td>{formatDate(right.lastVerifiedAt)}</td>
+              </tr>
+              <tr>
+                <th scope="row">AI audit</th>
+                <td>{formatAuditSummary(left) ?? "Not audited"}</td>
+                <td>{formatAuditSummary(right) ?? "Not audited"}</td>
               </tr>
             </tbody>
           </table>

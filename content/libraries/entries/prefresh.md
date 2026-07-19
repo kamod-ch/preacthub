@@ -2,24 +2,25 @@
 entryType: library
 name: Prefresh
 slug: prefresh
-description: Fast refresh support for local Preact development workflows.
+shortDescription: Fast refresh support for local Preact development workflows.
 category: developer-tools
-packageName: "@prefresh/vite"
-repository: "https://github.com/preactjs/prefresh"
-documentation: "https://github.com/preactjs/prefresh"
-compatibility: native
-status: stable
-typescript: true
-ssr: false
-islands: false
-esm: true
-license: MIT
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - vite
   - hmr
   - developer-experience
+packageName: '@prefresh/vite'
+repositoryUrl: 'https://github.com/preactjs/prefresh'
+npmUrl: 'https://www.npmjs.com/package/%40prefresh%2Fvite'
+documentationUrl: 'https://github.com/preactjs/prefresh'
+license: MIT
+installCommand: npm install @prefresh/vite
 alternatives:
   - preact-devtools
+esm: true
 ---
 
 ## Introduction

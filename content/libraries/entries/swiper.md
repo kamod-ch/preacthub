@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Swiper'
+name: Swiper
 slug: swiper
-description: 'Slider package with web component and JavaScript APIs usable from Preact.'
+shortDescription: Slider package with web component and JavaScript APIs usable from Preact.
 category: ui
-packageName: 'swiper'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - slider
   - carousel
+packageName: swiper
+npmUrl: 'https://www.npmjs.com/package/swiper'
+installCommand: npm install swiper
+islands: true
+esm: true
 ---
 
 ## Introduction

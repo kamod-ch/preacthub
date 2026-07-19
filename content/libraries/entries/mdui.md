@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'mdui'
+name: mdui
 slug: mdui
-description: 'Material Design Web Components library usable from Preact.'
+shortDescription: Material Design Web Components library usable from Preact.
 category: ui
-packageName: 'mdui'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - web-components
   - material
+packageName: mdui
+npmUrl: 'https://www.npmjs.com/package/mdui'
+installCommand: npm install mdui
+islands: true
+esm: true
 ---
 
 ## Introduction

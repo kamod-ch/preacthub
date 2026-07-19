@@ -2,26 +2,28 @@
 entryType: library
 name: wouter-preact
 slug: wouter-preact
-description: Tiny router with a hook-first API for Preact applications.
+shortDescription: Tiny router with a hook-first API for Preact applications.
 category: routing
-packageName: "wouter-preact"
-repository: "https://github.com/molefrog/wouter"
-documentation: "https://github.com/molefrog/wouter/tree/master/packages/wouter-preact"
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - routing
   - hooks
   - tiny
-featured: true
+packageName: wouter-preact
+repositoryUrl: 'https://github.com/molefrog/wouter'
+npmUrl: 'https://www.npmjs.com/package/wouter-preact'
+documentationUrl: 'https://github.com/molefrog/wouter/tree/master/packages/wouter-preact'
+license: MIT
+installCommand: npm install wouter-preact
 alternatives:
   - preact-router
   - preact-iso
+featured: true
+islands: true
+esm: true
 ---
 
 ## Introduction

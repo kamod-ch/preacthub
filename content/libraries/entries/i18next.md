@@ -2,25 +2,29 @@
 entryType: library
 name: i18next
 slug: i18next
-description: Mature internationalization ecosystem for translations, interpolation and formatting.
+shortDescription: >-
+  Mature internationalization ecosystem for translations, interpolation and
+  formatting.
 category: i18n
-packageName: "i18next"
-repository: "https://github.com/i18next/i18next"
-documentation: "https://www.i18next.com/"
-homepage: "https://www.i18next.com/"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - i18n
   - translations
   - localization
+packageName: i18next
+repositoryUrl: 'https://github.com/i18next/i18next'
+npmUrl: 'https://www.npmjs.com/package/i18next'
+documentationUrl: 'https://www.i18next.com/'
+homepageUrl: 'https://www.i18next.com/'
+license: MIT
+installCommand: npm install i18next
 alternatives:
   - lingui
+islands: true
+esm: true
 ---
 
 ## Introduction

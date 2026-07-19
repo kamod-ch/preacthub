@@ -2,25 +2,27 @@
 entryType: library
 name: Motion
 slug: motion
-description: Modern animation APIs for layout, gestures and transitions.
+shortDescription: 'Modern animation APIs for layout, gestures and transitions.'
 category: animation
-packageName: "motion"
-repository: "https://github.com/motiondivision/motion"
-documentation: "https://motion.dev"
-homepage: "https://motion.dev"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - animation
   - transitions
   - gestures
+packageName: motion
+repositoryUrl: 'https://github.com/motiondivision/motion'
+npmUrl: 'https://www.npmjs.com/package/motion'
+documentationUrl: 'https://motion.dev'
+homepageUrl: 'https://motion.dev'
+license: MIT
+installCommand: npm install motion
 alternatives:
   - floating-ui
+islands: true
+esm: true
 ---
 
 ## Introduction

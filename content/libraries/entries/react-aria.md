@@ -2,25 +2,27 @@
 entryType: library
 name: React Aria
 slug: react-aria
-description: Accessible behavior primitives and hooks for complex UI controls.
+shortDescription: Accessible behavior primitives and hooks for complex UI controls.
 category: ui
-packageName: "react-aria"
-repository: "https://github.com/adobe/react-spectrum"
-documentation: "https://react-spectrum.adobe.com/react-aria/"
-homepage: "https://react-spectrum.adobe.com/react-aria/"
-compatibility: unknown
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: Apache-2.0
+compatibilityStatus: unverified
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - accessibility
   - ui
   - primitives
+packageName: react-aria
+repositoryUrl: 'https://github.com/adobe/react-spectrum'
+npmUrl: 'https://www.npmjs.com/package/react-aria'
+documentationUrl: 'https://react-spectrum.adobe.com/react-aria/'
+homepageUrl: 'https://react-spectrum.adobe.com/react-aria/'
+license: Apache-2.0
+installCommand: npm install react-aria
 alternatives:
   - floating-ui
+islands: true
+esm: true
 ---
 
 ## Introduction

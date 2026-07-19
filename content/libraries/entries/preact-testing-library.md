@@ -2,25 +2,29 @@
 entryType: library
 name: Preact Testing Library
 slug: preact-testing-library
-description: Testing Library integration focused on user-centric testing for Preact components.
+shortDescription: >-
+  Testing Library integration focused on user-centric testing for Preact
+  components.
 category: testing
-packageName: "@testing-library/preact"
-repository: "https://github.com/testing-library/preact-testing-library"
-documentation: "https://testing-library.com/docs/preact-testing-library/intro/"
-compatibility: native
-status: recommended
-typescript: true
-ssr: false
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - testing
   - components
   - accessibility
-featured: true
+packageName: '@testing-library/preact'
+repositoryUrl: 'https://github.com/testing-library/preact-testing-library'
+npmUrl: 'https://www.npmjs.com/package/%40testing-library%2Fpreact'
+documentationUrl: 'https://testing-library.com/docs/preact-testing-library/intro/'
+license: MIT
+installCommand: npm install @testing-library/preact
 alternatives:
   - preact-devtools
+featured: true
+islands: true
+esm: true
 ---
 
 ## Introduction

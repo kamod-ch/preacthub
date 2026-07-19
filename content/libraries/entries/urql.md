@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'urql'
+name: urql
 slug: urql
-description: 'GraphQL client with React bindings that can be evaluated via compat.'
+shortDescription: GraphQL client with React bindings that can be evaluated via compat.
 category: data-fetching
-packageName: 'urql'
-compatibility: compat
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: compat
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - graphql
   - client
+packageName: urql
+npmUrl: 'https://www.npmjs.com/package/urql'
+installCommand: npm install urql
+islands: true
+esm: true
 ---
 
 ## Introduction

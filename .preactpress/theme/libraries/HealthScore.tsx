@@ -3,7 +3,7 @@ import type { HealthScoreResult } from "../../../src/lib/libraries";
 
 const breakdownLabels: Array<{ key: keyof HealthScoreResult["breakdown"]; label: string; max: number }> = [
   { key: "compatibility", label: "Compatibility", max: 35 },
-  { key: "status", label: "Status", max: 20 },
+  { key: "maintenance", label: "Maintenance", max: 20 },
   { key: "typescript", label: "TypeScript", max: 10 },
   { key: "ssr", label: "SSR", max: 10 },
   { key: "islands", label: "Islands", max: 10 },

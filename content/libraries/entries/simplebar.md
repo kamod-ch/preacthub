@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'simplebar'
+name: simplebar
 slug: simplebar
-description: 'Framework-independent custom scrollbar utility.'
+shortDescription: Framework-independent custom scrollbar utility.
 category: ui
-packageName: 'simplebar'
-compatibility: native
-status: stable
-typescript: true
-ssr: false
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - scrollbars
   - ui
+packageName: simplebar
+npmUrl: 'https://www.npmjs.com/package/simplebar'
+installCommand: npm install simplebar
+islands: true
+esm: true
 ---
 
 ## Introduction

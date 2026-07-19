@@ -2,26 +2,28 @@
 entryType: library
 name: Floating UI
 slug: floating-ui
-description: Positioning toolkit for tooltips, popovers and anchored overlays.
+shortDescription: 'Positioning toolkit for tooltips, popovers and anchored overlays.'
 category: ui
-packageName: "@floating-ui/dom"
-repository: "https://github.com/floating-ui/floating-ui"
-documentation: "https://floating-ui.com"
-homepage: "https://floating-ui.com"
-compatibility: partial
-status: stable
-typescript: true
-ssr: false
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: experimental
+typescriptSupport: native
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - ui
   - overlays
   - positioning
+packageName: '@floating-ui/dom'
+repositoryUrl: 'https://github.com/floating-ui/floating-ui'
+npmUrl: 'https://www.npmjs.com/package/%40floating-ui%2Fdom'
+documentationUrl: 'https://floating-ui.com'
+homepageUrl: 'https://floating-ui.com'
+license: MIT
+installCommand: npm install @floating-ui/dom
 alternatives:
   - react-aria
 featured: true
+islands: true
+esm: true
 ---
 
 ## Introduction

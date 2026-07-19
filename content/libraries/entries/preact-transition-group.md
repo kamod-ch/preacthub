@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'preact-transition-group'
+name: preact-transition-group
 slug: preact-transition-group
-description: 'Transition components for enter and leave animations in Preact.'
+shortDescription: Transition components for enter and leave animations in Preact.
 category: animation
-packageName: 'preact-transition-group'
-compatibility: native
-status: stable
-typescript: false
-ssr: false
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: unsupported
+maintenanceStatus: active
 tags:
   - animation
   - transitions
+packageName: preact-transition-group
+npmUrl: 'https://www.npmjs.com/package/preact-transition-group'
+installCommand: npm install preact-transition-group
+islands: true
+esm: true
 ---
 
 ## Introduction

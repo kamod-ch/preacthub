@@ -2,19 +2,21 @@
 entryType: library
 name: '@tanstack/query-core'
 slug: tanstack-query-core
-description: 'Framework-agnostic async state and cache core from TanStack Query.'
+shortDescription: Framework-agnostic async state and cache core from TanStack Query.
 category: data-fetching
-packageName: '@tanstack/query-core'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - query
   - cache
   - core
+packageName: '@tanstack/query-core'
+npmUrl: 'https://www.npmjs.com/package/%40tanstack%2Fquery-core'
+installCommand: npm install @tanstack/query-core
+islands: true
+esm: true
 ---
 
 ## Introduction

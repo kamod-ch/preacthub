@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'preact-layout'
+name: preact-layout
 slug: preact-layout
-description: 'Small layout helper library from the Preact ecosystem.'
+shortDescription: Small layout helper library from the Preact ecosystem.
 category: ui
-packageName: 'preact-layout'
-compatibility: native
-status: stable
-typescript: false
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - layout
   - ui
+packageName: preact-layout
+npmUrl: 'https://www.npmjs.com/package/preact-layout'
+installCommand: npm install preact-layout
+islands: true
+esm: true
 ---
 
 ## Introduction

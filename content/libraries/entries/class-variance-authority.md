@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'class-variance-authority'
+name: class-variance-authority
 slug: class-variance-authority
-description: 'Framework-independent utility for variant-based class composition.'
+shortDescription: Framework-independent utility for variant-based class composition.
 category: ui
-packageName: 'class-variance-authority'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - classes
   - variants
+packageName: class-variance-authority
+npmUrl: 'https://www.npmjs.com/package/class-variance-authority'
+installCommand: npm install class-variance-authority
+islands: true
+esm: true
 ---
 
 ## Introduction

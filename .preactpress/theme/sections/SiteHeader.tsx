@@ -7,8 +7,8 @@ import {
   withBase,
   type LayoutProps,
 } from "@kamod-ch/preactpress/client";
+import { BrandLogo } from "../BrandLogo";
 import { resolveNavLink } from "../utils";
-import logoUrl from "../preacthub-logo.svg";
 
 function SiteThemeToggle() {
   return (
@@ -91,7 +91,7 @@ export const SiteHeader: FunctionalComponent<{
     <header class="ph-header">
       <div class="ph-shell ph-header-inner">
         <a class="ph-brand" href={withBase(site.base, "/")} aria-label="PreactHub home">
-          <img class="ph-brand-logo" src={logoUrl} alt="PreactHub" />
+          <BrandLogo />
         </a>
         <nav class="ph-nav" aria-label="Main navigation">
           {navItems.map((item) => {

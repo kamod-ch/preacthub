@@ -1,18 +1,20 @@
 ---
 entryType: library
-name: 'GSAP'
+name: GSAP
 slug: gsap
-description: 'Powerful imperative animation platform independent of Preact.'
+shortDescription: Powerful imperative animation platform independent of Preact.
 category: animation
-packageName: 'gsap'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - animation
+packageName: gsap
+npmUrl: 'https://www.npmjs.com/package/gsap'
+installCommand: npm install gsap
+islands: true
+esm: true
 ---
 
 ## Introduction

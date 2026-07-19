@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Embla Carousel'
+name: Embla Carousel
 slug: embla-carousel
-description: 'Carousel engine with framework-independent core APIs.'
+shortDescription: Carousel engine with framework-independent core APIs.
 category: ui
-packageName: 'embla-carousel'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - carousel
   - slider
+packageName: embla-carousel
+npmUrl: 'https://www.npmjs.com/package/embla-carousel'
+installCommand: npm install embla-carousel
+islands: true
+esm: true
 ---
 
 ## Introduction

@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Shoelace'
+name: Shoelace
 slug: shoelace
-description: 'Web Components UI library that works well with Preact.'
+shortDescription: Web Components UI library that works well with Preact.
 category: ui
-packageName: '@shoelace-style/shoelace'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - web-components
   - ui
+packageName: '@shoelace-style/shoelace'
+npmUrl: 'https://www.npmjs.com/package/%40shoelace-style%2Fshoelace'
+installCommand: npm install @shoelace-style/shoelace
+islands: true
+esm: true
 ---
 
 ## Introduction

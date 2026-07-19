@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'kamod-hooks'
+name: kamod-hooks
 slug: kamod-hooks
-description: 'Preact hooks collection from the Kamod ecosystem.'
+shortDescription: Preact hooks collection from the Kamod ecosystem.
 category: developer-tools
-packageName: 'kamod-hooks'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - hooks
   - kamod
+packageName: kamod-hooks
+npmUrl: 'https://www.npmjs.com/package/kamod-hooks'
+installCommand: npm install kamod-hooks
+islands: true
+esm: true
 ---
 
 ## Introduction

@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'keen-slider'
+name: keen-slider
 slug: keen-slider
-description: 'Touch slider library with a framework-agnostic core.'
+shortDescription: Touch slider library with a framework-agnostic core.
 category: ui
-packageName: 'keen-slider'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - slider
   - carousel
+packageName: keen-slider
+npmUrl: 'https://www.npmjs.com/package/keen-slider'
+installCommand: npm install keen-slider
+islands: true
+esm: true
 ---
 
 ## Introduction

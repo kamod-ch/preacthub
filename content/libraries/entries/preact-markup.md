@@ -1,19 +1,20 @@
 ---
 entryType: library
-name: 'preact-markup'
+name: preact-markup
 slug: preact-markup
-description: 'Utility for rendering markup in Preact-oriented workflows.'
+shortDescription: Utility for rendering markup in Preact-oriented workflows.
 category: ssr
-packageName: 'preact-markup'
-compatibility: native
-status: stable
-typescript: false
-ssr: true
-islands: false
-esm: true
+compatibilityStatus: native
+typescriptSupport: none
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - markup
   - rendering
+packageName: preact-markup
+npmUrl: 'https://www.npmjs.com/package/preact-markup'
+installCommand: npm install preact-markup
+esm: true
 ---
 
 ## Introduction

@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'redux-zero'
+name: redux-zero
 slug: redux-zero
-description: 'Minimal Redux-like state container usable from Preact.'
+shortDescription: Minimal Redux-like state container usable from Preact.
 category: state-management
-packageName: 'redux-zero'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - redux
   - state
   - minimal
+packageName: redux-zero
+npmUrl: 'https://www.npmjs.com/package/redux-zero'
+installCommand: npm install redux-zero
+islands: true
+esm: true
 ---
 
 ## Introduction

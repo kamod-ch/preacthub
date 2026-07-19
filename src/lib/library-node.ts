@@ -1,72 +1,41 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import { z } from "zod";
-import { categories, getCategory, type LibraryCategorySlug } from "./categories";
+import { categories } from "./categories";
 import {
+  attachLegacyLibraryView,
   compareUrl,
   libraryUrl,
-  qualityBadgeValues,
   sortLibraries,
   type LibraryDirectory,
   type LibraryStats,
   type PreactLibrary,
 } from "./libraries";
+import {
+  categorySlugSet,
+  parseLibraryFrontmatterInput,
+  validateLibraryAlternatives,
+  validateLibrarySlugMatchesFile,
+  type LibraryEntry,
+} from "./library-schema";
 
-const testedWithSchema = z.object({
-  preact: z.string().min(1),
-  library: z.string().min(1),
-});
-
-const frontmatterSchema = z.object({
-  entryType: z.literal("library").optional(),
-  name: z.string().min(1),
-  slug: z.string().min(1),
-  description: z.string().min(1),
-  category: z.string().min(1),
-  packageName: z.string().min(1).optional(),
-  repository: z.string().url().optional(),
-  documentation: z.string().url().optional(),
-  homepage: z.string().url().optional(),
-  compatibility: z.enum(["native", "compat", "partial", "incompatible", "unknown"]),
-  status: z.enum(["recommended", "stable", "experimental", "deprecated"]),
-  testedWith: testedWithSchema.optional(),
-  typescript: z.boolean().default(false),
-  ssr: z.boolean().default(false),
-  islands: z.boolean().default(false),
-  esm: z.boolean().default(false),
-  license: z.string().min(1).optional(),
-  bundleSize: z.string().min(1).optional(),
-  lastVerified: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
-  qualityBadges: z.array(z.enum(qualityBadgeValues)).default([]),
-  tags: z.array(z.string().min(1)).default([]),
-  notes: z.array(z.string().min(1)).optional(),
-  limitations: z.array(z.string().min(1)).optional(),
-  alternatives: z.array(z.string().min(1)).optional(),
-  featured: z.boolean().optional(),
-});
+export { parseLibraryFrontmatterInput as parseLibraryFrontmatterRaw } from "./library-schema";
 
 export function parseLibraryFrontmatter(frontmatter: unknown, file = "library.md"): PreactLibrary {
-  const parsed = frontmatterSchema.parse(frontmatter);
-  const category = getCategory(parsed.category);
-  if (!category) {
-    throw new Error(`Unknown category "${parsed.category}" in ${file}`);
-  }
-  return {
-    ...parsed,
-    category: category.slug as LibraryCategorySlug,
-    route: libraryUrl(parsed.slug),
-    file,
-  };
+  const entry = parseLibraryFrontmatterInput(frontmatter, file);
+  validateLibrarySlugMatchesFile(entry, file);
+  return attachLegacyLibraryView(entry, libraryUrl(entry.slug), file);
 }
 
 export function validateLibraryCollection(libraries: PreactLibrary[]): void {
   const seen = new Map<string, string>();
-  const categorySlugs = new Set<string>(categories.map((category) => category.slug));
+  const knownSlugs = new Set(libraries.map((library) => library.slug));
 
   for (const library of libraries) {
-    if (categorySlugs.has(library.slug)) {
-      throw new Error(`Library slug "${library.slug}" in ${library.file} collides with category "${library.slug}"`);
+    if (categorySlugSet.has(library.slug)) {
+      throw new Error(
+        `Library slug "${library.slug}" in ${library.file} collides with category "${library.slug}"`,
+      );
     }
 
     const duplicate = seen.get(library.slug);
@@ -74,6 +43,7 @@ export function validateLibraryCollection(libraries: PreactLibrary[]): void {
       throw new Error(`Duplicate library slug "${library.slug}" in ${duplicate} and ${library.file}`);
     }
     seen.set(library.slug, library.file);
+    validateLibraryAlternatives(library, knownSlugs, library.file);
   }
 }
 
@@ -121,7 +91,10 @@ export function getLibraryContentRewrites(root: string): Record<string, string> 
       const raw = fs.readFileSync(file, "utf8");
       const parsed = matter(raw);
       if (parsed.data.entryType !== "library") continue;
-      entries.push({ library: parseLibraryFrontmatter(parsed.data, path.relative(contentDir, file)), file });
+      entries.push({
+        library: parseLibraryFrontmatter(parsed.data, path.relative(contentDir, file)),
+        file,
+      });
     }
 
     validateLibraryCollection(entries.map((entry) => entry.library));
@@ -153,17 +126,35 @@ export function getComparePaths(root: string): Array<{ params: { pair: string } 
   return paths.sort((a, b) => a.params.pair.localeCompare(b.params.pair));
 }
 
+export function loadLibraryEntries(root: string): LibraryEntry[] {
+  const contentDir = path.join(root, "content", "libraries", "entries");
+  if (!fs.existsSync(contentDir)) return [];
+
+  const entries: LibraryEntry[] = [];
+  for (const absolute of walkMarkdownFiles(contentDir)) {
+    const raw = fs.readFileSync(absolute, "utf8");
+    const parsed = matter(raw);
+    if (parsed.data.entryType !== "library") continue;
+    const relativeFile = path.relative(path.join(root, "content", "libraries"), absolute).split(path.sep).join("/");
+    entries.push(parseLibraryFrontmatterInput(parsed.data, relativeFile));
+  }
+  return entries;
+}
+
 export function loadLibraryDirectory(root: string): LibraryDirectory {
   const contentDir = path.join(root, "content", "libraries");
-  const files = walkMarkdownFiles(contentDir)
-    .filter((file) => !["index.md", "submit.md"].includes(path.relative(contentDir, file).split(path.sep).join("/")));
+  const files = walkMarkdownFiles(contentDir).filter(
+    (file) => !["index.md", "submit.md"].includes(path.relative(contentDir, file).split(path.sep).join("/")),
+  );
 
   const libraries: PreactLibrary[] = [];
   for (const absolute of files) {
     const raw = fs.readFileSync(absolute, "utf8");
     const parsed = matter(raw);
     if (parsed.data.entryType !== "library") continue;
-    libraries.push(parseLibraryFrontmatter(parsed.data, path.relative(contentDir, absolute).split(path.sep).join("/")));
+    libraries.push(
+      parseLibraryFrontmatter(parsed.data, path.relative(contentDir, absolute).split(path.sep).join("/")),
+    );
   }
 
   validateLibraryCollection(libraries);
@@ -178,9 +169,16 @@ export function loadLibraryDirectory(root: string): LibraryDirectory {
   const stats = {
     total: sorted.length,
     categories: categorySummaries.filter((category) => category.count > 0).length,
-    verified: sorted.filter((library) => Boolean(library.lastVerified)).length,
-    native: sorted.filter((library) => library.compatibility === "native").length,
+    verified: sorted.filter((library) => Boolean(library.lastVerifiedAt)).length,
+    native: sorted.filter((library) => library.compatibilityStatus === "native").length,
+    communityTested: sorted.filter((library) => library.compatibilityStatus === "community-tested").length,
+    unverified: sorted.filter((library) => library.compatibilityStatus === "unverified").length,
   } satisfies LibraryStats;
 
   return { libraries: sorted, featured, categories: categorySummaries, stats, bySlug };
+}
+
+export function validateLibraryCatalog(root: string = process.cwd()): PreactLibrary[] {
+  const directory = loadLibraryDirectory(root);
+  return directory.libraries;
 }

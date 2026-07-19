@@ -2,24 +2,26 @@
 entryType: library
 name: HTM
 slug: htm
-description: JSX-free tagged template syntax that pairs naturally with Preact.
+shortDescription: JSX-free tagged template syntax that pairs naturally with Preact.
 category: developer-tools
-packageName: "htm"
-repository: "https://github.com/developit/htm"
-documentation: "https://github.com/developit/htm"
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
-license: MIT
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - templates
   - jsx-alternative
   - developer-experience
+packageName: htm
+repositoryUrl: 'https://github.com/developit/htm'
+npmUrl: 'https://www.npmjs.com/package/htm'
+documentationUrl: 'https://github.com/developit/htm'
+license: MIT
+installCommand: npm install htm
 alternatives:
   - preact-signals
+islands: true
+esm: true
 ---
 
 ## Introduction

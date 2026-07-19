@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Heroicons'
+name: Heroicons
 slug: heroicons
-description: 'SVG-first icon set that can be embedded directly in Preact.'
+shortDescription: SVG-first icon set that can be embedded directly in Preact.
 category: ui
-packageName: 'heroicons'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - icons
   - svg
+packageName: heroicons
+npmUrl: 'https://www.npmjs.com/package/heroicons'
+installCommand: npm install heroicons
+islands: true
+esm: true
 ---
 
 ## Introduction

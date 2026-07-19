@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Panda CSS'
+name: Panda CSS
 slug: panda-css
-description: 'Type-safe styling system that can generate framework-agnostic CSS.'
+shortDescription: Type-safe styling system that can generate framework-agnostic CSS.
 category: developer-tools
-packageName: '@pandacss/dev'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - css
   - styling
+packageName: '@pandacss/dev'
+npmUrl: 'https://www.npmjs.com/package/%40pandacss%2Fdev'
+installCommand: npm install @pandacss/dev
+islands: true
+esm: true
 ---
 
 ## Introduction

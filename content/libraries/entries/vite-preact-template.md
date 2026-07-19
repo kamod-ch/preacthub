@@ -1,20 +1,22 @@
 ---
 entryType: library
-name: 'Vite Preact Template'
+name: Vite Preact Template
 slug: vite-preact-template
-description: 'Official Vite starter path for new Preact applications.'
+shortDescription: Official Vite starter path for new Preact applications.
 category: developer-tools
-packageName: 'vite'
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - starter
   - vite
   - template
+packageName: vite
+npmUrl: 'https://www.npmjs.com/package/vite'
+installCommand: npm install vite
+islands: true
+esm: true
 ---
 
 ## Introduction

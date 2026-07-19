@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'XState'
+name: XState
 slug: xstate
-description: 'State machine and statechart library usable from Preact.'
+shortDescription: State machine and statechart library usable from Preact.
 category: state-management
-packageName: 'xstate'
-compatibility: native
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - state-machines
   - workflows
+packageName: xstate
+npmUrl: 'https://www.npmjs.com/package/xstate'
+installCommand: npm install xstate
+islands: true
+esm: true
 ---
 
 ## Introduction

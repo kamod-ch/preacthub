@@ -2,24 +2,26 @@
 entryType: library
 name: __NAME__
 slug: __SLUG__
-description: __DESCRIPTION__
+shortDescription: __DESCRIPTION__
 category: __CATEGORY__
+compatibilityStatus: __COMPATIBILITY_STATUS__
+maintenanceStatus: __MAINTENANCE_STATUS__
+typescriptSupport: __TYPESCRIPT_SUPPORT__
+ssrSupport: __SSR_SUPPORT__
 packageName: "__PACKAGE_NAME__"
-repository: "__REPOSITORY__"
-documentation: "__DOCUMENTATION__"
-homepage: "__HOMEPAGE__"
-compatibility: __COMPATIBILITY__
-status: __STATUS__
-typescript: __TYPESCRIPT__
-ssr: __SSR__
-islands: __ISLANDS__
-esm: __ESM__
+repositoryUrl: "__REPOSITORY_URL__"
+documentationUrl: "__DOCUMENTATION_URL__"
+homepageUrl: "__HOMEPAGE_URL__"
+npmUrl: "__NPM_URL__"
 license: __LICENSE__
+installCommand: "npm install __PACKAGE_NAME__"
 qualityBadges: []
 tags:
   - __TAG_ONE__
 featured: false
 alternatives: []
+islands: __ISLANDS__
+esm: __ESM__
 ---
 
 ## Introduction

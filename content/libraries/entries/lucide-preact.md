@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'lucide-preact'
+name: lucide-preact
 slug: lucide-preact
-description: 'Preact-native package for Lucide SVG icons.'
+shortDescription: Preact-native package for Lucide SVG icons.
 category: ui
-packageName: 'lucide-preact'
-compatibility: native
-status: recommended
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: native
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - icons
   - svg
+packageName: lucide-preact
+npmUrl: 'https://www.npmjs.com/package/lucide-preact'
+installCommand: npm install lucide-preact
+islands: true
+esm: true
 ---
 
 ## Introduction

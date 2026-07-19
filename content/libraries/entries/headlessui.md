@@ -1,19 +1,21 @@
 ---
 entryType: library
-name: 'Headless UI'
+name: Headless UI
 slug: headlessui
-description: 'Headless accessible components to evaluate through compatibility.'
+shortDescription: Headless accessible components to evaluate through compatibility.
 category: ui
-packageName: '@headlessui/react'
-compatibility: partial
-status: stable
-typescript: true
-ssr: true
-islands: true
-esm: true
+compatibilityStatus: experimental
+typescriptSupport: native
+ssrSupport: supported
+maintenanceStatus: active
 tags:
   - ui
   - a11y
+packageName: '@headlessui/react'
+npmUrl: 'https://www.npmjs.com/package/%40headlessui%2Freact'
+installCommand: npm install @headlessui/react
+islands: true
+esm: true
 ---
 
 ## Introduction
