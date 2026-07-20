@@ -43,7 +43,7 @@ npm run preview    # preview dist/
 | `npm run lint` | oxlint |
 | `npm run validate:catalog` | Zod frontmatter and slug validation |
 | `npm run verify:seo` | robots.txt, sitemap, canonical/OG checks on `dist/` |
-| `npm run audit:site` | Kamod AI Audit on key static pages (requires build) |
+| `npm run audit:site` | Kamod AI Audit on key static pages (local or optional CI job; requires private repo access) |
 | `npm run deploy:all-inkl` | Manual rsync fallback to KAS (set `PREACTHUB_DEPLOY_*` env vars) |
 | `npm run check:links` | Optional manual check of external catalog URLs (network) |
 
