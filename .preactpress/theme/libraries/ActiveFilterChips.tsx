@@ -8,20 +8,6 @@ import {
 } from "../../../src/lib/libraries";
 import type { FilterHistoryMode } from "./filter-url-state";
 
-export function countActiveFilters(filters: LibraryFilterState, lockedCategory?: string): number {
-  let count = 0;
-  if (filters.q?.trim()) count += 1;
-  if (filters.compatibilityStatus && filters.compatibilityStatus !== "all") count += 1;
-  if (filters.compatibility && filters.compatibility !== "all") count += 1;
-  if (filters.category && filters.category !== "all" && filters.category !== lockedCategory) count += 1;
-  if (filters.maintenanceStatus && filters.maintenanceStatus !== "all") count += 1;
-  if (filters.typescript) count += 1;
-  if (filters.ssr) count += 1;
-  if (filters.islands) count += 1;
-  if (filters.aiReady) count += 1;
-  return count;
-}
-
 export function ActiveFilterChips({
   filters,
   lockedCategory,
@@ -78,20 +64,6 @@ export function ActiveFilterChips({
         remove: () => onUpdate((value) => ({ ...value, ssr: false, page: 1 }), "push"),
       });
     }
-    if (filters.islands) {
-      items.push({
-        key: "islands",
-        label: "Islands",
-        remove: () => onUpdate((value) => ({ ...value, islands: false, page: 1 }), "push"),
-      });
-    }
-    if (filters.aiReady) {
-      items.push({
-        key: "aiReady",
-        label: "AI Ready",
-        remove: () => onUpdate((value) => ({ ...value, aiReady: false, page: 1 }), "push"),
-      });
-    }
     return items;
   }, [filters, lockedCategory, onUpdate]);
 
@@ -111,7 +83,7 @@ export function ActiveFilterChips({
           <span aria-hidden="true">×</span>
         </button>
       ))}
-      <Button type="button" variant="ghost" size="sm" onClick={onClear}>Clear all</Button>
+      <Button type="button" variant="ghost" size="sm" onClick={onClear}>Reset all filters</Button>
     </div>
   );
 }

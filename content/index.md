@@ -3,7 +3,7 @@ title: PreactHub
 description: Curated Preact libraries with compatibility notes, SSR guidance and implementation-ready examples.
 ---
 
-# PreactHub
+## About PreactHub
 
 PreactHub is a curated directory for teams evaluating libraries for Preact.
 

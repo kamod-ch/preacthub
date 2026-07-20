@@ -1,0 +1,81 @@
+name: Deploy to all-inkl
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: all-inkl-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://preacthub.com
+    steps:
+      - name: Checkout PreactHub
+        uses: actions/checkout@v4
+        with:
+          path: preacthub
+
+      - name: Checkout PreactPress
+        uses: actions/checkout@v4
+        with:
+          repository: kamod-ch/preactpress
+          path: preactpress
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: preacthub/package-lock.json
+
+      - name: Install dependencies
+        working-directory: preacthub
+        run: |
+          npm pkg set devDependencies.@kamod-ch/preactpress=file:../preactpress
+          npm ci
+
+      - name: Check
+        working-directory: preacthub
+        run: npm run check
+
+      - name: Build for preacthub.com
+        working-directory: preacthub
+        run: npm run build
+        env:
+          PREACTHUB_SITE_URL: https://preacthub.com
+          PREACTPRESS_INCLUDE_MATOMO: "true"
+
+      - name: Install deployment client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+      - name: Deploy dist/ via FTPS
+        working-directory: preacthub
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+        run: |
+          test -n "$FTP_HOST"
+          test -n "$FTP_USER"
+          test -n "$FTP_PASSWORD"
+          test -n "$FTP_REMOTE_DIR"
+
+          lftp -u "$FTP_USER","$FTP_PASSWORD" "ftp://$FTP_HOST" <<EOF
+          set ftp:ssl-force true
+          set ftp:ssl-protect-data true
+          set ssl:verify-certificate true
+          mirror -R --delete --verbose dist/ "$FTP_REMOTE_DIR"
+          bye
+          EOF

@@ -24,7 +24,17 @@ export const SiteFooter: FunctionalComponent<{ directory?: LibraryDirectoryMeta 
           <ul>
             <li><a href="/libraries">Browse all libraries</a></li>
             <li><a href="/libraries#categories">Categories</a></li>
-            <li><a href="/libraries/submit">Submit library</a></li>
+            <li><a href="/submit">Submit library</a></li>
+            <li><a href="/methodology">Methodology</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Community</h2>
+          <ul>
+            <li><a href="/submit">Suggest a library</a></li>
+            <li><a href="https://github.com/kamod-ch/preacthub/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing guide</a></li>
+            <li><a href="https://github.com/kamod-ch/preacthub/issues/new?template=library-correction.yml" target="_blank" rel="noopener noreferrer">Report outdated info</a></li>
+            <li><a href="https://github.com/kamod-ch/preacthub/issues" target="_blank" rel="noopener noreferrer">GitHub issues</a></li>
           </ul>
         </div>
         <div>

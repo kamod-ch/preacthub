@@ -2,13 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { categories } from "./categories";
+import { buildExtendedStats, buildHomeDirectoryInsights, type HomeDirectoryInsights } from "./directory-insights";
 import {
   attachLegacyLibraryView,
   compareUrl,
   libraryUrl,
   sortLibraries,
   type LibraryDirectory,
-  type LibraryStats,
   type PreactLibrary,
 } from "./libraries";
 import {
@@ -148,10 +148,13 @@ export function loadLibraryDirectory(root: string): LibraryDirectory {
   );
 
   const libraries: PreactLibrary[] = [];
+  let lastUpdatedAt: string | undefined;
   for (const absolute of files) {
     const raw = fs.readFileSync(absolute, "utf8");
     const parsed = matter(raw);
     if (parsed.data.entryType !== "library") continue;
+    const fileMtime = fs.statSync(absolute).mtime.toISOString().slice(0, 10);
+    if (!lastUpdatedAt || fileMtime > lastUpdatedAt) lastUpdatedAt = fileMtime;
     libraries.push(
       parseLibraryFrontmatter(parsed.data, path.relative(contentDir, absolute).split(path.sep).join("/")),
     );
@@ -166,16 +169,23 @@ export function loadLibraryDirectory(root: string): LibraryDirectory {
     ...category,
     count: sorted.filter((library) => library.category === category.slug).length,
   }));
-  const stats = {
-    total: sorted.length,
-    categories: categorySummaries.filter((category) => category.count > 0).length,
-    verified: sorted.filter((library) => Boolean(library.lastVerifiedAt)).length,
-    native: sorted.filter((library) => library.compatibilityStatus === "native").length,
-    communityTested: sorted.filter((library) => library.compatibilityStatus === "community-tested").length,
-    unverified: sorted.filter((library) => library.compatibilityStatus === "unverified").length,
-  } satisfies LibraryStats;
+  const directory: LibraryDirectory = {
+    libraries: sorted,
+    featured,
+    categories: categorySummaries,
+    stats: buildExtendedStats({ libraries: sorted, categories: categorySummaries }, lastUpdatedAt),
+    bySlug,
+  };
 
-  return { libraries: sorted, featured, categories: categorySummaries, stats, bySlug };
+  return directory;
+}
+
+export function buildDirectoryView(root: string): LibraryDirectory & { home: HomeDirectoryInsights } {
+  const directory = loadLibraryDirectory(root);
+  return {
+    ...directory,
+    home: buildHomeDirectoryInsights(directory),
+  };
 }
 
 export function validateLibraryCatalog(root: string = process.cwd()): PreactLibrary[] {

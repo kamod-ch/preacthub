@@ -116,7 +116,9 @@ export function CodeBlock({ title, code, language = "bash" }: CodeBlockProps) {
         )}
         <button type="button" class="ph-code-copy" onClick={copy} aria-label={`Copy ${title}`}>
           {copied ? <CheckIcon /> : <CopyIcon />}
-          <span class="ph-code-copy-label">{copied ? "Copied" : "Copy"}</span>
+          <span class="ph-code-copy-label" aria-live="polite" aria-atomic="true">
+            {copied ? "Copied" : "Copy"}
+          </span>
         </button>
       </div>
       <pre class="ph-pre" data-language={language}>

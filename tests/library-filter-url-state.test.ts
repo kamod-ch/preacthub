@@ -28,11 +28,10 @@ describe("library filter URL state", () => {
       sort: "name",
       typescript: true,
       ssr: true,
-      islands: true,
     });
     expect(window.location.pathname).toBe("/libraries");
     expect(window.location.search).toBe(
-      "?q=router&category=routing&compatibilityStatus=native&maintenanceStatus=active&sort=name&typescript=true&ssr=true&islands=true",
+      "?q=router&category=routing&compatibilityStatus=native&maintenanceStatus=active&sort=name&typescript=true&ssr=true",
     );
   });
 });

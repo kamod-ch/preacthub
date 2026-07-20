@@ -1,6 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
-import matter from "gray-matter";
 import { loadLibraryDirectory } from "../src/lib/library-node.js";
 
 const TIMEOUT_MS = Number(process.env.LINK_CHECK_TIMEOUT_MS ?? 8000);

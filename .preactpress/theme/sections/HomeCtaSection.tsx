@@ -10,7 +10,7 @@ export const HomeCtaSection: FunctionalComponent<{ directory: LibraryDirectoryMe
           <div class="ph-section-eyebrow">Directory</div>
           <h2>Browse all {directory.stats.total} libraries</h2>
           <p class="ph-muted">
-            Filter by compatibility, SSR support, TypeScript and category. Every entry includes setup notes and verified integration guidance.
+            Filter by compatibility, SSR support, TypeScript and category. Every entry includes setup notes and practical integration guidance.
           </p>
         </div>
         <Button href="/libraries" class="ph-button-primary">Start browsing libraries</Button>

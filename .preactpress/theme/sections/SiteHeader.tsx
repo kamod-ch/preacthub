@@ -69,8 +69,8 @@ export const SiteHeader: FunctionalComponent<{
   const navItems = (themeConfig.nav ?? [
     { text: "Browse", link: "/libraries" },
     { text: "Categories", link: "/libraries#categories" },
-    { text: "Submit", link: "/libraries/submit" },
-  ]).filter((item) => item.link !== "/libraries/submit");
+    { text: "Submit", link: "/submit" },
+  ]).filter((item) => item.link !== "/submit");
   const githubLink = themeConfig.socialLinks?.find((link) => link.icon === "github");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -120,7 +120,7 @@ export const SiteHeader: FunctionalComponent<{
             </a>
           ) : null}
           <SiteThemeToggle />
-          <Button href="/libraries/submit" size="sm" class="ph-submit-nav ph-button-primary">
+          <Button href="/submit" size="sm" class="ph-submit-nav ph-button-primary">
             Submit Library
           </Button>
           <button
@@ -156,7 +156,7 @@ export const SiteHeader: FunctionalComponent<{
               GitHub
             </a>
           ) : null}
-          <a href="/libraries/submit" class="ph-mobile-nav-cta" onClick={() => setMobileNavOpen(false)}>
+          <a href="/submit" class="ph-mobile-nav-cta" onClick={() => setMobileNavOpen(false)}>
             Submit Library
           </a>
         </div>

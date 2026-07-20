@@ -14,12 +14,18 @@ import {
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import { categories } from "../../../src/lib/categories";
 import {
+  countActiveDirectoryFilters,
+  createDefaultDirectoryFilters,
+  directoryEmptyStateMessage,
+  DIRECTORY_SORT_OPTIONS,
+  hasActiveDirectoryFilters,
+} from "../../../src/lib/directory-filters";
+import {
   compatibilityStatusLabel,
   compatibilityStatusValues,
   DIRECTORY_PAGE_SIZE,
   filterLibraries,
   formatDate,
-  librarySortOptions,
   maintenanceStatusLabel,
   maintenanceStatusValues,
   paginateItems,
@@ -31,7 +37,7 @@ import {
   type MaintenanceStatus,
 } from "../../../src/lib/libraries";
 import type { LibraryDirectoryMeta } from "../types";
-import { ActiveFilterChips, CategoryContextBanner, countActiveFilters } from "./ActiveFilterChips";
+import { ActiveFilterChips, CategoryContextBanner } from "./ActiveFilterChips";
 import { LibraryCard } from "./LibraryCard";
 import { CompatibilityBadge, StatusBadge } from "./LibraryBadge";
 import { DIRECTORY_SEARCH_EVENT } from "../utils";
@@ -94,7 +100,7 @@ function FilterFields({
           value={filters.sort ?? "recommended"}
           onChange={(event) => onUpdate((value) => ({ ...value, sort: event.currentTarget.value as LibraryFilterState["sort"], page: 1 }), "push")}
         >
-          {librarySortOptions.map((value) => <option key={value} value={value}>{sortLabel(value)}</option>)}
+          {DIRECTORY_SORT_OPTIONS.map((value) => <option key={value} value={value}>{sortLabel(value)}</option>)}
         </NativeSelect>
       </label>
       <div class="ph-filter-toggles">
@@ -114,44 +120,18 @@ function FilterFields({
           />
           SSR
         </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={filters.islands ?? false}
-            onChange={(event) => onUpdate((value) => ({ ...value, islands: event.currentTarget.checked, page: 1 }), "push")}
-          />
-          Islands
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={filters.aiReady ?? false}
-            onChange={(event) => onUpdate((value) => ({ ...value, aiReady: event.currentTarget.checked, page: 1 }), "push")}
-          />
-          AI Ready
-        </label>
       </div>
     </div>
   );
 }
 
 function clearFilters(lockedCategory?: string): LibraryFilterState {
-  return {
-    sort: "recommended",
-    compatibilityStatus: "all",
-    maintenanceStatus: "all",
-    category: lockedCategory,
-  };
+  return createDefaultDirectoryFilters(lockedCategory);
 }
 
 export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta }) {
   const lockedCategory = directory.currentCategory?.slug;
-  const [filters, setFilters] = useState<LibraryFilterState>(() => ({
-    sort: "recommended",
-    compatibilityStatus: "all",
-    maintenanceStatus: "all",
-    category: lockedCategory,
-  }));
+  const [filters, setFilters] = useState<LibraryFilterState>(() => createDefaultDirectoryFilters(lockedCategory));
 
   const updateFilters = useCallback((updater: (value: LibraryFilterState) => LibraryFilterState, mode: FilterHistoryMode = "push") => {
     setFilters((current) => {
@@ -202,8 +182,8 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
     [filteredItems, safePage],
   );
 
-  const activeFilterCount = countActiveFilters(filters, lockedCategory);
-  const hasActiveFilters = activeFilterCount > 0;
+  const activeFilterCount = countActiveDirectoryFilters(filters, lockedCategory);
+  const showEmptyReset = hasActiveDirectoryFilters(filters, lockedCategory);
 
   return (
     <section class="ph-all-libraries" aria-labelledby="all-libraries-title">
@@ -262,14 +242,10 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
 
       {filteredItems.length === 0 ? (
         <div class="ph-empty-state">
-          <p>
-            {filters.q
-              ? `No libraries found for "${filters.q}"`
-              : "No libraries match the current filters"}
-          </p>
-          {hasActiveFilters ? (
+          <p>{directoryEmptyStateMessage(filters)}</p>
+          {showEmptyReset ? (
             <Button type="button" variant="outline" size="sm" onClick={() => updateFilters(() => clearFilters(lockedCategory), "push")}>
-              Clear filters
+              Reset all filters
             </Button>
           ) : null}
         </div>
@@ -312,7 +288,6 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
                       <div class="ph-directory-runtime">
                         <RuntimePill supported={library.typescript} label="TS" />
                         <RuntimePill supported={library.ssr} label="SSR" />
-                        <RuntimePill supported={library.islands} label="Islands" />
                       </div>
                     </TableCell>
                     <TableCell>{formatDate(library.lastVerifiedAt)}</TableCell>

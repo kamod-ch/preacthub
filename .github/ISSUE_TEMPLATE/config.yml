@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: PreactHub methodology
+    url: https://preacthub.com/methodology
+    about: Learn how compatibility statuses and verification dates are defined.
+  - name: Submit a library
+    url: https://preacthub.com/submit
+    about: Generate a prefilled GitHub issue without a PreactHub account.

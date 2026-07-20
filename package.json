@@ -8,8 +8,10 @@
     "check": "preactpress check",
     "validate:catalog": "tsx scripts/validate-catalog.ts",
     "check:links": "tsx scripts/check-library-links.ts",
+    "verify:seo": "tsx scripts/verify-seo.ts",
     "migrate:catalog": "tsx scripts/migrate-library-catalog.ts",
-    "build": "npm run validate:catalog && preactpress build",
+    "deploy:all-inkl": "bash scripts/deploy-all-inkl.sh",
+    "build": "npm run validate:catalog && preactpress build && npm run verify:seo",
     "preview": "preactpress preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -30,7 +32,7 @@
   },
   "devDependencies": {
     "@kamod-ai-audit/core": "file:../kamod-ai-audit/packages/core",
-    "@kamod-ch/preactpress": "^2.0.0",
+    "@kamod-ch/preactpress": "file:../preactpress",
     "@preact/preset-vite": "^2.10.5",
     "@tailwindcss/vite": "^4.3.0",
     "@types/node": "^25.9.2",
@@ -39,5 +41,6 @@
     "tsx": "^4.23.1",
     "typescript": "^6.0.3",
     "vitest": "^4.1.9"
-  }
+  },
+  "packageManager": "pnpm@11.15.1+sha512.81350b07e53c9538a02f1f2303b4290fa2d7be04e56e2a970c4cc4b417dc761de196edabd49d55c7dc9580db81007c44143e4e3d7e462b3000d23c255122d065"
 }

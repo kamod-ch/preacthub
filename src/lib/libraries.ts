@@ -74,6 +74,7 @@ export interface LibraryStats {
   native: number;
   communityTested: number;
   unverified: number;
+  lastUpdatedAt?: string;
 }
 
 export interface HealthScoreInput {
