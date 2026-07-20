@@ -21,17 +21,6 @@ jobs:
         with:
           path: preacthub
 
-      - name: Checkout PreactPress
-        uses: actions/checkout@v4
-        with:
-          repository: kamod-ch/preactpress
-          path: preactpress
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.12.4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -39,18 +28,9 @@ jobs:
           cache: npm
           cache-dependency-path: preacthub/package-lock.json
 
-      - name: Build PreactPress
-        working-directory: preactpress
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm run build
-
       - name: Install PreactHub dependencies
         working-directory: preacthub
-        run: |
-          npm pkg delete devDependencies.@kamod-ai-audit/core
-          npm pkg set devDependencies.@kamod-ch/preactpress=file:../preactpress
-          npm ci --ignore-scripts
+        run: npm ci --ignore-scripts
 
       - name: Lint
         working-directory: preacthub
