@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  quality:
+    name: Lint, test, build and site audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PreactHub
+        uses: actions/checkout@v4
+        with:
+          path: preacthub
+
+      - name: Checkout PreactPress
+        uses: actions/checkout@v4
+        with:
+          repository: kamod-ch/preactpress
+          path: preactpress
+
+      - name: Checkout Kamod AI Audit
+        uses: actions/checkout@v4
+        with:
+          repository: kamod-ch/kamod-ai-audit
+          path: kamod-ai-audit
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            preacthub/package-lock.json
+            kamod-ai-audit/package-lock.json
+
+      - name: Build Kamod AI Audit core
+        working-directory: kamod-ai-audit/packages/core
+        run: |
+          npm ci
+          npm run build
+
+      - name: Install PreactHub dependencies
+        working-directory: preacthub
+        run: |
+          npm pkg set devDependencies.@kamod-ai-audit/core=file:../kamod-ai-audit/packages/core
+          npm pkg set devDependencies.@kamod-ch/preactpress=file:../preactpress
+          npm ci
+
+      - name: Lint
+        working-directory: preacthub
+        run: npm run lint
+
+      - name: Typecheck
+        working-directory: preacthub
+        run: npm run typecheck
+
+      - name: Test
+        working-directory: preacthub
+        run: npm run test
+
+      - name: Validate catalog
+        working-directory: preacthub
+        run: npm run validate:catalog
+
+      - name: Check routes
+        working-directory: preacthub
+        run: npm run check
+
+      - name: Build
+        working-directory: preacthub
+        run: npm run build
+        env:
+          PREACTHUB_SITE_URL: https://preacthub.com
+          PREACTPRESS_INCLUDE_MATOMO: ${{ github.ref == 'refs/heads/main' && 'true' || '' }}
+
+      - name: Site audit
+        working-directory: preacthub
+        run: npm run audit:site
+
+      - name: Upload audit reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-audit-reports
+          path: preacthub/reports/audit
+          if-no-files-found: ignore

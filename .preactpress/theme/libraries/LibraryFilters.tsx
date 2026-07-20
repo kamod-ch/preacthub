@@ -11,90 +11,55 @@ import {
   TableHeader,
   TableRow,
 } from "@kamod-ch/ui";
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import { categories } from "../../../src/lib/categories";
 import {
-  compatibilityLabel,
-  compatibilityValues,
+  countActiveDirectoryFilters,
+  createDefaultDirectoryFilters,
+  directoryEmptyStateMessage,
+  DIRECTORY_SORT_OPTIONS,
+  hasActiveDirectoryFilters,
+} from "../../../src/lib/directory-filters";
+import {
+  compatibilityStatusLabel,
+  compatibilityStatusValues,
+  DIRECTORY_PAGE_SIZE,
   filterLibraries,
-  librarySortOptions,
+  formatDate,
+  maintenanceStatusLabel,
+  maintenanceStatusValues,
+  paginateItems,
+  sortLabel,
   sortLibraries,
-  statusValues,
-  type LibraryCompatibility,
+  totalPages,
+  type CompatibilityStatus,
   type LibraryFilterState,
-  type PreactLibrary,
+  type MaintenanceStatus,
 } from "../../../src/lib/libraries";
+import type { LibraryDirectoryMeta } from "../types";
+import { ActiveFilterChips, CategoryContextBanner } from "./ActiveFilterChips";
 import { LibraryCard } from "./LibraryCard";
 import { CompatibilityBadge, StatusBadge } from "./LibraryBadge";
 import { DIRECTORY_SEARCH_EVENT } from "../utils";
+import { readFilters, writeFilters, type FilterHistoryMode } from "./filter-url-state";
 
-const compatPillOptions: Array<{ value: LibraryFilterState["compatibility"]; label: string }> = [
+const compatPillOptions: Array<{ value: CompatibilityStatus | "all"; label: string }> = [
   { value: "all", label: "All" },
-  ...compatibilityValues.map((value) => ({ value, label: compatibilityLabel(value) })),
+  ...compatibilityStatusValues.map((value) => ({ value, label: compatibilityStatusLabel(value) })),
 ];
 
-function readFilters(): LibraryFilterState {
-  if (typeof window === "undefined") return { sort: "recommended" };
-  const params = new URLSearchParams(window.location.search);
-  return {
-    q: params.get("q") ?? undefined,
-    category: params.get("category") ?? undefined,
-    compatibility: (params.get("compatibility") as LibraryFilterState["compatibility"]) ?? "all",
-    status: (params.get("status") as LibraryFilterState["status"]) ?? "all",
-    sort: (params.get("sort") as LibraryFilterState["sort"]) ?? "recommended",
-    typescript: params.get("typescript") === "true",
-    ssr: params.get("ssr") === "true",
-    islands: params.get("islands") === "true",
-  };
-}
-
-function writeFilters(filters: LibraryFilterState): void {
-  const params = new URLSearchParams();
-  if (filters.q) params.set("q", filters.q);
-  if (filters.category && filters.category !== "all") params.set("category", filters.category);
-  if (filters.compatibility && filters.compatibility !== "all") params.set("compatibility", filters.compatibility);
-  if (filters.status && filters.status !== "all") params.set("status", filters.status);
-  if (filters.sort && filters.sort !== "recommended") params.set("sort", filters.sort);
-  if (filters.typescript) params.set("typescript", "true");
-  if (filters.ssr) params.set("ssr", "true");
-  if (filters.islands) params.set("islands", "true");
-  const query = params.toString();
-  const url = `${window.location.pathname}${query ? `?${query}` : ""}`;
-  window.history.replaceState({}, "", url);
-}
-
-function CompatPills({
-  filters,
-  setFilters,
-}: {
-  filters: LibraryFilterState;
-  setFilters: (updater: (value: LibraryFilterState) => LibraryFilterState) => void;
-}) {
-  const active = filters.compatibility ?? "all";
-  return (
-    <div class="ph-compat-pills" role="group" aria-label="Filter by compatibility">
-      {compatPillOptions.map((option) => (
-        <Button
-          key={option.value}
-          type="button"
-          size="sm"
-          variant={active === option.value ? "default" : "outline"}
-          class="ph-compat-pill"
-          onClick={() => setFilters((value) => ({ ...value, compatibility: option.value }))}
-        >
-          {option.label}
-        </Button>
-      ))}
-    </div>
-  );
+function RuntimePill({ supported, label }: { supported: boolean; label: string }) {
+  return <span class={supported ? "ph-runtime-yes" : "ph-runtime-no"}>{supported ? label : `No ${label}`}</span>;
 }
 
 function FilterFields({
   filters,
-  setFilters,
+  lockedCategory,
+  onUpdate,
 }: {
   filters: LibraryFilterState;
-  setFilters: (updater: (value: LibraryFilterState) => LibraryFilterState) => void;
+  lockedCategory?: string;
+  onUpdate: (updater: (value: LibraryFilterState) => LibraryFilterState, mode?: FilterHistoryMode) => void;
 }) {
   return (
     <div class="ph-filter-grid">
@@ -104,34 +69,38 @@ function FilterFields({
           type="search"
           value={filters.q ?? ""}
           placeholder="Search libraries, packages or tags"
-          onInput={(event) => setFilters((value) => ({ ...value, q: event.currentTarget.value }))}
+          onInput={(event) => onUpdate((current) => ({ ...current, q: event.currentTarget.value || undefined, page: 1 }), "replace")}
         />
       </label>
+      {!lockedCategory ? (
+        <label class="ph-filter-field">
+          <span>Category</span>
+          <NativeSelect
+            value={filters.category ?? "all"}
+            onChange={(event) => onUpdate((value) => ({ ...value, category: event.currentTarget.value, page: 1 }), "push")}
+          >
+            <option value="all">All categories</option>
+            {categories.map((category) => <option key={category.slug} value={category.slug}>{category.name}</option>)}
+          </NativeSelect>
+        </label>
+      ) : null}
       <label class="ph-filter-field">
-        <span>Category</span>
-        <NativeSelect value={filters.category ?? "all"} onChange={(event) => setFilters((value) => ({ ...value, category: event.currentTarget.value }))}>
-          <option value="all">All categories</option>
-          {categories.map((category) => <option key={category.slug} value={category.slug}>{category.name}</option>)}
-        </NativeSelect>
-      </label>
-      <label class="ph-filter-field">
-        <span>Compatibility</span>
-        <NativeSelect value={filters.compatibility ?? "all"} onChange={(event) => setFilters((value) => ({ ...value, compatibility: event.currentTarget.value as LibraryCompatibility | "all" }))}>
-          <option value="all">All compatibility</option>
-          {compatibilityValues.map((value) => <option key={value} value={value}>{value}</option>)}
-        </NativeSelect>
-      </label>
-      <label class="ph-filter-field">
-        <span>Status</span>
-        <NativeSelect value={filters.status ?? "all"} onChange={(event) => setFilters((value) => ({ ...value, status: event.currentTarget.value as LibraryFilterState["status"] }))}>
-          <option value="all">All statuses</option>
-          {statusValues.map((value) => <option key={value} value={value}>{value}</option>)}
+        <span>Maintenance</span>
+        <NativeSelect
+          value={filters.maintenanceStatus ?? "all"}
+          onChange={(event) => onUpdate((value) => ({ ...value, maintenanceStatus: event.currentTarget.value as MaintenanceStatus | "all", page: 1 }), "push")}
+        >
+          <option value="all">All maintenance states</option>
+          {maintenanceStatusValues.map((value) => <option key={value} value={value}>{maintenanceStatusLabel(value)}</option>)}
         </NativeSelect>
       </label>
       <label class="ph-filter-field">
         <span>Sort</span>
-        <NativeSelect value={filters.sort ?? "recommended"} onChange={(event) => setFilters((value) => ({ ...value, sort: event.currentTarget.value as LibraryFilterState["sort"] }))}>
-          {librarySortOptions.map((value) => <option key={value} value={value}>{value}</option>)}
+        <NativeSelect
+          value={filters.sort ?? "recommended"}
+          onChange={(event) => onUpdate((value) => ({ ...value, sort: event.currentTarget.value as LibraryFilterState["sort"], page: 1 }), "push")}
+        >
+          {DIRECTORY_SORT_OPTIONS.map((value) => <option key={value} value={value}>{sortLabel(value)}</option>)}
         </NativeSelect>
       </label>
       <div class="ph-filter-toggles">
@@ -139,7 +108,7 @@ function FilterFields({
           <input
             type="checkbox"
             checked={filters.typescript ?? false}
-            onChange={(event) => setFilters((value) => ({ ...value, typescript: event.currentTarget.checked }))}
+            onChange={(event) => onUpdate((value) => ({ ...value, typescript: event.currentTarget.checked, page: 1 }), "push")}
           />
           TypeScript
         </label>
@@ -147,32 +116,34 @@ function FilterFields({
           <input
             type="checkbox"
             checked={filters.ssr ?? false}
-            onChange={(event) => setFilters((value) => ({ ...value, ssr: event.currentTarget.checked }))}
+            onChange={(event) => onUpdate((value) => ({ ...value, ssr: event.currentTarget.checked, page: 1 }), "push")}
           />
           SSR
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={filters.islands ?? false}
-            onChange={(event) => setFilters((value) => ({ ...value, islands: event.currentTarget.checked }))}
-          />
-          Islands
         </label>
       </div>
     </div>
   );
 }
 
-function clearFilters(): LibraryFilterState {
-  return { sort: "recommended", compatibility: "all", status: "all" };
+function clearFilters(lockedCategory?: string): LibraryFilterState {
+  return createDefaultDirectoryFilters(lockedCategory);
 }
 
-export function LibraryFilters({ directory }: { directory: { libraries: PreactLibrary[] } }) {
-  const [filters, setFilters] = useState<LibraryFilterState>({ sort: "recommended" });
+export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta }) {
+  const lockedCategory = directory.currentCategory?.slug;
+  const [filters, setFilters] = useState<LibraryFilterState>(() => createDefaultDirectoryFilters(lockedCategory));
+
+  const updateFilters = useCallback((updater: (value: LibraryFilterState) => LibraryFilterState, mode: FilterHistoryMode = "push") => {
+    setFilters((current) => {
+      const next = updater(current);
+      if (typeof window !== "undefined") writeFilters(next, mode);
+      return next;
+    });
+  }, []);
 
   useEffect(() => {
-    setFilters(readFilters());
+    const initial = readFilters(lockedCategory);
+    setFilters(initial);
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     if (params.get("q") || params.get("compatibility") || params.get("category")) {
@@ -183,11 +154,11 @@ export function LibraryFilters({ directory }: { directory: { libraries: PreactLi
 
     function onDirectorySearch(event: Event): void {
       const detail = (event as CustomEvent<{ q: string }>).detail;
-      setFilters((current) => ({ ...current, q: detail.q || undefined }));
+      updateFilters((current) => ({ ...current, q: detail.q || undefined, page: 1 }), "replace");
     }
 
     function onPopState(): void {
-      setFilters(readFilters());
+      setFilters(readFilters(lockedCategory));
     }
 
     window.addEventListener(DIRECTORY_SEARCH_EVENT, onDirectorySearch);
@@ -196,59 +167,85 @@ export function LibraryFilters({ directory }: { directory: { libraries: PreactLi
       window.removeEventListener(DIRECTORY_SEARCH_EVENT, onDirectorySearch);
       window.removeEventListener("popstate", onPopState);
     };
-  }, []);
+  }, [lockedCategory, updateFilters]);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") writeFilters(filters);
-  }, [filters]);
-
-  const items = useMemo(() => {
+  const filteredItems = useMemo(() => {
     const filtered = filterLibraries(directory.libraries, filters);
     return sortLibraries(filtered, filters.sort ?? "recommended");
   }, [directory.libraries, filters]);
 
-  const hasActiveFilters = Boolean(
-    filters.q ||
-    (filters.compatibility && filters.compatibility !== "all") ||
-    (filters.category && filters.category !== "all") ||
-    (filters.status && filters.status !== "all") ||
-    filters.typescript ||
-    filters.ssr ||
-    filters.islands,
+  const page = Math.max(1, filters.page ?? 1);
+  const pageCount = totalPages(filteredItems.length);
+  const safePage = Math.min(page, pageCount);
+  const items = useMemo(
+    () => paginateItems(filteredItems, safePage),
+    [filteredItems, safePage],
   );
+
+  const activeFilterCount = countActiveDirectoryFilters(filters, lockedCategory);
+  const showEmptyReset = hasActiveDirectoryFilters(filters, lockedCategory);
 
   return (
     <section class="ph-all-libraries" aria-labelledby="all-libraries-title">
       <div class="ph-section-header ph-filter-header">
         <div>
           <div class="ph-section-eyebrow">Directory</div>
-          <h2 id="all-libraries-title">All libraries</h2>
+          <h2 id="all-libraries-title">{lockedCategory ? `${directory.currentCategory?.name} libraries` : "All libraries"}</h2>
           <p class="ph-muted">Filter by compatibility, runtime support and implementation constraints.</p>
         </div>
         <details class="ph-mobile-filter-details">
-          <summary class="ph-mobile-filter-summary">Filters</summary>
+          <summary class="ph-mobile-filter-summary">
+            Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ""}
+          </summary>
           <div class="ph-mobile-filter-panel">
-            <FilterFields filters={filters} setFilters={setFilters} />
+            <FilterFields filters={filters} lockedCategory={lockedCategory} onUpdate={updateFilters} />
           </div>
         </details>
       </div>
-      <CompatPills filters={filters} setFilters={setFilters} />
+
+      {lockedCategory && directory.currentCategory ? (
+        <CategoryContextBanner categoryName={directory.currentCategory.name} count={directory.libraries.length} />
+      ) : null}
+
+      <div class="ph-compat-pills" role="group" aria-label="Filter by compatibility">
+        {compatPillOptions.map((option) => (
+          <Button
+            key={option.value}
+            type="button"
+            size="sm"
+            variant={(filters.compatibilityStatus ?? "all") === option.value ? "default" : "outline"}
+            class="ph-compat-pill"
+            onClick={() => updateFilters((value) => ({ ...value, compatibilityStatus: option.value, page: 1 }), "push")}
+          >
+            {option.label}
+          </Button>
+        ))}
+      </div>
+
+      <ActiveFilterChips
+        filters={filters}
+        lockedCategory={lockedCategory}
+        onClear={() => updateFilters(() => clearFilters(lockedCategory), "push")}
+        onUpdate={updateFilters}
+      />
+
       <Card class="ph-filters-card">
         <CardContent>
-          <FilterFields filters={filters} setFilters={setFilters} />
+          <FilterFields filters={filters} lockedCategory={lockedCategory} onUpdate={updateFilters} />
         </CardContent>
       </Card>
-      <p class="ph-results-summary">Showing {items.length} of {directory.libraries.length} libraries</p>
-      {items.length === 0 ? (
+
+      <p class="ph-results-summary" aria-live="polite" aria-atomic="true">
+        Showing {filteredItems.length === 0 ? 0 : (safePage - 1) * DIRECTORY_PAGE_SIZE + 1}–{Math.min(safePage * DIRECTORY_PAGE_SIZE, filteredItems.length)} of {filteredItems.length}
+        {directory.libraries.length !== filteredItems.length ? ` (filtered from ${directory.libraries.length})` : ""}
+      </p>
+
+      {filteredItems.length === 0 ? (
         <div class="ph-empty-state">
-          <p>
-            {filters.q
-              ? `No libraries found for "${filters.q}"`
-              : "No libraries match the current filters"}
-          </p>
-          {hasActiveFilters ? (
-            <Button type="button" variant="outline" size="sm" onClick={() => setFilters(() => clearFilters())}>
-              Clear filters
+          <p>{directoryEmptyStateMessage(filters)}</p>
+          {showEmptyReset ? (
+            <Button type="button" variant="outline" size="sm" onClick={() => updateFilters(() => clearFilters(lockedCategory), "push")}>
+              Reset all filters
             </Button>
           ) : null}
         </div>
@@ -283,23 +280,45 @@ export function LibraryFilters({ directory }: { directory: { libraries: PreactLi
                     </TableCell>
                     <TableCell>
                       <div class="ph-directory-compat">
-                        <CompatibilityBadge value={library.compatibility} />
-                        <StatusBadge value={library.status} />
+                        <CompatibilityBadge value={library.compatibilityStatus} />
+                        <StatusBadge value={library.maintenanceStatus} />
                       </div>
                     </TableCell>
                     <TableCell>
                       <div class="ph-directory-runtime">
-                        <span>{library.typescript ? "TS" : "No TS"}</span>
-                        <span>{library.ssr ? "SSR" : "No SSR"}</span>
-                        <span>{library.islands ? "Islands" : "No islands"}</span>
+                        <RuntimePill supported={library.typescript} label="TS" />
+                        <RuntimePill supported={library.ssr} label="SSR" />
                       </div>
                     </TableCell>
-                    <TableCell>{library.lastVerified ?? "—"}</TableCell>
+                    <TableCell>{formatDate(library.lastVerifiedAt)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </div>
+          {pageCount > 1 ? (
+            <nav class="ph-pagination" aria-label="Library pagination">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                disabled={safePage <= 1}
+                onClick={() => updateFilters((value) => ({ ...value, page: safePage - 1 }), "push")}
+              >
+                Previous
+              </Button>
+              <span class="ph-pagination-label">Page {safePage} of {pageCount}</span>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                disabled={safePage >= pageCount}
+                onClick={() => updateFilters((value) => ({ ...value, page: safePage + 1 }), "push")}
+              >
+                Next
+              </Button>
+            </nav>
+          ) : null}
         </>
       )}
     </section>

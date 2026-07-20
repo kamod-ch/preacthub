@@ -1,0 +1,28 @@
+# PreactHub
+
+> Find Preact libraries that actually work — curated compatibility notes, SSR guidance, and practical examples.
+
+PreactHub is a static directory for discovering, comparing, and evaluating Preact-compatible libraries at https://preacthub.com.
+
+## Key pages
+
+- Home: /
+- Browse libraries: /libraries
+- Methodology (labels & verification): /methodology
+- Submit a library: /submit
+- Compare libraries: /compare/{slug-a}-vs-{slug-b}
+
+## Catalog facts (0.1)
+
+- 107 library entries across 11 categories
+- Compatibility labels: native, compat, community-tested, experimental, unverified, inactive
+- Verification dates are shown only when `lastVerifiedAt` is set in catalog data
+
+## Contact
+
+- GitHub: https://github.com/kamod-ch/preacthub
+- Ecosystem: https://www.kamod.ch
+
+## Related tools
+
+- Kamod AI Audit: https://github.com/kamod-ch/kamod-ai-audit — website quality audits for AI-agent readiness

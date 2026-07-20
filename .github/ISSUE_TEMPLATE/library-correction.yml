@@ -1,0 +1,50 @@
+name: Correct library information
+description: Report outdated or incorrect catalog data for an existing library entry
+title: "Correct "
+labels: [library-correction]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template when a PreactHub catalog entry contains outdated compatibility notes, wrong links, an incorrect category or missing verification details.
+        See the [methodology](https://preacthub.com/methodology) for how statuses are defined.
+  - type: input
+    id: library-slug
+    attributes:
+      label: Library slug
+      description: The URL slug from `/libraries/<slug>`
+      placeholder: e.g. preact-signals
+    validations:
+      required: true
+  - type: input
+    id: library-name
+    attributes:
+      label: Library name
+      placeholder: e.g. Preact Signals
+    validations:
+      required: true
+  - type: textarea
+    id: correction-summary
+    attributes:
+      label: What is wrong?
+      description: Describe the outdated or incorrect information.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-changes
+    attributes:
+      label: Proposed changes
+      description: What should the catalog entry say instead?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Links to docs, reproduction repos, release notes or maintainer statements.
+  - type: checkboxes
+    id: is-maintainer
+    attributes:
+      label: Maintainer confirmation
+      options:
+        - label: I am a maintainer or regular contributor of this project

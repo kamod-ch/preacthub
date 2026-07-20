@@ -1,25 +1,37 @@
 name: Library submission
-about: Suggest a library for the PreactHub directory
+description: Suggest a library for the PreactHub directory
+title: "Library submission: "
 labels: [library-submission]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a library. Read the [PreactHub methodology](https://preacthub.com/methodology) before claiming a compatibility status.
+        Only select quality badges when you can point to evidence.
   - type: input
     id: library-name
     attributes:
-      label: Library name
+      label: Project name
+      placeholder: e.g. Preact Signals
     validations:
       required: true
   - type: input
     id: package-name
     attributes:
       label: Package name
+      placeholder: e.g. @preact/signals
   - type: input
     id: repository
     attributes:
-      label: Repository
+      label: Repository URL
+      placeholder: https://github.com/org/repo
+    validations:
+      required: true
   - type: input
     id: documentation
     attributes:
-      label: Documentation
+      label: Documentation URL
+      placeholder: https://example.com/docs
   - type: dropdown
     id: category
     attributes:
@@ -39,41 +51,37 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: compatibility
+    id: compatibility-status
     attributes:
-      label: Preact compatibility
+      label: Claimed compatibility status
+      description: See https://preacthub.com/methodology for definitions.
       options:
         - native
         - compat
-        - partial
-        - incompatible
-        - unknown
+        - community-tested
+        - experimental
+        - unverified
+        - inactive
     validations:
       required: true
   - type: input
     id: tested-preact-version
     attributes:
       label: Tested Preact version
-  - type: input
-    id: tested-library-version
+      placeholder: e.g. 10.26.x
+  - type: textarea
+    id: explanation
     attributes:
-      label: Tested library version
-  - type: dropdown
-    id: ssr-support
+      label: Short explanation
+      description: Why should this library be listed? Mention tested setup, SSR/islands notes and known limitations.
+    validations:
+      required: true
+  - type: checkboxes
+    id: is-maintainer
     attributes:
-      label: SSR support
+      label: Maintainer confirmation
       options:
-        - yes
-        - no
-        - unknown
-  - type: dropdown
-    id: islands-support
-    attributes:
-      label: Islands support
-      options:
-        - yes
-        - no
-        - unknown
+        - label: I am a maintainer or regular contributor of this project
   - type: textarea
     id: limitations
     attributes:

@@ -2,30 +2,45 @@
   "name": "preacthub",
   "private": true,
   "type": "module",
+  "author": "Klaus Zahiragic <watzak>",
   "scripts": {
     "dev": "preactpress dev",
     "check": "preactpress check",
-    "build": "preactpress build",
+    "validate:catalog": "tsx scripts/validate-catalog.ts",
+    "check:links": "tsx scripts/check-library-links.ts",
+    "verify:seo": "tsx scripts/verify-seo.ts",
+    "migrate:catalog": "tsx scripts/migrate-library-catalog.ts",
+    "deploy:all-inkl": "bash scripts/deploy-all-inkl.sh",
+    "build": "npm run validate:catalog && preactpress build && npm run verify:seo",
     "preview": "preactpress preview",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "lint": "oxlint . --ignore-pattern node_modules --ignore-pattern dist"
+    "lint": "oxlint . --ignore-pattern node_modules --ignore-pattern dist",
+    "new:library": "node scripts/new-library.mjs",
+    "new:category": "node scripts/new-category.mjs",
+    "verify:library": "node scripts/verify-library.mjs",
+    "prepare:audit": "npm run build --prefix ../kamod-ai-audit/packages/core",
+    "audit:site": "node scripts/audit-site.mjs",
+    "audit:site:report": "node scripts/audit-site.mjs --output reports/audit"
   },
   "dependencies": {
-    "@kamod-ch/ui": "file:../kamod-ui/packages/core",
+    "@kamod-ch/ui": "^0.2.1",
     "@preact/signals": "^2.9.1",
     "gray-matter": "^4.0.3",
     "preact": "^10.29.2",
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@kamod-ai-audit/core": "file:../kamod-ai-audit/packages/core",
     "@kamod-ch/preactpress": "file:../preactpress",
     "@preact/preset-vite": "^2.10.5",
     "@tailwindcss/vite": "^4.3.0",
     "@types/node": "^25.9.2",
     "oxlint": "^1.69.0",
     "tailwindcss": "^4.3.0",
+    "tsx": "^4.23.1",
     "typescript": "^6.0.3",
     "vitest": "^4.1.9"
-  }
+  },
+  "packageManager": "pnpm@11.15.1+sha512.81350b07e53c9538a02f1f2303b4290fa2d7be04e56e2a970c4cc4b417dc761de196edabd49d55c7dc9580db81007c44143e4e3d7e462b3000d23c255122d065"
 }

@@ -12,7 +12,7 @@ export const CategoriesSection: FunctionalComponent<{ directory: LibraryDirector
         <h2>Browse by category</h2>
         <p class="ph-muted">A visual overview of the main areas where Preact teams evaluate libraries.</p>
       </div>
-      <Button href="#all-libraries-title" variant="ghost" size="sm">Browse directory</Button>
+      <Button href="/libraries#all-libraries-title" variant="ghost" size="sm">Browse directory</Button>
     </div>
     <div class="ph-category-grid">
       {directory.categories.map((categoryItem) => (
@@ -24,9 +24,10 @@ export const CategoriesSection: FunctionalComponent<{ directory: LibraryDirector
       <div class="ph-card-badges">
         <CompatibilityBadge value="native" />
         <CompatibilityBadge value="compat" />
-        <CompatibilityBadge value="partial" />
-        <CompatibilityBadge value="incompatible" />
-        <CompatibilityBadge value="unknown" />
+        <CompatibilityBadge value="community-tested" />
+        <CompatibilityBadge value="experimental" />
+        <CompatibilityBadge value="unverified" />
+        <CompatibilityBadge value="inactive" />
       </div>
     </div>
   </section>

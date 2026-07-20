@@ -1,0 +1,20 @@
+# Apache rules for All-Inkl / KAS hosting (optional)
+# Copied to dist/ via content/public/
+
+RewriteEngine On
+
+# Apex canonical: www → non-www
+RewriteCond %{HTTP_HOST} ^www\.preacthub\.com$ [NC]
+RewriteRule ^(.*)$ https://preacthub.com/$1 [R=301,L]
+
+# Legacy .dev host (if still pointed at this server)
+RewriteCond %{HTTP_HOST} ^(www\.)?preacthub\.dev$ [NC]
+RewriteRule ^(.*)$ https://preacthub.com/$1 [R=301,L]
+
+# Trailing slash for directory routes (PreactHub builds .../index.html)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule ^(.+[^/])$ /$1/ [R=301,L]
+
+DirectoryIndex index.html
