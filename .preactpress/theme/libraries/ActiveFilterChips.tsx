@@ -4,9 +4,11 @@ import { categories } from "../../../src/lib/categories";
 import {
   compatibilityStatusLabel,
   maintenanceStatusLabel,
+  type CompatibilityStatus,
   type LibraryFilterState,
 } from "../../../src/lib/libraries";
 import type { FilterHistoryMode } from "./filter-url-state";
+import { compatibilityFilterChipClass } from "./compatibility-colors";
 
 export function ActiveFilterChips({
   filters,
@@ -20,7 +22,7 @@ export function ActiveFilterChips({
   onUpdate: (updater: (value: LibraryFilterState) => LibraryFilterState, mode?: FilterHistoryMode) => void;
 }) {
   const chips = useMemo(() => {
-    const items: Array<{ key: string; label: string; remove: () => void }> = [];
+    const items: Array<{ key: string; label: string; className?: string; remove: () => void }> = [];
     if (filters.q?.trim()) {
       items.push({
         key: "q",
@@ -29,9 +31,11 @@ export function ActiveFilterChips({
       });
     }
     if (filters.compatibilityStatus && filters.compatibilityStatus !== "all") {
+      const status = filters.compatibilityStatus as CompatibilityStatus;
       items.push({
         key: "compatibilityStatus",
-        label: compatibilityStatusLabel(filters.compatibilityStatus),
+        label: compatibilityStatusLabel(status),
+        className: compatibilityFilterChipClass(status),
         remove: () => onUpdate((value) => ({ ...value, compatibilityStatus: "all", page: 1 }), "push"),
       });
     }
@@ -75,7 +79,7 @@ export function ActiveFilterChips({
         <button
           key={chip.key}
           type="button"
-          class="ph-active-filter-chip"
+          class={chip.className ?? "ph-active-filter-chip"}
           onClick={chip.remove}
           aria-label={`Remove filter ${chip.label}`}
         >

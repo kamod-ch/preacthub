@@ -11,6 +11,7 @@ import {
 import type { LibraryCategory } from "../../../src/lib/categories";
 import type { PreactLibrary, ResolvedAlternative } from "../../../src/lib/libraries";
 import { CodeBlock } from "./CodeBlock";
+import { compatibilityCalloutClass } from "./compatibility-colors";
 import { CompatibilityBadge, MaintenanceBadge } from "./LibraryBadge";
 
 const VITE_COMPAT_SNIPPET = `resolve: {
@@ -75,9 +76,9 @@ export function LibraryDetailPage({
         <h1>{library.name}</h1>
         <p class="ph-library-lead">{library.description}</p>
 
-        <div class="ph-compatibility-callout" aria-labelledby={`${library.slug}-compatibility-title`}>
+        <div class={compatibilityCalloutClass(library.compatibilityStatus)} aria-labelledby={`${library.slug}-compatibility-title`}>
           <div class="ph-compatibility-callout-badge">
-            <CompatibilityBadge value={library.compatibilityStatus} />
+            <CompatibilityBadge value={library.compatibilityStatus} size="md" />
             <MaintenanceBadge value={library.maintenanceStatus} />
           </div>
           <div>

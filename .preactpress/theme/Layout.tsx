@@ -102,10 +102,10 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
         {isLibrariesLanding && directory ? <LibrariesIntroSection directory={directory} /> : null}
 
         {isCategoryPage && directory && currentCategory ? (
-          <section class="ph-page-intro">
+          <section class="ph-page-intro ph-category-page-intro">
             <div class="ph-section-eyebrow">Category</div>
             <h1>{currentCategory.name}</h1>
-            <p>{currentCategory.description}</p>
+            <p class="ph-muted">{currentCategory.description}</p>
           </section>
         ) : null}
 

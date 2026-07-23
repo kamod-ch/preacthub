@@ -1,7 +1,7 @@
 import type { FunctionalComponent } from "preact";
 import { Button } from "@kamod-ch/ui";
 import { CategoryCard } from "../libraries/CategoryCard";
-import { CompatibilityBadge } from "../libraries/LibraryBadge";
+import { CompatibilityLegend } from "../libraries/CompatibilityLegend";
 import type { LibraryDirectoryMeta } from "../types";
 
 export const CategoriesSection: FunctionalComponent<{ directory: LibraryDirectoryMeta }> = ({ directory }) => (
@@ -19,16 +19,6 @@ export const CategoriesSection: FunctionalComponent<{ directory: LibraryDirector
         <CategoryCard key={categoryItem.slug} category={categoryItem} />
       ))}
     </div>
-    <div class="ph-compat-legend">
-      <span class="ph-section-eyebrow ph-section-eyebrow-muted">Compatibility key</span>
-      <div class="ph-card-badges">
-        <CompatibilityBadge value="native" />
-        <CompatibilityBadge value="compat" />
-        <CompatibilityBadge value="community-tested" />
-        <CompatibilityBadge value="experimental" />
-        <CompatibilityBadge value="unverified" />
-        <CompatibilityBadge value="inactive" />
-      </div>
-    </div>
+    <CompatibilityLegend />
   </section>
 );

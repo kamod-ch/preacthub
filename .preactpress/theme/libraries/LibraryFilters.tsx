@@ -1,15 +1,7 @@
 import {
   Button,
-  Card,
-  CardContent,
   Input,
   NativeSelect,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
 } from "@kamod-ch/ui";
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import { categories } from "../../../src/lib/categories";
@@ -25,7 +17,6 @@ import {
   compatibilityStatusValues,
   DIRECTORY_PAGE_SIZE,
   filterLibraries,
-  formatDate,
   maintenanceStatusLabel,
   maintenanceStatusValues,
   paginateItems,
@@ -38,8 +29,8 @@ import {
 } from "../../../src/lib/libraries";
 import type { LibraryDirectoryMeta } from "../types";
 import { ActiveFilterChips, CategoryContextBanner } from "./ActiveFilterChips";
+import { compatibilityPillClass } from "./compatibility-colors";
 import { LibraryCard } from "./LibraryCard";
-import { CompatibilityBadge, StatusBadge } from "./LibraryBadge";
 import { DIRECTORY_SEARCH_EVENT } from "../utils";
 import { readFilters, writeFilters, type FilterHistoryMode } from "./filter-url-state";
 
@@ -48,30 +39,30 @@ const compatPillOptions: Array<{ value: CompatibilityStatus | "all"; label: stri
   ...compatibilityStatusValues.map((value) => ({ value, label: compatibilityStatusLabel(value) })),
 ];
 
-function RuntimePill({ supported, label }: { supported: boolean; label: string }) {
-  return <span class={supported ? "ph-runtime-yes" : "ph-runtime-no"}>{supported ? label : `No ${label}`}</span>;
-}
-
 function FilterFields({
   filters,
   lockedCategory,
   onUpdate,
+  includeSearch = true,
 }: {
   filters: LibraryFilterState;
   lockedCategory?: string;
   onUpdate: (updater: (value: LibraryFilterState) => LibraryFilterState, mode?: FilterHistoryMode) => void;
+  includeSearch?: boolean;
 }) {
   return (
     <div class="ph-filter-grid">
-      <label class="ph-filter-field">
-        <span>Search</span>
-        <Input
-          type="search"
-          value={filters.q ?? ""}
-          placeholder="Search libraries, packages or tags"
-          onInput={(event) => onUpdate((current) => ({ ...current, q: event.currentTarget.value || undefined, page: 1 }), "replace")}
-        />
-      </label>
+      {includeSearch ? (
+        <label class="ph-filter-field">
+          <span>Search</span>
+          <Input
+            type="search"
+            value={filters.q ?? ""}
+            placeholder="Search libraries, packages or tags"
+            onInput={(event) => onUpdate((current) => ({ ...current, q: event.currentTarget.value || undefined, page: 1 }), "replace")}
+          />
+        </label>
+      ) : null}
       {!lockedCategory ? (
         <label class="ph-filter-field">
           <span>Category</span>
@@ -103,23 +94,23 @@ function FilterFields({
           {DIRECTORY_SORT_OPTIONS.map((value) => <option key={value} value={value}>{sortLabel(value)}</option>)}
         </NativeSelect>
       </label>
-      <div class="ph-filter-toggles">
-        <label>
-          <input
-            type="checkbox"
-            checked={filters.typescript ?? false}
-            onChange={(event) => onUpdate((value) => ({ ...value, typescript: event.currentTarget.checked, page: 1 }), "push")}
-          />
+      <div class="ph-filter-toggles" role="group" aria-label="Runtime filters">
+        <button
+          type="button"
+          class={`ph-filter-toggle-chip${filters.typescript ? " is-active" : ""}`}
+          aria-pressed={filters.typescript ?? false}
+          onClick={() => onUpdate((value) => ({ ...value, typescript: !value.typescript, page: 1 }), "push")}
+        >
           TypeScript
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={filters.ssr ?? false}
-            onChange={(event) => onUpdate((value) => ({ ...value, ssr: event.currentTarget.checked, page: 1 }), "push")}
-          />
+        </button>
+        <button
+          type="button"
+          class={`ph-filter-toggle-chip${filters.ssr ? " is-active" : ""}`}
+          aria-pressed={filters.ssr ?? false}
+          onClick={() => onUpdate((value) => ({ ...value, ssr: !value.ssr, page: 1 }), "push")}
+        >
           SSR
-        </label>
+        </button>
       </div>
     </div>
   );
@@ -146,7 +137,7 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
     setFilters(initial);
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
-    if (params.get("q") || params.get("compatibility") || params.get("category")) {
+    if (params.get("q") || params.get("compatibility") || params.get("category") || params.get("compatibilityStatus")) {
       window.setTimeout(() => {
         document.getElementById("all-libraries-title")?.scrollIntoView({ behavior: "smooth" });
       }, 150);
@@ -208,18 +199,21 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
       ) : null}
 
       <div class="ph-compat-pills" role="group" aria-label="Filter by compatibility">
-        {compatPillOptions.map((option) => (
-          <Button
-            key={option.value}
-            type="button"
-            size="sm"
-            variant={(filters.compatibilityStatus ?? "all") === option.value ? "default" : "outline"}
-            class="ph-compat-pill"
-            onClick={() => updateFilters((value) => ({ ...value, compatibilityStatus: option.value, page: 1 }), "push")}
-          >
-            {option.label}
-          </Button>
-        ))}
+        {compatPillOptions.map((option) => {
+          const isActive = (filters.compatibilityStatus ?? "all") === option.value;
+          return (
+            <Button
+              key={option.value}
+              type="button"
+              size="sm"
+              variant={isActive ? "default" : "outline"}
+              class={`${compatibilityPillClass(option.value)}${isActive ? " is-active" : ""}`}
+              onClick={() => updateFilters((value) => ({ ...value, compatibilityStatus: option.value, page: 1 }), "push")}
+            >
+              {option.label}
+            </Button>
+          );
+        })}
       </div>
 
       <ActiveFilterChips
@@ -229,11 +223,14 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
         onUpdate={updateFilters}
       />
 
-      <Card class="ph-filters-card">
-        <CardContent>
-          <FilterFields filters={filters} lockedCategory={lockedCategory} onUpdate={updateFilters} />
-        </CardContent>
-      </Card>
+      <div class="ph-filter-toolbar">
+        <FilterFields
+          filters={filters}
+          lockedCategory={lockedCategory}
+          onUpdate={updateFilters}
+          includeSearch={Boolean(lockedCategory)}
+        />
+      </div>
 
       <p class="ph-results-summary" aria-live="polite" aria-atomic="true">
         Showing {filteredItems.length === 0 ? 0 : (safePage - 1) * DIRECTORY_PAGE_SIZE + 1}–{Math.min(safePage * DIRECTORY_PAGE_SIZE, filteredItems.length)} of {filteredItems.length}
@@ -251,50 +248,8 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
         </div>
       ) : (
         <>
-          <div class="ph-table-toolbar" aria-hidden="true">
-            <span>Dense desktop directory view</span>
-            <span>Compatibility, status and runtime support at a glance</span>
-          </div>
-          <div class="ph-directory-mobile-grid">
+          <div class="ph-directory-grid">
             {items.map((library) => <LibraryCard key={library.slug} library={library} />)}
-          </div>
-          <div class="ph-directory-table-wrap">
-            <Table class="ph-directory-table">
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Library</TableHead>
-                  <TableHead>Compatibility</TableHead>
-                  <TableHead>Runtime</TableHead>
-                  <TableHead>Verified</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {items.map((library) => (
-                  <TableRow key={library.slug}>
-                    <TableCell>
-                      <a class="ph-directory-link" href={library.route}>
-                        <span class="ph-directory-name">{library.name}</span>
-                        <span class="ph-directory-description">{library.description}</span>
-                        <span class="ph-directory-package">{library.packageName ?? library.slug}</span>
-                      </a>
-                    </TableCell>
-                    <TableCell>
-                      <div class="ph-directory-compat">
-                        <CompatibilityBadge value={library.compatibilityStatus} />
-                        <StatusBadge value={library.maintenanceStatus} />
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div class="ph-directory-runtime">
-                        <RuntimePill supported={library.typescript} label="TS" />
-                        <RuntimePill supported={library.ssr} label="SSR" />
-                      </div>
-                    </TableCell>
-                    <TableCell>{formatDate(library.lastVerifiedAt)}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
           </div>
           {pageCount > 1 ? (
             <nav class="ph-pagination" aria-label="Library pagination">
