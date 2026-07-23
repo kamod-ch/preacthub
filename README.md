@@ -44,7 +44,8 @@ npm run preview    # preview dist/
 | `npm run validate:catalog` | Zod frontmatter and slug validation |
 | `npm run verify:seo` | robots.txt, sitemap, canonical/OG checks on `dist/` |
 | `npm run audit:site` | Kamod AI Audit on key static pages (local or optional CI job; requires private repo access) |
-| `npm run deploy:all-inkl` | Manual rsync fallback to KAS (set `PREACTHUB_DEPLOY_*` env vars) |
+| `npm run deploy:all-inkl` | Manual rsync upload to KAS (set `PREACTHUB_DEPLOY_*` env vars) |
+| `npm run deploy:all-inkl:ftps` | Manual FTPS upload (set `FTP_*` env vars) |
 | `npm run check:links` | Optional manual check of external catalog URLs (network) |
 
 Set `PREACTHUB_SITE_URL=https://preacthub.com` when building for production SEO output (CI and deploy workflows set this automatically).

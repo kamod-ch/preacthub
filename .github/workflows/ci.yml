@@ -51,3 +51,46 @@ jobs:
         env:
           PREACTHUB_SITE_URL: https://preacthub.com
           PREACTPRESS_INCLUDE_MATOMO: ${{ github.ref == 'refs/heads/main' && 'true' || '' }}
+
+      - name: Upload production dist
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+
+  deploy:
+    name: Deploy to all-inkl
+    needs: quality
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://preacthub.com
+    concurrency:
+      group: all-inkl-production
+      cancel-in-progress: false
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download production dist
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Install deployment client
+        run: sudo apt-get install -y lftp
+
+      - name: Deploy dist/ via FTPS
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+        run: bash scripts/deploy-all-inkl-ftps.sh

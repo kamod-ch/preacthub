@@ -1,8 +1,8 @@
 name: Deploy to all-inkl
 
+# Manual fallback when you need a deploy without waiting for CI, or to redeploy
+# the current branch without a new push to main.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -44,9 +44,7 @@ jobs:
           PREACTPRESS_INCLUDE_MATOMO: "true"
 
       - name: Install deployment client
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y lftp
+        run: sudo apt-get install -y lftp
 
       - name: Deploy dist/ via FTPS
         env:
@@ -54,16 +52,4 @@ jobs:
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
-        run: |
-          test -n "$FTP_HOST"
-          test -n "$FTP_USER"
-          test -n "$FTP_PASSWORD"
-          test -n "$FTP_REMOTE_DIR"
-
-          lftp -u "$FTP_USER","$FTP_PASSWORD" "ftp://$FTP_HOST" <<EOF
-          set ftp:ssl-force true
-          set ftp:ssl-protect-data true
-          set ssl:verify-certificate true
-          mirror -R --delete --verbose dist/ "$FTP_REMOTE_DIR"
-          bye
-          EOF
+        run: bash scripts/deploy-all-inkl-ftps.sh

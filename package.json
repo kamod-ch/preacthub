@@ -11,6 +11,7 @@
     "verify:seo": "tsx scripts/verify-seo.ts",
     "migrate:catalog": "tsx scripts/migrate-library-catalog.ts",
     "deploy:all-inkl": "bash scripts/deploy-all-inkl.sh",
+    "deploy:all-inkl:ftps": "bash scripts/deploy-all-inkl-ftps.sh",
     "build": "npm run validate:catalog && preactpress build && npm run verify:seo",
     "preview": "preactpress preview",
     "typecheck": "tsc --noEmit",
