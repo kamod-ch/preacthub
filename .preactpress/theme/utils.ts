@@ -22,8 +22,8 @@ export function topTags(libraries: PreactLibrary[]): string[] {
     .map(([tag]) => tag);
 }
 
-export function tagUrl(tag: string, isHome: boolean): string {
-  return isHome ? `/?q=${encodeURIComponent(tag)}` : `/libraries?q=${encodeURIComponent(tag)}`;
+export function tagUrl(tag: string, _isHome?: boolean): string {
+  return `/libraries?q=${encodeURIComponent(tag)}`;
 }
 
 export function yesNoUnknown(value: boolean | undefined, unknown = "Unknown") {

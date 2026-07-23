@@ -2,7 +2,6 @@ import type { ComponentChildren } from "preact";
 import { Button, Card, CardContent, CardHeader, CardTitle } from "@kamod-ch/ui";
 import { getCategory } from "../../../src/lib/categories";
 import {
-  compatibilityStatusLabel,
   computeHealthScore,
   formatAuditSummary,
   formatDate,
@@ -74,7 +73,7 @@ export function LibraryCompare({ libraries }: { libraries: [PreactLibrary, Preac
               </CardHeader>
               <CardContent class="ph-compare-card-body">
                 <CompareCell label="Category"><strong>{category?.name ?? library.category}</strong></CompareCell>
-                <CompareCell label="Compatibility"><strong>{compatibilityStatusLabel(library.compatibilityStatus)}</strong></CompareCell>
+                <CompareCell label="Compatibility"><CompatibilityBadge value={library.compatibilityStatus} /></CompareCell>
                 <CompareCell label="Maintenance"><strong>{maintenanceStatusLabel(library.maintenanceStatus)}</strong></CompareCell>
                 <CompareCell label="Runtime"><RuntimeRow library={library} /></CompareCell>
                 <CompareCell label="Verified"><strong>{formatDate(library.lastVerifiedAt)}</strong></CompareCell>
@@ -131,8 +130,8 @@ export function LibraryCompare({ libraries }: { libraries: [PreactLibrary, Preac
             <tbody>
               <tr>
                 <th scope="row">Compatibility</th>
-                <td>{compatibilityStatusLabel(left.compatibilityStatus)}</td>
-                <td>{compatibilityStatusLabel(right.compatibilityStatus)}</td>
+                <td><CompatibilityBadge value={left.compatibilityStatus} /></td>
+                <td><CompatibilityBadge value={right.compatibilityStatus} /></td>
               </tr>
               <tr>
                 <th scope="row">Maintenance</th>

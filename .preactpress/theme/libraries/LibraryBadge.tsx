@@ -7,6 +7,7 @@ import {
   type LibraryQualityBadge,
   type MaintenanceStatus,
 } from "../../../src/lib/libraries";
+import { compatibilityBadgeClass } from "./compatibility-colors";
 
 const compatibilityVariant: Record<CompatibilityStatus, "secondary" | "outline" | "warning" | "destructive"> = {
   native: "secondary",
@@ -17,6 +18,15 @@ const compatibilityVariant: Record<CompatibilityStatus, "secondary" | "outline" 
   inactive: "destructive",
 };
 
+const compatibilityGlyph: Record<CompatibilityStatus, string> = {
+  native: "◆",
+  compat: "◇",
+  "community-tested": "◇",
+  experimental: "◈",
+  unverified: "?",
+  inactive: "✕",
+};
+
 const maintenanceVariant: Record<MaintenanceStatus, "secondary" | "outline" | "warning" | "destructive"> = {
   active: "secondary",
   maintenance: "outline",
@@ -25,23 +35,21 @@ const maintenanceVariant: Record<MaintenanceStatus, "secondary" | "outline" | "w
   unknown: "outline",
 };
 
-export function CompatibilityBadge({ value }: { value: CompatibilityStatus }) {
+export function CompatibilityBadge({
+  value,
+  size = "sm",
+}: {
+  value: CompatibilityStatus;
+  size?: "sm" | "md";
+}) {
   return (
     <Badge
       size="sm"
       variant={compatibilityVariant[value]}
-      class={`ph-badge ph-badge-${value}`}
+      class={compatibilityBadgeClass(value, size)}
     >
       <span class="ph-badge-glyph" aria-hidden="true">
-        {value === "native"
-          ? "◆"
-          : value === "compat" || value === "community-tested"
-            ? "◇"
-            : value === "experimental"
-              ? "◈"
-              : value === "inactive"
-                ? "✕"
-                : "?"}
+        {compatibilityGlyph[value]}
       </span>
       <span>{compatibilityStatusLabel(value)}</span>
     </Badge>

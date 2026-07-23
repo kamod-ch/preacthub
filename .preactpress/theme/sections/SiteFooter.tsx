@@ -1,6 +1,6 @@
 import type { FunctionalComponent } from "preact";
 import { CodeBlock } from "../libraries/CodeBlock";
-import { CompatibilityBadge } from "../libraries/LibraryBadge";
+import { CompatibilityLegend } from "../libraries/CompatibilityLegend";
 import type { LibraryDirectoryMeta } from "../types";
 import { BrandLogo } from "../BrandLogo";
 
@@ -54,11 +54,7 @@ export const SiteFooter: FunctionalComponent<{ directory?: LibraryDirectoryMeta 
               ? `${directory.stats.total} curated entries across ${directory.stats.categories} categories.`
               : "Curated for real Preact projects."}
           </p>
-          <div class="ph-footer-badges">
-            <CompatibilityBadge value="native" />
-            <CompatibilityBadge value="compat" />
-            <CompatibilityBadge value="unverified" />
-          </div>
+          <CompatibilityLegend compact />
         </div>
       </div>
       <p class="ph-footer-powered">

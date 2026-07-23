@@ -1,6 +1,7 @@
 import type { FunctionalComponent } from "preact";
 import { Badge, Button } from "@kamod-ch/ui";
 import type { LibraryDirectoryMeta } from "../types";
+import { DirectorySearchBar } from "../libraries/DirectorySearchBar";
 
 export const HeroSection: FunctionalComponent<{
   directory: LibraryDirectoryMeta;
@@ -19,9 +20,14 @@ export const HeroSection: FunctionalComponent<{
     <p class="ph-hero-lead">
       Discover maintained libraries, tools and starters with compatibility notes for native Preact and preact/compat.
     </p>
+    <DirectorySearchBar
+      mode="home"
+      libraries={directory.libraries}
+      showPopularTags
+    />
     <div class="ph-hero-actions">
-      <Button href="/libraries" class="ph-button-primary">Explore libraries</Button>
-      <Button href="/submit" variant="outline">Submit a library</Button>
+      <Button href="/libraries" variant="outline">Browse all</Button>
+      <Button href="/submit" variant="ghost">Submit a library</Button>
     </div>
     <p class="ph-hero-meta ph-muted">
       {directory.stats.total} libraries across {directory.stats.categories} categories.
