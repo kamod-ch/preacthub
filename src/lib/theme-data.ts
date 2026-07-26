@@ -4,7 +4,7 @@ type HeadTag =
   | ["meta", Record<string, string | boolean | undefined>]
   | ["link", Record<string, string | boolean | undefined>]
   | ["script", Record<string, string | boolean | undefined>, string?];
-import { categories, getCategory } from "./categories";
+import { categories, getCategory, categoryRoute, categorySeoTitle, isAiCategory, aiCategories } from "./categories";
 import { buildHomeDirectoryInsights } from "./directory-insights";
 import {
   buildLibraryStructuredData,
@@ -17,11 +17,13 @@ import { loadLibraryEditorial, type LibraryEditorialContent } from "./library-ed
 import {
   parseCompareSlug,
   resolveAlternatives,
+  libraryBelongsToCategory,
   type LibraryDirectory,
   type PreactLibrary,
 } from "./libraries";
 import { loadLibraryDirectory } from "./library-node";
 import { buildBlankSubmissionIssueUrl } from "./library-submission";
+import { findRelatedProjects } from "./related-projects";
 import { canonicalAbsoluteUrl, isNoindexRoute, normalizeLibraryRoute } from "./seo";
 
 export interface RouteLibraryData {
@@ -32,6 +34,8 @@ export interface RouteLibraryData {
   compareLibraries?: [PreactLibrary, PreactLibrary];
   unknownLibrarySlug?: string;
   libraryEditorial?: LibraryEditorialContent;
+  isAiOverview?: boolean;
+  relatedProjects?: PreactLibrary[];
 }
 
 function isSubmitRoute(route: string): boolean {
@@ -62,12 +66,20 @@ export function getRouteLibraryData(root: string, route: string): RouteLibraryDa
   const librarySlug = normalizedRoute.startsWith("/libraries/")
     ? normalizedRoute.replace(/^\/libraries\//, "")
     : undefined;
-  const currentCategory = categories.find((category) => normalizedRoute === `/libraries/${category.slug}`);
+  const categoryFromLibraries = categories.find(
+    (category) => normalizedRoute === `/libraries/${category.slug}`,
+  );
+  const categoryFromCategories = categories.find(
+    (category) => normalizedRoute === `/categories/${category.slug}`,
+  );
+  const currentCategory = categoryFromCategories ?? categoryFromLibraries;
   const currentLibrary = librarySlug && !currentCategory
     ? directory.bySlug.get(librarySlug)
     : undefined;
   const categoryLibraries = currentCategory
-    ? directory.libraries.filter((library) => library.category === currentCategory.slug)
+    ? directory.libraries.filter((library) =>
+        libraryBelongsToCategory(library, currentCategory.slug),
+      )
     : undefined;
   const categorySlugs = new Set(categories.map((category) => category.slug));
   const unknownLibrarySlug = isUnknownLibraryRoute(
@@ -79,6 +91,10 @@ export function getRouteLibraryData(root: string, route: string): RouteLibraryDa
     ? librarySlug
     : undefined;
   const libraryEditorial = currentLibrary ? loadLibraryEditorial(root, currentLibrary) : undefined;
+  const isAiOverview = normalizedRoute === "/ai";
+  const relatedProjects = currentLibrary
+    ? findRelatedProjects(currentLibrary, directory.libraries, directory.bySlug)
+    : undefined;
   return {
     directory,
     currentLibrary,
@@ -86,6 +102,8 @@ export function getRouteLibraryData(root: string, route: string): RouteLibraryDa
     categoryLibraries,
     unknownLibrarySlug,
     libraryEditorial,
+    isAiOverview,
+    relatedProjects,
   };
 }
 
@@ -104,25 +122,42 @@ export function attachLibraryPageMeta(root: string, route: string, page: PageVie
     page = {
       ...page,
       title: route === "/"
-        ? "PreactHub – Find Preact libraries that actually work"
+        ? "PreactHub – Discover Preact, frontend and AI developer tools"
         : "Browse Preact Libraries – Search, Filter and Compare",
       description: route === "/"
-        ? "Discover maintained Preact libraries, tools and starters with compatibility notes for native Preact and preact/compat."
+        ? "Discover the best Preact, frontend and AI developer tools with compatibility notes, curated categories and practical guidance."
         : "Search and filter curated Preact libraries by compatibility, maintenance, TypeScript and SSR support.",
+    };
+  }
+
+  if (data.isAiOverview) {
+    const aiLibraries = data.directory.libraries.filter((l) => l.catalogDomain === "ai");
+    nextMeta.libraryDirectory = {
+      libraries: aiLibraries,
+      featured: aiLibraries.filter((l) => l.featured),
+      categories: data.directory.categories.filter((c) => isAiCategory(c.slug)),
+      stats: data.directory.stats,
+      isAiOverview: true,
+    };
+    page = {
+      ...page,
+      title: "AI Developer Tools – PreactHub",
+      description:
+        "Discover curated AI infrastructure, agent frameworks, browser automation tools and developer APIs.",
     };
   }
 
   if (data.currentCategory) {
     nextMeta.libraryDirectory = {
       libraries: data.categoryLibraries ?? [],
-      featured: [],
+      featured: (data.categoryLibraries ?? []).filter((l) => l.featured),
       categories: data.directory.categories,
       stats: data.directory.stats,
       currentCategory: data.currentCategory,
     };
     page = {
       ...page,
-      title: `Best ${data.currentCategory.name} Libraries for Preact`,
+      title: categorySeoTitle(data.currentCategory),
       description: data.currentCategory.description,
     };
   }
@@ -140,6 +175,7 @@ export function attachLibraryPageMeta(root: string, route: string, page: PageVie
   if (data.currentLibrary) {
     nextMeta.library = data.currentLibrary;
     nextMeta.libraryAlternatives = resolveAlternatives(data.currentLibrary, data.directory.bySlug);
+    nextMeta.relatedProjects = data.relatedProjects;
     nextMeta.libraryEditorial = data.libraryEditorial;
     nextMeta.libraryCategory = getCategory(data.currentLibrary.category);
     page = {
@@ -214,6 +250,9 @@ export function structuredDataHead(root: string, route: string): HeadTag[] {
   }
 
   if (currentCategory) {
+    const breadcrumbName = currentCategory.section === "ai"
+      ? currentCategory.name
+      : `${currentCategory.name} for Preact`;
     return [
       ...noindexTags,
       [
@@ -222,9 +261,37 @@ export function structuredDataHead(root: string, route: string): HeadTag[] {
         JSON.stringify({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: `${currentCategory.name} for Preact`,
+          name: categorySeoTitle(currentCategory),
           description: currentCategory.description,
-          url: canonicalAbsoluteUrl(normalizedRoute, PREACTHUB_SITE_URL),
+          url: canonicalAbsoluteUrl(categoryRoute(currentCategory.slug), PREACTHUB_SITE_URL),
+          breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: canonicalAbsoluteUrl("/", PREACTHUB_SITE_URL) },
+              ...(currentCategory.section === "ai"
+                ? [{ "@type": "ListItem", position: 2, name: "AI", item: canonicalAbsoluteUrl("/ai", PREACTHUB_SITE_URL) }]
+                : [{ "@type": "ListItem", position: 2, name: "Libraries", item: canonicalAbsoluteUrl("/libraries", PREACTHUB_SITE_URL) }]),
+              { "@type": "ListItem", position: currentCategory.section === "ai" ? 3 : 3, name: breadcrumbName },
+            ],
+          },
+        }),
+      ],
+    ];
+  }
+
+  if (normalizedRoute === "/ai") {
+    return [
+      ...noindexTags,
+      [
+        "script",
+        { type: "application/ld+json" },
+        JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "AI Developer Tools",
+          description: "Curated AI infrastructure, agent frameworks, browser automation and developer APIs.",
+          url: canonicalAbsoluteUrl("/ai", PREACTHUB_SITE_URL),
+          about: aiCategories.map((c) => c.name),
         }),
       ],
     ];

@@ -1,4 +1,4 @@
-import { categories } from "./categories";
+import { categories, isAiCategory, categoryRoute } from "./categories";
 import { parseCompareSlug } from "./libraries";
 import { absoluteSiteUrl, normalizeSiteUrl, PREACTHUB_PRODUCTION_URL } from "./site-config";
 
@@ -9,13 +9,18 @@ export function normalizeLibraryRoute(route: string): string {
     return `/libraries/${route.replace(/^\/libraries\/entries\//, "")}`;
   }
   if (route.startsWith("/libraries/categories/")) {
-    return `/libraries/${route.replace(/^\/libraries\/categories\//, "")}`;
+    const slug = route.replace(/^\/libraries\/categories\//, "");
+    return isAiCategory(slug) ? `/categories/${slug}` : `/libraries/${slug}`;
   }
   return route;
 }
 
 export function isLibraryAliasRoute(route: string): boolean {
-  return route.startsWith("/libraries/entries/") || route.startsWith("/libraries/categories/");
+  if (route.startsWith("/libraries/entries/")) return true;
+  if (route.startsWith("/libraries/categories/")) return true;
+  const aiLibraryAlias = route.match(/^\/libraries\/([^/]+)$/);
+  if (aiLibraryAlias && isAiCategory(aiLibraryAlias[1]!)) return true;
+  return false;
 }
 
 export function isLegacySubmitAlias(route: string): boolean {
@@ -118,9 +123,16 @@ export function getRedirectMatrix(): RedirectRule[] {
   for (const category of categories) {
     rules.push({
       from: `/libraries/categories/${category.slug}`,
-      to: `/libraries/${category.slug}`,
+      to: categoryRoute(category.slug),
       reason: "Canonical category route",
     });
+    if (isAiCategory(category.slug)) {
+      rules.push({
+        from: `/libraries/${category.slug}`,
+        to: `/categories/${category.slug}`,
+        reason: "Canonical AI category route",
+      });
+    }
   }
 
   rules.push(
@@ -186,6 +198,10 @@ function escapeHtmlAttr(value: string): string {
 }
 
 export function isKnownCategoryRoute(route: string): boolean {
+  if (route.startsWith("/categories/")) {
+    const slug = route.replace(/^\/categories\//, "");
+    return categorySlugs.has(slug);
+  }
   const slug = route.replace(/^\/libraries\//, "");
   return route.startsWith("/libraries/") && categorySlugs.has(slug);
 }

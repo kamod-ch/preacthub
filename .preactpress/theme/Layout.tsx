@@ -9,12 +9,13 @@ import {
   Separator,
 } from "@kamod-ch/ui";
 import { type LayoutProps } from "@kamod-ch/preactpress/client";
-import { getCategory } from "../../src/lib/categories";
+import { getCategory, categoryRoute, isAiCategory } from "../../src/lib/categories";
 import { SiteBreadcrumbs } from "./libraries/Breadcrumbs";
 import { LibraryDetailPage, LibraryNotFound } from "./libraries/LibraryDetailPage";
 import { LibraryCompare } from "./libraries/LibraryCompare";
 import { LibraryFilters } from "./libraries/LibraryFilters";
 import { SubmitForm } from "./libraries/SubmitForm";
+import { AiOverviewSection } from "./sections/AiOverviewSection";
 import { CategoriesSection } from "./sections/CategoriesSection";
 import { CommunityCtaSection } from "./sections/CommunityCtaSection";
 import { CuratedStacksSection } from "./sections/CuratedStacksSection";
@@ -44,9 +45,12 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
   const isCompare = Boolean(compareLibraries);
   const isLibraryDetail = Boolean(currentLibrary);
   const isUnknownLibrary = Boolean(meta.unknownLibrarySlug);
+  const isAiOverview = routePath === "/ai" || Boolean(meta.libraryDirectory?.isAiOverview);
   const isCategoryPage = Boolean(!currentLibrary && !isCompare && !isUnknownLibrary && currentCategory);
   const showHomeLanding = Boolean(directory && isHome);
   const showLibrariesDirectory = Boolean(directory && (isLibrariesLanding || isCategoryPage));
+  const showAiOverview = Boolean(directory && isAiOverview);
+  const isAiCategoryPage = Boolean(currentCategory && isAiCategory(currentCategory.slug));
 
   const renderedPage = renderPageContent(page);
   const alternatives = meta.libraryAlternatives ?? [];
@@ -68,19 +72,45 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
         { label: "Not found" },
       ];
     }
-    if (!isLibraryDetail && !isCategoryPage) return [];
+    if (isAiOverview) {
+      return [
+        { label: "Home", href: "/" },
+        { label: "AI Developer Tools" },
+      ];
+    }
+    if (isCategoryPage && currentCategory) {
+      return [
+        { label: "Home", href: "/" },
+        ...(currentCategory.section === "ai"
+          ? [{ label: "AI", href: "/ai" }]
+          : [{ label: "Libraries", href: "/libraries" }]),
+        { label: currentCategory.name },
+      ];
+    }
+    if (!isLibraryDetail) return [];
     return [
       { label: "Home", href: "/" },
-      { label: "Libraries", href: "/libraries" },
-      ...(category ? [{ label: category.name, href: `/libraries/${category.slug}` }] : []),
+      ...(currentLibrary?.catalogDomain === "ai"
+        ? [{ label: "AI", href: "/ai" }]
+        : [{ label: "Libraries", href: "/libraries" }]),
+      ...(category ? [{ label: category.name, href: categoryRoute(category.slug) }] : []),
       ...(currentLibrary ? [{ label: currentLibrary.name }] : []),
     ];
-  }, [category, compareLibraries, currentLibrary, isCategoryPage, isCompare, isLibraryDetail, isUnknownLibrary]);
+  }, [category, compareLibraries, currentCategory, currentLibrary, isAiOverview, isCategoryPage, isCompare, isLibraryDetail, isUnknownLibrary]);
 
   return (
     <div class="ph-site">
       <a class="ph-skip-link" href="#content">Skip to content</a>
-      <SiteHeader site={site} themeConfig={themeConfig} routePath={routePath} />
+      <SiteHeader
+        site={site}
+        themeConfig={themeConfig}
+        routePath={routePath}
+        categoryCounts={
+          directory
+            ? Object.fromEntries(directory.categories.map((category) => [category.slug, category.count]))
+            : undefined
+        }
+      />
 
       <main id="content" class="ph-shell ph-main">
         {breadcrumbItems.length > 0 ? <SiteBreadcrumbs items={breadcrumbItems} /> : null}
@@ -103,13 +133,20 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
 
         {isCategoryPage && directory && currentCategory ? (
           <section class="ph-page-intro ph-category-page-intro">
-            <div class="ph-section-eyebrow">Category</div>
+            <div class="ph-section-eyebrow">{isAiCategoryPage ? "AI Category" : "Category"}</div>
             <h1>{currentCategory.name}</h1>
             <p class="ph-muted">{currentCategory.description}</p>
+            <p class="ph-category-count ph-muted" aria-live="polite">
+              {directory.libraries.length} {directory.libraries.length === 1 ? "tool" : "tools"} available
+            </p>
           </section>
         ) : null}
 
-        {showLibrariesDirectory && directory ? <LibraryFilters directory={directory} /> : null}
+        {showAiOverview && directory ? <AiOverviewSection directory={directory} /> : null}
+
+        {showLibrariesDirectory && directory ? (
+          <LibraryFilters directory={directory} isAiCategory={isAiCategoryPage} />
+        ) : null}
 
         {isCompare && compareLibraries ? <LibraryCompare libraries={compareLibraries} /> : null}
 
@@ -118,6 +155,7 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
             library={currentLibrary}
             category={category}
             alternatives={alternatives}
+            relatedProjects={meta.relatedProjects ?? []}
             editorial={editorial}
           />
         ) : null}
@@ -151,7 +189,7 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
           </section>
         ) : null}
 
-        {!showHomeLanding && !showLibrariesDirectory && !isCategoryPage && !isLibraryDetail && !isSubmit && !isCompare && !isUnknownLibrary ? (
+        {!showHomeLanding && !showAiOverview && !showLibrariesDirectory && !isCategoryPage && !isLibraryDetail && !isSubmit && !isCompare && !isUnknownLibrary ? (
           <article class="ph-generic-page">
             <header class="ph-page-intro">
               {page?.title ? <h1>{page.title}</h1> : null}

@@ -10,6 +10,7 @@ import {
   createDefaultDirectoryFilters,
   directoryEmptyStateMessage,
   DIRECTORY_SORT_OPTIONS,
+  AI_DIRECTORY_SORT_OPTIONS,
   hasActiveDirectoryFilters,
 } from "../../../src/lib/directory-filters";
 import {
@@ -44,11 +45,13 @@ function FilterFields({
   lockedCategory,
   onUpdate,
   includeSearch = true,
+  isAiCategory = false,
 }: {
   filters: LibraryFilterState;
   lockedCategory?: string;
   onUpdate: (updater: (value: LibraryFilterState) => LibraryFilterState, mode?: FilterHistoryMode) => void;
   includeSearch?: boolean;
+  isAiCategory?: boolean;
 }) {
   return (
     <div class="ph-filter-grid">
@@ -91,10 +94,12 @@ function FilterFields({
           value={filters.sort ?? "recommended"}
           onChange={(event) => onUpdate((value) => ({ ...value, sort: event.currentTarget.value as LibraryFilterState["sort"], page: 1 }), "push")}
         >
-          {DIRECTORY_SORT_OPTIONS.map((value) => <option key={value} value={value}>{sortLabel(value)}</option>)}
+          {(isAiCategory ? AI_DIRECTORY_SORT_OPTIONS : DIRECTORY_SORT_OPTIONS).map((value) => (
+            <option key={value} value={value}>{sortLabel(value)}</option>
+          ))}
         </NativeSelect>
       </label>
-      <div class="ph-filter-toggles" role="group" aria-label="Runtime filters">
+      <div class="ph-filter-toggles" role="group" aria-label="Additional filters">
         <button
           type="button"
           class={`ph-filter-toggle-chip${filters.typescript ? " is-active" : ""}`}
@@ -103,14 +108,26 @@ function FilterFields({
         >
           TypeScript
         </button>
-        <button
-          type="button"
-          class={`ph-filter-toggle-chip${filters.ssr ? " is-active" : ""}`}
-          aria-pressed={filters.ssr ?? false}
-          onClick={() => onUpdate((value) => ({ ...value, ssr: !value.ssr, page: 1 }), "push")}
-        >
-          SSR
-        </button>
+        {!isAiCategory ? (
+          <button
+            type="button"
+            class={`ph-filter-toggle-chip${filters.ssr ? " is-active" : ""}`}
+            aria-pressed={filters.ssr ?? false}
+            onClick={() => onUpdate((value) => ({ ...value, ssr: !value.ssr, page: 1 }), "push")}
+          >
+            SSR
+          </button>
+        ) : null}
+        {isAiCategory ? (
+          <>
+            <button type="button" class={`ph-filter-toggle-chip${filters.openSource ? " is-active" : ""}`} aria-pressed={filters.openSource ?? false} onClick={() => onUpdate((v) => ({ ...v, openSource: !v.openSource, page: 1 }), "push")}>Open Source</button>
+            <button type="button" class={`ph-filter-toggle-chip${filters.selfHosted ? " is-active" : ""}`} aria-pressed={filters.selfHosted ?? false} onClick={() => onUpdate((v) => ({ ...v, selfHosted: !v.selfHosted, page: 1 }), "push")}>Self-hosted</button>
+            <button type="button" class={`ph-filter-toggle-chip${filters.hosted ? " is-active" : ""}`} aria-pressed={filters.hosted ?? false} onClick={() => onUpdate((v) => ({ ...v, hosted: !v.hosted, page: 1 }), "push")}>Hosted</button>
+            <button type="button" class={`ph-filter-toggle-chip${filters.free ? " is-active" : ""}`} aria-pressed={filters.free ?? false} onClick={() => onUpdate((v) => ({ ...v, free: !v.free, page: 1 }), "push")}>Free</button>
+            <button type="button" class={`ph-filter-toggle-chip${filters.mcp ? " is-active" : ""}`} aria-pressed={filters.mcp ?? false} onClick={() => onUpdate((v) => ({ ...v, mcp: !v.mcp, page: 1 }), "push")}>MCP</button>
+            <button type="button" class={`ph-filter-toggle-chip${filters.recentlyUpdated ? " is-active" : ""}`} aria-pressed={filters.recentlyUpdated ?? false} onClick={() => onUpdate((v) => ({ ...v, recentlyUpdated: !v.recentlyUpdated, page: 1 }), "push")}>Recently Updated</button>
+          </>
+        ) : null}
       </div>
     </div>
   );
@@ -120,7 +137,13 @@ function clearFilters(lockedCategory?: string): LibraryFilterState {
   return createDefaultDirectoryFilters(lockedCategory);
 }
 
-export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta }) {
+export function LibraryFilters({
+  directory,
+  isAiCategory = false,
+}: {
+  directory: LibraryDirectoryMeta;
+  isAiCategory?: boolean;
+}) {
   const lockedCategory = directory.currentCategory?.slug;
   const [filters, setFilters] = useState<LibraryFilterState>(() => createDefaultDirectoryFilters(lockedCategory));
 
@@ -176,20 +199,28 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
   const activeFilterCount = countActiveDirectoryFilters(filters, lockedCategory);
   const showEmptyReset = hasActiveDirectoryFilters(filters, lockedCategory);
 
+  const sectionLabel = isAiCategory ? "tools" : "libraries";
+
   return (
     <section class="ph-all-libraries" aria-labelledby="all-libraries-title">
       <div class="ph-section-header ph-filter-header">
         <div>
-          <div class="ph-section-eyebrow">Directory</div>
-          <h2 id="all-libraries-title">{lockedCategory ? `${directory.currentCategory?.name} libraries` : "All libraries"}</h2>
-          <p class="ph-muted">Filter by compatibility, runtime support and implementation constraints.</p>
+          <div class="ph-section-eyebrow">{isAiCategory ? "AI Directory" : "Directory"}</div>
+          <h2 id="all-libraries-title">
+            {lockedCategory ? `${directory.currentCategory?.name} ${sectionLabel}` : `All ${sectionLabel}`}
+          </h2>
+          <p class="ph-muted">
+            {isAiCategory
+              ? "Filter by hosting, language, pricing and capabilities."
+              : "Filter by compatibility, runtime support and implementation constraints."}
+          </p>
         </div>
         <details class="ph-mobile-filter-details">
           <summary class="ph-mobile-filter-summary">
             Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ""}
           </summary>
           <div class="ph-mobile-filter-panel">
-            <FilterFields filters={filters} lockedCategory={lockedCategory} onUpdate={updateFilters} />
+            <FilterFields filters={filters} lockedCategory={lockedCategory} onUpdate={updateFilters} isAiCategory={isAiCategory} />
           </div>
         </details>
       </div>
@@ -198,23 +229,25 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
         <CategoryContextBanner categoryName={directory.currentCategory.name} count={directory.libraries.length} />
       ) : null}
 
-      <div class="ph-compat-pills" role="group" aria-label="Filter by compatibility">
-        {compatPillOptions.map((option) => {
-          const isActive = (filters.compatibilityStatus ?? "all") === option.value;
-          return (
-            <Button
-              key={option.value}
-              type="button"
-              size="sm"
-              variant={isActive ? "default" : "outline"}
-              class={`${compatibilityPillClass(option.value)}${isActive ? " is-active" : ""}`}
-              onClick={() => updateFilters((value) => ({ ...value, compatibilityStatus: option.value, page: 1 }), "push")}
-            >
-              {option.label}
-            </Button>
-          );
-        })}
-      </div>
+      {!isAiCategory ? (
+        <div class="ph-compat-pills" role="group" aria-label="Filter by compatibility">
+          {compatPillOptions.map((option) => {
+            const isActiveOption = (filters.compatibilityStatus ?? "all") === option.value;
+            return (
+              <Button
+                key={option.value}
+                type="button"
+                size="sm"
+                variant={isActiveOption ? "default" : "outline"}
+                class={`${compatibilityPillClass(option.value)}${isActiveOption ? " is-active" : ""}`}
+                onClick={() => updateFilters((value) => ({ ...value, compatibilityStatus: option.value, page: 1 }), "push")}
+              >
+                {option.label}
+              </Button>
+            );
+          })}
+        </div>
+      ) : null}
 
       <ActiveFilterChips
         filters={filters}
@@ -229,6 +262,7 @@ export function LibraryFilters({ directory }: { directory: LibraryDirectoryMeta 
           lockedCategory={lockedCategory}
           onUpdate={updateFilters}
           includeSearch={Boolean(lockedCategory)}
+          isAiCategory={isAiCategory}
         />
       </div>
 

@@ -87,6 +87,6 @@ describe("directory UI filtering", () => {
     const filters = parseDirectoryFilters(new URLSearchParams("q=nonexistent-package"));
     const filtered = filterLibraries(catalog, filters);
     expect(filtered).toEqual([]);
-    expect(directoryEmptyStateMessage(filters)).toBe('No libraries found for "nonexistent-package"');
+    expect(directoryEmptyStateMessage(filters)).toBe('No tools found for "nonexistent-package"');
   });
 });

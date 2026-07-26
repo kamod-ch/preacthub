@@ -1,5 +1,19 @@
 import { z } from "zod";
-import { categories, getCategory, type LibraryCategorySlug } from "./categories";
+import {
+  categories,
+  getCategory,
+  isAiCategory,
+  type CatalogSection,
+  type LibraryCategorySlug,
+} from "./categories";
+import {
+  hostingTypeValues,
+  packageManagerValues,
+  pricingModelValues,
+  projectTypeValues,
+  runtimeValues,
+} from "./project-types";
+import { validateSubcategories } from "./subcategories";
 
 export const AI_READY_MIN_AUDIT_SCORE = 80;
 
@@ -113,8 +127,39 @@ export const libraryFrontmatterInputSchema = z
     auditUrl: optionalUrlSchema,
     auditDate: isoDateSchema.optional(),
     notes: z.array(z.string().min(1)).optional(),
+
+    catalogDomain: z.enum(["preact", "ai"]).optional(),
+    subcategories: z.array(z.string().min(1)).optional(),
+    projectType: z.enum(projectTypeValues).optional(),
+    hostingType: z.enum(hostingTypeValues).optional(),
+    runtimes: z.array(z.enum(runtimeValues)).optional(),
+    languages: z.array(z.string().min(1)).optional(),
+    packageManager: z.enum(packageManagerValues).optional(),
+    preactCompatible: z.boolean().optional(),
+    mcpSupport: z.boolean().optional(),
+    openSource: z.boolean().optional(),
+    verified: z.boolean().optional(),
+    stars: z.number().int().min(0).optional(),
+    lastReleaseAt: isoDateSchema.optional(),
+    lastCommitAt: isoDateSchema.optional(),
+    pricing: z
+      .object({
+        model: z.enum(pricingModelValues),
+        startingPrice: z.number().optional(),
+        currency: z.string().min(1).optional(),
+      })
+      .optional(),
+    useCases: z.array(z.string().min(1)).optional(),
+    keyFeatures: z.array(z.string().min(1)).optional(),
+    supportedProviders: z.array(z.string().min(1)).optional(),
+    supportedModels: z.array(z.string().min(1)).optional(),
+    deploymentOptions: z.array(z.string().min(1)).optional(),
+    repositoryArchived: z.boolean().optional(),
   })
   .superRefine((data, ctx) => {
+    const isAiEntry =
+      data.catalogDomain === "ai" || isAiCategory(data.category);
+
     if (!data.shortDescription && !data.description) {
       ctx.addIssue({
         code: "custom",
@@ -123,7 +168,7 @@ export const libraryFrontmatterInputSchema = z
       });
     }
 
-    if (!data.compatibilityStatus && !data.compatibility) {
+    if (!isAiEntry && !data.compatibilityStatus && !data.compatibility) {
       ctx.addIssue({
         code: "custom",
         message: "compatibilityStatus (or legacy compatibility) is required",
@@ -139,7 +184,11 @@ export const libraryFrontmatterInputSchema = z
       });
     }
 
-    if (data.typescriptSupport === undefined && data.typescript === undefined) {
+    if (
+      !isAiEntry &&
+      data.typescriptSupport === undefined &&
+      data.typescript === undefined
+    ) {
       ctx.addIssue({
         code: "custom",
         message: "typescriptSupport (or legacy typescript boolean) is required",
@@ -147,11 +196,28 @@ export const libraryFrontmatterInputSchema = z
       });
     }
 
-    if (data.ssrSupport === undefined && data.ssr === undefined) {
+    if (!isAiEntry && data.ssrSupport === undefined && data.ssr === undefined) {
       ctx.addIssue({
         code: "custom",
         message: "ssrSupport (or legacy ssr boolean) is required",
         path: ["ssrSupport"],
+      });
+    }
+
+    if (isAiEntry && !data.projectType) {
+      ctx.addIssue({
+        code: "custom",
+        message: "projectType is required for AI catalog entries",
+        path: ["projectType"],
+      });
+    }
+
+    const invalidSubs = validateSubcategories(data.category, data.subcategories ?? []);
+    if (invalidSubs.length) {
+      ctx.addIssue({
+        code: "custom",
+        message: `Unknown subcategories for category "${data.category}": ${invalidSubs.join(", ")}`,
+        path: ["subcategories"],
       });
     }
 
@@ -226,6 +292,31 @@ export interface LibraryEntry {
   auditUrl?: string;
   auditDate?: string;
   notes?: string[];
+  catalogDomain: CatalogSection;
+  subcategories?: string[];
+  projectType?: import("./project-types").ProjectType;
+  hostingType?: import("./project-types").HostingType;
+  runtimes?: import("./project-types").Runtime[];
+  languages?: string[];
+  packageManager?: import("./project-types").PackageManager;
+  preactCompatible?: boolean;
+  mcpSupport?: boolean;
+  openSource?: boolean;
+  verified?: boolean;
+  stars?: number;
+  lastReleaseAt?: string;
+  lastCommitAt?: string;
+  pricing?: {
+    model: import("./project-types").PricingModel;
+    startingPrice?: number;
+    currency?: string;
+  };
+  useCases?: string[];
+  keyFeatures?: string[];
+  supportedProviders?: string[];
+  supportedModels?: string[];
+  deploymentOptions?: string[];
+  repositoryArchived?: boolean;
 }
 
 export function npmPackageUrl(packageName: string): string {
@@ -310,6 +401,9 @@ export function normalizeLibraryFrontmatter(input: LibraryFrontmatterInput): Lib
 
   const packageName = input.packageName;
   const npmUrl = input.npmUrl ?? (packageName ? npmPackageUrl(packageName) : undefined);
+  const isAiEntry =
+    input.catalogDomain === "ai" || primaryCategory.section === "ai";
+  const catalogDomain: CatalogSection = isAiEntry ? "ai" : "preact";
 
   return {
     name: input.name,
@@ -345,6 +439,27 @@ export function normalizeLibraryFrontmatter(input: LibraryFrontmatterInput): Lib
     auditUrl: input.auditUrl,
     auditDate: input.auditDate,
     notes: input.notes,
+    catalogDomain,
+    subcategories: input.subcategories,
+    projectType: input.projectType,
+    hostingType: input.hostingType,
+    runtimes: input.runtimes,
+    languages: input.languages,
+    packageManager: input.packageManager,
+    preactCompatible: input.preactCompatible,
+    mcpSupport: input.mcpSupport,
+    openSource: input.openSource,
+    verified: input.verified,
+    stars: input.stars,
+    lastReleaseAt: input.lastReleaseAt,
+    lastCommitAt: input.lastCommitAt,
+    pricing: input.pricing,
+    useCases: input.useCases,
+    keyFeatures: input.keyFeatures,
+    supportedProviders: input.supportedProviders,
+    supportedModels: input.supportedModels,
+    deploymentOptions: input.deploymentOptions,
+    repositoryArchived: input.repositoryArchived,
   };
 }
 

@@ -16,6 +16,7 @@ export interface LibraryDirectoryMeta {
   };
   home?: HomeDirectoryInsights;
   currentCategory?: LibraryCategory;
+  isAiOverview?: boolean;
 }
 
 export interface SubmissionMeta {
@@ -27,6 +28,7 @@ export interface ThemeMetaRecord extends Record<string, unknown> {
   libraryDirectory?: LibraryDirectoryMeta;
   library?: PreactLibrary;
   libraryAlternatives?: import("../../src/lib/libraries").ResolvedAlternative[];
+  relatedProjects?: PreactLibrary[];
   libraryEditorial?: LibraryEditorialContent;
   libraryCategory?: LibraryCategory;
   librarySubmission?: SubmissionMeta;

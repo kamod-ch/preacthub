@@ -1,14 +1,22 @@
 import type { FunctionalComponent } from "preact";
+import type { RefObject } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { Button } from "@kamod-ch/ui";
 import {
   isActive,
+  normalizeLink,
   toggleStoredTheme,
   withBase,
   type LayoutProps,
 } from "@kamod-ch/preactpress/client";
+import {
+  aiCategories,
+  categoryRoute,
+  preactCategories,
+  type LibraryCategory,
+} from "../../../src/lib/categories";
 import { BrandLogo } from "../BrandLogo";
-import { resolveNavLink } from "../utils";
+import { CategoryIcon } from "../libraries/CategoryIcon";
 
 function SiteThemeToggle() {
   return (
@@ -60,32 +68,288 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
+function isPreactSectionActive(routePath: string): boolean {
+  return routePath === "/libraries" || routePath.startsWith("/libraries/");
+}
+
+function isAiSectionActive(routePath: string): boolean {
+  return routePath === "/ai" || routePath.startsWith("/categories/");
+}
+
+function isOverviewActive(routePath: string, overviewHref: string): boolean {
+  return normalizeLink(routePath) === normalizeLink(overviewHref);
+}
+
+function NavMenuItem({
+  href,
+  label,
+  slug,
+  count,
+  routePath,
+  onNavigate,
+}: {
+  href: string;
+  label: string;
+  slug?: string;
+  count?: number;
+  routePath: string;
+  onNavigate?: () => void;
+}) {
+  const active = isActive(routePath, href);
+  return (
+    <a
+      href={href}
+      role="menuitem"
+      class={`ph-nav-dropdown-item${active ? " active" : ""}`}
+      aria-current={active ? "page" : undefined}
+      onClick={onNavigate}
+    >
+      {slug ? (
+        <span class="ph-nav-dropdown-item-icon" aria-hidden="true">
+          <CategoryIcon slug={slug} />
+        </span>
+      ) : null}
+      <span class="ph-nav-dropdown-item-label">{label}</span>
+      {count != null ? <span class="ph-nav-dropdown-item-count">{count}</span> : null}
+    </a>
+  );
+}
+
+function NavCatalogDropdown({
+  label,
+  section,
+  overviewHref,
+  overviewLabel,
+  categories,
+  menuId,
+  routePath,
+  open,
+  onToggle,
+  menuRef,
+  toggleRef,
+  categoryCounts,
+}: {
+  label: string;
+  section: "preact" | "ai";
+  overviewHref: string;
+  overviewLabel: string;
+  categories: readonly LibraryCategory[];
+  menuId: string;
+  routePath: string;
+  open: boolean;
+  onToggle: () => void;
+  menuRef: RefObject<HTMLDivElement>;
+  toggleRef: RefObject<HTMLButtonElement>;
+  categoryCounts?: Record<string, number>;
+}) {
+  const active = section === "preact" ? isPreactSectionActive(routePath) : isAiSectionActive(routePath);
+  const overviewActive = isOverviewActive(routePath, overviewHref);
+
+  return (
+    <div class={`ph-nav-split${active ? " active" : ""}${open ? " open" : ""}`} ref={menuRef}>
+      <a
+        href={overviewHref}
+        class={`ph-nav-split-label${overviewActive ? " active" : ""}`}
+        aria-current={overviewActive ? "page" : undefined}
+      >
+        {label}
+      </a>
+      <button
+        ref={toggleRef}
+        type="button"
+        class="ph-nav-split-toggle"
+        aria-expanded={open}
+        aria-haspopup="true"
+        aria-controls={menuId}
+        aria-label={`${label} categories`}
+        onClick={onToggle}
+      >
+        <span class="ph-nav-chevron" aria-hidden="true">▾</span>
+      </button>
+      {open ? (
+        <div id={menuId} class="ph-nav-dropdown-menu" role="menu">
+          <a
+            href={overviewHref}
+            role="menuitem"
+            class={`ph-nav-dropdown-item ph-nav-dropdown-overview${overviewActive ? " active" : ""}`}
+            aria-current={overviewActive ? "page" : undefined}
+          >
+            <span class="ph-nav-dropdown-item-label">{overviewLabel}</span>
+          </a>
+          {categories.map((cat) => (
+            <NavMenuItem
+              key={cat.slug}
+              href={categoryRoute(cat.slug)}
+              label={cat.name}
+              slug={cat.slug}
+              count={categoryCounts?.[cat.slug]}
+              routePath={routePath}
+            />
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function MobileNavGroup({
+  label,
+  overviewHref,
+  overviewLabel,
+  categories,
+  groupId,
+  open,
+  onToggle,
+  onNavigate,
+  categoryCounts,
+  routePath,
+}: {
+  label: string;
+  overviewHref: string;
+  overviewLabel: string;
+  categories: readonly LibraryCategory[];
+  groupId: string;
+  open: boolean;
+  onToggle: () => void;
+  onNavigate: () => void;
+  categoryCounts?: Record<string, number>;
+  routePath: string;
+}) {
+  const overviewActive = isOverviewActive(routePath, overviewHref);
+
+  return (
+    <div class="ph-mobile-nav-split">
+      <a
+        href={overviewHref}
+        class={`ph-mobile-nav-split-label${overviewActive ? " active" : ""}`}
+        aria-current={overviewActive ? "page" : undefined}
+        onClick={onNavigate}
+      >
+        {label}
+      </a>
+      <button
+        type="button"
+        class="ph-mobile-nav-split-toggle"
+        aria-expanded={open}
+        aria-controls={groupId}
+        aria-label={`${label} categories`}
+        onClick={onToggle}
+      >
+        <span class="ph-nav-chevron" aria-hidden="true">{open ? "▴" : "▾"}</span>
+      </button>
+      {open ? (
+        <div id={groupId} class="ph-mobile-nav-group" role="group" aria-label={`${label} categories`}>
+          <a
+            href={overviewHref}
+            class={`ph-mobile-nav-subitem${overviewActive ? " active" : ""}`}
+            onClick={onNavigate}
+          >
+            {overviewLabel}
+          </a>
+          {categories.map((cat) => {
+            const href = categoryRoute(cat.slug);
+            const active = isActive(routePath, href);
+            const count = categoryCounts?.[cat.slug];
+            return (
+              <a
+                key={cat.slug}
+                href={href}
+                class={`ph-mobile-nav-subitem${active ? " active" : ""}`}
+                aria-current={active ? "page" : undefined}
+                onClick={onNavigate}
+              >
+                <span class="ph-mobile-nav-subitem-icon" aria-hidden="true">
+                  <CategoryIcon slug={cat.slug} />
+                </span>
+                <span class="ph-mobile-nav-subitem-label">{cat.name}</span>
+                {count != null ? <span class="ph-mobile-nav-subitem-count">{count}</span> : null}
+              </a>
+            );
+          })}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export const SiteHeader: FunctionalComponent<{
   site: LayoutProps["site"];
   themeConfig: LayoutProps["themeConfig"];
   routePath: string;
-}> = ({ site, themeConfig, routePath }) => {
-  const isHome = routePath === "/";
-  const navItems = (themeConfig.nav ?? [
-    { text: "Browse", link: "/libraries" },
-    { text: "Categories", link: "/libraries#categories" },
-    { text: "Submit", link: "/submit" },
-  ]).filter((item) => item.link !== "/submit");
+  categoryCounts?: Record<string, number>;
+}> = ({ site, themeConfig, routePath, categoryCounts }) => {
   const githubLink = themeConfig.socialLinks?.find((link) => link.icon === "github");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [preactMenuOpen, setPreactMenuOpen] = useState(false);
+  const [aiMenuOpen, setAiMenuOpen] = useState(false);
+  const [mobilePreactOpen, setMobilePreactOpen] = useState(false);
+  const [mobileAiOpen, setMobileAiOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const preactMenuRef = useRef<HTMLDivElement>(null);
+  const aiMenuRef = useRef<HTMLDivElement>(null);
+  const preactToggleRef = useRef<HTMLButtonElement>(null);
+  const aiToggleRef = useRef<HTMLButtonElement>(null);
+
+  const closeDesktopMenus = () => {
+    setPreactMenuOpen(false);
+    setAiMenuOpen(false);
+  };
 
   useEffect(() => {
     if (!mobileNavOpen || typeof window === "undefined") return;
+    if (isPreactSectionActive(routePath)) {
+      setMobilePreactOpen(true);
+      setMobileAiOpen(false);
+    } else if (isAiSectionActive(routePath)) {
+      setMobileAiOpen(true);
+      setMobilePreactOpen(false);
+    }
+  }, [mobileNavOpen, routePath]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
     function onKeyDown(event: KeyboardEvent): void {
-      if (event.key === "Escape") {
+      if (event.key !== "Escape") return;
+      if (preactMenuOpen) {
+        setPreactMenuOpen(false);
+        preactToggleRef.current?.focus();
+        return;
+      }
+      if (aiMenuOpen) {
+        setAiMenuOpen(false);
+        aiToggleRef.current?.focus();
+        return;
+      }
+      if (mobileNavOpen) {
         setMobileNavOpen(false);
+        setMobilePreactOpen(false);
+        setMobileAiOpen(false);
         menuButtonRef.current?.focus();
       }
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [mobileNavOpen]);
+  }, [mobileNavOpen, preactMenuOpen, aiMenuOpen]);
+
+  useEffect(() => {
+    if ((!preactMenuOpen && !aiMenuOpen) || typeof window === "undefined") return;
+    function onPointerDown(event: MouseEvent): void {
+      const target = event.target as Node;
+      const insidePreact = preactMenuRef.current?.contains(target);
+      const insideAi = aiMenuRef.current?.contains(target);
+      if (!insidePreact && !insideAi) {
+        closeDesktopMenus();
+      }
+    }
+    window.addEventListener("mousedown", onPointerDown);
+    return () => window.removeEventListener("mousedown", onPointerDown);
+  }, [preactMenuOpen, aiMenuOpen]);
+
+  const closeMobile = () => {
+    setMobileNavOpen(false);
+    setMobilePreactOpen(false);
+    setMobileAiOpen(false);
+  };
 
   return (
     <header class="ph-header">
@@ -94,18 +358,40 @@ export const SiteHeader: FunctionalComponent<{
           <BrandLogo />
         </a>
         <nav class="ph-nav" aria-label="Main navigation">
-          {navItems.map((item) => {
-            const href = resolveNavLink(item.link ?? "/", isHome);
-            return (
-              <a
-                href={href}
-                aria-current={isActive(routePath, item.link) ? "page" : undefined}
-                class={isActive(routePath, item.link) ? "active" : undefined}
-              >
-                {item.text}
-              </a>
-            );
-          })}
+          <NavCatalogDropdown
+            label="Preact"
+            section="preact"
+            overviewHref="/libraries"
+            overviewLabel="Browse libraries"
+            categories={preactCategories}
+            menuId="ph-preact-nav-menu"
+            routePath={routePath}
+            open={preactMenuOpen}
+            onToggle={() => {
+              setPreactMenuOpen((value) => !value);
+              setAiMenuOpen(false);
+            }}
+            menuRef={preactMenuRef}
+            toggleRef={preactToggleRef}
+            categoryCounts={categoryCounts}
+          />
+          <NavCatalogDropdown
+            label="AI Tools"
+            section="ai"
+            overviewHref="/ai"
+            overviewLabel="Browse AI tools"
+            categories={aiCategories}
+            menuId="ph-ai-nav-menu"
+            routePath={routePath}
+            open={aiMenuOpen}
+            onToggle={() => {
+              setAiMenuOpen((value) => !value);
+              setPreactMenuOpen(false);
+            }}
+            menuRef={aiMenuRef}
+            toggleRef={aiToggleRef}
+            categoryCounts={categoryCounts}
+          />
         </nav>
         <div class="ph-header-actions">
           {githubLink ? (
@@ -121,7 +407,7 @@ export const SiteHeader: FunctionalComponent<{
           ) : null}
           <SiteThemeToggle />
           <Button href="/submit" size="sm" class="ph-submit-nav ph-button-primary">
-            Submit Library
+            Submit
           </Button>
           <button
             ref={menuButtonRef}
@@ -138,26 +424,43 @@ export const SiteHeader: FunctionalComponent<{
       </div>
       {mobileNavOpen ? (
         <div id="ph-mobile-nav" class="ph-shell ph-mobile-nav" aria-label="Mobile navigation">
-          {navItems.map((item) => {
-            const href = resolveNavLink(item.link ?? "/", isHome);
-            return (
-              <a
-                href={href}
-                aria-current={isActive(routePath, item.link) ? "page" : undefined}
-                class={isActive(routePath, item.link) ? "active" : undefined}
-                onClick={() => setMobileNavOpen(false)}
-              >
-                {item.text}
-              </a>
-            );
-          })}
+          <MobileNavGroup
+            label="Preact"
+            overviewHref="/libraries"
+            overviewLabel="Browse libraries"
+            categories={preactCategories}
+            groupId="ph-mobile-preact-group"
+            open={mobilePreactOpen}
+            onToggle={() => {
+              setMobilePreactOpen((value) => !value);
+              setMobileAiOpen(false);
+            }}
+            onNavigate={closeMobile}
+            categoryCounts={categoryCounts}
+            routePath={routePath}
+          />
+          <MobileNavGroup
+            label="AI Tools"
+            overviewHref="/ai"
+            overviewLabel="Browse AI tools"
+            categories={aiCategories}
+            groupId="ph-mobile-ai-group"
+            open={mobileAiOpen}
+            onToggle={() => {
+              setMobileAiOpen((value) => !value);
+              setMobilePreactOpen(false);
+            }}
+            onNavigate={closeMobile}
+            categoryCounts={categoryCounts}
+            routePath={routePath}
+          />
           {githubLink ? (
-            <a href={githubLink.link} target="_blank" rel="noopener noreferrer" onClick={() => setMobileNavOpen(false)}>
+            <a href={githubLink.link} target="_blank" rel="noopener noreferrer" onClick={closeMobile}>
               GitHub
             </a>
           ) : null}
-          <a href="/submit" class="ph-mobile-nav-cta" onClick={() => setMobileNavOpen(false)}>
-            Submit Library
+          <a href="/submit" class="ph-mobile-nav-cta" onClick={closeMobile}>
+            Submit
           </a>
         </div>
       ) : null}

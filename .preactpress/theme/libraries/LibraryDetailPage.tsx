@@ -8,7 +8,12 @@ import {
   resolveInstallCommand,
   type LibraryEditorialContent,
 } from "../../../src/lib/library-detail";
-import type { LibraryCategory } from "../../../src/lib/categories";
+import { categoryRoute, type LibraryCategory } from "../../../src/lib/categories";
+import {
+  buildMaintenanceSignals,
+  computedMaintenanceLabel,
+} from "../../../src/lib/maintenance-computed";
+import { pricingModelLabel } from "../../../src/lib/project-types";
 import type { PreactLibrary, ResolvedAlternative } from "../../../src/lib/libraries";
 import { CodeBlock } from "./CodeBlock";
 import { compatibilityCalloutClass } from "./compatibility-colors";
@@ -50,25 +55,29 @@ export function LibraryDetailPage({
   library,
   category,
   alternatives,
+  relatedProjects = [],
   editorial,
 }: {
   library: PreactLibrary;
   category?: LibraryCategory;
   alternatives: ResolvedAlternative[];
+  relatedProjects?: PreactLibrary[];
   editorial: LibraryEditorialContent;
 }) {
   const facts = buildLibraryFacts(library);
   const links = buildLibraryExternalLinks(library);
   const installCommand = resolveInstallCommand(library);
   const limitations = editorial.limitations;
+  const isAi = library.catalogDomain === "ai";
+  const maintenance = isAi ? buildMaintenanceSignals(library) : undefined;
 
   return (
     <article class="ph-library-page">
       <header class="ph-library-header">
         <div class="ph-library-header-top">
-          <div class="ph-section-eyebrow">Library</div>
+          <div class="ph-section-eyebrow">{isAi ? "AI Tool" : "Library"}</div>
           {category ? (
-            <a class="ph-category-chip ph-category-chip-link" href={`/libraries/${category.slug}`}>
+            <a class="ph-category-chip ph-category-chip-link" href={categoryRoute(category.slug)}>
               {category.name}
             </a>
           ) : null}
@@ -78,14 +87,24 @@ export function LibraryDetailPage({
 
         <div class={compatibilityCalloutClass(library.compatibilityStatus)} aria-labelledby={`${library.slug}-compatibility-title`}>
           <div class="ph-compatibility-callout-badge">
-            <CompatibilityBadge value={library.compatibilityStatus} size="md" />
-            <MaintenanceBadge value={library.maintenanceStatus} />
+            {!isAi ? (
+              <>
+                <CompatibilityBadge value={library.compatibilityStatus} size="md" />
+                <MaintenanceBadge value={library.maintenanceStatus} />
+              </>
+            ) : maintenance ? (
+              <span class="ph-meta-chip">{computedMaintenanceLabel(maintenance.computedStatus)}</span>
+            ) : null}
           </div>
           <div>
             <h2 id={`${library.slug}-compatibility-title`} class="ph-compatibility-callout-title">
-              {compatibilityStatusLabel(library.compatibilityStatus)}
+              {isAi ? library.name : compatibilityStatusLabel(library.compatibilityStatus)}
             </h2>
-            <p>{compatibilityStatusDescription(library.compatibilityStatus)}</p>
+            <p>
+              {isAi
+                ? library.description
+                : compatibilityStatusDescription(library.compatibilityStatus)}
+            </p>
           </div>
         </div>
 
@@ -155,6 +174,49 @@ export function LibraryDetailPage({
             </section>
           ))}
 
+          {isAi && library.useCases?.length ? (
+            <section class="ph-detail-section" aria-labelledby={`${library.slug}-use-cases`}>
+              <h2 id={`${library.slug}-use-cases`}>Use Cases</h2>
+              <ul>{library.useCases.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+          ) : null}
+
+          {isAi && library.keyFeatures?.length ? (
+            <section class="ph-detail-section" aria-labelledby={`${library.slug}-key-features`}>
+              <h2 id={`${library.slug}-key-features`}>Key Features</h2>
+              <ul>{library.keyFeatures.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+          ) : null}
+
+          {isAi && library.supportedProviders?.length ? (
+            <section class="ph-detail-section" aria-labelledby={`${library.slug}-providers`}>
+              <h2 id={`${library.slug}-providers`}>Supported Providers</h2>
+              <ul>{library.supportedProviders.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+          ) : null}
+
+          {isAi && library.pricing?.model ? (
+            <section class="ph-detail-section" aria-labelledby={`${library.slug}-pricing`}>
+              <h2 id={`${library.slug}-pricing`}>Pricing</h2>
+              <p>{pricingModelLabel(library.pricing.model)}</p>
+            </section>
+          ) : null}
+
+          {isAi && maintenance ? (
+            <section class="ph-detail-section" aria-labelledby={`${library.slug}-maintenance`}>
+              <h2 id={`${library.slug}-maintenance`}>Maintenance Status</h2>
+              <p>Computed status: {computedMaintenanceLabel(maintenance.computedStatus)}</p>
+              <ul>
+                <li>License: {maintenance.hasLicense ? "Available" : "Not recorded"}</li>
+                <li>Documentation: {maintenance.hasDocumentation ? "Available" : "Not recorded"}</li>
+                <li>TypeScript support: {maintenance.typescriptSupport ? "Yes" : "No or unknown"}</li>
+                {maintenance.openSource !== undefined ? (
+                  <li>Open source: {maintenance.openSource ? "Yes" : "No"}</li>
+                ) : null}
+              </ul>
+            </section>
+          ) : null}
+
           {alternatives.length ? (
             <section class="ph-detail-section" aria-labelledby={`${library.slug}-alternatives`}>
               <h2 id={`${library.slug}-alternatives`}>Alternatives</h2>
@@ -168,10 +230,27 @@ export function LibraryDetailPage({
               </ul>
               {category ? (
                 <p class="ph-related-collection">
-                  Browse more in <a href={`/libraries/${category.slug}`}>{category.name}</a> or explore the full{" "}
-                  <a href="/libraries">library directory</a>.
+                  Browse more in <a href={categoryRoute(category.slug)}>{category.name}</a>
+                  {isAi ? (
+                    <> or explore <a href="/ai">AI tools</a>.</>
+                  ) : (
+                    <> or explore the full <a href="/libraries">library directory</a>.</>
+                  )}
                 </p>
               ) : null}
+            </section>
+          ) : null}
+
+          {relatedProjects.length ? (
+            <section class="ph-detail-section" aria-labelledby={`${library.slug}-related`}>
+              <h2 id={`${library.slug}-related`}>Related Projects</h2>
+              <ul class="ph-alt-list ph-alt-list-detail">
+                {relatedProjects.map((entry) => (
+                  <li class="ph-alt-item" key={entry.route}>
+                    <a href={entry.route}>{entry.name}</a>
+                  </li>
+                ))}
+              </ul>
             </section>
           ) : null}
         </div>

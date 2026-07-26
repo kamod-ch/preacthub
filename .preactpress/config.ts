@@ -54,7 +54,7 @@ export default defineConfig({
   site: {
     title: PREACTHUB_SITE_NAME,
     url: SITE_URL,
-    description: "Curated Preact libraries with compatibility notes, SSR guidance, and practical examples.",
+    description: "Discover the best Preact, frontend and AI developer tools with compatibility notes and curated categories.",
   },
   theme: "./theme/Layout.tsx",
   markdown: {

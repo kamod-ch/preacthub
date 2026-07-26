@@ -1,11 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import { categories } from "./categories";
+import { categories, isAiCategory } from "./categories";
 import { buildExtendedStats, buildHomeDirectoryInsights, type HomeDirectoryInsights } from "./directory-insights";
 import {
   attachLegacyLibraryView,
   compareUrl,
+  libraryBelongsToCategory,
   libraryUrl,
   sortLibraries,
   type LibraryDirectory,
@@ -80,7 +81,11 @@ export function getLibraryContentRewrites(root: string): Record<string, string> 
   if (fs.existsSync(categoryDir)) {
     for (const file of walkMarkdownFiles(categoryDir)) {
       const slug = path.basename(file, ".md");
-      rewrites[`/libraries/${slug}`] = markdownFileToRoute(path.relative(path.join(root, "content"), file));
+      const contentRoute = markdownFileToRoute(path.relative(path.join(root, "content"), file));
+      rewrites[`/libraries/${slug}`] = contentRoute;
+      if (isAiCategory(slug)) {
+        rewrites[`/categories/${slug}`] = contentRoute;
+      }
     }
   }
 
@@ -167,7 +172,7 @@ export function loadLibraryDirectory(root: string): LibraryDirectory {
   const featured = sorted.filter((library) => library.featured);
   const categorySummaries = categories.map((category) => ({
     ...category,
-    count: sorted.filter((library) => library.category === category.slug).length,
+    count: sorted.filter((library) => libraryBelongsToCategory(library, category.slug)).length,
   }));
   const directory: LibraryDirectory = {
     libraries: sorted,

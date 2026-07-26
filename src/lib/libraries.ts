@@ -123,18 +123,47 @@ export interface LibraryFilterState {
   ssr?: boolean;
   islands?: boolean;
   aiReady?: boolean;
+  openSource?: boolean;
+  selfHosted?: boolean;
+  hosted?: boolean;
+  free?: boolean;
+  freemium?: boolean;
+  paid?: boolean;
+  language?: string;
+  runtime?: string;
+  mcp?: boolean;
+  recentlyUpdated?: boolean;
+  tag?: string;
+  catalogDomain?: "preact" | "ai" | "all";
   sort?: LibrarySort;
   page?: number;
 }
 
-export type LibrarySort = "recommended" | "name" | "recently-verified" | "native-first";
+export type LibrarySort =
+  | "recommended"
+  | "name"
+  | "recently-verified"
+  | "native-first"
+  | "most-popular"
+  | "recently-updated";
 
 export const librarySortOptions: LibrarySort[] = [
   "recommended",
   "name",
   "recently-verified",
   "native-first",
+  "most-popular",
+  "recently-updated",
 ];
+
+export function libraryBelongsToCategory(
+  library: Pick<PreactLibrary, "category" | "categories">,
+  categorySlug: string,
+): boolean {
+  return (
+    library.category === categorySlug || library.categories.includes(categorySlug as LibraryCategorySlug)
+  );
+}
 
 export function attachLegacyLibraryView(entry: LibraryEntry, route: string, file: string): PreactLibrary {
   return {
@@ -211,13 +240,17 @@ export function parseCompareSlug(value: string): [string, string] | undefined {
 export function sortLabel(value: LibrarySort): string {
   switch (value) {
     case "recommended":
-      return "Recommended";
+      return "Relevance";
     case "name":
       return "Name (A–Z)";
     case "recently-verified":
       return "Recently verified";
     case "native-first":
       return "Native Preact first";
+    case "most-popular":
+      return "Most Popular";
+    case "recently-updated":
+      return "Recently Updated";
   }
 }
 
@@ -253,6 +286,67 @@ function matchesMaintenanceFilter(library: PreactLibrary, filter: MaintenanceSta
   return library.maintenanceStatus === filter;
 }
 
+function matchesLanguageFilter(library: PreactLibrary, language?: string): boolean {
+  if (!language) return true;
+  const normalized = language.toLowerCase();
+  if (normalized === "typescript") {
+    return (
+      library.typescriptSupport === "native" ||
+      library.typescriptSupport === "bundled-types" ||
+      library.typescriptSupport === "external-types"
+    );
+  }
+  if (normalized === "javascript") {
+    return library.languages?.includes("javascript") ?? library.catalogDomain === "preact";
+  }
+  if (normalized === "python") {
+    return library.languages?.includes("python") ?? false;
+  }
+  return library.languages?.some((l) => l.toLowerCase() === normalized) ?? false;
+}
+
+function matchesRuntimeFilter(library: PreactLibrary, runtime?: string): boolean {
+  if (!runtime) return true;
+  const map: Record<string, string> = {
+    browser: "browser",
+    node: "node",
+    "node.js": "node",
+    edge: "edge",
+  };
+  const target = map[runtime.toLowerCase()] ?? runtime.toLowerCase();
+  return library.runtimes?.includes(target as never) ?? false;
+}
+
+function matchesPricingFilter(library: PreactLibrary, filters: LibraryFilterState): boolean {
+  const model = library.pricing?.model;
+  if (filters.free && model !== "free") return false;
+  if (filters.freemium && model !== "freemium") return false;
+  if (filters.paid && model !== "paid" && model !== "usage-based") return false;
+  return true;
+}
+
+function matchesHostingFilter(library: PreactLibrary, filters: LibraryFilterState): boolean {
+  if (filters.openSource && !library.openSource && library.hostingType !== "open-source") {
+    return false;
+  }
+  if (filters.selfHosted && library.hostingType !== "self-hosted" && library.hostingType !== "hybrid") {
+    return false;
+  }
+  if (filters.hosted && library.hostingType !== "hosted" && library.hostingType !== "hybrid") {
+    return false;
+  }
+  return true;
+}
+
+function isRecentlyUpdated(library: PreactLibrary): boolean {
+  const dates = [library.lastCommitAt, library.lastReleaseAt, library.lastVerifiedAt].filter(Boolean);
+  if (!dates.length) return false;
+  const mostRecent = dates.sort((a, b) => b!.localeCompare(a!))[0]!;
+  const then = new Date(`${mostRecent}T00:00:00Z`).getTime();
+  const days = Math.floor((Date.now() - then) / 86_400_000);
+  return days <= 180;
+}
+
 export function filterLibraries(libraries: PreactLibrary[], filters: LibraryFilterState): PreactLibrary[] {
   const query = filters.q?.trim().toLowerCase();
   const compatibilityStatus =
@@ -262,7 +356,16 @@ export function filterLibraries(libraries: PreactLibrary[], filters: LibraryFilt
       : "all");
 
   return libraries.filter((library) => {
-    if (filters.category && filters.category !== "all" && library.category !== filters.category) return false;
+    if (
+      filters.category &&
+      filters.category !== "all" &&
+      !libraryBelongsToCategory(library, filters.category)
+    ) {
+      return false;
+    }
+    if (filters.catalogDomain && filters.catalogDomain !== "all" && library.catalogDomain !== filters.catalogDomain) {
+      return false;
+    }
     if (!matchesCompatibilityFilter(library, compatibilityStatus)) return false;
     if (!matchesMaintenanceFilter(library, filters.maintenanceStatus ?? "all")) return false;
     if (filters.status && filters.status !== "all" && library.status !== filters.status) return false;
@@ -272,6 +375,15 @@ export function filterLibraries(libraries: PreactLibrary[], filters: LibraryFilt
     if (filters.ssr && !library.ssr) return false;
     if (filters.islands && !library.islands) return false;
     if (filters.aiReady && !library.qualityBadges.includes("ai-ready")) return false;
+    if (!matchesHostingFilter(library, filters)) return false;
+    if ((filters.free || filters.freemium || filters.paid) && !matchesPricingFilter(library, filters)) {
+      return false;
+    }
+    if (!matchesLanguageFilter(library, filters.language)) return false;
+    if (!matchesRuntimeFilter(library, filters.runtime)) return false;
+    if (filters.mcp && !library.mcpSupport) return false;
+    if (filters.recentlyUpdated && !isRecentlyUpdated(library)) return false;
+    if (filters.tag && !library.tags.includes(filters.tag)) return false;
     if (!query) return true;
 
     const haystack = [
@@ -281,6 +393,7 @@ export function filterLibraries(libraries: PreactLibrary[], filters: LibraryFilt
       library.packageName,
       library.category,
       ...library.categories,
+      ...(library.subcategories ?? []),
       ...library.tags,
     ]
       .filter(Boolean)
@@ -354,6 +467,18 @@ export function sortLibraries(libraries: PreactLibrary[], sort: LibrarySort): Pr
           compatibilityWeight(b.compatibilityStatus) - compatibilityWeight(a.compatibilityStatus) ||
           a.name.localeCompare(b.name),
       );
+    case "most-popular":
+      return copy.sort(
+        (a, b) =>
+          (b.stars ?? 0) - (a.stars ?? 0) ||
+          a.name.localeCompare(b.name),
+      );
+    case "recently-updated":
+      return copy.sort((a, b) => {
+        const dateA = [a.lastCommitAt, a.lastReleaseAt, a.lastVerifiedAt].filter(Boolean).sort().reverse()[0] ?? "";
+        const dateB = [b.lastCommitAt, b.lastReleaseAt, b.lastVerifiedAt].filter(Boolean).sort().reverse()[0] ?? "";
+        return dateB.localeCompare(dateA) || a.name.localeCompare(b.name);
+      });
     case "recommended":
     default:
       return copy.sort(

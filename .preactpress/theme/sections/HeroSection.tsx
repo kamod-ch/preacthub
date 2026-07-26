@@ -18,7 +18,7 @@ export const HeroSection: FunctionalComponent<{
       Find Preact libraries that <span class="ph-hero-accent">actually work</span>
     </h1>
     <p class="ph-hero-lead">
-      Discover maintained libraries, tools and starters with compatibility notes for native Preact and preact/compat.
+      Discover the best Preact, frontend and AI developer tools with compatibility notes and curated categories.
     </p>
     <DirectorySearchBar
       mode="home"

@@ -4,13 +4,18 @@ import matter from "gray-matter";
 import { describe, expect, it } from "vitest";
 
 const entriesDir = path.join(process.cwd(), "content", "libraries", "entries");
-const requiredHeadings = [
+const preactRequiredHeadings = [
   "Introduction",
   "Installation",
   "Preact configuration",
   "Example",
   "SSR notes",
 ];
+const aiRequiredHeadings = ["Introduction", "Overview", "Key Features"];
+
+function isAiEntry(data: Record<string, unknown>): boolean {
+  return data.catalogDomain === "ai";
+}
 const scaffoldPlaceholders = [
   "Add any setup notes here",
   "Document SSR behavior here",
@@ -41,18 +46,19 @@ describe("library content quality", () => {
   const slugs = new Set(entries.map((entry) => entry.data.slug));
 
   it("includes required detail-page headings", () => {
-    const missing = entries.flatMap((entry) =>
-      requiredHeadings
+    const missing = entries.flatMap((entry) => {
+      const headings = isAiEntry(entry.data) ? aiRequiredHeadings : preactRequiredHeadings;
+      return headings
         .filter((heading) => !hasHeading(entry.content, heading))
-        .map((heading) => `${entry.file}: missing ## ${heading}`),
-    );
+        .map((heading) => `${entry.file}: missing ## ${heading}`);
+    });
 
     expect(missing).toEqual([]);
   });
 
-  it("includes islands notes for libraries that claim islands support", () => {
+  it("includes islands notes for preact libraries that claim islands support", () => {
     const missing = entries
-      .filter((entry) => entry.data.islands === true && !hasHeading(entry.content, "Islands notes"))
+      .filter((entry) => !isAiEntry(entry.data) && entry.data.islands === true && !hasHeading(entry.content, "Islands notes"))
       .map((entry) => `${entry.file}: missing ## Islands notes`);
 
     expect(missing).toEqual([]);

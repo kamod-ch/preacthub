@@ -10,8 +10,14 @@ import {
 } from "../src/lib/directory-filters";
 
 describe("directory filters", () => {
-  it("exposes only the release 0.1 sort options", () => {
-    expect(DIRECTORY_SORT_OPTIONS).toEqual(["recommended", "recently-verified", "name"]);
+  it("exposes directory sort options including AI sorts", () => {
+    expect(DIRECTORY_SORT_OPTIONS).toEqual([
+      "recommended",
+      "most-popular",
+      "recently-updated",
+      "recently-verified",
+      "name",
+    ]);
   });
 
   it("parses and serializes query params without duplicating filter state", () => {
@@ -38,11 +44,11 @@ describe("directory filters", () => {
     const defaults = createDefaultDirectoryFilters();
     expect(countActiveDirectoryFilters(defaults)).toBe(0);
     expect(hasActiveDirectoryFilters(defaults)).toBe(false);
-    expect(directoryEmptyStateMessage(defaults)).toBe("No libraries match the current filters");
+    expect(directoryEmptyStateMessage(defaults)).toBe("No tools match the current filters");
 
     const filtered = { ...defaults, q: "missing-library", compatibilityStatus: "native" as const };
     expect(countActiveDirectoryFilters(filtered)).toBe(2);
     expect(hasActiveDirectoryFilters(filtered)).toBe(true);
-    expect(directoryEmptyStateMessage(filtered)).toBe('No libraries found for "missing-library"');
+    expect(directoryEmptyStateMessage(filtered)).toBe('No tools found for "missing-library"');
   });
 });
