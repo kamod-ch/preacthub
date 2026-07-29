@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "@kamod-ch/preactpress/config";
+import type { UserConfig } from "@kamod-ch/preactpress/config";
 import type { PageView } from "@kamod-ch/preactpress/client";
 import { getLibraryContentRewrites } from "../src/lib/library-node";
 import {
@@ -25,6 +26,17 @@ type HeadTag =
   | ["link", Record<string, string | boolean | undefined>]
   | ["script", Record<string, string | boolean | undefined>, string?];
 
+type PreactPressAiConfig = {
+  llmsTxt?: boolean;
+  llmsFullTxt?: boolean;
+  copyMarkdown?: boolean;
+  contextIndex?: boolean;
+};
+
+type PreactHubConfig = UserConfig & {
+  ai?: PreactPressAiConfig;
+};
+
 const matomoImageTracker =
   '<!-- Matomo Image Tracker--><img referrerpolicy="no-referrer-when-downgrade" src="https://matomo.kamod.ch/matomo.php?idsite=10&amp;rec=1" style="border:0" alt="" /><!-- End Matomo -->';
 
@@ -45,7 +57,7 @@ function sharedSeoHeadTags(): HeadTag[] {
   ];
 }
 
-export default defineConfig({
+const config = {
   srcDir: "content",
   rewrites: {
     ...libraryRewrites,
@@ -110,4 +122,6 @@ export default defineConfig({
     await fs.writeFile(path.join(outDir, "sitemap.xml"), buildSitemapXml(routes, SITE_URL), "utf8");
     await fs.writeFile(path.join(outDir, "robots.txt"), buildRobotsTxt(SITE_URL), "utf8");
   },
-});
+} satisfies PreactHubConfig;
+
+export default defineConfig(config);
