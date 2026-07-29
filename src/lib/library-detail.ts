@@ -76,6 +76,20 @@ export function buildLibraryFacts(library: PreactLibrary): LibraryFactRow[] {
   ];
 }
 
+/** Sidebar facts — meta only; compatibility/runtime fields live in hero and score. */
+export function buildSidebarFacts(library: PreactLibrary): LibraryFactRow[] {
+  return [
+    {
+      label: "Tested Preact versions",
+      value: library.testedPreactVersions.length
+        ? library.testedPreactVersions.join(", ")
+        : "Not documented",
+    },
+    { label: "License", value: library.license ?? "Not documented" },
+    { label: "Last verified", value: formatDate(library.lastVerifiedAt) },
+  ];
+}
+
 export interface LibraryLinkItem {
   label: string;
   href: string;
@@ -113,6 +127,11 @@ export function buildLibraryExternalLinks(library: PreactLibrary): LibraryLinkIt
     });
   }
   return links;
+}
+
+/** Sidebar links — npm is omitted because the hero package chip already covers it. */
+export function buildSidebarExternalLinks(library: PreactLibrary): LibraryLinkItem[] {
+  return buildLibraryExternalLinks(library).filter((link) => link.label.toLowerCase() !== "npm");
 }
 
 export function buildLibraryStructuredData(

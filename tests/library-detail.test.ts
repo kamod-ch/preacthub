@@ -5,6 +5,8 @@ import { extractLibraryEditorialFromMarkdown } from "../src/lib/library-editoria
 import {
   buildLibraryExternalLinks,
   buildLibraryFacts,
+  buildSidebarExternalLinks,
+  buildSidebarFacts,
   buildLibraryStructuredData,
   isUnknownLibraryRoute,
   libraryCanonicalUrl,
@@ -54,6 +56,21 @@ describe("library detail helpers", () => {
     expect(libraryCanonicalUrl("preact-signals")).toBe("https://preacthub.com/libraries/preact-signals");
     expect(libraryDetailTitle(library)).toContain("Preact Signals");
     expect(libraryDetailDescription(library)).toContain("Fine-grained reactive state");
+  });
+
+  it("builds sidebar facts and links without hero/score duplication", () => {
+    const library = sampleLibrary();
+    const sidebarFacts = buildSidebarFacts(library);
+    const sidebarLinks = buildSidebarExternalLinks(library);
+
+    expect(sidebarFacts.map((row) => row.label)).toEqual([
+      "Tested Preact versions",
+      "License",
+      "Last verified",
+    ]);
+    expect(sidebarFacts.some((row) => row.label === "Preact compatibility")).toBe(false);
+    expect(sidebarLinks.some((link) => link.label === "npm")).toBe(false);
+    expect(sidebarLinks.some((link) => link.label === "GitHub")).toBe(true);
   });
 
   it("handles optional missing fields gracefully", () => {
@@ -162,7 +179,7 @@ describe("library detail build output", () => {
     if (!fs.existsSync(htmlPath)) return;
 
     const html = fs.readFileSync(htmlPath, "utf8");
-    expect(html).toContain("At a glance");
+    expect(html).toContain("Overview");
     expect(html).toContain('aria-live="polite"');
     expect(html).toContain("Is this information outdated?");
     expect(html).toContain('rel="canonical"');

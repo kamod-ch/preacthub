@@ -1143,6 +1143,58 @@ a[data-slot="button"][data-variant="default"] {
 .ph-detail-tab-panel[hidden] { display: none !important; }
 
 .ph-detail-sidebar-sticky { position: sticky; top: 4.5rem; align-self: start; }
+.ph-sidebar-overview [data-slot="card-content"] { padding-top: 0.25rem; }
+.ph-sidebar-overview-body { display: grid; gap: 0.875rem; }
+.ph-sidebar-section + .ph-sidebar-section,
+.ph-sidebar-footer { border-top: 1px solid var(--ph-border); padding-top: 0.875rem; }
+.ph-sidebar-section-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ph-text-muted);
+}
+.ph-sidebar-meta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.625rem;
+  margin: 0;
+}
+.ph-sidebar-meta div { display: grid; gap: 0.15rem; }
+.ph-sidebar-meta dt {
+  margin: 0;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ph-text-muted);
+}
+.ph-sidebar-meta dd { margin: 0; font-size: 0.8125rem; line-height: 1.45; }
+.ph-sidebar-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.875rem;
+}
+.ph-sidebar-link-row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+.ph-sidebar-link-row a:hover { color: var(--ph-accent); }
+.ph-sidebar-footer { display: grid; gap: 0.35rem; }
+.ph-sidebar-footer p { margin: 0; font-size: 0.8125rem; color: var(--ph-text-muted); }
+.ph-sidebar-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  font-size: 0.8125rem;
+}
+.ph-sidebar-footer-links a { color: var(--ph-accent); text-decoration: none; }
+.ph-sidebar-footer-links a:hover { text-decoration: underline; }
+.ph-sidebar-footer-links span { color: var(--ph-text-muted); opacity: 0.6; }
 .ph-detail-sidebar-links { display: grid; gap: 0.5rem; }
 .ph-detail-sidebar-links a {
   display: flex; align-items: center; justify-content: space-between;
@@ -1564,6 +1616,7 @@ a[data-slot="button"][data-variant="default"] {
   .ph-detail-grid { grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr); }
   .ph-compatibility-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ph-fact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ph-sidebar-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem 1rem; }
   .ph-footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
 }
 
