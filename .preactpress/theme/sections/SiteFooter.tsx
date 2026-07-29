@@ -1,4 +1,5 @@
 import type { FunctionalComponent } from "preact";
+import { syncdingLinks } from "../../../src/lib/syncding-links";
 import { CodeBlock } from "../libraries/CodeBlock";
 import { CompatibilityLegend } from "../libraries/CompatibilityLegend";
 import type { LibraryDirectoryMeta } from "../types";
@@ -45,6 +46,15 @@ export const SiteFooter: FunctionalComponent<{ directory?: LibraryDirectoryMeta 
             <li><a href="https://github.com/kamod-ch/preacthub" target="_blank" rel="noopener noreferrer">GitHub repository</a></li>
             <li><a href="/libraries/kamod-ai-audit">Kamod AI Audit</a></li>
             <li><a href="https://github.com/kamod-ch/kamod-ai-audit" target="_blank" rel="noopener noreferrer">Audit your site</a></li>
+            <li>
+              <a
+                href={syncdingLinks.footer}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Syncding — managed file sync
+              </a>
+            </li>
           </ul>
         </div>
         <div>

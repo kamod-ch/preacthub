@@ -65,6 +65,12 @@ export default defineConfig({
     sitemap: true,
     robots: true,
   },
+  ai: {
+    llmsTxt: true,
+    llmsFullTxt: true,
+    copyMarkdown: true,
+    contextIndex: true,
+  },
   vite: {
     plugins: [tailwindcss()],
   },

@@ -18,6 +18,7 @@ import { SubmitForm } from "./libraries/SubmitForm";
 import { AiOverviewSection } from "./sections/AiOverviewSection";
 import { CategoriesSection } from "./sections/CategoriesSection";
 import { CommunityCtaSection } from "./sections/CommunityCtaSection";
+import { KamodEcosystemSection } from "./sections/KamodEcosystemSection";
 import { CuratedStacksSection } from "./sections/CuratedStacksSection";
 import { FeaturedSection } from "./sections/FeaturedSection";
 import { HeroSection } from "./sections/HeroSection";
@@ -124,6 +125,7 @@ const Layout: FunctionalComponent<LayoutProps> = ({ site, themeConfig, routePath
             <RecentlyVerifiedSection directory={directory} />
             <NativeLibrariesSection directory={directory} />
             <CuratedStacksSection directory={directory} />
+            <KamodEcosystemSection />
             <CommunityCtaSection />
             <article class="ph-home-about ph-prose">{renderedPage}</article>
           </>
