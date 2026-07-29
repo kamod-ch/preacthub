@@ -11,6 +11,7 @@ import {
   type PreactLibrary,
 } from "../../../src/lib/libraries";
 import { CompatibilityBadge, QualityBadge, StatusBadge } from "./LibraryBadge";
+import { PackageNameChip } from "./PackageNameChip";
 import { HealthScore } from "./HealthScore";
 import { yesNoUnknown } from "../utils";
 
@@ -69,7 +70,9 @@ export function LibraryCompare({ libraries }: { libraries: [PreactLibrary, Preac
                 </div>
                 <CardTitle>{library.name}</CardTitle>
                 <p class="ph-library-description">{library.description}</p>
-                {library.packageName ? <p class="ph-package-name">{library.packageName}</p> : null}
+                {library.packageName ? (
+                  <PackageNameChip packageName={library.packageName} npmUrl={library.npmUrl} />
+                ) : null}
               </CardHeader>
               <CardContent class="ph-compare-card-body">
                 <CompareCell label="Category"><strong>{category?.name ?? library.category}</strong></CompareCell>

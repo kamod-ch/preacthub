@@ -6,17 +6,24 @@ const SYNCDING_MEDIUM = "referral";
 
 export type SyncdingLinkPlacement = "ecosystem-cta" | "ecosystem-pricing" | "footer";
 
-export function buildSyncdingUrl(path = "/", content: SyncdingLinkPlacement): string {
+export function buildSyncdingUrl(
+  path = "/",
+  content: SyncdingLinkPlacement,
+  hash?: string,
+): string {
   const url = new URL(path, SYNCDING_BASE);
   url.searchParams.set("utm_source", SYNCDING_SOURCE);
   url.searchParams.set("utm_medium", SYNCDING_MEDIUM);
   url.searchParams.set("utm_campaign", SYNCDING_CAMPAIGN);
   url.searchParams.set("utm_content", content);
+  if (hash) {
+    url.hash = hash;
+  }
   return url.toString();
 }
 
 export const syncdingLinks = {
   ecosystemCta: buildSyncdingUrl("/", "ecosystem-cta"),
-  ecosystemPricing: buildSyncdingUrl("/pricing", "ecosystem-pricing"),
+  ecosystemPricing: buildSyncdingUrl("/", "ecosystem-pricing", "pricing"),
   footer: buildSyncdingUrl("/", "footer"),
 } as const;

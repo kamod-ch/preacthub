@@ -162,7 +162,7 @@ describe("library detail build output", () => {
     if (!fs.existsSync(htmlPath)) return;
 
     const html = fs.readFileSync(htmlPath, "utf8");
-    expect(html).toContain("Facts at a glance");
+    expect(html).toContain("At a glance");
     expect(html).toContain('aria-live="polite"');
     expect(html).toContain("Is this information outdated?");
     expect(html).toContain('rel="canonical"');

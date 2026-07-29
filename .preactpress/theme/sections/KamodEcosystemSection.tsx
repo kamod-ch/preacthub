@@ -12,7 +12,7 @@ export const KamodEcosystemSection: FunctionalComponent = () => (
       </div>
     </div>
     <div class="ph-ecosystem-grid">
-      <Card class="ph-ecosystem-card ph-ecosystem-card-featured">
+      <Card class="ph-ecosystem-card">
         <CardHeader>
           <CardTitle>Syncding</CardTitle>
         </CardHeader>

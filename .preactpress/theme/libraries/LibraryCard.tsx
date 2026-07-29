@@ -11,6 +11,7 @@ import {
   projectTypeLabel,
 } from "../../../src/lib/project-types";
 import { CompatibilityBadge, StatusBadge } from "./LibraryBadge";
+import { PackageNameChip } from "./PackageNameChip";
 import { TrustMarker, type TrustMarkerKind } from "./TrustMarker";
 
 function RuntimeSignal({ supported, label }: { supported: boolean; label: string }) {
@@ -48,7 +49,7 @@ export function LibraryCard({
             {trustMarker ? <TrustMarker kind={trustMarker} /> : <span class="ph-library-external" aria-hidden="true">↗</span>}
           </div>
           {library.packageName ? (
-            <p class="ph-package-name">{library.packageName}</p>
+            <PackageNameChip packageName={library.packageName} variant="compact" />
           ) : null}
           {!isAi && installCommand ? (
             <code class="ph-install-snippet">{installCommand}</code>
