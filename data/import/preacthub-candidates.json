@@ -1,0 +1,2441 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-11",
+  "sourceFile": "docs/import/preacthub-candidates.md",
+  "meta": {
+    "schemaVersion": 1,
+    "expectedCandidateCount": 200,
+    "includedCandidateCount": 40,
+    "complete": false,
+    "includedReports": [
+      "2026-09-08",
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11"
+    ],
+    "missingReports": "2026-08-22..2026-09-07",
+    "generatedAt": "2026-09-11",
+    "reportPeriod": "2026-08-22..2026-09-11"
+  },
+  "duplicateWarnings": [
+    {
+      "type": "repositoryUrl",
+      "value": "https://github.com/JoviDeCroock/pracht",
+      "indices": [
+        18,
+        27
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "index": 1,
+      "name": "@gridsheet/preact-core",
+      "packageName": "@gridsheet/preact-core",
+      "repositoryUrl": "https://github.com/walkframe/gridsheet",
+      "documentationUrl": "https://gridsheet.walkframe.com/",
+      "npmUrl": "https://www.npmjs.com/package/@gridsheet/preact-core",
+      "reportDate": "2026-09-08",
+      "priority": 1,
+      "reportedCategory": "Data Grid / Spreadsheet",
+      "reportedCompatibility": "Official Preact renderer, reportedly with Preact peer dependency; verify API and SSR.",
+      "reportedActivity": "",
+      "reportedLimitations": [
+        "API and SSR"
+      ],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ui",
+      "slug": "gridsheet-preact-core",
+      "catalogDraft": {
+        "name": "GridSheet Preact",
+        "slug": "gridsheet-preact-core",
+        "shortDescription": "Spreadsheet component with formulas and multi-sheet support for Preact.",
+        "category": "ui",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "unknown",
+        "packageName": "@gridsheet/preact-core",
+        "repositoryUrl": "https://github.com/walkframe/gridsheet",
+        "documentationUrl": "https://gridsheet.walkframe.com/",
+        "homepageUrl": "https://gridsheet.walkframe.com/",
+        "npmUrl": "https://www.npmjs.com/package/@gridsheet/preact-core",
+        "license": "Apache-2.0",
+        "installCommand": "npm install @gridsheet/preact-core @gridsheet/functions",
+        "tags": [
+          "spreadsheet",
+          "data-grid",
+          "formulas"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Requires @gridsheet/functions when using the spellbook helpers.",
+          "Lists dayjs as an additional runtime dependency in upstream docs.",
+          "SSR behavior has not been independently verified for PreactHub."
+        ],
+        "alternatives": [
+          "tanstack-table"
+        ],
+        "sections": {
+          "Introduction": "GridSheet provides an Excel-like spreadsheet UI for Preact through the dedicated `@gridsheet/preact-core` renderer. It ships a native Preact peer dependency and exposes `GridSheet`, spellbook helpers and formula-aware cell editing.",
+          "Installation": "```bash\nnpm install @gridsheet/preact-core @gridsheet/functions\n```",
+          "Preact configuration": "Install `preact ^10.26.6` as a peer dependency. Import components from `@gridsheet/preact-core` and optional spellbook utilities from `@gridsheet/preact-core/spellbook` when formulas are required.",
+          "Example": "```tsx\nimport { GridSheet } from \"@gridsheet/preact-core\";\nimport { useSpellbook } from \"@gridsheet/preact-core/spellbook\";\n\nexport function SheetDemo() {\n  const book = useSpellbook();\n  return (\n    <GridSheet\n      book={book}\n      sheetName=\"Sheet1\"\n      initialCells={{\n        A1: { value: \"Hello\" },\n        B2: { value: \"=SUM(A2:B2)\" },\n      }}\n    />\n  );\n}\n```",
+          "SSR notes": "Upstream documentation focuses on client-side spreadsheet interaction. PreactHub has not verified a supported SSR path; treat server rendering as unknown until you validate DOM measurement and formula evaluation in your target environment.",
+          "Islands notes": "Spreadsheet widgets are usually mounted as self-contained interactive islands because they depend on pointer, keyboard and scroll interactions.",
+          "Known limitations": "Formula support depends on `@gridsheet/functions`. Large workbooks can be heavy for island hydration, and accessibility for grid navigation should be validated against your product requirements.",
+          "Alternatives": "For tabular data without spreadsheet semantics, see [TanStack Table](/libraries/tanstack-table)."
+        }
+      }
+    },
+    {
+      "index": 2,
+      "name": "@clean-jsdoc-theme/rang",
+      "packageName": "@clean-jsdoc-theme/rang",
+      "repositoryUrl": "https://github.com/ankitskvmdam/clean-jsdoc-theme",
+      "documentationUrl": "https://github.com/ankitskvmdam/clean-jsdoc-theme/blob/master/docs/ARCHITECTURE.md",
+      "npmUrl": "https://www.npmjs.com/package/@clean-jsdoc-theme/rang",
+      "reportDate": "2026-09-08",
+      "priority": 1,
+      "reportedCategory": "Documentation UI / Islands",
+      "reportedCompatibility": "Native Preact with SSR chrome and islands; determine reuse outside Clean JSDoc.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "clean-jsdoc-theme-rang",
+      "catalogDraft": {
+        "name": "Clean JSDoc Theme Rang",
+        "slug": "clean-jsdoc-theme-rang",
+        "shortDescription": "Preact component library, MDX map and island registry for Clean JSDoc Theme v5.",
+        "category": "developer-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "@clean-jsdoc-theme/rang",
+        "repositoryUrl": "https://github.com/ankitskvmdam/clean-jsdoc-theme",
+        "documentationUrl": "https://github.com/ankitskvmdam/clean-jsdoc-theme/blob/master/docs/ARCHITECTURE.md",
+        "npmUrl": "https://www.npmjs.com/package/@clean-jsdoc-theme/rang",
+        "license": "MIT",
+        "installCommand": "npm install @clean-jsdoc-theme/rang",
+        "tags": [
+          "documentation",
+          "islands",
+          "mdx"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Designed for Clean JSDoc Theme v5 page shells rather than general-purpose app UI.",
+          "Reuse outside the dwar/rang architecture requires reviewing island registry contracts."
+        ],
+        "sections": {
+          "Introduction": "`@clean-jsdoc-theme/rang` is the native Preact surface for Clean JSDoc Theme v5. It provides SSR chrome (`Layout`, `Header`, `Footer`), interactive documentation islands (`Sidebar`, `ThemeToggle`, `CtrlK`, code tabs and copy helpers) and the `defaultMdxComponents` map used by the theme renderer.",
+          "Installation": "```bash\nnpm install @clean-jsdoc-theme/rang\n```",
+          "Preact configuration": "Import chrome, islands and MDX helpers directly from `@clean-jsdoc-theme/rang`. Pair the package with `@clean-jsdoc-theme/utils` island names through the exported `ISLAND_REGISTRY` when wiring hydration entry points.",
+          "Example": "```tsx\nimport { Layout, Header, Sidebar, defaultMdxComponents } from \"@clean-jsdoc-theme/rang\";\n\nexport function DocsPage({ children }: { children: preact.ComponentChildren }) {\n  return (\n    <Layout>\n      <Header />\n      <Sidebar />\n      <main>{children}</main>\n    </Layout>\n  );\n}\n\nexport { defaultMdxComponents };\n```",
+          "SSR notes": "Chrome components are SSR-only while islands render meaningful initial HTML and hydrate for keyboard handling, theme persistence, clipboard actions and navigation affordances.",
+          "Islands notes": "Each island listed in `ISLAND_REGISTRY` is bundled as its own ESM chunk by the theme pipeline. Scope hydration roots per island name (`sidebar`, `theme-toggle`, `cmdk`, and others) to avoid duplicate client controllers.",
+          "Known limitations": "The package is tightly coupled to Clean JSDoc Theme infrastructure. Using individual islands in unrelated Preact apps may require replicating locale and theme providers exported alongside the components.",
+          "Alternatives": "For general documentation sites outside Clean JSDoc Theme, compare with [PreactPress](/libraries/preactpress) or your static-site generator of choice."
+        }
+      }
+    },
+    {
+      "index": 3,
+      "name": "@lynx-js/react-signals",
+      "packageName": "@lynx-js/react-signals",
+      "repositoryUrl": "https://github.com/lynx-family/lynx-stack/tree/main/packages/react-signals",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/@lynx-js/react-signals",
+      "reportDate": "2026-09-08",
+      "priority": 1,
+      "reportedCategory": "Mobile / Signals",
+      "reportedCompatibility": "Preact peer and Signals integration for ReactLynx; not for normal browser apps.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "state-management",
+      "slug": "lynx-js-react-signals",
+      "catalogDraft": {
+        "name": "Lynx React Signals",
+        "slug": "lynx-js-react-signals",
+        "shortDescription": "Thread-aware Preact Signals integration for ReactLynx applications.",
+        "category": "state-management",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "limited",
+        "packageName": "@lynx-js/react-signals",
+        "repositoryUrl": "https://github.com/lynx-family/lynx-stack/tree/main/packages/react-signals",
+        "documentationUrl": "https://www.npmjs.com/package/@lynx-js/react-signals",
+        "npmUrl": "https://www.npmjs.com/package/@lynx-js/react-signals",
+        "license": "Apache-2.0",
+        "installCommand": "npm install @lynx-js/react-signals",
+        "tags": [
+          "signals",
+          "lynx",
+          "mobile"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Targets ReactLynx runtimes, not standard browser-only Preact applications.",
+          "ReactLynx currently requires reading signal values through `.value` rather than passing Signal objects directly in JSX."
+        ],
+        "alternatives": [
+          "preact-signals"
+        ],
+        "sections": {
+          "Introduction": "`@lynx-js/react-signals` exposes Preact Signals APIs (`signal`, `useSignal`) adapted for ReactLynx's multi-thread rendering model. Signals stay reactive on the background thread while first-screen rendering on the main thread uses static values.",
+          "Installation": "```bash\nnpm install @lynx-js/react-signals\n```",
+          "Preact configuration": "Use this package only inside ReactLynx projects that already depend on Preact Signals semantics. Import from `@lynx-js/react-signals` instead of `@preact/signals` when building Lynx UI modules.",
+          "Example": "```tsx\nimport { signal } from \"@lynx-js/react-signals\";\n\nconst count = signal(0);\n\nexport function Counter() {\n  return <text>Value: {count.value}</text>;\n}\n```",
+          "SSR notes": "ReactLynx first-screen rendering uses static signal values on the main thread. Validate hydration and background-thread updates within the Lynx toolchain rather than assuming standard Preact SSR behavior.",
+          "Islands notes": "Not applicable to conventional Preact island architectures; this adapter is specific to ReactLynx page and component lifecycles.",
+          "Known limitations": "This is not a drop-in replacement for `@preact/signals` in normal web apps. Follow Lynx documentation for thread constraints and JSX consumption rules.",
+          "Alternatives": "For browser Preact apps, use [Preact Signals](/libraries/preact-signals)."
+        }
+      }
+    },
+    {
+      "index": 4,
+      "name": "@dillingerstaffing/strand-ui",
+      "packageName": "@dillingerstaffing/strand-ui",
+      "repositoryUrl": "https://github.com/dillingerstaffing/strand/tree/main/packages/strand-ui",
+      "documentationUrl": "https://dillingerstaffing.com/labs/strand",
+      "npmUrl": "https://www.npmjs.com/package/@dillingerstaffing/strand-ui",
+      "reportDate": "2026-09-08",
+      "priority": 2,
+      "reportedCategory": "UI / Design System",
+      "reportedCompatibility": "Shared Preact/React component library; WCAG claim must remain attributed to vendor.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ui",
+      "slug": "dillingerstaffing-strand-ui",
+      "catalogDraft": {
+        "name": "Strand UI",
+        "slug": "dillingerstaffing-strand-ui",
+        "shortDescription": "Preact/React component library on the Strand Design Language with zero-runtime CSS.",
+        "category": "ui",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "unknown",
+        "packageName": "@dillingerstaffing/strand-ui",
+        "repositoryUrl": "https://github.com/dillingerstaffing/strand/tree/main/packages/strand-ui",
+        "documentationUrl": "https://dillingerstaffing.com/labs/strand",
+        "homepageUrl": "https://dillingerstaffing.com/labs/strand",
+        "npmUrl": "https://www.npmjs.com/package/@dillingerstaffing/strand-ui",
+        "license": "MIT",
+        "installCommand": "npm install @dillingerstaffing/strand @dillingerstaffing/strand-ui",
+        "tags": [
+          "design-system",
+          "accessibility",
+          "components"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Upstream marketing claims WCAG 2.2 AA conformance for the Strand Design Language; validate against your product requirements rather than treating this as independent certification.",
+          "Requires separate CSS imports from @dillingerstaffing/strand and @dillingerstaffing/strand-ui entry stylesheets."
+        ],
+        "alternatives": [
+          "kamod-ui",
+          "shoelace"
+        ],
+        "sections": {
+          "Introduction": "`@dillingerstaffing/strand-ui` ships 34 Preact/React components built on the [Strand Design Language](https://github.com/dillingerstaffing/strand/blob/main/docs/design-language.md). Components pair with zero-runtime CSS tokens from the `@dillingerstaffing/strand` package.",
+          "Installation": "```bash\nnpm install @dillingerstaffing/strand @dillingerstaffing/strand-ui\n```\n\nImport the design tokens and component styles in your app entry:\n\n```css\n@import '@dillingerstaffing/strand/css/reset.css';\n@import '@dillingerstaffing/strand/css/tokens.css';\n@import '@dillingerstaffing/strand/css/base.css';\n@import '@dillingerstaffing/strand-ui/css/strand-ui.css';\n```",
+          "Preact configuration": "Import components directly from `@dillingerstaffing/strand-ui`. The package targets both Preact and React consumers; keep a single Preact runtime in bundler-driven apps.",
+          "Example": "```jsx\nimport { Button, Card, Stack, Input } from '@dillingerstaffing/strand-ui';\n\nexport function App() {\n  return (\n    <Card variant=\"elevated\" padding=\"lg\">\n      <Stack gap={4}>\n        <Input placeholder=\"Enter your email\" />\n        <Button>Get Started</Button>\n      </Stack>\n    </Card>\n  );\n}\n```",
+          "SSR notes": "Upstream documentation focuses on client-side component rendering with CSS imports. PreactHub has not verified SSR behavior for Strand UI; confirm stylesheet delivery and hydration in your target environment.",
+          "Islands notes": "Individual widgets such as forms or cards can be mounted as islands, but global CSS token imports should be shared at the document or island root.",
+          "Known limitations": "WCAG 2.2 AA is a vendor-stated design-language goal, not an independent PreactHub verification. Vue and Svelte adapters exist if you need cross-framework parity.",
+          "Alternatives": "For accessible component primitives, compare [Kamod UI](/libraries/kamod-ui) or [Shoelace](/libraries/shoelace)."
+        }
+      }
+    },
+    {
+      "index": 5,
+      "name": "@peter.naydenov/visual-controller-for-preact",
+      "packageName": "@peter.naydenov/visual-controller-for-preact",
+      "repositoryUrl": "https://github.com/PeterNaydenov/visual-controller-for-preact",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/@peter.naydenov/visual-controller-for-preact",
+      "reportDate": "2026-09-08",
+      "priority": 2,
+      "reportedCategory": "Microfrontends",
+      "reportedCompatibility": "Preact-native controller for multiple roots; verify lifecycle and SSR constraints.",
+      "reportedActivity": "",
+      "reportedLimitations": [
+        "lifecycle and SSR constraints"
+      ],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "peter-naydenov-visual-controller-for-preact",
+      "catalogDraft": {
+        "name": "Visual Controller for Preact",
+        "slug": "peter-naydenov-visual-controller-for-preact",
+        "shortDescription": "Region-based controller for mounting multiple independent Preact apps on one page.",
+        "category": "developer-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "unknown",
+        "ssrSupport": "unsupported",
+        "packageName": "@peter.naydenov/visual-controller-for-preact",
+        "repositoryUrl": "https://github.com/PeterNaydenov/visual-controller-for-preact",
+        "documentationUrl": "https://github.com/PeterNaydenov/visual-controller-for-preact",
+        "npmUrl": "https://www.npmjs.com/package/@peter.naydenov/visual-controller-for-preact",
+        "license": "MIT",
+        "installCommand": "npm install @peter.naydenov/visual-controller-for-preact",
+        "tags": [
+          "microfrontends",
+          "multi-root",
+          "composition"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Region markers and publish/destroy lifecycle assume a browser DOM; server rendering is not supported.",
+          "Each published app shares dependencies through props; coordinate versions to avoid duplicate Preact runtimes."
+        ],
+        "alternatives": [
+          "preact-habitat"
+        ],
+        "sections": {
+          "Introduction": "Visual Controller for Preact coordinates multiple Preact applications on a single static page. Regions are defined with invisible DOM markers via `set`, then apps are mounted, swapped, or destroyed through alias-based `publish` calls—useful for microfrontend-style integration without hard-coded container ids.",
+          "Installation": "```bash\nnpm install @peter.naydenov/visual-controller-for-preact\n```",
+          "Preact configuration": "Create one `VisualController` instance per page, register regions with `html.set`, and publish Preact components by alias. The v2 API replaces older id-based mounting with marker regions and alias-first `publish` calls.",
+          "Example": "```js\nimport VisualController from '@peter.naydenov/visual-controller-for-preact';\nimport HeaderApp from './apps/header.jsx';\nimport SidebarApp from './apps/sidebar.jsx';\nimport CartApp from './apps/cart.jsx';\n\nconst html = new VisualController({});\n\nhtml.set(({ start, end }) => {\n  document.querySelector('header').append(start, end);\n  return 'header';\n});\n\nhtml.set(({ start, end }) => {\n  document.querySelector('aside').append(start, end);\n  return 'sidebar';\n});\n\nhtml.set(({ start, end }) => {\n  document.querySelector('main').append(start, end);\n  return 'cart';\n});\n\nhtml.publish('header', HeaderApp);\nhtml.publish('sidebar', SidebarApp);\nhtml.publish('cart', CartApp);\n```",
+          "SSR notes": "The controller inserts markers and mounts Preact trees client-side. Static HTML can surround regions, but app rendering happens after `publish` in the browser.",
+          "Islands notes": "Each published region behaves like an independent island with its own mount lifecycle. `destroy` removes rendered output while keeping markers for later swaps.",
+          "Known limitations": "Shared props pass dependencies across apps; lifecycle and SSR constraints must be validated for your integration pattern. Upgrading from id-based APIs requires migrating to `set` regions.",
+          "Alternatives": "For embedding Preact widgets into server-rendered pages, see [Preact Habitat](/libraries/preact-habitat)."
+        }
+      }
+    },
+    {
+      "index": 6,
+      "name": "@zikojs/preact",
+      "packageName": "@zikojs/preact",
+      "repositoryUrl": "https://github.com/zikojs/integrations/tree/main/packages/preact",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/@zikojs/preact",
+      "reportDate": "2026-09-08",
+      "priority": 2,
+      "reportedCategory": "Framework Interoperability",
+      "reportedCompatibility": "Dedicated adapter; beta and reportedly uses direct Preact dependency, risking duplicate runtimes.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "zikojs-preact",
+      "catalogDraft": {
+        "name": "ZikoJS Preact",
+        "slug": "zikojs-preact",
+        "shortDescription": "Interop adapter for rendering ZikoJS elements inside Preact and embedding Preact in ZikoJS.",
+        "category": "developer-tools",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "unknown",
+        "ssrSupport": "unsupported",
+        "packageName": "@zikojs/preact",
+        "repositoryUrl": "https://github.com/zikojs/integrations/tree/main/packages/preact",
+        "documentationUrl": "https://github.com/zikojs/integrations/tree/main/packages/preact",
+        "npmUrl": "https://www.npmjs.com/package/@zikojs/preact",
+        "license": "MIT",
+        "installCommand": "npm install @zikojs/preact ziko preact",
+        "tags": [
+          "interop",
+          "zikojs",
+          "experimental"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Package is 0.2.x beta and lists `preact` as a direct dependency rather than a peer, which can duplicate Preact runtimes if your bundler does not dedupe.",
+          "ZikoWrapper mounts Ziko elements with `useEffect`, so initial render is client-only."
+        ],
+        "alternatives": [
+          "preact-custom-element"
+        ],
+        "sections": {
+          "Introduction": "`@zikojs/preact` bridges ZikoJS functional UI elements and Preact components. Export `ZikoWrapper` to host Ziko trees inside Preact, or use `zikofy` from `@zikojs/preact` to embed Preact components in ZikoJS apps.",
+          "Installation": "```bash\nnpm install @zikojs/preact ziko preact\n```",
+          "Preact configuration": "Ensure only one Preact copy resolves at runtime because the package depends on `preact ^10.29.8` directly alongside your app. Alias or dedupe in Vite, Webpack, or pnpm overrides when bundle analysis shows duplicates.",
+          "Example": "```jsx\nimport { ZikoWrapper } from '@zikojs/preact';\nimport Comp from './Comp.js';\n\nexport default function App() {\n  return (\n    <div>\n      <ZikoWrapper>\n        <Comp color=\"darkblue\" />\n      </ZikoWrapper>\n    </div>\n  );\n}\n```\n\nEmbed Preact inside ZikoJS:\n\n```js\nimport { Flex, h1 } from 'ziko';\nimport { zikofy } from '@zikojs/preact';\nimport MyPreactComp from './MyPreactComp.jsx';\n\nconst WrappedPreact = zikofy(MyPreactComp);\n\nexport const App = () => Flex(\n  h1('ZikoJS App with Preact Component'),\n  WrappedPreact({ msg: 'Hello from Preact!' }),\n);\n```",
+          "SSR notes": "ZikoWrapper clears and repopulates a container ref in `useEffect`, so Ziko subtrees are not available during server render.",
+          "Islands notes": "Each ZikoWrapper instance is a natural island boundary because Ziko elements mount after hydration.",
+          "Known limitations": "Beta status and bundled Preact dependency increase duplicate-runtime risk. Ziko itself is on `^2.0.0-beta.8`.",
+          "Alternatives": "For framework-agnostic embedding, consider [Preact Custom Element](/libraries/preact-custom-element)."
+        }
+      }
+    },
+    {
+      "index": 7,
+      "name": "preact-browser-bundle",
+      "packageName": "preact-browser-bundle",
+      "repositoryUrl": "https://github.com/linfx7/preact-browser-bundle",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/preact-browser-bundle",
+      "reportDate": "2026-09-08",
+      "priority": 2,
+      "reportedCategory": "Distribution / No-build",
+      "reportedCompatibility": "Bundles Preact, HTM and Signals; catalog as distribution/tool, not normal dependency.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "build-tools",
+      "slug": "preact-browser-bundle",
+      "catalogDraft": {
+        "name": "Preact Browser Bundle",
+        "slug": "preact-browser-bundle",
+        "shortDescription": "Single-file CDN distribution bundling Preact, HTM, and Preact Signals with no dependencies.",
+        "category": "build-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "none",
+        "ssrSupport": "unsupported",
+        "packageName": "preact-browser-bundle",
+        "repositoryUrl": "https://github.com/linfx7/preact-browser-bundle",
+        "documentationUrl": "https://github.com/linfx7/preact-browser-bundle",
+        "homepageUrl": "https://github.com/linfx7/preact-browser-bundle",
+        "npmUrl": "https://www.npmjs.com/package/preact-browser-bundle",
+        "installCommand": "npm install preact-browser-bundle",
+        "tags": [
+          "cdn",
+          "distribution",
+          "no-build"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Upstream explicitly recommends installing preact, htm, and @preact/signals separately for normal npm projects rather than depending on this bundle.",
+          "Distribution artifact for script-tag or offline CDN use—not a typical application dependency."
+        ],
+        "alternatives": [
+          "preact",
+          "htm",
+          "preact-signals"
+        ],
+        "sections": {
+          "Introduction": "`preact-browser-bundle` ships one standalone ESM file containing [Preact](https://preactjs.com), [HTM](https://github.com/developit/htm), and [@preact/signals](https://github.com/preactjs/signals). It targets CDN imports and offline single-file distribution rather than bundler-based apps.",
+          "Installation": "For CDN or offline script use, import the published standalone file:\n\n```html\n<script type=\"module\">\n  import { html, render, signal } from \"https://cdn.jsdelivr.net/npm/preact-browser-bundle/dist/standalone.js\";\n</script>\n```\n\nThe npm package exists mainly to mirror that artifact; upstream discourages npm installs for bundled apps.",
+          "Preact configuration": "When you must use npm, import from `preact-browser-bundle/dist/standalone.js`. For Vite, Rsbuild, or Nx workflows, prefer separate `preact`, `htm`, and `@preact/signals` packages so tooling can tree-shake and type-check.",
+          "Example": "```html\n<div id=\"app\"></div>\n<script type=\"module\">\n  import { html, render, signal } from \"https://cdn.jsdelivr.net/npm/preact-browser-bundle/dist/standalone.js\";\n\n  const count = signal(0);\n\n  function App() {\n    return html`\n      <div>\n        <h1>Hello World!</h1>\n        <button onClick=${() => (count.value += 1)}>\n          Increment with signal\n        </button>\n        <p>Counter: ${count.value}</p>\n      </div>\n    `;\n  }\n\n  render(html`<${App} />`, document.getElementById(\"app\"));\n</script>\n```",
+          "SSR notes": "Standalone browser bundle only. Node or SSR pipelines should install the individual packages instead.",
+          "Islands notes": "Ideal for progressive enhancement: load one script and mount small interactive islands without a build step.",
+          "Known limitations": "Not intended as a normal dependency. Version tracks bundled upstream releases (currently aligned with Preact 10.29.x).",
+          "Alternatives": "Install [Preact](/libraries/preact), [HTM](/libraries/htm), and [Preact Signals](/libraries/preact-signals) separately for typed, tree-shakeable projects."
+        }
+      }
+    },
+    {
+      "index": 8,
+      "name": "oc-template-preact-compiler",
+      "packageName": "oc-template-preact-compiler",
+      "repositoryUrl": "https://github.com/opencomponents/vite-templates",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/oc-template-preact-compiler",
+      "reportDate": "2026-09-08",
+      "priority": 3,
+      "reportedCategory": "OpenComponents",
+      "reportedCompatibility": "Official Preact compiler in OC templates; only useful in OpenComponents architecture.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "oc-template-preact-compiler",
+      "catalogDraft": {
+        "name": "OpenComponents Preact Compiler",
+        "slug": "oc-template-preact-compiler",
+        "shortDescription": "Compiler for building Preact components in the OpenComponents template system.",
+        "category": "build-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "bundled-types",
+        "ssrSupport": "supported",
+        "packageName": "oc-template-preact-compiler",
+        "repositoryUrl": "https://github.com/opencomponents/vite-templates",
+        "documentationUrl": "https://github.com/opencomponents/vite-templates/tree/main/packages/oc-template-preact-compiler",
+        "homepageUrl": "https://opencomponents.github.io/",
+        "npmUrl": "https://www.npmjs.com/package/oc-template-preact-compiler",
+        "license": "MIT",
+        "installCommand": "npm install oc-template-preact-compiler oc-template-preact preact",
+        "tags": [
+          "opencomponents",
+          "compiler",
+          "vite"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Only useful inside the OpenComponents architecture; it is not a general-purpose Preact compiler or Vite preset.",
+          "The package depends on the OC template and Vite compiler lifecycle, so upgrades should be coordinated across the OpenComponents packages."
+        ],
+        "alternatives": [
+          "preact-preset-vite",
+          "rsbuild-plugin-preact"
+        ],
+        "sections": {
+          "Introduction": "`oc-template-preact-compiler` is the compiler module for OpenComponents entries that use the `oc-template-preact` template. It connects the OC compilation lifecycle to Preact and Vite and re-exports the matching template API.",
+          "Installation": "```bash\nnpm install oc-template-preact-compiler oc-template-preact preact\n```\n\nIn a normal OpenComponents project, prefer the official Preact template or scaffold so compiler and template versions remain aligned.",
+          "Preact configuration": "Declare the Preact template and compiler through OpenComponents rather than adding this package as a generic Preact plugin. The package has a Preact 10 peer requirement but also carries OC-specific compiler dependencies.",
+          "Example": "A component's OC metadata selects the Preact template; the OC CLI then invokes this compiler during packaging:\n\n```json\n{\n  \"name\": \"hello-preact\",\n  \"version\": \"1.0.0\",\n  \"oc\": {\n    \"files\": { \"template\": { \"type\": \"oc-template-preact\" } }\n  }\n}\n```\n\nUse the current OpenComponents Preact starter as the canonical source for the complete descriptor shape.",
+          "SSR notes": "OpenComponents compiles templates for server-side rendering and delivery through an OC registry. Rendering behavior belongs to the paired `oc-template-preact` package and OC runtime, not to a standalone Preact SSR API exposed by this compiler.",
+          "Islands notes": "The compiler targets independently delivered OpenComponents rather than a first-class partial-hydration API. Treat an OC component as an integration boundary, but do not assume island-style selective hydration without validating the host setup.",
+          "Known limitations": "This is infrastructure for one component platform, with very brief package-level documentation. Follow the OpenComponents Vite templates repository and keep compiler, template, and CLI versions compatible.",
+          "Alternatives": "For ordinary Preact applications, use [Preact Preset Vite](/libraries/preact-preset-vite) or [Rsbuild Plugin Preact](/libraries/rsbuild-plugin-preact)."
+        }
+      }
+    },
+    {
+      "index": 9,
+      "name": "@sometic/preact",
+      "packageName": "@sometic/preact",
+      "repositoryUrl": "https://github.com/aitistack/sometic",
+      "documentationUrl": "https://sometic.dev/frameworks/preact",
+      "npmUrl": "https://www.npmjs.com/package/@sometic/preact",
+      "reportDate": "2026-09-08",
+      "priority": 3,
+      "reportedCategory": "State Adapter",
+      "reportedCompatibility": "Thin Preact binding exposing `createPreactStoreBind`; young, not a full store.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "state-management",
+      "slug": "sometic-preact",
+      "catalogDraft": {
+        "name": "Sometic Preact",
+        "slug": "sometic-preact",
+        "shortDescription": "Thin Preact external-store adapter for Sometic state with snapshot and subscription APIs.",
+        "category": "state-management",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "bundled-types",
+        "ssrSupport": "supported",
+        "packageName": "@sometic/preact",
+        "repositoryUrl": "https://github.com/aitistack/sometic/tree/main/packages/preact",
+        "documentationUrl": "https://sometic.dev/frameworks/preact",
+        "homepageUrl": "https://sometic.dev/",
+        "npmUrl": "https://www.npmjs.com/package/@sometic/preact",
+        "license": "MIT",
+        "installCommand": "npm install @sometic/preact preact",
+        "tags": [
+          "store",
+          "external-store",
+          "adapter"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Provides only a store binding; it does not include the Sometic component kit available for some other frameworks.",
+          "The adapter is an early 0.1.x package and requires Node.js 20.18 or newer for supported development workflows."
+        ],
+        "alternatives": [
+          "preact-signals",
+          "nanostores",
+          "unistore"
+        ],
+        "sections": {
+          "Introduction": "`@sometic/preact` adapts `@sometic/store` to Preact's external-store shape. Its main export, `createPreactStoreBind`, exposes `getSnapshot`, `subscribe`, `set`, the underlying store, and explicit disposal without maintaining a separate Preact-specific state engine.",
+          "Installation": "```bash\nnpm install @sometic/preact preact\n```",
+          "Preact configuration": "Create a binding outside the component tree, then connect `getSnapshot` and `subscribe` to Preact's external-store hook or your own small hook. The optional Preact peer should resolve to the same Preact 10 runtime used by the application.",
+          "Example": "```ts\nimport { createPreactStoreBind } from '@sometic/preact';\n\nconst counter = createPreactStoreBind({ count: 0 });\nconst unsubscribe = counter.subscribe(() => {\n  console.log(counter.getSnapshot().count);\n});\n\ncounter.set({ count: 1 });\nunsubscribe();\ncounter.dispose();\n```",
+          "SSR notes": "The adapter contract avoids import-time `window` access and exposes synchronous snapshots, making it usable in server code. Application code remains responsible for providing identical initial state during hydration and disposing request-scoped stores.",
+          "Islands notes": "A binding can be scoped to an island, but the package does not implement hydration or cross-island transport. Avoid a process-global mutable store during SSR unless state is intentionally shared.",
+          "Known limitations": "The current capability list contains only `storeBind`; there are no Preact Button, Form, Dialog, or structure exports. Use `@sometic/store` directly when the wrapper adds no value.",
+          "Alternatives": "For Preact-native reactive state, compare [Preact Signals](/libraries/preact-signals), [Nano Stores](/libraries/nanostores), or [Unistore](/libraries/unistore)."
+        }
+      }
+    },
+    {
+      "index": 10,
+      "name": "@allurereport/web-components",
+      "packageName": "@allurereport/web-components",
+      "repositoryUrl": "https://github.com/allure-framework/allure3",
+      "documentationUrl": "https://allurereport.org/",
+      "npmUrl": "https://www.npmjs.com/package/@allurereport/web-components",
+      "reportDate": "2026-09-08",
+      "priority": 3,
+      "reportedCategory": "Testing / Report UI",
+      "reportedCompatibility": "Preact/Signals UI with some compat usage; tightly coupled to Allure and heavyweight.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "testing",
+      "slug": "allurereport-web-components",
+      "catalogDraft": {
+        "name": "Allure Report Web Components",
+        "slug": "allurereport-web-components",
+        "shortDescription": "Preact component and chart collection used to build Allure 3 test-report interfaces.",
+        "category": "testing",
+        "compatibilityStatus": "compat",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "bundled-types",
+        "ssrSupport": "unknown",
+        "packageName": "@allurereport/web-components",
+        "repositoryUrl": "https://github.com/allure-framework/allure3",
+        "documentationUrl": "https://allurereport.org/docs/",
+        "homepageUrl": "https://allurereport.org/",
+        "npmUrl": "https://www.npmjs.com/package/@allurereport/web-components",
+        "license": "Apache-2.0",
+        "installCommand": "npm install @allurereport/web-components",
+        "tags": [
+          "allure",
+          "test-reports",
+          "charts"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Designed for Allure report applications rather than as a general-purpose UI library; many components depend on Allure data contracts and sibling packages.",
+          "Includes charting, D3, Markdown, syntax-highlighting, Preact, and compat-backed React dependencies, making it heavyweight for isolated controls."
+        ],
+        "alternatives": [
+          "vitest-browser-preact",
+          "chart-js"
+        ],
+        "sections": {
+          "Introduction": "`@allurereport/web-components` is the shared Preact UI layer for Allure 3 web reports. It exports report-specific attachments, trees, charts, summaries, status labels, themes, and lower-level controls such as buttons, modals, menus, and tooltips.",
+          "Installation": "```bash\nnpm install @allurereport/web-components\n```\n\nImport the distributed stylesheet alongside any components:\n\n```js\nimport '@allurereport/web-components/index.css';\n```",
+          "Preact configuration": "The package ships Preact and Signals internally and aliases React dependencies to `@preact/compat`. Consumers should deduplicate Preact where possible and should not assume every transitive chart component is React-free.",
+          "Example": "```jsx\nimport { Button, StatusLabel } from '@allurereport/web-components';\nimport '@allurereport/web-components/index.css';\n\nexport function ReportAction() {\n  return (\n    <div>\n      <StatusLabel status=\"passed\" />\n      <Button onClick={() => location.reload()}>Reload report</Button>\n    </div>\n  );\n}\n```\n\nCheck the exported TypeScript props for the exact Allure version before using report-specific widgets.",
+          "SSR notes": "Package metadata does not present a supported standalone SSR contract. Charts, previews, DOM measurement hooks, and report interactions may require a browser; test individual exports before server-rendering them.",
+          "Islands notes": "Large report widgets can be mounted client-side as isolated regions, but shared themes, CSS, data contracts, and bundled dependencies reduce the benefit for small islands.",
+          "Known limitations": "This package is coupled to matching versions of Allure core, charts, and web-common packages. Its broad dependency graph is usually excessive outside an Allure report frontend.",
+          "Alternatives": "Use [Vitest Browser Preact](/libraries/vitest-browser-preact) for testing Preact components, or [Chart.js](/libraries/chart-js) when only generic report visualizations are needed."
+        }
+      }
+    },
+    {
+      "index": 11,
+      "name": "@formepdf/preact",
+      "packageName": "@formepdf/preact",
+      "repositoryUrl": "https://github.com/danmolitor/forme",
+      "documentationUrl": "https://formepdf.com/",
+      "npmUrl": "https://www.npmjs.com/package/@formepdf/preact",
+      "reportDate": "2026-09-09",
+      "priority": 1,
+      "reportedCategory": "PDF / Document UI",
+      "reportedCompatibility": "Official native Preact adapter; verify which advanced PDF features are exposed.",
+      "reportedActivity": "",
+      "reportedLimitations": [
+        "which advanced PDF features are exposed"
+      ],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "formepdf-preact",
+      "catalogDraft": {
+        "name": "Forme PDF Preact",
+        "slug": "formepdf-preact",
+        "shortDescription": "Native Preact adapter for the Forme declarative PDF component model.",
+        "category": "developer-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "@formepdf/preact",
+        "repositoryUrl": "https://github.com/formepdf/forme",
+        "documentationUrl": "https://docs.formepdf.com/components",
+        "homepageUrl": "https://formepdf.com/",
+        "npmUrl": "https://www.npmjs.com/package/@formepdf/preact",
+        "license": "MIT",
+        "installCommand": "npm install @formepdf/preact @formepdf/core",
+        "tags": [
+          "pdf",
+          "documents",
+          "rendering"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Advanced PDF features should be checked against Forme component docs before production use.",
+          "@formepdf/core is optional when serializing to JSON for the hosted API instead of local rendering."
+        ],
+        "sections": {
+          "Introduction": "`@formepdf/preact` mirrors the Forme React component set with a Preact-native JSX runtime. It avoids pulling React or `preact/compat` into PDF generation pipelines while keeping the same document serialization API as `@formepdf/react`.",
+          "Installation": "```bash\nnpm install @formepdf/preact @formepdf/core\n```",
+          "Preact configuration": "Set `jsxImportSource` to `preact` in TypeScript or add `/** @jsxImportSource preact */` at the top of files that render PDF trees. Requires `preact ^10.19.0` as a peer dependency.",
+          "Example": "```tsx\nimport { Document, Page, Text, View, renderDocument } from \"@formepdf/preact\";\n\nconst pdf = await renderDocument(\n  <Document>\n    <Page size=\"Letter\" margin={36}>\n      <Text style={{ fontSize: 24, fontWeight: \"bold\" }}>Invoice #001</Text>\n      <View style={{ flexDirection: \"row\", justifyContent: \"space-between\" }}>\n        <Text>Widget Pro</Text>\n        <Text>$49.00</Text>\n      </View>\n    </Page>\n  </Document>,\n);\n```",
+          "SSR notes": "PDF trees are rendered programmatically through `renderDocument` and do not require a browser DOM, making the adapter suitable for server-side generation when `@formepdf/core` is installed.",
+          "Islands notes": "Typical usage is server-side or worker-side document generation rather than client islands. Client previews should treat PDF bytes as output artifacts.",
+          "Known limitations": "Confirm which chart, form-field and layout primitives you need against the Forme docs. Hosted-API workflows can omit `@formepdf/core` but lose local rendering.",
+          "Alternatives": "If you already standardize on React compatibility shims, `@formepdf/react` with `preact/compat` remains possible but adds runtime overhead."
+        }
+      }
+    },
+    {
+      "index": 12,
+      "name": "TanStack Charts (Preact)",
+      "packageName": "@tanstack/charts",
+      "repositoryUrl": "https://github.com/TanStack/charts",
+      "documentationUrl": "https://tanstack.com/charts/latest/docs/framework/preact/adapter",
+      "npmUrl": "",
+      "reportDate": "2026-09-09",
+      "priority": 1,
+      "reportedCategory": "Charts",
+      "reportedCompatibility": "Official Preact export; likely import path of `@tanstack/charts`, not a separate npm package—confirm canonical packageName.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "Preact adapter is exported from @tanstack/charts/preact subpath; catalog entry uses @tanstack/charts as installable packageName.",
+      "mappedCategory": "charts",
+      "slug": "tanstack-charts",
+      "catalogDraft": {
+        "name": "TanStack Charts",
+        "slug": "tanstack-charts",
+        "shortDescription": "Headless chart definitions with an official Preact adapter export.",
+        "category": "charts",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "@tanstack/charts",
+        "repositoryUrl": "https://github.com/TanStack/charts",
+        "documentationUrl": "https://tanstack.com/charts/latest/docs/framework/preact/adapter",
+        "npmUrl": "https://www.npmjs.com/package/@tanstack/charts",
+        "license": "MIT",
+        "installCommand": "npm install @tanstack/charts preact",
+        "tags": [
+          "charts",
+          "visualization",
+          "tanstack"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "The Preact adapter is imported from the @tanstack/charts/preact subpath rather than a separate npm package."
+        ],
+        "alternatives": [
+          "chart-js",
+          "uplot"
+        ],
+        "sections": {
+          "Introduction": "TanStack Charts separates chart definitions from rendering. The official Preact adapter exports a `Chart` component from `@tanstack/charts/preact` that hydrates SVG produced during SSR and delegates interaction to the shared chart runtime.",
+          "Installation": "```bash\nnpm install @tanstack/charts preact\n```",
+          "Preact configuration": "Define charts with `defineChart` from `@tanstack/charts` and optional modules such as `@tanstack/charts/tooltip`. Render them through the Preact adapter import path `@tanstack/charts/preact`.",
+          "Example": "```tsx\nimport { useMemo } from \"preact/hooks\";\nimport { defineChart } from \"@tanstack/charts\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { Chart } from \"@tanstack/charts/preact\";\n\nexport function RevenueChart({ rows }: { rows: unknown[] }) {\n  const definition = useMemo(\n    () => defineChart(createRevenueChart(rows), { tooltip }),\n    [rows],\n  );\n\n  return <Chart definition={definition} ariaLabel=\"Revenue by month\" aspectRatio={16 / 9} />;\n}\n```",
+          "SSR notes": "The adapter emits the complete accessible SVG during Preact server rendering and adopts it after mount. Keep definitions, formatters and dimensions deterministic between server and client renders.",
+          "Islands notes": "Chart widgets are good island candidates because the adapter manages mount, resize and cleanup per host element.",
+          "Known limitations": "Use the documented subpath import `@tanstack/charts/preact`; there is no separate npm package name for the adapter.",
+          "Alternatives": "See [uPlot](/libraries/uplot) for a lighter canvas-oriented option or [Chart.js](/libraries/chart-js) for canvas charts via compatibility layers."
+        }
+      }
+    },
+    {
+      "index": 13,
+      "name": "praxis-kit",
+      "packageName": "praxis-kit",
+      "repositoryUrl": "https://github.com/slowebworkz/praxis-kit",
+      "documentationUrl": "https://github.com/slowebworkz/praxis-kit/blob/develop/GETTING_STARTED.md",
+      "npmUrl": "https://www.npmjs.com/package/praxis-kit",
+      "reportDate": "2026-09-09",
+      "priority": 1,
+      "reportedCategory": "Developer Tools / Accessibility",
+      "reportedCompatibility": "Provides `praxis-kit/preact`; brand-new project, classify experimental until tested.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "praxis-kit",
+      "catalogDraft": {
+        "name": "Praxis Kit",
+        "slug": "praxis-kit",
+        "shortDescription": "Contract-driven component factory with a dedicated Preact adapter subpath.",
+        "category": "developer-tools",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "praxis-kit",
+        "repositoryUrl": "https://github.com/slowebworkz/praxis-kit",
+        "documentationUrl": "https://github.com/slowebworkz/praxis-kit/blob/develop/GETTING_STARTED.md",
+        "npmUrl": "https://www.npmjs.com/package/praxis-kit",
+        "license": "MIT",
+        "installCommand": "npm install praxis-kit",
+        "tags": [
+          "accessibility",
+          "components",
+          "contracts"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Project is young (0.1.x) and classified experimental until broader PreactHub verification.",
+          "Structural ARIA and children contracts add runtime diagnostics that should be tuned per environment."
+        ],
+        "sections": {
+          "Introduction": "Praxis Kit provides `createContractComponent`, a factory for typed, accessibility-aware UI primitives. The Preact adapter lives at `praxis-kit/preact` and shares enforcement, styling and preset logic with the React, Vue, Solid and Svelte adapters.",
+          "Installation": "```bash\nnpm install praxis-kit\n```",
+          "Preact configuration": "Import the Preact adapter subpath:\n\n```ts\nimport { createContractComponent } from \"praxis-kit/preact\";\n```\n\nFactory options such as `tag`, `styling`, `enforcement` and `defaults` match the other framework adapters.",
+          "Example": "```tsx\nimport { createContractComponent } from \"praxis-kit/preact\";\n\nconst Button = createContractComponent({\n  tag: \"button\",\n  styling: {\n    base: \"rounded px-4 py-2\",\n    variants: { tone: { primary: \"bg-blue-600 text-white\" } },\n    defaults: { tone: \"primary\" },\n  },\n  enforcement: { diagnostics: \"warn\" },\n});\n\nexport function SaveAction() {\n  return <Button tone=\"primary\">Save</Button>;\n}\n```",
+          "SSR notes": "Upstream conformance tests include SSR and hydration parity across adapters. Start with `diagnostics: \"warn\"` during development and tighten enforcement once contracts are stable.",
+          "Islands notes": "Contract components work well inside islands when enforcement diagnostics are scoped to development builds.",
+          "Known limitations": "Praxis Kit is early-stage. Review API stability notes in upstream docs before adopting widely, and expect iteration on adapter subpaths.",
+          "Alternatives": "For hand-written accessible primitives, compare with [Kamod UI](/libraries/kamod-ui) or established design systems listed under UI Components."
+        }
+      }
+    },
+    {
+      "index": 14,
+      "name": "@longsightgroup/qti3-player-preact",
+      "packageName": "@longsightgroup/qti3-player-preact",
+      "repositoryUrl": "https://github.com/LongsightGroup/qti3",
+      "documentationUrl": "https://github.com/LongsightGroup/qti3/tree/main/packages/player-preact",
+      "npmUrl": "https://www.npmjs.com/package/@longsightgroup/qti3-player-preact",
+      "reportDate": "2026-09-09",
+      "priority": 2,
+      "reportedCategory": "Education / Assessment",
+      "reportedCompatibility": "Official adapter for QTI custom element; reportedly not yet 1EdTech certified.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ui",
+      "slug": "longsightgroup-qti3-player-preact",
+      "catalogDraft": {
+        "name": "QTI3 Player Preact",
+        "slug": "longsightgroup-qti3-player-preact",
+        "shortDescription": "Preact TSX adapter for the qti3 QTI 3 assessment item player web component.",
+        "category": "ui",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "limited",
+        "packageName": "@longsightgroup/qti3-player-preact",
+        "repositoryUrl": "https://github.com/LongsightGroup/qti3/tree/main/packages/player-preact",
+        "documentationUrl": "https://github.com/LongsightGroup/qti3/tree/main/packages/player-preact",
+        "homepageUrl": "https://github.com/LongsightGroup/qti3/tree/main/packages/player-preact#readme",
+        "npmUrl": "https://www.npmjs.com/package/@longsightgroup/qti3-player-preact",
+        "license": "MIT",
+        "installCommand": "npm install @longsightgroup/qti3-player-preact @longsightgroup/qti3-player preact",
+        "tags": [
+          "education",
+          "assessment",
+          "qti"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "The underlying qti3 player is not yet 1EdTech certified; treat browser scoring as preview-only for high-stakes delivery.",
+          "High-stakes XML should be prepared with `buildQtiDeliverySafeXml()` from `@longsightgroup/qti3-core` before passing to the adapter."
+        ],
+        "alternatives": [
+          "lit"
+        ],
+        "sections": {
+          "Introduction": "`@longsightgroup/qti3-player-preact` wraps the `<qti-assessment-item-player>` web component from `@longsightgroup/qti3-player` with Preact lifecycle wiring, typed callbacks, declarative XML loading, and an imperative ref handle.",
+          "Installation": "```bash\nnpm install @longsightgroup/qti3-player-preact @longsightgroup/qti3-player preact\n```",
+          "Preact configuration": "Import `QtiAssessmentItemPlayer` and `QtiAssessmentItemPlayerHandle` from the package. Keep `messageCatalog`, `loadOptions`, and resolver callbacks stable across renders with `useMemo` to avoid unnecessary reloads.",
+          "Example": "```tsx\nimport { useRef } from \"preact/hooks\";\nimport type { PlayerMessageCatalog } from \"@longsightgroup/qti3-player\";\nimport {\n  QtiAssessmentItemPlayer,\n  type QtiAssessmentItemPlayerHandle,\n} from \"@longsightgroup/qti3-player-preact\";\n\nexport function Preview({\n  candidateSafeXml,\n  messageCatalog,\n}: {\n  candidateSafeXml: string;\n  messageCatalog?: PlayerMessageCatalog;\n}) {\n  const playerRef = useRef<QtiAssessmentItemPlayerHandle>(null);\n\n  return (\n    <QtiAssessmentItemPlayer\n      ref={playerRef}\n      xml={candidateSafeXml}\n      languageOfInterface=\"sv-SE\"\n      messageCatalog={messageCatalog}\n      loadOptions={{\n        status: \"interacting\",\n        sessionControl: { validateResponses: false, showFeedback: false },\n      }}\n      onStateChange={({ state }) => console.log(state)}\n      onLoadError={(error) => console.error(error)}\n    />\n  );\n}\n```",
+          "SSR notes": "The player depends on a custom element and browser APIs. Server render can emit a placeholder, but assessment interaction requires client hydration of the web component.",
+          "Islands notes": "Assessment previews are typically mounted as self-contained islands because they load XML, assets, and localized message catalogs on demand.",
+          "Known limitations": "Not 1EdTech certified. Browser `scoreAttempt()` is convenience scoring only; authoritative scoring belongs on the server with `scoreQtiItemServerSide()`.",
+          "Alternatives": "If you only need generic web-component hosting, [Lit](/libraries/lit) components can wrap custom elements without the QTI-specific adapter."
+        }
+      }
+    },
+    {
+      "index": 15,
+      "name": "@public-ui/preact",
+      "packageName": "@public-ui/preact",
+      "repositoryUrl": "https://github.com/public-ui/kolibri",
+      "documentationUrl": "https://public-ui.github.io/en/docs/get-started/frameworks",
+      "npmUrl": "https://www.npmjs.com/package/@public-ui/preact",
+      "reportDate": "2026-09-09",
+      "priority": 2,
+      "reportedCategory": "Accessible UI / Web Components",
+      "reportedCompatibility": "Official KoliBri adapter; verify registration and theme requirements.",
+      "reportedActivity": "",
+      "reportedLimitations": [
+        "registration and theme requirements"
+      ],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ui",
+      "slug": "public-ui-preact",
+      "catalogDraft": {
+        "name": "KoliBri Preact",
+        "slug": "public-ui-preact",
+        "shortDescription": "Official Preact adapter for KoliBri accessible HTML-standard web components.",
+        "category": "ui",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "limited",
+        "packageName": "@public-ui/preact",
+        "repositoryUrl": "https://github.com/public-ui/kolibri",
+        "documentationUrl": "https://public-ui.github.io/en/docs/get-started/frameworks",
+        "homepageUrl": "https://public-ui.github.io",
+        "npmUrl": "https://www.npmjs.com/package/@public-ui/preact",
+        "license": "EUPL-1.2",
+        "installCommand": "npm install @public-ui/preact @public-ui/theme-default",
+        "tags": [
+          "accessibility",
+          "web-components",
+          "kolibri"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Upstream classifies Preact support as experimental.",
+          "Requires KoliBri theme registration with `@public-ui/components` before components render correctly.",
+          "Peer dependency on `@public-ui/react` mirrors the React adapter wrapper; use `--legacy-peer-deps` if npm reports peer conflicts."
+        ],
+        "alternatives": [
+          "shoelace",
+          "lit",
+          "kamod-ui"
+        ],
+        "sections": {
+          "Introduction": "`@public-ui/preact` is the Preact framework adapter for [KoliBri](https://public-ui.github.io)—accessible HTML-standard web components. The adapter wraps the React integration; components such as `KolButton` expose KoliBri props with Preact-friendly JSX.",
+          "Installation": "```bash\nnpm install @public-ui/preact @public-ui/theme-default\n```\n\nUse `--legacy-peer-deps` when npm reports peer dependency conflicts with `@public-ui/react`.",
+          "Preact configuration": "Register a theme before rendering any KoliBri components:\n\n```tsx\nimport { register } from '@public-ui/components';\nimport { defineCustomElements } from '@public-ui/components/loader';\nimport { DEFAULT } from '@public-ui/theme-default';\n\nawait register(DEFAULT, defineCustomElements);\n```",
+          "Example": "```tsx\nimport { KolButton } from '@public-ui/preact';\n\nexport const App = () => <KolButton _label=\"Hello World\" />;\n```",
+          "SSR notes": "Custom elements hydrate on the client after theme registration. Server HTML can include component tags, but `register()` and `defineCustomElements` run in the browser bootstrap path.",
+          "Islands notes": "KoliBri widgets work as islands when theme registration and loader scripts are initialized once at the document or island root.",
+          "Known limitations": "Experimental Preact support. Theme and component registration are mandatory; skipping them yields inert or unstyled components.",
+          "Alternatives": "Compare [Shoelace](/libraries/shoelace), [Lit](/libraries/lit), or [Kamod UI](/libraries/kamod-ui) for accessible component strategies."
+        }
+      }
+    },
+    {
+      "index": 16,
+      "name": "@oracle/oraclejet-preact",
+      "packageName": "@oracle/oraclejet-preact",
+      "repositoryUrl": "https://github.com/oracle/oraclejet",
+      "documentationUrl": "https://www.oracle.com/webfolder/technetwork/jet/jetCookbook.html",
+      "npmUrl": "https://www.npmjs.com/package/@oracle/oraclejet-preact",
+      "reportDate": "2026-09-09",
+      "priority": 2,
+      "reportedCategory": "Enterprise UI",
+      "reportedCompatibility": "Direct Preact implementation; strongly tied to Oracle JET/Redwood infrastructure.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ui",
+      "slug": "oracle-oraclejet-preact",
+      "catalogDraft": {
+        "name": "Oracle JET Preact",
+        "slug": "oracle-oraclejet-preact",
+        "shortDescription": "Oracle JET Redwood UI components implemented with Preact.",
+        "category": "ui",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "limited",
+        "packageName": "@oracle/oraclejet-preact",
+        "repositoryUrl": "https://github.com/oracle/oraclejet",
+        "documentationUrl": "https://www.oracle.com/webfolder/technetwork/jet/jetCookbook.html",
+        "npmUrl": "https://www.npmjs.com/package/@oracle/oraclejet-preact",
+        "installCommand": "npm install @oracle/oraclejet-preact",
+        "tags": [
+          "enterprise",
+          "oracle-jet",
+          "redwood"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Strongly tied to Oracle JET and Redwood design infrastructure—not a general-purpose design system.",
+          "Components may import companion CSS; bundler must load ES, AMD, or CJS distributions consistently to avoid silent CSS failures."
+        ],
+        "alternatives": [
+          "kamod-ui",
+          "headlessui"
+        ],
+        "sections": {
+          "Introduction": "`@oracle/oraclejet-preact` distributes Oracle JET UI components built on Preact. Imports use subpath exports such as `@oracle/oraclejet-preact/UNSAFE_Avatar`. Production builds ship minified with source maps in `es`, `amd`, and `cjs` formats.",
+          "Installation": "```bash\nnpm install @oracle/oraclejet-preact\n```",
+          "Preact configuration": "Prefer the `es` distribution for modern bundlers with subpath export support. Webpack 4 or RequireJS projects must alias to `@oracle/oraclejet-preact/es` or `/amd` explicitly. Configure CSS loaders because components import `./Component.css` side effects.",
+          "Example": "```javascript\nimport { Avatar } from '@oracle/oraclejet-preact/UNSAFE_Avatar';\n\nexport default () => <Avatar initials=\"OJP\" />;\n```",
+          "SSR notes": "Node-based testing can use the `cjs` build with CSS stripped. Full SSR with styles requires bundler support for component CSS imports in the ES distribution.",
+          "Islands notes": "Enterprise JET widgets are usually part of a larger Oracle JET shell rather than ad-hoc islands, but individual components can hydrate when CSS and theme tokens are scoped.",
+          "Known limitations": "Mixing ES and AMD formats in one bundle causes silent CSS import failures. Jest projects should map subpaths to `@oracle/oraclejet-preact/cjs/$1`.",
+          "Alternatives": "Outside Oracle ecosystems, evaluate [Kamod UI](/libraries/kamod-ui) or [Headless UI](/libraries/headlessui) with Preact compat."
+        }
+      }
+    },
+    {
+      "index": 17,
+      "name": "@neutron-build/core",
+      "packageName": "@neutron-build/core",
+      "repositoryUrl": "https://github.com/neutron-build/neutron",
+      "documentationUrl": "https://neutron.build/docs",
+      "npmUrl": "https://www.npmjs.com/package/@neutron-build/core",
+      "reportDate": "2026-09-09",
+      "priority": 2,
+      "reportedCategory": "Full-stack SSR",
+      "reportedCompatibility": "Preact rendering layer with Hono and islands; young, classify experimental.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ssr",
+      "slug": "neutron-build-core",
+      "catalogDraft": {
+        "name": "Neutron",
+        "slug": "neutron-build-core",
+        "shortDescription": "Unified TypeScript framework with Preact SSR, static routes, and islands architecture.",
+        "category": "ssr",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "@neutron-build/core",
+        "repositoryUrl": "https://github.com/neutron-build/neutron/tree/main/typescript/packages/neutron",
+        "documentationUrl": "https://neutron.build/docs",
+        "homepageUrl": "https://neutron.build",
+        "npmUrl": "https://www.npmjs.com/package/@neutron-build/core",
+        "license": "MIT",
+        "installCommand": "npm install @neutron-build/core",
+        "tags": [
+          "ssr",
+          "islands",
+          "full-stack"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Young framework (0.2.x) with evolving APIs; classify as experimental until your deployment target is validated.",
+          "Full-stack features span routing, content collections, and adapters—expect framework lock-in compared with standalone Preact libraries."
+        ],
+        "alternatives": [
+          "preact-iso",
+          "fresh"
+        ],
+        "sections": {
+          "Introduction": "`@neutron-build/core` is Neutron's TypeScript SDK: static sites with zero JS, app routes with Preact SSR, islands, content collections, and deploy-anywhere adapters. It combines a Hono-based server layer with Preact rendering.",
+          "Installation": "```bash\nnpm install @neutron-build/core\n```",
+          "Preact configuration": "Use Neutron's project scaffolding and route conventions rather than wiring Preact manually. Client islands import from `@neutron-build/core/client`; server utilities and content APIs import from the core package.",
+          "Example": "```typescript\nimport { defineConfig } from \"@neutron-build/core\";\nimport { Island } from \"@neutron-build/core/client\";\nimport { getCollection } from \"@neutron-build/core/content\";\n```",
+          "SSR notes": "Neutron targets Preact SSR for app routes while keeping static pages JS-free. Follow [neutron.build/docs](https://neutron.build/docs) for adapter-specific deployment and rendering entry points.",
+          "Islands notes": "Islands are first-class: interactive Preact components hydrate inside otherwise static Neutron pages. Scope client entry points per island to control bundle size.",
+          "Known limitations": "Early-stage framework with a broad surface area (routing, content, adapters). Benchmark against simpler Preact SSR stacks before committing.",
+          "Alternatives": "Lighter Preact-centric options include [Preact ISO](/libraries/preact-iso) or [Fresh](/libraries/fresh) for islands-oriented SSR."
+        }
+      }
+    },
+    {
+      "index": 18,
+      "name": "@pracht/test",
+      "packageName": "@pracht/test",
+      "repositoryUrl": "https://github.com/JoviDeCroock/pracht",
+      "documentationUrl": "https://github.com/JoviDeCroock/pracht/tree/main/packages/test",
+      "npmUrl": "https://www.npmjs.com/package/@pracht/test",
+      "reportDate": "2026-09-09",
+      "priority": 2,
+      "reportedCategory": "Testing / Framework Utility",
+      "reportedCompatibility": "First-party Pracht testing package; consider enriching Pracht entry instead of standalone entry.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "testing",
+      "slug": "pracht-test",
+      "catalogDraft": {
+        "name": "Pracht Test",
+        "slug": "pracht-test",
+        "shortDescription": "Typed testing utilities for Pracht loaders, API routes, middleware, and forms.",
+        "category": "testing",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "unsupported",
+        "packageName": "@pracht/test",
+        "repositoryUrl": "https://github.com/JoviDeCroock/pracht/tree/main/packages/test",
+        "documentationUrl": "https://pracht.resynapse.dev/docs/recipes/testing",
+        "homepageUrl": "https://github.com/JoviDeCroock/pracht/tree/main/packages/test",
+        "npmUrl": "https://www.npmjs.com/package/@pracht/test",
+        "license": "MIT",
+        "installCommand": "npm install -D @pracht/test",
+        "tags": [
+          "testing",
+          "pracht",
+          "vitest"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "First-party Pracht monorepo utility—not a general Preact component testing library.",
+          "Provides factories and response readers only; bring your own assertion framework (Vitest, etc.)."
+        ],
+        "alternatives": [
+          "preact-testing-library"
+        ],
+        "sections": {
+          "Introduction": "`@pracht/test` supplies typed factories and runners for [Pracht](https://github.com/JoviDeCroock/pracht) apps: loader/API/middleware args, middleware chain execution, form submission helpers, and minimal response readers—without booting a server.",
+          "Installation": "```bash\nnpm install -D @pracht/test\n```",
+          "Preact configuration": "Use alongside Vitest or any test runner in Pracht projects. Import factories from `@pracht/test` and your route modules from the Pracht app tree.",
+          "Example": "```ts\nimport {\n  createLoaderArgs,\n  createMiddlewareArgs,\n  runMiddleware,\n  submitForm,\n  readJson,\n  readRedirect,\n} from \"@pracht/test\";\nimport { loader } from \"./routes/dashboard\";\nimport { middleware as auth } from \"./middleware/auth\";\nimport { POST } from \"./api/contact\";\n\nconst data = await loader(createLoaderArgs({ url: \"/dashboard\", headers: { cookie: \"session=x\" } }));\n\nconst denied = await runMiddleware(auth, createMiddlewareArgs({ url: \"/dashboard\" }));\nexpect(readRedirect(denied).location).toBe(\"/login\");\n\nconst response = await submitForm(POST, { name: \"Alice\", email: \"alice@example.com\" });\nexpect(await readJson(response)).toEqual({ ok: true });\n```",
+          "SSR notes": "Server-route testing utility. Exercises Pracht loader and API handlers in-process rather than rendering Preact trees.",
+          "Islands notes": "Not applicable—targets Pracht server modules and middleware, not client island hydration.",
+          "Known limitations": "Capability middleware tests should use `createCapabilityTestHost()` from `@pracht/core/server` for the full dispatch pipeline.",
+          "Alternatives": "For Preact component tests outside Pracht, use [Preact Testing Library](/libraries/preact-testing-library)."
+        }
+      }
+    },
+    {
+      "index": 19,
+      "name": "@tuqulore-inc/eleventy-plugin-preact-island",
+      "packageName": "@tuqulore-inc/eleventy-plugin-preact-island",
+      "repositoryUrl": "https://github.com/tuqulore/website-boilerplate",
+      "documentationUrl": "https://github.com/tuqulore/website-boilerplate/tree/main/packages/eleventy-plugin-preact-island",
+      "npmUrl": "https://www.npmjs.com/package/@tuqulore-inc/eleventy-plugin-preact-island",
+      "reportDate": "2026-09-09",
+      "priority": 3,
+      "reportedCategory": "SSG / Islands",
+      "reportedCompatibility": "Dedicated Preact islands plugin; small community and mostly Japanese docs.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ssr",
+      "slug": "tuqulore-inc-eleventy-plugin-preact-island",
+      "catalogDraft": {
+        "name": "Eleventy Preact Island Plugin",
+        "slug": "tuqulore-inc-eleventy-plugin-preact-island",
+        "shortDescription": "Eleventy plugin for server-rendered Preact components with is-land partial hydration.",
+        "category": "ssr",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "bundled-types",
+        "ssrSupport": "supported",
+        "packageName": "@tuqulore-inc/eleventy-plugin-preact-island",
+        "repositoryUrl": "https://github.com/tuqulore/website-boilerplate/tree/main/packages/eleventy-plugin-preact-island",
+        "documentationUrl": "https://website.tuqulore.workers.dev/en/plugins/eleventy-plugin-preact-island/",
+        "homepageUrl": "https://github.com/tuqulore/website-boilerplate",
+        "npmUrl": "https://www.npmjs.com/package/@tuqulore-inc/eleventy-plugin-preact-island",
+        "license": "MIT",
+        "installCommand": "npm install -D @11ty/eleventy preact @tuqulore-inc/eleventy-plugin-preact-island",
+        "tags": [
+          "eleventy",
+          "islands",
+          "partial-hydration"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Requires Node.js 20+, Eleventy 3+, Preact 10+, and the plugin's `.client.*` file convention.",
+          "The browser setup loads the Preact runtime through an injected esm.sh import map unless you replace the default bundling arrangement."
+        ],
+        "alternatives": [
+          "astro-preact",
+          "fresh",
+          "preact-iso"
+        ],
+        "sections": {
+          "Introduction": "`@tuqulore-inc/eleventy-plugin-preact-island` adds server-rendered Preact islands to Eleventy using `@11ty/is-land`. It discovers `.client.js`, `.client.jsx`, `.client.ts`, and `.client.tsx` entries, bundles them with esbuild, and coordinates their SSR and browser module URLs.",
+          "Installation": "```bash\nnpm install -D @11ty/eleventy preact @tuqulore-inc/eleventy-plugin-preact-island\n```",
+          "Preact configuration": "Register the plugin in `eleventy.config.js`. It reads Eleventy's input, output, and path-prefix settings directly. The installed Preact version is auto-detected and pinned in the generated esm.sh import map.\n\n```js\nimport preactIsland from '@tuqulore-inc/eleventy-plugin-preact-island';\n\nexport default function (eleventyConfig) {\n  eleventyConfig.addPlugin(preactIsland);\n}\n```",
+          "Example": "```jsx\nimport { clientComponent } from '@tuqulore-inc/eleventy-plugin-preact-island/island';\nimport { useState } from 'preact/hooks';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  return <button onClick={() => setCount(count + 1)}>{count}</button>;\n}\n\nexport default clientComponent(Counter, import.meta.url);\n```\n\nRender that client component with the plugin's `<Island component={Counter} on=\"interaction\" />` wrapper from an SSR Preact template.",
+          "SSR notes": "The component is rendered to HTML during the Eleventy build. Props are serialized with `devalue`, including values such as Date, Map, and Set, and reused when the browser hydrates the island.",
+          "Islands notes": "Hydration is controlled by `is-land`; the default trigger is interaction. Other trigger names can be supplied through `on`, while parameterized media triggers require writing the raw `<is-land>` element.",
+          "Known limitations": "Set `bundle: false` only when another bundler emits client files at the exact URLs expected by the resolver. The ecosystem and documentation are smaller than Astro or Fresh.",
+          "Alternatives": "Compare [Astro Preact](/libraries/astro-preact), [Fresh](/libraries/fresh), or [Preact ISO](/libraries/preact-iso) for larger islands and SSR ecosystems."
+        }
+      }
+    },
+    {
+      "index": 20,
+      "name": "cincin-preact",
+      "packageName": "cincin-preact",
+      "repositoryUrl": "https://github.com/nbarinov/cincin",
+      "documentationUrl": "https://cincin.nbarinov.io/",
+      "npmUrl": "https://www.npmjs.com/package/cincin-preact",
+      "reportDate": "2026-09-09",
+      "priority": 3,
+      "reportedCategory": "UI Feedback / Toasts",
+      "reportedCompatibility": "Dedicated Preact toast adapter; early version and limited adoption.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ui",
+      "slug": "cincin-preact",
+      "catalogDraft": {
+        "name": "cincin Preact",
+        "slug": "cincin-preact",
+        "shortDescription": "Native Preact toast bindings with an accessible skin and headless presentation hooks.",
+        "category": "ui",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "bundled-types",
+        "ssrSupport": "limited",
+        "packageName": "cincin-preact",
+        "repositoryUrl": "https://github.com/nbarinov/cincin/tree/main/packages/cincin-preact",
+        "documentationUrl": "https://cincin.nbarinov.io/",
+        "homepageUrl": "https://cincin.nbarinov.io/",
+        "npmUrl": "https://www.npmjs.com/package/cincin-preact",
+        "license": "MIT",
+        "installCommand": "npm install cincin-preact",
+        "tags": [
+          "toast",
+          "notifications",
+          "headless"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Early 0.2.x package requiring Preact 10.23 or newer and a modern ESM-capable build pipeline.",
+          "The package-wide toast store is client-oriented; server calls do not produce useful notifications and request isolation remains the application's responsibility."
+        ],
+        "alternatives": [
+          "shoelace",
+          "kamod-ui"
+        ],
+        "sections": {
+          "Introduction": "`cincin-preact` provides native Preact bindings for the cincin toast engine. Use the styled `Toaster` for a quick notification stack or import `usePresenter`, `useToasts`, and `useToastSwipe` from `cincin-preact/core` to build a custom skin.",
+          "Installation": "```bash\nnpm install cincin-preact\n```\n\nThe package is modern ESM and requires Preact 10.23 or newer. Yarn users may need to install the `cincin` peer explicitly.",
+          "Preact configuration": "Mount one `<Toaster />` near the application root and call the exported `toast` store from client actions. No React compatibility alias is required; the adapter imports only Preact and Preact hooks.",
+          "Example": "```tsx\nimport { Toaster, toast } from 'cincin-preact';\n\nexport function App() {\n  return (\n    <>\n      <button onClick={() => toast.success({ title: 'Saved' })}>\n        Save\n      </button>\n      <Toaster position=\"bottom-right\" />\n    </>\n  );\n}\n```",
+          "SSR notes": "A Toaster can appear in a server-rendered tree, but notifications and DOM interactions are client-side. Calls to the singleton store on the server are not useful; avoid carrying toast state between requests.",
+          "Islands notes": "The Toaster works well as a client island. Ensure producers run after hydration and share the same cincin store instance as the mounted island.",
+          "Known limitations": "Swipe behavior, focus management, timers, and document direction rely on browser APIs. Validate the default Alt+T shortcut and live-region behavior against the host application's accessibility model.",
+          "Alternatives": "For broader web-component UI, compare [Shoelace](/libraries/shoelace); for Preact-native application components, see [Kamod UI](/libraries/kamod-ui)."
+        }
+      }
+    },
+    {
+      "index": 21,
+      "name": "@rsbuild/plugin-preact",
+      "packageName": "@rsbuild/plugin-preact",
+      "repositoryUrl": "https://github.com/web-infra-dev/rsbuild/tree/main/packages/plugin-preact",
+      "documentationUrl": "https://rsbuild.rs/plugins/list/plugin-preact",
+      "npmUrl": "https://www.npmjs.com/package/@rsbuild/plugin-preact",
+      "reportDate": "2026-09-10",
+      "priority": 1,
+      "reportedCategory": "Build Tools / Rsbuild",
+      "reportedCompatibility": "Official Rsbuild plugin using Prefresh; verify current configuration.",
+      "reportedActivity": "",
+      "reportedLimitations": [
+        "current configuration"
+      ],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "build-tools",
+      "slug": "rsbuild-plugin-preact",
+      "catalogDraft": {
+        "name": "Rsbuild Preact Plugin",
+        "slug": "rsbuild-plugin-preact",
+        "shortDescription": "Official Rsbuild plugin for Preact JSX, compat aliases and Prefresh HMR.",
+        "category": "build-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "@rsbuild/plugin-preact",
+        "repositoryUrl": "https://github.com/web-infra-dev/rsbuild/tree/main/packages/plugin-preact",
+        "documentationUrl": "https://rsbuild.rs/plugins/list/plugin-preact",
+        "npmUrl": "https://www.npmjs.com/package/@rsbuild/plugin-preact",
+        "license": "MIT",
+        "installCommand": "npm install -D @rsbuild/plugin-preact",
+        "tags": [
+          "rsbuild",
+          "bundler",
+          "prefresh"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "@rsbuild/plugin-preact v2 requires Rsbuild 2.x; use v1 on Rsbuild 1.x projects."
+        ],
+        "alternatives": [
+          "preact-preset-vite"
+        ],
+        "sections": {
+          "Introduction": "`@rsbuild/plugin-preact` is the official Rsbuild plugin for Preact applications. It wires JSX compilation, optional React compatibility aliases and Prefresh-powered hot module replacement into Rsbuild config.",
+          "Installation": "```bash\nnpm install -D @rsbuild/plugin-preact\n```",
+          "Preact configuration": "Register the plugin in your Rsbuild configuration:\n\n```ts\nimport { pluginPreact } from \"@rsbuild/plugin-preact\";\n\nexport default {\n  plugins: [pluginPreact()],\n};\n```\n\nDisable React aliases or Prefresh through `reactAliasesEnabled` and `prefreshEnabled` when you need stricter control.",
+          "Example": "```ts\nimport { pluginPreact } from \"@rsbuild/plugin-preact\";\n\nexport default {\n  plugins: [\n    pluginPreact({\n      reactAliasesEnabled: true,\n      prefreshEnabled: true,\n    }),\n  ],\n};\n```",
+          "SSR notes": "Rsbuild handles server and client bundles; verify SSR-specific externals and rendering entry points in your deployment target.",
+          "Islands notes": "Build-tooling only. Island architectures inherit whatever client entries Rsbuild emits.",
+          "Known limitations": "Match plugin major versions to your Rsbuild release. Custom refresh scopes can be configured through `preactRefreshOptions`.",
+          "Alternatives": "Vite-based projects typically use [@preact/preset-vite](/libraries/preact-preset-vite) instead."
+        }
+      }
+    },
+    {
+      "index": 22,
+      "name": "vitest-browser-preact",
+      "packageName": "vitest-browser-preact",
+      "repositoryUrl": "https://github.com/JoviDeCroock/vitest-browser-preact",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/vitest-browser-preact",
+      "reportDate": "2026-09-10",
+      "priority": 1,
+      "reportedCategory": "Testing / Browser",
+      "reportedCompatibility": "Native browser-context renderer for Preact VNodes; verify providers and cleanup.",
+      "reportedActivity": "",
+      "reportedLimitations": [
+        "providers and cleanup"
+      ],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "testing",
+      "slug": "vitest-browser-preact",
+      "catalogDraft": {
+        "name": "Vitest Browser Preact",
+        "slug": "vitest-browser-preact",
+        "shortDescription": "Browser-context renderer for Preact components in Vitest 4+.",
+        "category": "testing",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "unsupported",
+        "packageName": "vitest-browser-preact",
+        "repositoryUrl": "https://github.com/JoviDeCroock/vitest-browser-preact",
+        "documentationUrl": "https://github.com/JoviDeCroock/vitest-browser-preact",
+        "npmUrl": "https://www.npmjs.com/package/vitest-browser-preact",
+        "license": "MIT",
+        "installCommand": "npm install -D vitest-browser-preact",
+        "tags": [
+          "vitest",
+          "browser",
+          "testing"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Requires Vitest 4.0.0 or higher with the browser test runner enabled."
+        ],
+        "alternatives": [
+          "preact-testing-library"
+        ],
+        "sections": {
+          "Introduction": "`vitest-browser-preact` adds a Preact-aware `render` helper to Vitest's browser mode so component tests run against real browser DOM APIs instead of emulated environments.",
+          "Installation": "```bash\nnpm install -D vitest-browser-preact\n```",
+          "Preact configuration": "Import `render` from `vitest-browser-preact` inside browser tests, or rely on the injected `page.render` helper when Vitest exposes the browser page object.",
+          "Example": "```tsx\nimport { render } from \"vitest-browser-preact\";\nimport { expect, test } from \"vitest\";\nimport { Counter } from \"./Counter\";\n\ntest(\"increments in the browser\", async () => {\n  const screen = render(<Counter initialCount={1} />);\n  await expect.element(screen.getByText(\"Count is 1\")).toBeVisible();\n  await screen.getByRole(\"button\", { name: \"Increment\" }).click();\n  await expect.element(screen.getByText(\"Count is 2\")).toBeVisible();\n});\n```",
+          "SSR notes": "Testing utility only; not used in production SSR pipelines.",
+          "Islands notes": "Useful for verifying island components with real layout, focus and pointer behavior in browser tests.",
+          "Known limitations": "Requires Vitest 4 browser mode. Wrapper components and custom containers are supported through the render options object.",
+          "Alternatives": "For jsdom-style unit tests, [Preact Testing Library](/libraries/preact-testing-library) remains the lighter default."
+        }
+      }
+    },
+    {
+      "index": 23,
+      "name": "@monza-editor/preact",
+      "packageName": "@monza-editor/preact",
+      "repositoryUrl": "https://github.com/raviqqe/monza-editor",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/@monza-editor/preact",
+      "reportDate": "2026-09-10",
+      "priority": 1,
+      "reportedCategory": "Editors / Code Input",
+      "reportedCompatibility": "Dedicated lightweight Preact editor; syntax highlighting supplied externally.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "editors",
+      "slug": "monza-editor-preact",
+      "catalogDraft": {
+        "name": "Monza Editor Preact",
+        "slug": "monza-editor-preact",
+        "shortDescription": "Lightweight textarea-based code editor component for Preact.",
+        "category": "editors",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "limited",
+        "packageName": "@monza-editor/preact",
+        "repositoryUrl": "https://github.com/raviqqe/monza-editor",
+        "documentationUrl": "https://raviqqe.com/monza-editor/",
+        "npmUrl": "https://www.npmjs.com/package/@monza-editor/preact",
+        "license": "MIT",
+        "installCommand": "npm install @monza-editor/preact",
+        "tags": [
+          "editor",
+          "code",
+          "textarea"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Syntax highlighting is supplied by a user-provided highlight function rather than built-in language packs."
+        ],
+        "sections": {
+          "Introduction": "Monza Editor wraps a textarea with syntax-highlight overlays. The `@monza-editor/preact` package exposes the Preact component while keeping the core editor bundle extremely small.",
+          "Installation": "```bash\nnpm install @monza-editor/preact\n```",
+          "Preact configuration": "Provide a `highlight` function that converts source text into HTML annotated code. Style the editor with monospace `font-family` and optional CSS variables such as `--me-padding`.",
+          "Example": "```tsx\nimport { Editor } from \"@monza-editor/preact\";\n\nfunction highlight(code: string) {\n  return code.replace(/\\b(const|return)\\b/g, '<span class=\"kw\">$1</span>');\n}\n\nexport function SnippetField() {\n  return <Editor value={'const answer = 42;'} highlight={highlight} onChange={() => {}} />;\n}\n```",
+          "SSR notes": "The editor relies on textarea selection and overlay synchronization that should be validated if you render initial HTML on the server.",
+          "Islands notes": "Code editors are commonly mounted as islands to defer highlight logic and keep static pages lean.",
+          "Known limitations": "Bring-your-own highlighter means you must sanitize or trust highlight output. For full IDE features, heavier editors may be more appropriate.",
+          "Alternatives": "See [Preact RichTextArea](/libraries/preact-richtextarea) for simpler text areas or evaluate full Monaco integrations separately."
+        }
+      }
+    },
+    {
+      "index": 24,
+      "name": "@prosekit/preact",
+      "packageName": "@prosekit/preact",
+      "repositoryUrl": "https://github.com/prosekit/prosekit/tree/master/packages/preact",
+      "documentationUrl": "https://prosekit.dev/",
+      "npmUrl": "https://www.npmjs.com/package/@prosekit/preact",
+      "reportDate": "2026-09-10",
+      "priority": 2,
+      "reportedCategory": "Editors / Rich Text",
+      "reportedCompatibility": "Official ProseMirror-based Preact adapter; substantially larger than simple editors.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "editors",
+      "slug": "prosekit-preact",
+      "catalogDraft": {
+        "name": "ProseKit Preact",
+        "slug": "prosekit-preact",
+        "shortDescription": "Preact components and hooks for ProseKit ProseMirror rich text editors.",
+        "category": "editors",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "limited",
+        "packageName": "@prosekit/preact",
+        "repositoryUrl": "https://github.com/prosekit/prosekit/tree/master/packages/preact",
+        "documentationUrl": "https://prosekit.dev/frameworks/preact",
+        "homepageUrl": "https://prosekit.dev",
+        "npmUrl": "https://www.npmjs.com/package/@prosekit/preact",
+        "license": "MIT",
+        "installCommand": "npm install @prosekit/preact prosekit",
+        "tags": [
+          "editor",
+          "prosemirror",
+          "rich-text"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Upstream notes that most users install the main `prosekit` package and import from `prosekit/preact` instead of depending on `@prosekit/preact` directly.",
+          "ProseMirror editors are client-heavy; SSR provides limited value beyond static placeholders."
+        ],
+        "alternatives": [
+          "monza-editor-preact",
+          "preact-richtextarea"
+        ],
+        "sections": {
+          "Introduction": "`@prosekit/preact` provides Preact bindings for [ProseKit](https://prosekit.dev)—a ProseMirror toolkit. Export `ProseKit`, hooks such as `useEditor`, and node/mark view helpers for building rich text experiences.",
+          "Installation": "```bash\nnpm install @prosekit/preact prosekit\n```\n\nImport ProseKit base styles in your entry:\n\n```ts\nimport 'prosekit/basic/style.css';\nimport 'prosekit/basic/typography.css';\n```",
+          "Preact configuration": "Create an editor with `createEditor` from `prosekit/core`, wrap UI in `<ProseKit editor={editor}>`, and mount with `editor.mount(ref)`. Any subtree calling `useEditor()` must stay inside the provider.",
+          "Example": "```tsx\nimport { useMemo } from 'preact/hooks';\nimport { defineBasicExtension } from 'prosekit/basic';\nimport { createEditor } from 'prosekit/core';\nimport { ProseKit } from '@prosekit/preact';\n\nexport default function Editor() {\n  const editor = useMemo(\n    () => createEditor({ extension: defineBasicExtension() }),\n    [],\n  );\n\n  return (\n    <ProseKit editor={editor}>\n      <div ref={editor.mount} class=\"ProseMirror\" />\n    </ProseKit>\n  );\n}\n```",
+          "SSR notes": "Editors require browser DOM and ProseMirror plugins. Render a static shell on the server and mount the editor after hydration.",
+          "Islands notes": "Rich text editors are classic island candidates because they pull large ProseMirror bundles and keyboard/focus logic.",
+          "Known limitations": "Heavier than textarea editors. Confirm extension and node-view APIs against [prosekit.dev](https://prosekit.dev/frameworks/preact) before production adoption.",
+          "Alternatives": "For lightweight code input see [Monza Editor Preact](/libraries/monza-editor-preact); for simpler rich text try [Preact RichTextArea](/libraries/preact-richtextarea)."
+        }
+      }
+    },
+    {
+      "index": 25,
+      "name": "@swc/plugin-prefresh",
+      "packageName": "@swc/plugin-prefresh",
+      "repositoryUrl": "https://github.com/swc-project/plugins/tree/main/packages/prefresh",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/@swc/plugin-prefresh",
+      "reportDate": "2026-09-10",
+      "priority": 2,
+      "reportedCategory": "Compiler / HMR",
+      "reportedCompatibility": "Official SWC Prefresh plugin; mainly relevant to custom toolchains.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "build-tools",
+      "slug": "swc-plugin-prefresh",
+      "catalogDraft": {
+        "name": "SWC Plugin Prefresh",
+        "slug": "swc-plugin-prefresh",
+        "shortDescription": "SWC plugin implementing Prefresh createContext memoization for Preact HMR.",
+        "category": "build-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "unsupported",
+        "packageName": "@swc/plugin-prefresh",
+        "repositoryUrl": "https://github.com/swc-project/plugins/tree/main/packages/prefresh",
+        "documentationUrl": "https://github.com/swc-project/plugins/tree/main/packages/prefresh",
+        "homepageUrl": "https://swc.rs",
+        "npmUrl": "https://www.npmjs.com/package/@swc/plugin-prefresh",
+        "license": "Apache-2.0",
+        "installCommand": "npm install -D @swc/plugin-prefresh",
+        "tags": [
+          "swc",
+          "hmr",
+          "prefresh"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Must be paired with SWC's built-in React Refresh transform (`jsc.transform.react.refresh`); this plugin only handles Prefresh-specific `createContext` memoization.",
+          "Major versions track SWC core releases; align plugin version with your `@swc/core` toolchain."
+        ],
+        "alternatives": [
+          "prefresh",
+          "preact-preset-vite"
+        ],
+        "sections": {
+          "Introduction": "`@swc/plugin-prefresh` is the SWC port of the [Prefresh Babel plugin](https://github.com/preactjs/prefresh/tree/main/packages/babel). It memoizes `createContext` across hot updates while SWC's React Refresh transform handles component signatures.",
+          "Installation": "```bash\nnpm install -D @swc/plugin-prefresh\n```",
+          "Preact configuration": "Add the plugin under `jsc.experimental.plugins` and enable React Refresh in development:\n\n```json\n{\n  \"jsc\": {\n    \"experimental\": {\n      \"plugins\": [[\"@swc/plugin-prefresh\", { \"library\": [\"preact\", \"preact/compat\", \"react\"] }]]\n    },\n    \"parser\": { \"jsx\": true },\n    \"transform\": {\n      \"react\": { \"development\": true, \"refresh\": true }\n    }\n  }\n}\n```",
+          "Example": "```json\n{\n  \"jsc\": {\n    \"experimental\": {\n      \"plugins\": [\n        [\"@swc/plugin-prefresh\", { \"library\": [\"preact-like-framework\"] }]\n      ]\n    },\n    \"transform\": {\n      \"react\": { \"development\": true, \"refresh\": true }\n    }\n  }\n}\n```\n\nCustomize the `library` array when Preact is imported under an alias.",
+          "SSR notes": "Development-only compiler plugin. Production builds should disable `refresh` and omit the Prefresh plugin.",
+          "Islands notes": "Build-time tooling only; island architectures inherit whatever HMR config your SWC pipeline applies to client entries.",
+          "Known limitations": "Requires coordinating SWC core and plugin major versions. Vite-first projects often use [@preact/preset-vite](/libraries/preact-preset-vite) instead of manual SWC wiring.",
+          "Alternatives": "See [Prefresh](/libraries/prefresh) for Babel/Vite integrations or [@preact/preset-vite](/libraries/preact-preset-vite) for batteries-included Preact HMR."
+        }
+      }
+    },
+    {
+      "index": 26,
+      "name": "@deepgram/agents-widget",
+      "packageName": "@deepgram/agents-widget",
+      "repositoryUrl": "https://github.com/deepgram/agent/tree/main/packages/widget",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/@deepgram/agents-widget",
+      "reportDate": "2026-09-10",
+      "priority": 2,
+      "reportedCategory": "AI / Voice Agents",
+      "reportedCompatibility": "Preact bundled internally with some compat usage; Deepgram-bound and browser keys require strong warning.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "deepgram-agents-widget",
+      "catalogDraft": {
+        "name": "Deepgram Agents Widget",
+        "slug": "deepgram-agents-widget",
+        "shortDescription": "Self-contained Deepgram Voice Agent widget with bundled Preact runtime.",
+        "category": "developer-tools",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "unsupported",
+        "packageName": "@deepgram/agents-widget",
+        "repositoryUrl": "https://github.com/deepgram/agent/tree/main/packages/widget",
+        "documentationUrl": "https://github.com/deepgram/agent/tree/main/packages/widget#readme",
+        "homepageUrl": "https://github.com/deepgram/agent/tree/main/packages/widget#readme",
+        "npmUrl": "https://www.npmjs.com/package/@deepgram/agents-widget",
+        "license": "MIT",
+        "installCommand": "npm install @deepgram/agents-widget",
+        "tags": [
+          "voice",
+          "ai",
+          "deepgram"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Never expose Deepgram API keys in browser code; use `tokenFactory` that fetches short-lived tokens from your server.",
+          "Bundles Preact internally and aliases `@deepgram/ui` React components through `preact/compat`, so it is not a native Preact component library.",
+          "Tightly coupled to the Deepgram Agent API and widget layouts."
+        ],
+        "alternatives": [
+          "deepgram-api"
+        ],
+        "sections": {
+          "Introduction": "`@deepgram/agents-widget` drops a self-contained [Deepgram Voice Agent](https://developers.deepgram.com/docs/voice-agent) UI into any page via ESM import or self-hosted UMD bundle. It bundles Preact internally and does not require your app to ship Preact separately.",
+          "Installation": "```bash\nnpm install @deepgram/agents-widget\n```",
+          "Preact configuration": "Import `init` and mount the widget from client code only. Prefer `tokenFactory` for browser-safe authentication rather than passing `apiKey` directly.",
+          "Example": "```ts\nimport { init } from \"@deepgram/agents-widget\";\n\nconst destroy = init({\n  tokenFactory: () => fetch('/api/deepgram-token').then(r => r.text()),\n  agent: { think: { provider: { type: 'open_ai', model: 'gpt-4o-mini' } } },\n});\n\n// Later: destroy() to unmount\n```\n\nInline layout with a host container:\n\n```js\ninit({\n  agent,\n  tokenFactory,\n  layout: \"inline\",\n  containerId: \"my-container\",\n});\n```",
+          "SSR notes": "Voice capture, WebSocket sessions, and widget mounting are browser-only. Server routes should issue tokens; the widget initializes client-side.",
+          "Islands notes": "Natural island widget—load on pages that need voice agent UX without adopting Deepgram UI components across your Preact tree.",
+          "Known limitations": "Do not embed API keys in client bundles. Widget ships its own Preact copy; avoid assuming shared context with your app's Preact tree.",
+          "Alternatives": "For custom integrations against the REST/WebSocket APIs, use [Deepgram API](/libraries/deepgram-api) directly."
+        }
+      }
+    },
+    {
+      "index": 27,
+      "name": "@pracht/vite-plugin",
+      "packageName": "@pracht/vite-plugin",
+      "repositoryUrl": "https://github.com/JoviDeCroock/pracht",
+      "documentationUrl": "https://github.com/JoviDeCroock/pracht/tree/main/packages/vite-plugin",
+      "npmUrl": "https://www.npmjs.com/package/@pracht/vite-plugin",
+      "reportDate": "2026-09-10",
+      "priority": 2,
+      "reportedCategory": "Build Tools / Full-stack",
+      "reportedCompatibility": "First-party Pracht plugin; enrich project entry; SSR precompile reportedly experimental.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ssr",
+      "slug": "pracht-vite-plugin",
+      "catalogDraft": {
+        "name": "Pracht Vite Plugin",
+        "slug": "pracht-vite-plugin",
+        "shortDescription": "Vite plugin for Pracht virtual modules, multi-environment builds, and SSG prerendering.",
+        "category": "build-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "@pracht/vite-plugin",
+        "repositoryUrl": "https://github.com/JoviDeCroock/pracht/tree/main/packages/vite-plugin",
+        "documentationUrl": "https://github.com/JoviDeCroock/pracht/tree/main/packages/vite-plugin",
+        "homepageUrl": "https://github.com/JoviDeCroock/pracht/tree/main/packages/vite-plugin",
+        "npmUrl": "https://www.npmjs.com/package/@pracht/vite-plugin",
+        "license": "MIT",
+        "installCommand": "npm install @pracht/vite-plugin",
+        "tags": [
+          "vite",
+          "pracht",
+          "ssr",
+          "prerender"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Requires Vite ^8.0.0 as a peer dependency.",
+          "Experimental `@pracht/preact-ssr-precompile` JSX transform is opt-in and should be benchmarked before broad enablement."
+        ],
+        "alternatives": [
+          "preact-preset-vite",
+          "preact-iso"
+        ],
+        "sections": {
+          "Introduction": "`@pracht/vite-plugin` integrates [Pracht](https://github.com/JoviDeCroock/pracht) with Vite: virtual modules (`virtual:pracht/client`, `virtual:pracht/server`), multi-environment client/SSR bundles, SSG prerendering, and dev HMR.",
+          "Installation": "```bash\nnpm install @pracht/vite-plugin\n```",
+          "Preact configuration": "Register the plugin in `vite.config.ts`. Pair with a Pracht adapter package (`@pracht/adapter-node`, `@pracht/adapter-cloudflare`, etc.) for deployment targets.",
+          "Example": "```ts\nimport { defineConfig } from \"vite\";\nimport { pracht } from \"@pracht/vite-plugin\";\n\nexport default defineConfig({\n  plugins: [pracht()],\n});\n```\n\nOpt into experimental SSR JSX precompile:\n\n```ts\nexport default defineConfig({\n  plugins: [pracht({ precompileSsrJsx: true })],\n});\n```",
+          "SSR notes": "Builds separate client and SSR bundles via Vite multi-environment mode and prerenders SSG/ISG routes at build time (`prerenderConcurrency` controls parallelism). Client bundles keep the normal Preact JSX transform for hydration.",
+          "Islands notes": "Pracht route model determines client islands; the Vite plugin emits the virtual modules and prerender artifacts your adapter serves.",
+          "Known limitations": "SSR precompile transforms safe HTML subtrees into `jsxTemplate()` calls—keep it opt-in until validated on SSR-heavy pages. TSRX routes may require `additionalExtensions: [\".tsrx\"]` alongside `@tsrx/vite-plugin-preact`.",
+          "Alternatives": "Standalone Vite Preact setups often use [@preact/preset-vite](/libraries/preact-preset-vite); lighter SSR routing is available via [Preact ISO](/libraries/preact-iso)."
+        }
+      }
+    },
+    {
+      "index": 28,
+      "name": "@tsrx/vite-plugin-preact",
+      "packageName": "@tsrx/vite-plugin-preact",
+      "repositoryUrl": "https://github.com/tsrx-org/tsrx",
+      "documentationUrl": "https://github.com/tsrx-org/tsrx/tree/main/packages/vite-plugin-preact",
+      "npmUrl": "https://www.npmjs.com/package/@tsrx/vite-plugin-preact",
+      "reportDate": "2026-09-10",
+      "priority": 2,
+      "reportedCategory": "Build Tools / SFC",
+      "reportedCompatibility": "Official Vite integration for Preact TSRX compiler; ecosystem remains beta.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "build-tools",
+      "slug": "tsrx-vite-plugin-preact",
+      "catalogDraft": {
+        "name": "TSRX Vite Plugin Preact",
+        "slug": "tsrx-vite-plugin-preact",
+        "shortDescription": "Vite plugin compiling .tsrx single-file Preact components via @tsrx/preact.",
+        "category": "build-tools",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "@tsrx/vite-plugin-preact",
+        "repositoryUrl": "https://github.com/tsrx-org/tsrx/tree/main/packages/vite-plugin-preact",
+        "documentationUrl": "https://github.com/tsrx-org/tsrx/tree/main/packages/vite-plugin-preact",
+        "npmUrl": "https://www.npmjs.com/package/@tsrx/vite-plugin-preact",
+        "license": "MIT",
+        "installCommand": "npm install -D @tsrx/vite-plugin-preact @tsrx/preact",
+        "tags": [
+          "vite",
+          "tsrx",
+          "sfc"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "TSRX ecosystem remains beta (plugin 0.0.x); expect API movement.",
+          "Requires companion packages `@tsrx/core` and `@tsrx/preact` pulled in as dependencies."
+        ],
+        "alternatives": [
+          "preact-preset-vite"
+        ],
+        "sections": {
+          "Introduction": "`@tsrx/vite-plugin-preact` compiles `.tsrx` single-file Preact components through `@tsrx/preact`, emits virtual CSS modules for `<style>` blocks, and configures Vite dependency scanning for the custom extension.",
+          "Installation": "```bash\nnpm install -D @tsrx/vite-plugin-preact @tsrx/preact\n```",
+          "Preact configuration": "Add the plugin before other JSX transforms. Default `jsxImportSource` is `preact`. When pairing with Pracht, register `additionalExtensions: [\".tsrx\"]` on `@pracht/vite-plugin`.",
+          "Example": "```ts\nimport { defineConfig } from \"vite\";\nimport { tsrxPreact } from \"@tsrx/vite-plugin-preact\";\nimport { pracht } from \"@pracht/vite-plugin\";\n\nexport default defineConfig({\n  plugins: [tsrxPreact(), pracht({ additionalExtensions: [\".tsrx\"] })],\n});\n```",
+          "SSR notes": "Compiled `.tsrx` output uses Preact automatic JSX runtime via Oxc. Validate SSR bundles when `.tsrx` components render on the server through Pracht or custom Vite SSR entries.",
+          "Islands notes": "Build plugin only; `.tsrx` components behave like standard Preact components once compiled.",
+          "Known limitations": "Beta TSRX compiler and 0.0.x plugin versioning. Platform-specific defines are merged through `@tsrx/core`—review TSRX docs for target configuration.",
+          "Alternatives": "Standard Preact + Vite projects without `.tsrx` SFCs should use [@preact/preset-vite](/libraries/preact-preset-vite)."
+        }
+      }
+    },
+    {
+      "index": 29,
+      "name": "@mauroandre/velojs",
+      "packageName": "@mauroandre/velojs",
+      "repositoryUrl": "https://github.com/mauro-andre/velojs",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/@mauroandre/velojs",
+      "reportDate": "2026-09-10",
+      "priority": 3,
+      "reportedCategory": "Full-stack SSR",
+      "reportedCompatibility": "Preact client/SSR with Hono server; very early and small community.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ssr",
+      "slug": "mauroandre-velojs",
+      "catalogDraft": {
+        "name": "VeloJS",
+        "slug": "mauroandre-velojs",
+        "shortDescription": "Experimental full-stack framework combining Hono, Preact SSR, hydration, and Vite transforms.",
+        "category": "ssr",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "bundled-types",
+        "ssrSupport": "supported",
+        "packageName": "@mauroandre/velojs",
+        "repositoryUrl": "https://github.com/mauro-andre/velojs",
+        "documentationUrl": "https://github.com/mauro-andre/velojs#readme",
+        "homepageUrl": "https://github.com/mauro-andre/velojs",
+        "npmUrl": "https://www.npmjs.com/package/@mauroandre/velojs",
+        "license": "MIT",
+        "installCommand": "npm install @mauroandre/velojs",
+        "tags": [
+          "full-stack",
+          "hono",
+          "ssr"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Very early 0.0.x framework with a small ecosystem and APIs that can change rapidly.",
+          "Uses Vite AST transforms, route-module naming conventions, Node AsyncLocalStorage, and a Hono server, creating more framework lock-in than standalone Preact SSR."
+        ],
+        "alternatives": [
+          "neutron-build-core",
+          "fresh",
+          "preact-iso"
+        ],
+        "sections": {
+          "Introduction": "VeloJS is a full-stack TypeScript framework built from Hono, Preact, Vite, Signals, and wouter-preact. It provides nested routes, SSR and hydration, loaders, actions, endpoints, middleware, server-sent events, WebSockets, and static generation through route-module conventions.",
+          "Installation": "```bash\nnpm install @mauroandre/velojs\n```\n\nA VeloJS app also needs the package's Vite plugin and conventional `app/client.tsx`, `app/server.tsx`, and `app/routes.tsx` entry files; follow the repository's complete getting-started guide.",
+          "Preact configuration": "Add the VeloJS plugin to `vite.config.ts`. Route components are ordinary Preact components, while the plugin analyzes route modules and generates separate client and server entry points.\n\n```ts\nimport { defineConfig } from 'vite';\nimport velo from '@mauroandre/velojs/vite';\n\nexport default defineConfig({ plugins: [velo()] });\n```",
+          "Example": "```tsx\n// app/routes.tsx\nimport Home from './pages/Home';\n\nexport default [{ path: '/', module: Home }];\n```\n\n```tsx\n// app/pages/Home.tsx\nexport default function Home() {\n  return <main><h1>VeloJS with Preact</h1></main>;\n}\n```\n\nUse the current upstream route examples because route node and module contracts are still evolving.",
+          "SSR notes": "VeloJS renders Preact through `preact-render-to-string`, stores request data in AsyncLocalStorage, and hydrates loader data for client navigation. Production builds produce a client bundle plus a server entry.",
+          "Islands notes": "The documented architecture hydrates the routed application rather than exposing island-level partial hydration. Choose a framework with explicit islands if minimizing client JavaScript per component is the primary requirement.",
+          "Known limitations": "The broad feature surface and 0.0.x version make this a high-change dependency. Confirm deployment runtime, WebSocket support, generated routes, and concurrent-request isolation before production use.",
+          "Alternatives": "Compare [Neutron](/libraries/neutron-build-core) for another young full-stack Preact framework, [Fresh](/libraries/fresh) for islands, or [Preact ISO](/libraries/preact-iso) for a smaller routing and SSR layer."
+        }
+      }
+    },
+    {
+      "index": 30,
+      "name": "@klunqlabs/klunq-widget",
+      "packageName": "@klunqlabs/klunq-widget",
+      "repositoryUrl": "https://github.com/klunqlabs/klunq-widget",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/@klunqlabs/klunq-widget",
+      "reportDate": "2026-09-10",
+      "priority": 3,
+      "reportedCategory": "AI / Embedded Chat",
+      "reportedCompatibility": "Preact UI mounted independently; direct browser configuration can expose API keys.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "klunqlabs-klunq-widget",
+      "catalogDraft": {
+        "name": "Klunq Widget",
+        "slug": "klunqlabs-klunq-widget",
+        "shortDescription": "Embeddable Preact AI chat widget with Shadow DOM styling and browser automation tools.",
+        "category": "developer-tools",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "unsupported",
+        "packageName": "@klunqlabs/klunq-widget",
+        "repositoryUrl": "https://github.com/klunqlabs/klunq-widget",
+        "documentationUrl": "https://github.com/klunqlabs/klunq-widget#readme",
+        "homepageUrl": "https://github.com/klunqlabs/klunq-widget",
+        "npmUrl": "https://www.npmjs.com/package/@klunqlabs/klunq-widget",
+        "license": "MIT",
+        "installCommand": "npm install @klunqlabs/klunq-widget",
+        "tags": [
+          "ai",
+          "chat-widget",
+          "browser-automation"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "The documented embed attributes expose the model API key to every visitor; production deployments need a restricted disposable key or a controlled server proxy.",
+          "The agent can read page markup, click controls, fill fields, and navigate links, so it must not be embedded on sensitive pages without a threat model and strict provider controls.",
+          "Ships as a roughly 250 KB gzipped standalone bundle with its own Preact and LangChain runtime rather than integrating into the host Preact tree."
+        ],
+        "alternatives": [
+          "vercel-ai-sdk",
+          "deepgram-agents-widget"
+        ],
+        "sections": {
+          "Introduction": "`@klunqlabs/klunq-widget` is a self-contained AI chat and browser-agent widget built with Preact, LangChain, and Tailwind CSS. Its IIFE bundle creates a floating interface in a closed Shadow DOM and talks to OpenAI-compatible endpoints such as OpenAI, Ollama, or a proxy.",
+          "Installation": "```bash\nnpm install @klunqlabs/klunq-widget\n```\n\nThe intended deployment is the package's prebuilt `dist/klunq-widget.js`, often pinned through jsDelivr rather than imported as reusable Preact components.",
+          "Preact configuration": "No host Preact setup is required because the widget bundles and mounts its own Preact application. Configure it with `data-model`, `data-api-key`, and `data-base-url` attributes on the script tag. Do not place a long-lived production secret in those attributes.",
+          "Example": "```html\n<script\n  src=\"https://cdn.jsdelivr.net/npm/@klunqlabs/klunq-widget@1.0.3/dist/klunq-widget.js\"\n  data-model=\"local-model\"\n  data-api-key=\"ollama\"\n  data-base-url=\"http://localhost:11434/v1\"\n  data-scope=\"page\"\n></script>\n```\n\nFor public deployments, route requests through a server-side proxy with narrowly scoped credentials instead.",
+          "SSR notes": "The entry reads its script attributes, creates a Shadow DOM, monitors the API, and mounts into `document.body`; it is browser-only and should be loaded after server rendering.",
+          "Islands notes": "The entire widget behaves as an independent island with isolated styles and its own Preact runtime. It does not share context, Signals, or component state with the host application.",
+          "Known limitations": "Client-visible credentials are the primary security risk. Browser tools can operate on the host document, while the closed Shadow DOM and bundled runtime make customization and host-level integration limited.",
+          "Alternatives": "Build a controlled custom chat UI with [Vercel AI SDK](/libraries/vercel-ai-sdk), or use [Deepgram Agents Widget](/libraries/deepgram-agents-widget) for voice-agent interfaces with server-issued tokens."
+        }
+      }
+    },
+    {
+      "index": 31,
+      "name": "@xstate/store-preact",
+      "packageName": "@xstate/store-preact",
+      "repositoryUrl": "https://github.com/statelyai/xstate/tree/main/packages/xstate-store-preact",
+      "documentationUrl": "https://stately.ai/docs/xstate-store",
+      "npmUrl": "https://www.npmjs.com/package/@xstate/store-preact",
+      "reportDate": "2026-09-11",
+      "priority": 1,
+      "reportedCategory": "State Management",
+      "reportedCompatibility": "Official Preact store adapter; decide relationship to existing XState entry.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "Official dedicated Preact adapter package; complements the existing XState core entry with framework-specific bindings.",
+      "mappedCategory": "state-management",
+      "slug": "xstate-store-preact",
+      "catalogDraft": {
+        "name": "XState Store Preact",
+        "slug": "xstate-store-preact",
+        "shortDescription": "Official Preact bindings for @xstate/store selectors and triggers.",
+        "category": "state-management",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "@xstate/store-preact",
+        "repositoryUrl": "https://github.com/statelyai/xstate/tree/main/packages/xstate-store-preact",
+        "documentationUrl": "https://stately.ai/docs/xstate-store",
+        "npmUrl": "https://www.npmjs.com/package/@xstate/store-preact",
+        "license": "MIT",
+        "installCommand": "npm install @xstate/store-preact @xstate/store",
+        "tags": [
+          "xstate",
+          "store",
+          "state"
+        ],
+        "islands": true,
+        "esm": true,
+        "alternatives": [
+          "xstate",
+          "preact-signals"
+        ],
+        "sections": {
+          "Introduction": "`@xstate/store-preact` provides Preact hooks such as `useSelector` for stores created with `@xstate/store`. It complements the core [XState](/libraries/xstate) entry by documenting the dedicated Preact adapter introduced in XState Store v4.",
+          "Installation": "```bash\nnpm install @xstate/store-preact @xstate/store\n```",
+          "Preact configuration": "Import `createStore` from `@xstate/store` and Preact bindings from `@xstate/store-preact`. Framework bindings are no longer exported from `@xstate/store/preact` in v4.",
+          "Example": "```tsx\nimport { createStore } from \"@xstate/store\";\nimport { useSelector } from \"@xstate/store-preact\";\n\nconst store = createStore({\n  context: { count: 0 },\n  on: {\n    inc: (context) => ({ count: context.count + 1 }),\n  },\n});\n\nexport function Counter() {\n  const count = useSelector(store, (state) => state.context.count);\n  return <button onClick={() => store.trigger.inc()}>Count: {count}</button>;\n}\n```",
+          "SSR notes": "Store reads during render should use snapshot APIs on the server and subscribe on the client. Verify hydration when preloading store state.",
+          "Islands notes": "Shared stores can back multiple islands if you expose selectors scoped to each widget's concerns.",
+          "Known limitations": "Requires TypeScript 5.4+ according to upstream XState Store docs. Use full XState when you need statecharts rather than lightweight stores.",
+          "Alternatives": "Compare with [Preact Signals](/libraries/preact-signals) for fine-grained reactivity or the core [XState](/libraries/xstate) package for state machines."
+        }
+      }
+    },
+    {
+      "index": 32,
+      "name": "extension",
+      "packageName": "extension",
+      "repositoryUrl": "https://github.com/extension-js/extension.js",
+      "documentationUrl": "https://extension.js.org/",
+      "npmUrl": "https://www.npmjs.com/package/extension",
+      "reportDate": "2026-09-11",
+      "priority": 1,
+      "reportedCategory": "Browser Extensions",
+      "reportedCompatibility": "Detects Preact and has refresh shim; Preact is one supported frontend option.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "extension",
+      "catalogDraft": {
+        "name": "Extension.js",
+        "slug": "extension-js",
+        "shortDescription": "Cross-browser extension framework with first-class Preact support and HMR.",
+        "category": "developer-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "unsupported",
+        "packageName": "extension",
+        "repositoryUrl": "https://github.com/extension-js/extension.js",
+        "documentationUrl": "https://extension.js.org/",
+        "homepageUrl": "https://extension.js.org/",
+        "npmUrl": "https://www.npmjs.com/package/extension",
+        "license": "MIT",
+        "installCommand": "npm install -D extension",
+        "tags": [
+          "browser-extension",
+          "manifest-v3",
+          "hmr"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Targets browser extension runtimes rather than conventional web applications.",
+          "Preact is one supported frontend option alongside React, Vue and Svelte templates."
+        ],
+        "sections": {
+          "Introduction": "Extension.js is a cross-browser extension toolchain with Manifest V3 defaults, store-ready zip builds and hot module replacement for background, content, popup and options scripts. Preact is supported through dedicated templates and refresh shims.",
+          "Installation": "```bash\nnpm install -D extension\n```",
+          "Preact configuration": "Scaffold with the Preact template (`npx extension@latest create my-extension`) or add Extension.js to an existing extension repository. The CLI detects Preact and wires refresh support for extension entry points.",
+          "Example": "```bash\nnpx extension@latest create my-preact-extension --template preact\ncd my-preact-extension\nnpm run dev\n```",
+          "SSR notes": "Not applicable. Extension pages run inside browser extension contexts rather than on a hosted SSR server.",
+          "Islands notes": "Popup and options pages behave like small isolated Preact apps; content scripts should minimize shared state with page DOM.",
+          "Known limitations": "Validate target browsers (Chrome, Edge, Firefox, Safari) for your manifest features. Extension.js focuses on developer experience rather than acting as a general web app framework.",
+          "Alternatives": "Also evaluate WXT, Plasmo or CRXJS if you need different extension toolchain trade-offs."
+        }
+      }
+    },
+    {
+      "index": 33,
+      "name": "mixed-signals",
+      "packageName": "mixed-signals",
+      "repositoryUrl": "https://github.com/developit/mixed-signals",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/mixed-signals",
+      "reportDate": "2026-09-11",
+      "priority": 1,
+      "reportedCategory": "Signals / RPC",
+      "reportedCompatibility": "Built on Signals Core for cross-context state; verify transports and reconnection.",
+      "reportedActivity": "",
+      "reportedLimitations": [
+        "transports and reconnection"
+      ],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "state-management",
+      "slug": "mixed-signals",
+      "catalogDraft": {
+        "name": "Mixed Signals",
+        "slug": "mixed-signals",
+        "shortDescription": "Transport-agnostic RPC and signal reflection built on Preact Signals Core.",
+        "category": "state-management",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "limited",
+        "packageName": "mixed-signals",
+        "repositoryUrl": "https://github.com/developit/mixed-signals",
+        "documentationUrl": "https://github.com/developit/mixed-signals",
+        "npmUrl": "https://www.npmjs.com/package/mixed-signals",
+        "license": "MIT",
+        "installCommand": "npm install mixed-signals",
+        "tags": [
+          "signals",
+          "rpc",
+          "realtime"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Requires configuring a transport (WebSocket, SSE, postMessage, etc.) and server-side model registration.",
+          "Reconnection and authorization semantics depend on your RPC transport implementation."
+        ],
+        "alternatives": [
+          "preact-signals"
+        ],
+        "sections": {
+          "Introduction": "Mixed Signals reflects server-side Preact models and signals—created with `@preact/signals-core`—to connected clients through a lightweight RPC protocol. Client facades stay in sync without manually mirroring every signal update.",
+          "Installation": "```bash\nnpm install mixed-signals\n```",
+          "Preact configuration": "Use `mixed-signals/server` on the host and `mixed-signals/client` inside Preact components. Register models on the server RPC instance before accepting client connections.",
+          "Example": "```tsx\nimport { useSignal } from \"@preact/signals\";\nimport { RPCClient } from \"mixed-signals/client\";\nimport type { Root } from \"./server\";\n\nconst rpc = new RPCClient<Root>(transport);\n\nexport function TodoList() {\n  const todos = useSignal(rpc.models.todos.all);\n  return (\n    <ul>\n      {todos.value.map((todo) => (\n        <li key={todo.text.value}>{todo.text.value}</li>\n      ))}\n    </ul>\n  );\n}\n```",
+          "SSR notes": "Server models run outside typical Preact SSR trees. Render client proxies only after the RPC session is established.",
+          "Islands notes": "Real-time widgets backed by shared server state are natural island candidates; isolate RPC clients per island root.",
+          "Known limitations": "Verify transport security, reconnection and cleanup for your deployment. The protocol optimizes deltas but still requires a correctly configured server model registry.",
+          "Alternatives": "For local-only reactive state, use [Preact Signals](/libraries/preact-signals) without RPC overhead."
+        }
+      }
+    },
+    {
+      "index": 34,
+      "name": "@css-hooks/preact",
+      "packageName": "@css-hooks/preact",
+      "repositoryUrl": "https://github.com/css-hooks/css-hooks",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/@css-hooks/preact",
+      "reportDate": "2026-09-11",
+      "priority": 1,
+      "reportedCategory": "Styling",
+      "reportedCompatibility": "Dedicated Preact adapter; verify SSR, hydration and browser support.",
+      "reportedActivity": "",
+      "reportedLimitations": [
+        "SSR, hydration and browser support"
+      ],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "css-hooks-preact",
+      "catalogDraft": {
+        "name": "CSS Hooks Preact",
+        "slug": "css-hooks-preact",
+        "shortDescription": "CSS-in-JS hooks for conditional inline styles in Preact components.",
+        "category": "developer-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "@css-hooks/preact",
+        "repositoryUrl": "https://github.com/css-hooks/css-hooks",
+        "documentationUrl": "https://css-hooks.com",
+        "npmUrl": "https://www.npmjs.com/package/@css-hooks/preact",
+        "license": "MIT",
+        "installCommand": "npm install @css-hooks/preact",
+        "tags": [
+          "styling",
+          "css-in-js",
+          "inline-styles"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Relies on modern CSS variable features; verify browser support for your audience.",
+          "SSR and hydration behavior should be validated when styles depend on client-only measurements."
+        ],
+        "sections": {
+          "Introduction": "CSS Hooks adds conditional styling to native Preact inline styles using CSS variables—covering pseudo-classes, selectors and container queries without runtime style injection. `@css-hooks/preact` is the dedicated Preact adapter.",
+          "Installation": "```bash\nnpm install @css-hooks/preact\n```",
+          "Preact configuration": "Import helpers such as `pipe` and `on` from `@css-hooks/preact` and compose them inside component `style` props.",
+          "Example": "```tsx\nimport { pipe, on } from \"@css-hooks/preact\";\n\nexport function SaveButton() {\n  return (\n    <button\n      style={pipe(\n        { background: \"#004982\", color: \"#eef0f0\" },\n        on(\"&:hover\", { background: \"#1b659c\" }),\n        on(\"&:active\", { background: \"#9f3131\" }),\n      )}\n    >\n      Save changes\n    </button>\n  );\n}\n```",
+          "SSR notes": "Inline styles serialize with the Preact element tree. Confirm container-query and pseudo-class hooks behave as expected after hydration.",
+          "Islands notes": "Hook-based styles work inside islands because they avoid global stylesheets; still scope any shared CSS variables at the island root.",
+          "Known limitations": "Upstream browser support starts at Chrome 99+, Safari 15.4+ and Firefox 97+. Complex responsive rules should be tested in target browsers.",
+          "Alternatives": "For utility-first class workflows see [Tailwind CSS](/libraries/tailwind-css) or [Panda CSS](/libraries/panda-css)."
+        }
+      }
+    },
+    {
+      "index": 35,
+      "name": "@preliquify/preact",
+      "packageName": "@preliquify/preact",
+      "repositoryUrl": "https://github.com/MichaelNusair/preliquify",
+      "documentationUrl": "https://github.com/MichaelNusair/preliquify/tree/main/packages/preact",
+      "npmUrl": "https://www.npmjs.com/package/@preliquify/preact",
+      "reportDate": "2026-09-11",
+      "priority": 2,
+      "reportedCategory": "E-Commerce / Shopify",
+      "reportedCompatibility": "Dedicated Preact-to-Liquid integration; specialized and older release.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "preliquify-preact",
+      "catalogDraft": {
+        "name": "Preliquify Preact",
+        "slug": "preliquify-preact",
+        "shortDescription": "Preact bindings to compile components into Shopify Liquid with client hydration.",
+        "category": "developer-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "limited",
+        "packageName": "@preliquify/preact",
+        "repositoryUrl": "https://github.com/MichaelNusair/preliquify/tree/main/packages/preact",
+        "documentationUrl": "https://github.com/MichaelNusair/preliquify#readme",
+        "homepageUrl": "https://github.com/MichaelNusair/preliquify#readme",
+        "npmUrl": "https://www.npmjs.com/package/@preliquify/preact",
+        "license": "MIT",
+        "installCommand": "npm install -D @preliquify/cli @preliquify/preact",
+        "tags": [
+          "shopify",
+          "liquid",
+          "themekit"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "Specialized for Shopify Liquid theme workflows—not a general Preact UI library.",
+          "Components must use Preliquify primitives (`For`, `Conditional`, `$` expressions) instead of raw JavaScript array methods for Liquid-safe compilation."
+        ],
+        "alternatives": [
+          "preact-custom-element"
+        ],
+        "sections": {
+          "Introduction": "`@preliquify/preact` lets you author Preact components that compile to Shopify Liquid snippets plus client bundles for hydration. Primitives such as `For`, `Conditional`, and `$` generate Liquid control flow at build time while sharing one component definition for runtime hydration.",
+          "Installation": "```bash\nnpm install -D @preliquify/cli @preliquify/preact\n```",
+          "Preact configuration": "Configure `@preliquify/cli` with entry snippets and output directories, then export snippets via `createLiquidSnippet` from `@preliquify/preact`. Default JSX import source is Preact.",
+          "Example": "```tsx\nimport { createLiquidSnippet, For, Conditional, $ } from \"@preliquify/preact\";\n\nfunction ProductCard({ product, showPrice }) {\n  return (\n    <div className=\"product-card\">\n      <h3>{product.title}</h3>\n      <Conditional when={showPrice}>\n        <p className=\"price\">${product.price}</p>\n      </Conditional>\n    </div>\n  );\n}\n\nexport default createLiquidSnippet(ProductCard, {\n  product: \"product\",\n  showPrice: \"showPrice\",\n});\n```\n\nBuild with `preliquify build`, then render in Liquid:\n\n```liquid\n{% render 'ProductCard-prlq', product: product, showPrice: true %}\n```",
+          "SSR notes": "Liquid templates render on Shopify at request time; Preliquify client bundles hydrate in the browser. Build-time compilation replaces SSR in the traditional Preact sense.",
+          "Islands notes": "Each compiled snippet behaves like a Shopify island: Liquid outputs static HTML, client bundles attach interactivity.",
+          "Known limitations": "Avoid JavaScript `.map()` on Liquid props—use `<For each={$.var('products')} as=\"product\">` instead. Requires theme asset wiring for runtime scripts.",
+          "Alternatives": "For non-Shopify embedding, [Preact Custom Element](/libraries/preact-custom-element) wraps components as standard web components."
+        }
+      }
+    },
+    {
+      "index": 36,
+      "name": "@signaldb/preact",
+      "packageName": "@signaldb/preact",
+      "repositoryUrl": "https://github.com/maxnowack/signaldb",
+      "documentationUrl": "https://signaldb.js.org/",
+      "npmUrl": "https://www.npmjs.com/package/@signaldb/preact",
+      "reportDate": "2026-09-11",
+      "priority": 2,
+      "reportedCategory": "Local-first Data / Signals",
+      "reportedCompatibility": "Official Signals adapter; confirm compatibility of older adapter with current core.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "state-management",
+      "slug": "signaldb-preact",
+      "catalogDraft": {
+        "name": "SignalDB Preact",
+        "slug": "signaldb-preact",
+        "shortDescription": "Preact Signals reactivity adapter for the SignalDB local-first database.",
+        "category": "state-management",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "limited",
+        "packageName": "@signaldb/preact",
+        "repositoryUrl": "https://github.com/maxnowack/signaldb",
+        "documentationUrl": "https://signaldb.js.org/reference/preact/",
+        "homepageUrl": "https://signaldb.js.org",
+        "npmUrl": "https://www.npmjs.com/package/@signaldb/preact",
+        "license": "MIT",
+        "installCommand": "npm install @signaldb/preact @signaldb/core @preact/signals-core",
+        "tags": [
+          "database",
+          "local-first",
+          "signals"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Preact Signals lacks automatic reactive scope cleanup; cursor cleanup must run in the effect teardown.",
+          "Pass `{ reactive: false }` to queries outside reactive scopes to avoid memory leaks."
+        ],
+        "alternatives": [
+          "preact-signals",
+          "unistore"
+        ],
+        "sections": {
+          "Introduction": "`@signaldb/preact` connects [SignalDB](https://signaldb.js.org)—a local-first JavaScript database with real-time sync—to Preact Signals via the default `preactReactivityAdapter` export.",
+          "Installation": "```bash\nnpm install @signaldb/preact @signaldb/core @preact/signals-core\n```",
+          "Preact configuration": "Pass `preactReactivityAdapter` as the `reactivity` option when constructing SignalDB collections. Use `effect` from `@preact/signals-core` to subscribe to live query results.",
+          "Example": "```ts\nimport { Collection } from '@signaldb/core';\nimport preactReactivityAdapter from '@signaldb/preact';\nimport { effect } from '@preact/signals-core';\n\nconst posts = new Collection({\n  reactivity: preactReactivityAdapter,\n});\n\neffect(() => {\n  const cursor = posts.find({ author: 'John' });\n  console.log(cursor.count());\n  return () => {\n    cursor.cleanup();\n  };\n});\n```",
+          "SSR notes": "SignalDB targets client-side reactive data. Server render should avoid opening reactive cursors unless you explicitly disable reactivity with `{ reactive: false }`.",
+          "Islands notes": "Collections can back island state when the effect scope is tied to the island lifecycle—always cleanup cursors on unmount.",
+          "Known limitations": "Manual cursor cleanup is required because Preact Signals cannot auto-dispose database subscriptions. Confirm adapter version compatibility with your `@signaldb/core` release.",
+          "Alternatives": "For signal state without a database layer, use [Preact Signals](/libraries/preact-signals); for simpler stores see [Unistore](/libraries/unistore)."
+        }
+      }
+    },
+    {
+      "index": 37,
+      "name": "hello-csv",
+      "packageName": "hello-csv",
+      "repositoryUrl": "https://github.com/HelloCSV/HelloCSV",
+      "documentationUrl": "https://hellocsv.mintlify.app/",
+      "npmUrl": "https://www.npmjs.com/package/hello-csv",
+      "reportDate": "2026-09-11",
+      "priority": 2,
+      "reportedCategory": "Data Import / CSV",
+      "reportedCompatibility": "UI built in Preact but some React-origin dependencies; do not call fully React-free.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "forms",
+      "slug": "hello-csv",
+      "catalogDraft": {
+        "name": "Hello CSV",
+        "slug": "hello-csv",
+        "shortDescription": "Drop-in CSV importer workflow with Preact adapter and framework-agnostic bundled API.",
+        "category": "forms",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "unsupported",
+        "packageName": "hello-csv",
+        "repositoryUrl": "https://github.com/HelloCSV/HelloCSV",
+        "documentationUrl": "https://hellocsv.mintlify.app/",
+        "homepageUrl": "https://hellocsv.github.io/HelloCSV/",
+        "npmUrl": "https://www.npmjs.com/package/hello-csv",
+        "license": "MIT",
+        "installCommand": "npm install hello-csv",
+        "tags": [
+          "csv",
+          "import",
+          "forms",
+          "data"
+        ],
+        "islands": true,
+        "esm": true,
+        "limitations": [
+          "UI is built with Preact but lists React-origin dependencies such as `@headlessui/react`, `@heroicons/react`, and `@tanstack/react-table`—not a React-free dependency tree.",
+          "Peer dependencies include both Preact and React; bundlers may need aliases when tree-shaking React out."
+        ],
+        "alternatives": [
+          "tanstack-form"
+        ],
+        "sections": {
+          "Introduction": "[Hello CSV](https://hellocsv.mintlify.app/) is a frontend-only CSV importer with custom columns, validators, transformers, and a four-step upload workflow. The core UI is Preact-based with dedicated `hello-csv/preact` and `hello-csv/bundled` entry points.",
+          "Installation": "```bash\nnpm install hello-csv\n```",
+          "Preact configuration": "Import the Preact adapter subpath and stylesheet:\n\n```jsx\nimport Importer from 'hello-csv/preact';\nimport 'hello-csv/preact/index.css';\n```\n\nFor no-build pages, use `renderImporter` from `hello-csv/bundled`.",
+          "Example": "```jsx\nimport Importer from 'hello-csv/preact';\nimport 'hello-csv/preact/index.css';\n\nexport function CsvUpload() {\n  return (\n    <Importer\n      sheets={[\n        {\n          id: 'employees',\n          label: 'Employees',\n          columns: [\n            {\n              label: 'Name',\n              id: 'name',\n              type: 'string',\n              validators: [{ validate: 'required' }],\n            },\n            {\n              label: 'Email',\n              id: 'email',\n              type: 'string',\n              validators: [{ validate: 'required' }],\n            },\n          ],\n        },\n      ]}\n      onComplete={(data) => {\n        console.log(data);\n      }}\n    />\n  );\n}\n```\n\nBundled imperative API:\n\n```jsx\nimport { renderImporter } from 'hello-csv/bundled';\n\nrenderImporter(document.querySelector('#app'), {\n  sheets: [{ id: 'employees', label: 'Employees', columns: [{ label: 'Name', id: 'name', type: 'string', validators: [{ validate: 'required' }] }] }],\n});\n```",
+          "SSR notes": "File parsing, drag-and-drop, and preview grids require browser APIs. Mount the importer client-side only.",
+          "Islands notes": "Excellent island candidate: load the importer on admin pages without pulling CSV UI into your main bundle.",
+          "Known limitations": "React-origin table and headless UI dependencies mean the package is Preact-native at its core but not React-free. Community-tested with CI on GitHub Actions—validate peer resolution in your bundler.",
+          "Alternatives": "For hand-built form flows without a CSV wizard, see [TanStack Form](/libraries/tanstack-form)."
+        }
+      }
+    },
+    {
+      "index": 38,
+      "name": "@nxext/preact",
+      "packageName": "@nxext/preact",
+      "repositoryUrl": "https://github.com/nxext/nx-extensions/tree/main/packages/preact",
+      "documentationUrl": "https://nxext.dev/docs/preact/overview",
+      "npmUrl": "https://www.npmjs.com/package/@nxext/preact",
+      "reportDate": "2026-09-11",
+      "priority": 2,
+      "reportedCategory": "Monorepos / Nx",
+      "reportedCompatibility": "Dedicated Nx Preact plugin; verify current Nx-major compatibility.",
+      "reportedActivity": "",
+      "reportedLimitations": [
+        "current Nx-major compatibility"
+      ],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "nxext-preact",
+      "catalogDraft": {
+        "name": "Nxext Preact",
+        "slug": "nxext-preact",
+        "shortDescription": "Nx plugin generating and building Preact applications and libraries in Nx workspaces.",
+        "category": "build-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "native",
+        "ssrSupport": "supported",
+        "packageName": "@nxext/preact",
+        "repositoryUrl": "https://github.com/nxext/nx-extensions/tree/main/packages/preact",
+        "documentationUrl": "https://nxext.dev/docs/preact/overview",
+        "homepageUrl": "https://nxext.dev/",
+        "npmUrl": "https://www.npmjs.com/package/@nxext/preact",
+        "license": "MIT",
+        "installCommand": "npm install -D @nxext/preact",
+        "tags": [
+          "nx",
+          "monorepo",
+          "generator"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Peer dependencies target Nx 23.x packages; verify compatibility when upgrading Nx major versions.",
+          "Opinionated Nx executors and generators—value appears inside Nx monorepos, not standalone Vite apps."
+        ],
+        "alternatives": [
+          "preact-cli",
+          "preact-preset-vite"
+        ],
+        "sections": {
+          "Introduction": "`@nxext/preact` adds Preact application and library generators to [Nx](https://nx.dev) workspaces via the [Nxext](https://nxext.dev) project. It wires Preact build, test, and e2e targets into Nx's task graph.",
+          "Installation": "```bash\nnpm install -D @nxext/preact\n```",
+          "Preact configuration": "After installation, generate a Preact app or library with Nx CLI. The plugin configures Vite-based Preact tooling consistent with other Nxext framework plugins.",
+          "Example": "```bash\nnx g @nxext/preact:app my-app\nnx g @nxext/preact:library my-lib\n\nnx build my-app\nnx test my-app\nnx e2e my-app\n```",
+          "SSR notes": "SSR support depends on the generated app template and chosen Nx targets. Review Nxext docs when adding custom server or prerender executors.",
+          "Islands notes": "Monorepo tooling only; island architecture is implemented in application code the generator scaffolds.",
+          "Known limitations": "Requires aligned `@nx/devkit`, `@nx/vite`, and related Nx 23 peer packages. Not a substitute for `@preact/preset-vite` outside Nx.",
+          "Alternatives": "Non-Nx projects use [Preact CLI](/libraries/preact-cli) or [@preact/preset-vite](/libraries/preact-preset-vite)."
+        }
+      }
+    },
+    {
+      "index": 39,
+      "name": "@nifrajs/web-preact",
+      "packageName": "@nifrajs/web-preact",
+      "repositoryUrl": "https://github.com/nifrajs/nifra/tree/main/packages/web-preact",
+      "documentationUrl": "https://nifra.dev/docs",
+      "npmUrl": "https://www.npmjs.com/package/@nifrajs/web-preact",
+      "reportDate": "2026-09-11",
+      "priority": 3,
+      "reportedCategory": "Streaming SSR",
+      "reportedCompatibility": "Dedicated Preact renderer; very small ecosystem, classify experimental/specialized.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "ssr",
+      "slug": "nifrajs-web-preact",
+      "catalogDraft": {
+        "name": "Nifra Preact Renderer",
+        "slug": "nifrajs-web-preact",
+        "shortDescription": "Preact rendering adapter for Nifra with streaming SSR, hydration, and framework helpers.",
+        "category": "ssr",
+        "compatibilityStatus": "experimental",
+        "maintenanceStatus": "active",
+        "typescriptSupport": "bundled-types",
+        "ssrSupport": "supported",
+        "packageName": "@nifrajs/web-preact",
+        "repositoryUrl": "https://github.com/nifrajs/nifra/tree/main/packages/web-preact",
+        "documentationUrl": "https://nifra.dev/docs",
+        "homepageUrl": "https://nifra.dev/",
+        "npmUrl": "https://www.npmjs.com/package/@nifrajs/web-preact",
+        "license": "MIT",
+        "installCommand": "bun add @nifrajs/web-preact preact",
+        "tags": [
+          "nifra",
+          "streaming-ssr",
+          "hydration"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Adapter is tied to the Nifra full-stack framework and its matching @nifrajs packages rather than being a standalone Preact renderer.",
+          "The ecosystem is small, and the documented scaffold and development workflow are Bun-first."
+        ],
+        "alternatives": [
+          "preact-render-to-string",
+          "neutron-build-core",
+          "fresh"
+        ],
+        "sections": {
+          "Introduction": "`@nifrajs/web-preact` supplies the Preact `RenderAdapter` for `@nifrajs/web`. It is part of Nifra's multi-framework full-stack system and includes server rendering, streaming, hydration, routing, query, content, image, i18n, and deferred-data integration points.",
+          "Installation": "```bash\nbun add @nifrajs/web-preact preact\n```\n\nFor a complete project, the upstream recommendation is to scaffold with `bun create nifra`, which installs compatible core and web packages.",
+          "Preact configuration": "Pass the exported `preactAdapter` to Nifra's web rendering setup. Client helpers are exposed from `@nifrajs/web-preact/client`, while feature-specific helpers have subpath exports such as `/router`, `/query`, and `/await`.\n\n```ts\nimport { preactAdapter } from '@nifrajs/web-preact';\nimport { renderPage } from '@nifrajs/web';\n\n// Supply preactAdapter in the renderPage options configured by your Nifra app.\n```",
+          "Example": "```tsx\nimport { preactAdapter } from '@nifrajs/web-preact';\n\nexport function Page() {\n  return <main><h1>Nifra with Preact</h1></main>;\n}\n\nexport const renderer = preactAdapter;\n```\n\nUse the Nifra scaffold for the actual route and `renderPage` wiring because those contracts span multiple packages.",
+          "SSR notes": "The adapter supports string and ReadableStream rendering through `preact-render-to-string`. Its Bun runtime path deliberately resolves the renderer from the consumer app to prevent hooks from binding to a second Preact copy.",
+          "Islands notes": "Nifra documents hydration for rendered pages rather than a Preact-specific island API in this adapter. Verify client boundaries and emitted JavaScript against the application template.",
+          "Known limitations": "All `@nifrajs/*` package versions should remain aligned. Custom dependency layouts need testing because duplicate Preact instances can break hooks during server rendering.",
+          "Alternatives": "Use [Preact Render to String](/libraries/preact-render-to-string) directly for minimal SSR, [Neutron](/libraries/neutron-build-core) for another full-stack layer, or [Fresh](/libraries/fresh) for explicit islands."
+        }
+      }
+    },
+    {
+      "index": 40,
+      "name": "hast-util-to-jsx-runtime",
+      "packageName": "hast-util-to-jsx-runtime",
+      "repositoryUrl": "https://github.com/syntax-tree/hast-util-to-jsx-runtime",
+      "documentationUrl": "",
+      "npmUrl": "https://www.npmjs.com/package/hast-util-to-jsx-runtime",
+      "reportDate": "2026-09-11",
+      "priority": 3,
+      "reportedCategory": "Content / HAST",
+      "reportedCompatibility": "Official Preact JSX-runtime example; framework-neutral and especially relevant to PreactPress.",
+      "reportedActivity": "",
+      "reportedLimitations": [],
+      "status": "pending",
+      "importDecision": "new",
+      "decisionReason": "No matching package, repository or slug in the current catalog.",
+      "mappedCategory": "developer-tools",
+      "slug": "hast-util-to-jsx-runtime",
+      "catalogDraft": {
+        "name": "hast-util-to-jsx-runtime",
+        "slug": "hast-util-to-jsx-runtime",
+        "shortDescription": "Transforms HAST syntax trees into Preact VNodes through the automatic JSX runtime.",
+        "category": "developer-tools",
+        "compatibilityStatus": "native",
+        "maintenanceStatus": "maintenance",
+        "typescriptSupport": "bundled-types",
+        "ssrSupport": "supported",
+        "packageName": "hast-util-to-jsx-runtime",
+        "repositoryUrl": "https://github.com/syntax-tree/hast-util-to-jsx-runtime",
+        "documentationUrl": "https://github.com/syntax-tree/hast-util-to-jsx-runtime#readme",
+        "homepageUrl": "https://github.com/syntax-tree/hast-util-to-jsx-runtime#readme",
+        "npmUrl": "https://www.npmjs.com/package/hast-util-to-jsx-runtime",
+        "license": "MIT",
+        "installCommand": "npm install hast-util-to-jsx-runtime preact",
+        "tags": [
+          "hast",
+          "content",
+          "jsx-runtime"
+        ],
+        "islands": false,
+        "esm": true,
+        "limitations": [
+          "Framework-neutral transformer rather than a Preact component library; callers must provide the correct JSX runtime and handle untrusted-tree policies.",
+          "ESM-only and requires Node.js 16 or newer; custom components and MDX expressions require additional configuration."
+        ],
+        "alternatives": [
+          "preact-markup",
+          "htm"
+        ],
+        "sections": {
+          "Introduction": "`hast-util-to-jsx-runtime` converts a HAST tree into values created by an automatic JSX runtime. Passing `Fragment`, `jsx`, and `jsxs` from `preact/jsx-runtime` produces Preact VNodes, which is useful for unified-based content pipelines and renderers such as PreactPress.",
+          "Installation": "```bash\nnpm install hast-util-to-jsx-runtime preact\n```",
+          "Preact configuration": "Supply Preact's automatic runtime functions and set `elementAttributeNameCase: 'html'`. The HTML attribute mode matters because Preact's runtime accepts HTML-style property names rather than React's property casing for this conversion.\n\n```js\nimport { Fragment, jsx, jsxs } from 'preact/jsx-runtime';\n```",
+          "Example": "```js\nimport { h } from 'hastscript';\nimport { toJsxRuntime } from 'hast-util-to-jsx-runtime';\nimport { Fragment, jsx, jsxs } from 'preact/jsx-runtime';\nimport render from 'preact-render-to-string';\n\nconst vnode = toJsxRuntime(h('h1', 'Hello'), {\n  Fragment,\n  jsx,\n  jsxs,\n  elementAttributeNameCase: 'html'\n});\n\nconsole.log(render(vnode));\n```",
+          "SSR notes": "The transformation itself does not require a DOM. Resulting VNodes can be passed to `preact-render-to-string`, while caller-provided custom components determine whether the complete tree remains server-safe.",
+          "Islands notes": "The utility only constructs VNodes and does not serialize props, emit client modules, or hydrate islands. An SSG or framework must define those boundaries around the converted content.",
+          "Known limitations": "Treat untrusted HAST carefully: pass through only intended properties and components. MDX nodes can throw unless configured, and source-position behavior depends on development runtime options.",
+          "Alternatives": "For rendering HTML strings in Preact, compare [Preact Markup](/libraries/preact-markup); for authoring VNodes with tagged templates, see [HTM](/libraries/htm)."
+        }
+      }
+    }
+  ]
+}

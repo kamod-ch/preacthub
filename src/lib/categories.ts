@@ -88,6 +88,20 @@ export const categories = [
     section: "preact",
   },
   {
+    slug: "build-tools",
+    name: "Build Tools",
+    description: "Bundlers, compilers, plugins and toolchain integrations for Preact projects.",
+    icon: "⚙",
+    section: "preact",
+  },
+  {
+    slug: "editors",
+    name: "Editors",
+    description: "Code and rich-text editor components with Preact bindings.",
+    icon: "✎",
+    section: "preact",
+  },
+  {
     slug: "ai-infrastructure",
     name: "AI Infrastructure",
     description:

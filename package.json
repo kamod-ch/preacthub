@@ -20,6 +20,9 @@
     "new:library": "node scripts/new-library.mjs",
     "new:category": "node scripts/new-category.mjs",
     "verify:library": "node scripts/verify-library.mjs",
+    "import:parse-candidates": "node scripts/parse-preacthub-candidates.mjs",
+    "import:merge-drafts": "node scripts/merge-catalog-drafts.mjs",
+    "import:candidates": "node scripts/import-library-candidates.mjs",
     "prepare:audit": "npm run build --prefix ../kamod-ai-audit/packages/core",
     "audit:site": "node scripts/audit-site.mjs",
     "audit:site:report": "node scripts/audit-site.mjs --output reports/audit"

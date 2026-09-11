@@ -26,28 +26,58 @@ function loadEntry(slug) {
   return { file, raw, data: parsed.data };
 }
 
+function resolveCompatibilityStatus(data) {
+  return data.compatibilityStatus ?? data.compatibility ?? "unknown";
+}
+
+function resolveMaintenanceStatus(data) {
+  return data.maintenanceStatus ?? data.status ?? "unknown";
+}
+
+function resolveTypescriptSupport(data) {
+  if (data.typescriptSupport) return data.typescriptSupport;
+  if (typeof data.typescript === "boolean") return data.typescript ? "native" : "none";
+  return "unknown";
+}
+
+function resolveSsrSupport(data) {
+  if (data.ssrSupport) return data.ssrSupport;
+  if (typeof data.ssr === "boolean") return data.ssr ? "supported" : "unsupported";
+  return "unknown";
+}
+
 function printChecklist(entry) {
   const data = entry.data;
+  const compatibilityStatus = resolveCompatibilityStatus(data);
+  const maintenanceStatus = resolveMaintenanceStatus(data);
+  const typescriptSupport = resolveTypescriptSupport(data);
+  const ssrSupport = resolveSsrSupport(data);
+  const lastVerifiedAt = data.lastVerifiedAt ?? data.lastVerified ?? "not set";
+
   console.log(`Library verification checklist: ${data.name} (${data.slug})`);
   console.log(`File: ${entry.file}`);
   console.log("");
   console.log("Metadata snapshot:");
-  console.log(`- compatibility: ${data.compatibility}`);
-  console.log(`- status: ${data.status}`);
-  console.log(`- typescript/ssr/islands/esm: ${data.typescript}/${data.ssr}/${data.islands}/${data.esm}`);
-  console.log(`- lastVerified: ${data.lastVerified ?? "not set"}`);
+  console.log(`- compatibilityStatus: ${compatibilityStatus}`);
+  console.log(`- maintenanceStatus: ${maintenanceStatus}`);
+  console.log(`- typescriptSupport/ssrSupport/islands/esm: ${typescriptSupport}/${ssrSupport}/${data.islands}/${data.esm}`);
+  console.log(`- lastVerifiedAt: ${lastVerifiedAt}`);
+  console.log(`- verificationSource: ${data.verificationSource ?? "not set"}`);
+  console.log(`- testedPreactVersions: ${(data.testedPreactVersions ?? []).join(", ") || "not set"}`);
   console.log(`- qualityBadges: ${(data.qualityBadges ?? []).join(", ") || "none"}`);
   console.log(`- auditScore/auditDate: ${data.auditScore ?? "not set"} / ${data.auditDate ?? "not set"}`);
   console.log("");
   console.log("Manual verification steps:");
   console.log(`1. npm install ${data.packageName ?? data.slug}`);
   console.log("2. Import the primary API in a small Preact/Vite reproduction.");
-  if (data.ssr) console.log("3. Verify SSR rendering path.");
+  if (ssrSupport === "supported" || ssrSupport === "limited") {
+    console.log("3. Verify SSR rendering path.");
+  }
   if (data.islands) console.log("4. Verify island-scoped initialization and cleanup.");
-  console.log("5. Record testedWith.preact and testedWith.library when verified.");
-  console.log("6. Set lastVerified only after completing the checks above.");
-  if (data.documentation || data.homepage) {
-    const docsUrl = data.documentation ?? data.homepage;
+  console.log("5. Record testedPreactVersions when verification is complete.");
+  console.log("6. Set lastVerifiedAt and verificationSource only after completing the checks above.");
+  const docsUrl = data.documentationUrl ?? data.documentation ?? data.homepageUrl ?? data.homepage;
+  if (docsUrl) {
     console.log("");
     console.log("AI readiness audit (optional):");
     console.log(`- kamod-ai-audit audit ${docsUrl} --output ./reports/${data.slug}`);
