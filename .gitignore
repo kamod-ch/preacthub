@@ -14,4 +14,9 @@ coverage/
 playwright-report/
 test-results/
 figma/
-docs/
+
+# Local documentation artifacts (the candidate import source is versioned for tests/tools)
+docs/*
+!docs/import/
+docs/import/*
+!docs/import/preacthub-candidates.md
