@@ -1,9 +1,5 @@
 allowBuilds:
   esbuild: false
-peerDependencyRules:
-  allowedVersions:
-    '@kamod-ch/themes': 0.2.1
 minimumReleaseAgeExclude:
-  - '@kamod-ch/preactpress@3.0.1'
-  - '@kamod-ch/themes@0.2.1'
-  - '@kamod-ch/ui@2.0.1'
+  - '@kamod-ch/themes@0.2.2'
+  - '@kamod-ch/ui@2.1.0'
