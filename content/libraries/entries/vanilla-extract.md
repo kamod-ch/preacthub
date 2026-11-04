@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: vanilla-extract
+title: "vanilla-extract"
 slug: vanilla-extract
+description: "Zero-runtime CSS-in-TypeScript solution independent of Preact."
 shortDescription: Zero-runtime CSS-in-TypeScript solution independent of Preact.
 category: developer-tools
 compatibilityStatus: native

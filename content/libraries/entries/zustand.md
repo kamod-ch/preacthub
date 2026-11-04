@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Zustand
+title: "Zustand"
 slug: zustand
+description: "Small store-based state management library with selector-friendly APIs."
 shortDescription: Small store-based state management library with selector-friendly APIs.
 category: state-management
 compatibilityStatus: unverified

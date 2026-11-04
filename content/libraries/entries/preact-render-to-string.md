@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-render-to-string
+title: "preact-render-to-string"
 slug: preact-render-to-string
+description: "Official HTML rendering package for server-side rendering and static generation."
 shortDescription: >-
   Official HTML rendering package for server-side rendering and static
   generation.

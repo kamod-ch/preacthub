@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Weaviate
+title: "Weaviate"
 slug: weaviate
+description: "Open-source vector database with hybrid search and modular integrations."
 shortDescription: Open-source vector database with hybrid search and modular integrations.
 category: ai-infrastructure
 subcategories:

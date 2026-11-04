@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Langfuse
+title: "Langfuse"
 slug: langfuse
+description: "Open-source LLM engineering platform for tracing, evaluation and prompt management."
 shortDescription: Open-source LLM engineering platform for tracing, evaluation and prompt management.
 category: ai-infrastructure
 subcategories:

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Playwright
+title: "Playwright"
 slug: playwright
+description: "Cross-browser automation framework for end-to-end testing and scraping."
 shortDescription: Cross-browser automation framework for end-to-end testing and scraping.
 category: browser-automation
 categories:

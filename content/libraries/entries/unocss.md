@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: UnoCSS
+title: "UnoCSS"
 slug: unocss
+description: "On-demand atomic CSS engine independent of UI frameworks."
 shortDescription: On-demand atomic CSS engine independent of UI frameworks.
 category: developer-tools
 compatibilityStatus: native

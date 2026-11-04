@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Klunq Widget'
+title: "Klunq Widget"
 slug: 'klunqlabs-klunq-widget'
+description: "Embeddable Preact AI chat widget with Shadow DOM styling and browser automation tools."
 shortDescription: 'Embeddable Preact AI chat widget with Shadow DOM styling and browser automation tools.'
 category: 'developer-tools'
 compatibilityStatus: 'experimental'

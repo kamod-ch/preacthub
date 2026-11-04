@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'CSS Hooks Preact'
+title: "CSS Hooks Preact"
 slug: 'css-hooks-preact'
+description: "CSS-in-JS hooks for conditional inline styles in Preact components."
 shortDescription: 'CSS-in-JS hooks for conditional inline styles in Preact components.'
 category: 'developer-tools'
 compatibilityStatus: 'native'

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: React Hook Form
+title: "React Hook Form"
 slug: react-hook-form
+description: "Popular form state and validation workflow for hook-based component trees."
 shortDescription: Popular form state and validation workflow for hook-based component trees.
 category: forms
 compatibilityStatus: unverified

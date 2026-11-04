@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Firecrawl
+title: "Firecrawl"
 slug: firecrawl-api
+description: "Web scraping and crawling API that converts pages to LLM-ready markdown."
 shortDescription: Web scraping and crawling API that converts pages to LLM-ready markdown.
 category: ai-developer-apis
 categories:

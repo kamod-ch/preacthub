@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Prefresh
+title: "Prefresh"
 slug: prefresh
+description: "Fast refresh support for local Preact development workflows."
 shortDescription: Fast refresh support for local Preact development workflows.
 category: developer-tools
 compatibilityStatus: native

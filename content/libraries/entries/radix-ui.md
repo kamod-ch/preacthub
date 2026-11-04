@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Radix UI
+title: "Radix UI"
 slug: radix-ui
+description: "React-focused headless primitives important for compatibility benchmarking."
 shortDescription: React-focused headless primitives important for compatibility benchmarking.
 category: ui
 compatibilityStatus: experimental

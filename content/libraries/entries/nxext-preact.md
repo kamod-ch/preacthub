@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Nxext Preact'
+title: "Nxext Preact"
 slug: 'nxext-preact'
+description: "Nx plugin generating and building Preact applications and libraries in Nx workspaces."
 shortDescription: 'Nx plugin generating and building Preact applications and libraries in Nx workspaces.'
 category: 'build-tools'
 compatibilityStatus: 'native'

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: CrewAI
+title: "CrewAI"
 slug: crewai
+description: "Framework for orchestrating role-based AI agent teams."
 shortDescription: Framework for orchestrating role-based AI agent teams.
 category: agent-frameworks
 subcategories:

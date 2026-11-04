@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Exa
+title: "Exa"
 slug: exa-api
+description: "Neural search API designed for AI applications and agents."
 shortDescription: Neural search API designed for AI applications and agents.
 category: ai-developer-apis
 subcategories:

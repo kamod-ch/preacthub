@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'cincin Preact'
+title: "cincin Preact"
 slug: 'cincin-preact'
+description: "Native Preact toast bindings with an accessible skin and headless presentation hooks."
 shortDescription: 'Native Preact toast bindings with an accessible skin and headless presentation hooks.'
 category: 'ui'
 compatibilityStatus: 'experimental'

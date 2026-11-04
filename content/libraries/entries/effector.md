@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Effector
+title: "Effector"
 slug: effector
+description: "Reactive state manager with framework-independent core APIs."
 shortDescription: Reactive state manager with framework-independent core APIs.
 category: state-management
 compatibilityStatus: native

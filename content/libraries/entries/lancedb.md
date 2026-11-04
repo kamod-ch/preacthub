@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: LanceDB
+title: "LanceDB"
 slug: lancedb
+description: "Serverless vector database built on Lance columnar format."
 shortDescription: Serverless vector database built on Lance columnar format.
 category: ai-infrastructure
 subcategories:

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: tailwind-merge
+title: "tailwind-merge"
 slug: tailwind-merge
+description: "Merges conflicting Tailwind utility classes at runtime."
 shortDescription: Merges conflicting Tailwind utility classes at runtime.
 category: ui
 compatibilityStatus: native

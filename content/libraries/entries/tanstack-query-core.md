@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: '@tanstack/query-core'
+title: "@tanstack/query-core"
 slug: tanstack-query-core
+description: "Framework-agnostic async state and cache core from TanStack Query."
 shortDescription: Framework-agnostic async state and cache core from TanStack Query.
 category: data-fetching
 compatibilityStatus: native

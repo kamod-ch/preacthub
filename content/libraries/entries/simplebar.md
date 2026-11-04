@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: simplebar
+title: "simplebar"
 slug: simplebar
+description: "Framework-independent custom scrollbar utility."
 shortDescription: Framework-independent custom scrollbar utility.
 category: ui
 compatibilityStatus: native

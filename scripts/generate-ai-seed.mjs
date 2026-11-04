@@ -73,8 +73,10 @@ function buildFrontmatter(t) {
     "---",
     "entryType: library",
     `name: ${t.name}`,
+    `title: ${t.name}`,
     `slug: ${t.slug}`,
     `shortDescription: ${t.desc}`,
+    `description: ${t.desc}`,
     `category: ${t.category}`,
   ];
   if (t.categories?.length) {

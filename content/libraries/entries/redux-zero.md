@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: redux-zero
+title: "redux-zero"
 slug: redux-zero
+description: "Minimal Redux-like state container usable from Preact."
 shortDescription: Minimal Redux-like state container usable from Preact.
 category: state-management
 compatibilityStatus: native

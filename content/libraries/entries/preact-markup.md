@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-markup
+title: "preact-markup"
 slug: preact-markup
+description: "Utility for rendering markup in Preact-oriented workflows."
 shortDescription: Utility for rendering markup in Preact-oriented workflows.
 category: ssr
 compatibilityStatus: native

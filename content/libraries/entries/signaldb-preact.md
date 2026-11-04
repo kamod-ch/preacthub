@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'SignalDB Preact'
+title: "SignalDB Preact"
 slug: 'signaldb-preact'
+description: "Preact Signals reactivity adapter for the SignalDB local-first database."
 shortDescription: 'Preact Signals reactivity adapter for the SignalDB local-first database.'
 category: 'state-management'
 compatibilityStatus: 'native'

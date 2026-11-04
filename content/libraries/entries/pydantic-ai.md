@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Pydantic AI
+title: "Pydantic AI"
 slug: pydantic-ai
+description: "Agent framework built on Pydantic with structured output and tool calling."
 shortDescription: Agent framework built on Pydantic with structured output and tool calling.
 category: agent-frameworks
 subcategories:

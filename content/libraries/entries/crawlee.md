@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Crawlee
+title: "Crawlee"
 slug: crawlee
+description: "Web scraping and browser automation library for Node.js and Python."
 shortDescription: Web scraping and browser automation library for Node.js and Python.
 category: browser-automation
 subcategories:

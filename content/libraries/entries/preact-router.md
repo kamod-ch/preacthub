@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-router
+title: "preact-router"
 slug: preact-router
+description: "Lightweight router for classic Preact single-page applications."
 shortDescription: Lightweight router for classic Preact single-page applications.
 category: routing
 compatibilityStatus: native

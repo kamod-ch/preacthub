@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: clsx
+title: "clsx"
 slug: clsx
+description: "Tiny conditional class name utility for Preact components."
 shortDescription: Tiny conditional class name utility for Preact components.
 category: ui
 compatibilityStatus: native

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: PreactPress
+title: "PreactPress"
 slug: preactpress
+description: "Preact-based static site generator and documentation framework."
 shortDescription: Preact-based static site generator and documentation framework.
 category: ssr
 compatibilityStatus: native

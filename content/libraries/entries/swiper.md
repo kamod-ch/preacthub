@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Swiper
+title: "Swiper"
 slug: swiper
+description: "Slider package with web component and JavaScript APIs usable from Preact."
 shortDescription: Slider package with web component and JavaScript APIs usable from Preact.
 category: ui
 compatibilityStatus: native

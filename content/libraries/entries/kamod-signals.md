@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: kamod-signals
+title: "kamod-signals"
 slug: kamod-signals
+description: "Persisted signals utilities from the Kamod ecosystem."
 shortDescription: Persisted signals utilities from the Kamod ecosystem.
 category: state-management
 compatibilityStatus: native

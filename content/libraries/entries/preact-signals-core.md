@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Preact Signals Core
+title: "Preact Signals Core"
 slug: preact-signals-core
+description: "Framework-agnostic signals primitives used by Preact Signals."
 shortDescription: Framework-agnostic signals primitives used by Preact Signals.
 category: state-management
 compatibilityStatus: native

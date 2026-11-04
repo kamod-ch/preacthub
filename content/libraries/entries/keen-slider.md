@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: keen-slider
+title: "keen-slider"
 slug: keen-slider
+description: "Touch slider library with a framework-agnostic core."
 shortDescription: Touch slider library with a framework-agnostic core.
 category: ui
 compatibilityStatus: native

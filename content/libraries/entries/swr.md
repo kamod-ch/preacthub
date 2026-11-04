@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: SWR
+title: "SWR"
 slug: swr
+description: "Data fetching with stale-while-revalidate semantics and a small API surface."
 shortDescription: Data fetching with stale-while-revalidate semantics and a small API surface.
 category: data-fetching
 compatibilityStatus: unverified

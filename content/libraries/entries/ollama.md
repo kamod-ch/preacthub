@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Ollama
+title: "Ollama"
 slug: ollama
+description: "Run open-source language models locally with a simple API."
 shortDescription: Run open-source language models locally with a simple API.
 category: ai-infrastructure
 subcategories:

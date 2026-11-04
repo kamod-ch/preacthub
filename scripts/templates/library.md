@@ -1,8 +1,10 @@
 ---
 entryType: library
 name: __NAME__
+title: __NAME__
 slug: __SLUG__
 shortDescription: __DESCRIPTION__
+description: __DESCRIPTION__
 category: __CATEGORY__
 compatibilityStatus: __COMPATIBILITY_STATUS__
 maintenanceStatus: __MAINTENANCE_STATUS__

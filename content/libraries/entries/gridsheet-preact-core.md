@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'GridSheet Preact'
+title: "GridSheet Preact"
 slug: 'gridsheet-preact-core'
+description: "Spreadsheet component with formulas and multi-sheet support for Preact."
 shortDescription: 'Spreadsheet component with formulas and multi-sheet support for Preact.'
 category: 'ui'
 compatibilityStatus: 'native'

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Visual Controller for Preact'
+title: "Visual Controller for Preact"
 slug: 'peter-naydenov-visual-controller-for-preact'
+description: "Region-based controller for mounting multiple independent Preact apps on one page."
 shortDescription: 'Region-based controller for mounting multiple independent Preact apps on one page.'
 category: 'developer-tools'
 compatibilityStatus: 'native'

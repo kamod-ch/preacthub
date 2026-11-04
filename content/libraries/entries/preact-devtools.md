@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Preact DevTools
+title: "Preact DevTools"
 slug: preact-devtools
+description: "Development-time inspection helpers for Preact component trees."
 shortDescription: Development-time inspection helpers for Preact component trees.
 category: developer-tools
 compatibilityStatus: experimental

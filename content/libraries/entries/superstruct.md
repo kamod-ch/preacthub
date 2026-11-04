@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Superstruct
+title: "Superstruct"
 slug: superstruct
+description: "Composable validation library for JavaScript and TypeScript data."
 shortDescription: Composable validation library for JavaScript and TypeScript data.
 category: forms
 compatibilityStatus: native

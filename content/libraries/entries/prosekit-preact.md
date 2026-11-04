@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'ProseKit Preact'
+title: "ProseKit Preact"
 slug: 'prosekit-preact'
+description: "Preact components and hooks for ProseKit ProseMirror rich text editors."
 shortDescription: 'Preact components and hooks for ProseKit ProseMirror rich text editors.'
 category: 'editors'
 compatibilityStatus: 'native'

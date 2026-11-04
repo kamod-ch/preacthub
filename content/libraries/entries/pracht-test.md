@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Pracht Test'
+title: "Pracht Test"
 slug: 'pracht-test'
+description: "Typed testing utilities for Pracht loaders, API routes, middleware, and forms."
 shortDescription: 'Typed testing utilities for Pracht loaders, API routes, middleware, and forms.'
 category: 'testing'
 compatibilityStatus: 'native'

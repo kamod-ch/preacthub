@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Rsbuild Preact Plugin'
+title: "Rsbuild Preact Plugin"
 slug: 'rsbuild-plugin-preact'
+description: "Official Rsbuild plugin for Preact JSX, compat aliases and Prefresh HMR."
 shortDescription: 'Official Rsbuild plugin for Preact JSX, compat aliases and Prefresh HMR.'
 category: 'build-tools'
 compatibilityStatus: 'native'

@@ -49,8 +49,10 @@ function buildMarkdown(draft) {
   const lines = ["---", "entryType: library"];
   const frontmatterKeys = [
     ["name", draft.name],
+    ["title", draft.name],
     ["slug", draft.slug],
     ["shortDescription", draft.shortDescription],
+    ["description", draft.shortDescription],
     ["category", draft.category],
     ["compatibilityStatus", draft.compatibilityStatus],
     ["maintenanceStatus", draft.maintenanceStatus],

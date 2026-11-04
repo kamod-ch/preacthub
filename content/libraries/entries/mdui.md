@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: mdui
+title: "mdui"
 slug: mdui
+description: "Material Design Web Components library usable from Preact."
 shortDescription: Material Design Web Components library usable from Preact.
 category: ui
 compatibilityStatus: native

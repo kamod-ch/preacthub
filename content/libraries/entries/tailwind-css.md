@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Tailwind CSS
+title: "Tailwind CSS"
 slug: tailwind-css
+description: "Utility-first CSS framework that pairs naturally with Preact."
 shortDescription: Utility-first CSS framework that pairs naturally with Preact.
 category: developer-tools
 compatibilityStatus: native

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Motion
+title: "Motion"
 slug: motion
+description: "Modern animation APIs for layout, gestures and transitions."
 shortDescription: 'Modern animation APIs for layout, gestures and transitions.'
 category: animation
 compatibilityStatus: unverified

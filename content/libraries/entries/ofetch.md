@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: ofetch
+title: "ofetch"
 slug: ofetch
+description: "Universal fetch wrapper that stays independent of UI frameworks."
 shortDescription: Universal fetch wrapper that stays independent of UI frameworks.
 category: data-fetching
 compatibilityStatus: native

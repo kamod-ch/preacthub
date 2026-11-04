@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Clean JSDoc Theme Rang'
+title: "Clean JSDoc Theme Rang"
 slug: 'clean-jsdoc-theme-rang'
+description: "Preact component library, MDX map and island registry for Clean JSDoc Theme v5."
 shortDescription: 'Preact component library, MDX map and island registry for Clean JSDoc Theme v5.'
 category: 'developer-tools'
 compatibilityStatus: 'native'

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: '@iconify-json/*'
+title: "@iconify-json/*"
 slug: iconify-json
+description: "Framework-independent Iconify icon data packages."
 shortDescription: Framework-independent Iconify icon data packages.
 category: ui
 compatibilityStatus: native

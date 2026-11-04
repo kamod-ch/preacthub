@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-custom-element
+title: "preact-custom-element"
 slug: preact-custom-element
+description: "Wrap Preact components as standards-based custom elements."
 shortDescription: Wrap Preact components as standards-based custom elements.
 category: developer-tools
 compatibilityStatus: native

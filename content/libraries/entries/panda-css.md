@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Panda CSS
+title: "Panda CSS"
 slug: panda-css
+description: "Type-safe styling system that can generate framework-agnostic CSS."
 shortDescription: Type-safe styling system that can generate framework-agnostic CSS.
 category: developer-tools
 compatibilityStatus: native

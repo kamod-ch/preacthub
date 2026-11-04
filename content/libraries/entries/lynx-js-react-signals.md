@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Lynx React Signals'
+title: "Lynx React Signals"
 slug: 'lynx-js-react-signals'
+description: "Thread-aware Preact Signals integration for ReactLynx applications."
 shortDescription: 'Thread-aware Preact Signals integration for ReactLynx applications.'
 category: 'state-management'
 compatibilityStatus: 'native'

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: AutoGen
+title: "AutoGen"
 slug: autogen
+description: "Multi-agent conversation framework for building collaborative AI systems."
 shortDescription: Multi-agent conversation framework for building collaborative AI systems.
 category: agent-frameworks
 subcategories:

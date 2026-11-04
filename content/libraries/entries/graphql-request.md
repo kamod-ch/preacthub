@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: graphql-request
+title: "graphql-request"
 slug: graphql-request
+description: "Minimal framework-independent GraphQL request client."
 shortDescription: Minimal framework-independent GraphQL request client.
 category: data-fetching
 compatibilityStatus: native

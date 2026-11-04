@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-custom-scrollbars
+title: "preact-custom-scrollbars"
 slug: preact-custom-scrollbars
+description: "Custom scrollbar components for Preact interfaces."
 shortDescription: Custom scrollbar components for Preact interfaces.
 category: ui
 compatibilityStatus: native

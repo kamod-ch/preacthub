@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-habitat
+title: "preact-habitat"
 slug: preact-habitat
+description: "Mounts Preact widgets into existing server-rendered pages."
 shortDescription: Mounts Preact widgets into existing server-rendered pages.
 category: ui
 compatibilityStatus: native

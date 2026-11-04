@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-helmet
+title: "preact-helmet"
 slug: preact-helmet
+description: "Head management for titles, meta tags and SEO in Preact."
 shortDescription: 'Head management for titles, meta tags and SEO in Preact.'
 category: ssr
 compatibilityStatus: native

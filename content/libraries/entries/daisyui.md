@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: DaisyUI
+title: "DaisyUI"
 slug: daisyui
+description: "CSS-first component classes that work independently of frameworks."
 shortDescription: CSS-first component classes that work independently of frameworks.
 category: ui
 compatibilityStatus: native

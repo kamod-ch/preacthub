@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Vite Preact Template
+title: "Vite Preact Template"
 slug: vite-preact-template
+description: "Official Vite starter path for new Preact applications."
 shortDescription: Official Vite starter path for new Preact applications.
 category: developer-tools
 compatibilityStatus: native

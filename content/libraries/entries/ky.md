@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: ky
+title: "ky"
 slug: ky
+description: "Small Fetch-based HTTP client for browser and server code."
 shortDescription: Small Fetch-based HTTP client for browser and server code.
 category: data-fetching
 compatibilityStatus: native

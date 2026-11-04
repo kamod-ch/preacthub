@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Strand UI'
+title: "Strand UI"
 slug: 'dillingerstaffing-strand-ui'
+description: "Preact/React component library on the Strand Design Language with zero-runtime CSS."
 shortDescription: 'Preact/React component library on the Strand Design Language with zero-runtime CSS.'
 category: 'ui'
 compatibilityStatus: 'native'

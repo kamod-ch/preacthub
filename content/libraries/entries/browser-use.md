@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Browser Use
+title: "Browser Use"
 slug: browser-use
+description: "Make websites accessible to AI agents for autonomous browser tasks."
 shortDescription: Make websites accessible to AI agents for autonomous browser tasks.
 category: browser-automation
 categories:

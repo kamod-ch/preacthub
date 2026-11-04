@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Nanostores
+title: "Nanostores"
 slug: nanostores
+description: "Tiny state manager with optional framework adapters and a small mental model."
 shortDescription: Tiny state manager with optional framework adapters and a small mental model.
 category: state-management
 compatibilityStatus: unverified

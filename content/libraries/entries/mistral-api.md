@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Mistral
+title: "Mistral"
 slug: mistral-api
+description: "API for Mistral open and commercial language models."
 shortDescription: API for Mistral open and commercial language models.
 category: ai-developer-apis
 subcategories:

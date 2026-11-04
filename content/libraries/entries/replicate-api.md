@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Replicate
+title: "Replicate"
 slug: replicate-api
+description: "Cloud platform for running open-source AI models via API."
 shortDescription: Cloud platform for running open-source AI models via API.
 category: ai-developer-apis
 subcategories:

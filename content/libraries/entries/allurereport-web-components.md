@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Allure Report Web Components'
+title: "Allure Report Web Components"
 slug: 'allurereport-web-components'
+description: "Preact component and chart collection used to build Allure 3 test-report interfaces."
 shortDescription: 'Preact component and chart collection used to build Allure 3 test-report interfaces.'
 category: 'testing'
 compatibilityStatus: 'compat'

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Headless UI
+title: "Headless UI"
 slug: headlessui
+description: "Headless accessible components to evaluate through compatibility."
 shortDescription: Headless accessible components to evaluate through compatibility.
 category: ui
 compatibilityStatus: experimental

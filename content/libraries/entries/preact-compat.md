@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact/compat
+title: "preact/compat"
 slug: preact-compat
+description: "Compatibility layer that lets many React libraries run on Preact."
 shortDescription: Compatibility layer that lets many React libraries run on Preact.
 category: developer-tools
 compatibilityStatus: native

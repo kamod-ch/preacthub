@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Extension.js'
+title: "Extension.js"
 slug: 'extension-js'
+description: "Cross-browser extension framework with first-class Preact support and HMR."
 shortDescription: 'Cross-browser extension framework with first-class Preact support and HMR.'
 category: 'developer-tools'
 compatibilityStatus: 'native'

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: ArkType
+title: "ArkType"
 slug: arktype
+description: "TypeScript-oriented runtime validation library."
 shortDescription: TypeScript-oriented runtime validation library.
 category: forms
 compatibilityStatus: native

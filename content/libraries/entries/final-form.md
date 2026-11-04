@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Final Form
+title: "Final Form"
 slug: final-form
+description: "Framework-agnostic form state core usable from Preact."
 shortDescription: Framework-agnostic form state core usable from Preact.
 category: forms
 compatibilityStatus: native

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'SWC Plugin Prefresh'
+title: "SWC Plugin Prefresh"
 slug: 'swc-plugin-prefresh'
+description: "SWC plugin implementing Prefresh createContext memoization for Preact HMR."
 shortDescription: 'SWC plugin implementing Prefresh createContext memoization for Preact HMR.'
 category: 'build-tools'
 compatibilityStatus: 'native'

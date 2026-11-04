@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: OpenAI Agents SDK
+title: "OpenAI Agents SDK"
 slug: openai-agents-sdk
+description: "Official OpenAI SDK for building agents with tool use and handoffs."
 shortDescription: Official OpenAI SDK for building agents with tool use and handoffs.
 category: agent-frameworks
 subcategories:

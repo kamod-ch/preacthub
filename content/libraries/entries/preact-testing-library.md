@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Preact Testing Library
+title: "Preact Testing Library"
 slug: preact-testing-library
+description: "Testing Library integration focused on user-centric testing for Preact components."
 shortDescription: >-
   Testing Library integration focused on user-centric testing for Preact
   components.

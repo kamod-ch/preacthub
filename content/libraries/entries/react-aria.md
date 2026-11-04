@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: React Aria
+title: "React Aria"
 slug: react-aria
+description: "Accessible behavior primitives and hooks for complex UI controls."
 shortDescription: Accessible behavior primitives and hooks for complex UI controls.
 category: ui
 compatibilityStatus: unverified

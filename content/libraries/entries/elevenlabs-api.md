@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: ElevenLabs
+title: "ElevenLabs"
 slug: elevenlabs-api
+description: "AI voice synthesis and text-to-speech API."
 shortDescription: AI voice synthesis and text-to-speech API.
 category: ai-developer-apis
 subcategories:

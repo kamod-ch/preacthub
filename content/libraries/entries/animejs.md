@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: animejs
+title: "animejs"
 slug: animejs
+description: "Framework-independent JavaScript animation engine."
 shortDescription: Framework-independent JavaScript animation engine.
 category: animation
 compatibilityStatus: native

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: '@formisch/preact'
+title: "@formisch/preact"
 slug: formisch-preact
+description: "Type-safe form state library with a dedicated Preact package."
 shortDescription: Type-safe form state library with a dedicated Preact package.
 category: forms
 compatibilityStatus: native

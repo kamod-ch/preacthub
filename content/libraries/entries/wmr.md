@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: WMR
+title: "WMR"
 slug: wmr
+description: "Historical zero-config build tool created around Preact workflows."
 shortDescription: Historical zero-config build tool created around Preact workflows.
 category: developer-tools
 compatibilityStatus: native

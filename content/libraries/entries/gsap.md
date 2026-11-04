@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: GSAP
+title: "GSAP"
 slug: gsap
+description: "Powerful imperative animation platform independent of Preact."
 shortDescription: Powerful imperative animation platform independent of Preact.
 category: animation
 compatibilityStatus: native

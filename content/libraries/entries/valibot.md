@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Valibot
+title: "Valibot"
 slug: valibot
+description: "Lightweight schema validation library focused on small bundles and composable parsing."
 shortDescription: >-
   Lightweight schema validation library focused on small bundles and composable
   parsing.

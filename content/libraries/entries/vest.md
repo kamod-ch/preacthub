@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Vest
+title: "Vest"
 slug: vest
+description: "Framework-independent validation suite for form workflows."
 shortDescription: Framework-independent validation suite for form workflows.
 category: forms
 compatibilityStatus: native

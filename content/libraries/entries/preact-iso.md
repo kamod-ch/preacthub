@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-iso
+title: "preact-iso"
 slug: preact-iso
+description: "Small toolkit for routing, lazy loading and server rendering patterns in Preact apps."
 shortDescription: >-
   Small toolkit for routing, lazy loading and server rendering patterns in
   Preact apps.

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-portal
+title: "preact-portal"
 slug: preact-portal
+description: "Portal utility for modals, overlays and detached DOM rendering."
 shortDescription: 'Portal utility for modals, overlays and detached DOM rendering.'
 category: ui
 compatibilityStatus: native

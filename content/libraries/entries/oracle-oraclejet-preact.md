@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Oracle JET Preact'
+title: "Oracle JET Preact"
 slug: 'oracle-oraclejet-preact'
+description: "Oracle JET Redwood UI components implemented with Preact."
 shortDescription: 'Oracle JET Redwood UI components implemented with Preact.'
 category: 'ui'
 compatibilityStatus: 'native'

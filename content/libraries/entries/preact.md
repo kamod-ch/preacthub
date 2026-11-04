@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Preact
+title: "Preact"
 slug: preact
+description: "Core library for building fast Preact applications."
 shortDescription: Core library for building fast Preact applications.
 category: developer-tools
 compatibilityStatus: native

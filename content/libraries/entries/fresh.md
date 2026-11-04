@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Fresh
+title: "Fresh"
 slug: fresh
+description: "Deno web framework that uses Preact for interactive islands."
 shortDescription: Deno web framework that uses Preact for interactive islands.
 category: ssr
 compatibilityStatus: native

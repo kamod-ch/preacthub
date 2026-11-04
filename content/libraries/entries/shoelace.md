@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Shoelace
+title: "Shoelace"
 slug: shoelace
+description: "Web Components UI library that works well with Preact."
 shortDescription: Web Components UI library that works well with Preact.
 category: ui
 compatibilityStatus: native

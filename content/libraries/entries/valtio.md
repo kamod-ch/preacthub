@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Valtio
+title: "Valtio"
 slug: valtio
+description: "Proxy-based state library usable with compatibility considerations."
 shortDescription: Proxy-based state library usable with compatibility considerations.
 category: state-management
 compatibilityStatus: compat

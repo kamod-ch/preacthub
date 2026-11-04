@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: lucide-preact
+title: "lucide-preact"
 slug: lucide-preact
+description: "Preact-native package for Lucide SVG icons."
 shortDescription: Preact-native package for Lucide SVG icons.
 category: ui
 compatibilityStatus: native

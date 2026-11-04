@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: wouter-preact
+title: "wouter-preact"
 slug: wouter-preact
+description: "Tiny router with a hook-first API for Preact applications."
 shortDescription: Tiny router with a hook-first API for Preact applications.
 category: routing
 compatibilityStatus: native
@@ -48,9 +50,9 @@ import { Link, Route, Switch } from "wouter-preact";
 export function App() {
   return (
     <>
-      <nav><Link href="/docs">Docs</Link></nav>
+      <nav><Link href="/libraries">Libraries</Link></nav>
       <Switch>
-        <Route path="/docs">Docs page</Route>
+        <Route path="/libraries">Library directory</Route>
       </Switch>
     </>
   );

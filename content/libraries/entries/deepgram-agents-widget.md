@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Deepgram Agents Widget'
+title: "Deepgram Agents Widget"
 slug: 'deepgram-agents-widget'
+description: "Self-contained Deepgram Voice Agent widget with bundled Preact runtime."
 shortDescription: 'Self-contained Deepgram Voice Agent widget with bundled Preact runtime.'
 category: 'developer-tools'
 compatibilityStatus: 'experimental'

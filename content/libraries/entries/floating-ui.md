@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Floating UI
+title: "Floating UI"
 slug: floating-ui
+description: "Positioning toolkit for tooltips, popovers and anchored overlays."
 shortDescription: 'Positioning toolkit for tooltips, popovers and anchored overlays.'
 category: ui
 compatibilityStatus: experimental

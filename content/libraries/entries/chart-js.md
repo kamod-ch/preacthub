@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Chart.js
+title: "Chart.js"
 slug: chart-js
+description: "Widely used canvas charting library with many available adapters."
 shortDescription: Widely used canvas charting library with many available adapters.
 category: charts
 compatibilityStatus: unverified

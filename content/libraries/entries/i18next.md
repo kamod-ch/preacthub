@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: i18next
+title: "i18next"
 slug: i18next
+description: "Mature internationalization ecosystem for translations, interpolation and formatting."
 shortDescription: >-
   Mature internationalization ecosystem for translations, interpolation and
   formatting.

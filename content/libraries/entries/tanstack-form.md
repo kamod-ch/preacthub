@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: TanStack Form
+title: "TanStack Form"
 slug: tanstack-form
+description: "Modern headless form state tooling with framework-independent pieces."
 shortDescription: Modern headless form state tooling with framework-independent pieces.
 category: forms
 compatibilityStatus: experimental

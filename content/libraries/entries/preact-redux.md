@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-redux
+title: "preact-redux"
 slug: preact-redux
+description: "Redux bindings tailored for Preact applications."
 shortDescription: Redux bindings tailored for Preact applications.
 category: state-management
 compatibilityStatus: native

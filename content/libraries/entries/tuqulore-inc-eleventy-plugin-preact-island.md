@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Eleventy Preact Island Plugin'
+title: "Eleventy Preact Island Plugin"
 slug: 'tuqulore-inc-eleventy-plugin-preact-island'
+description: "Eleventy plugin for server-rendered Preact components with is-land partial hydration."
 shortDescription: 'Eleventy plugin for server-rendered Preact components with is-land partial hydration.'
 category: 'ssr'
 compatibilityStatus: 'native'

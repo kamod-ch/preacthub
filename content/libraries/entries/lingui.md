@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Lingui
+title: "Lingui"
 slug: lingui
+description: "Message-based internationalization with extraction tooling and compile-time workflows."
 shortDescription: >-
   Message-based internationalization with extraction tooling and compile-time
   workflows.

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: kamod-hooks
+title: "kamod-hooks"
 slug: kamod-hooks
+description: "Preact hooks collection from the Kamod ecosystem."
 shortDescription: Preact hooks collection from the Kamod ecosystem.
 category: developer-tools
 compatibilityStatus: native

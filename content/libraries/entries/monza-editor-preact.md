@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Monza Editor Preact'
+title: "Monza Editor Preact"
 slug: 'monza-editor-preact'
+description: "Lightweight textarea-based code editor component for Preact."
 shortDescription: 'Lightweight textarea-based code editor component for Preact.'
 category: 'editors'
 compatibilityStatus: 'native'

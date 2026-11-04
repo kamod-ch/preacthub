@@ -23,8 +23,10 @@ function serializeEntry(entry: LibraryEntry, body: string): string {
   const frontmatter: Record<string, unknown> = {
     entryType: "library",
     name: entry.name,
+    title: entry.name,
     slug: entry.slug,
     shortDescription: entry.shortDescription,
+    description: entry.shortDescription,
     category: entry.category,
     compatibilityStatus: entry.compatibilityStatus,
     typescriptSupport: entry.typescriptSupport,

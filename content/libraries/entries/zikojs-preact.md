@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'ZikoJS Preact'
+title: "ZikoJS Preact"
 slug: 'zikojs-preact'
+description: "Interop adapter for rendering ZikoJS elements inside Preact and embedding Preact in ZikoJS."
 shortDescription: 'Interop adapter for rendering ZikoJS elements inside Preact and embedding Preact in ZikoJS.'
 category: 'developer-tools'
 compatibilityStatus: 'experimental'

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: TanStack Table
+title: "TanStack Table"
 slug: tanstack-table
+description: "Headless table logic that can power custom Preact grids."
 shortDescription: Headless table logic that can power custom Preact grids.
 category: ui
 compatibilityStatus: native

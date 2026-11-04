@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Selenium
+title: "Selenium"
 slug: selenium
+description: "Widely used browser automation framework for cross-language testing."
 shortDescription: Widely used browser automation framework for cross-language testing.
 category: browser-automation
 subcategories:

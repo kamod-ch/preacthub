@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Preliquify Preact'
+title: "Preliquify Preact"
 slug: 'preliquify-preact'
+description: "Preact bindings to compile components into Shopify Liquid with client hydration."
 shortDescription: 'Preact bindings to compile components into Shopify Liquid with client hydration.'
 category: 'developer-tools'
 compatibilityStatus: 'native'
@@ -68,7 +70,7 @@ export default createLiquidSnippet(ProductCard, {
 
 Build with `preliquify build`, then render in Liquid:
 
-```liquid
+```html
 {% render 'ProductCard-prlq', product: product, showPrice: true %}
 ```
 

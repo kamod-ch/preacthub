@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-jsx-chai
+title: "preact-jsx-chai"
 slug: preact-jsx-chai
+description: "Chai assertions for checking Preact JSX output in tests."
 shortDescription: Chai assertions for checking Preact JSX output in tests.
 category: testing
 compatibilityStatus: native

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Million.js
+title: "Million.js"
 slug: million
+description: "Performance-focused virtual DOM tooling relevant to Preact comparisons."
 shortDescription: Performance-focused virtual DOM tooling relevant to Preact comparisons.
 category: developer-tools
 compatibilityStatus: experimental

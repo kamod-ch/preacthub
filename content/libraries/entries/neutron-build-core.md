@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Neutron'
+title: "Neutron"
 slug: 'neutron-build-core'
+description: "Unified TypeScript framework with Preact SSR, static routes, and islands architecture."
 shortDescription: 'Unified TypeScript framework with Preact SSR, static routes, and islands architecture.'
 category: 'ssr'
 compatibilityStatus: 'experimental'

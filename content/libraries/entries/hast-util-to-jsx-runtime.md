@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'hast-util-to-jsx-runtime'
+title: "hast-util-to-jsx-runtime"
 slug: 'hast-util-to-jsx-runtime'
+description: "Transforms HAST syntax trees into Preact VNodes through the automatic JSX runtime."
 shortDescription: 'Transforms HAST syntax trees into Preact VNodes through the automatic JSX runtime.'
 category: 'developer-tools'
 compatibilityStatus: 'native'

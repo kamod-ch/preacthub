@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: OpenAI
+title: "OpenAI"
 slug: openai-api
+description: "API platform for GPT models, embeddings, speech, vision and tool use."
 shortDescription: API platform for GPT models, embeddings, speech, vision and tool use.
 category: ai-developer-apis
 subcategories:

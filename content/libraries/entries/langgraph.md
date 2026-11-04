@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: LangGraph
+title: "LangGraph"
 slug: langgraph
+description: "Framework for building stateful, multi-step agent workflows with LLMs."
 shortDescription: Framework for building stateful, multi-step agent workflows with LLMs.
 category: agent-frameworks
 subcategories:

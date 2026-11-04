@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'KoliBri Preact'
+title: "KoliBri Preact"
 slug: 'public-ui-preact'
+description: "Official Preact adapter for KoliBri accessible HTML-standard web components."
 shortDescription: 'Official Preact adapter for KoliBri accessible HTML-standard web components.'
 category: 'ui'
 compatibilityStatus: 'experimental'

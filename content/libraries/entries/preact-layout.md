@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-layout
+title: "preact-layout"
 slug: preact-layout
+description: "Small layout helper library from the Preact ecosystem."
 shortDescription: Small layout helper library from the Preact ecosystem.
 category: ui
 compatibilityStatus: native

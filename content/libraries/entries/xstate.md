@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: XState
+title: "XState"
 slug: xstate
+description: "State machine and statechart library usable from Preact."
 shortDescription: State machine and statechart library usable from Preact.
 category: state-management
 compatibilityStatus: native

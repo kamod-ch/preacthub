@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Apollo Client
+title: "Apollo Client"
 slug: apollo-client
+description: "Full-featured GraphQL client usually used through React compatibility."
 shortDescription: Full-featured GraphQL client usually used through React compatibility.
 category: data-fetching
 compatibilityStatus: compat

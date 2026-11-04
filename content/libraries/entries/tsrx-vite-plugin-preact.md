@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'TSRX Vite Plugin Preact'
+title: "TSRX Vite Plugin Preact"
 slug: 'tsrx-vite-plugin-preact'
+description: "Vite plugin compiling .tsrx single-file Preact components via @tsrx/preact."
 shortDescription: 'Vite plugin compiling .tsrx single-file Preact components via @tsrx/preact.'
 category: 'build-tools'
 compatibilityStatus: 'experimental'

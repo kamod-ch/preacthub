@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Lit
+title: "Lit"
 slug: lit
+description: "Web Components authoring library complementary to Preact."
 shortDescription: Web Components authoring library complementary to Preact.
 category: ui
 compatibilityStatus: native

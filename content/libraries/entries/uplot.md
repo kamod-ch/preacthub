@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: uPlot
+title: "uPlot"
 slug: uplot
+description: "Very small and fast time-series charting library."
 shortDescription: Very small and fast time-series charting library.
 category: charts
 compatibilityStatus: native

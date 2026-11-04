@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Anthropic
+title: "Anthropic"
 slug: anthropic-api
+description: "Claude API for language models with tool use and structured outputs."
 shortDescription: Claude API for language models with tool use and structured outputs.
 category: ai-developer-apis
 subcategories:

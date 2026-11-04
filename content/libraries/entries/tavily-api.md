@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Tavily
+title: "Tavily"
 slug: tavily-api
+description: "Search API optimized for AI agents and RAG applications."
 shortDescription: Search API optimized for AI agents and RAG applications.
 category: ai-developer-apis
 subcategories:

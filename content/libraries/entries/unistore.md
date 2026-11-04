@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Unistore
+title: "Unistore"
 slug: unistore
+description: "Tiny centralized store historically associated with Preact."
 shortDescription: Tiny centralized store historically associated with Preact.
 category: state-management
 compatibilityStatus: native

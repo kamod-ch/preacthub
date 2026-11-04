@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: PreactHub
+title: "PreactHub"
 slug: preacthub
+description: "Discovery directory for Preact-compatible libraries and tools."
 shortDescription: Discovery directory for Preact-compatible libraries and tools.
 category: developer-tools
 compatibilityStatus: native

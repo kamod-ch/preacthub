@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Pracht Vite Plugin'
+title: "Pracht Vite Plugin"
 slug: 'pracht-vite-plugin'
+description: "Vite plugin for Pracht virtual modules, multi-environment builds, and SSG prerendering."
 shortDescription: 'Vite plugin for Pracht virtual modules, multi-environment builds, and SSG prerendering.'
 category: 'build-tools'
 compatibilityStatus: 'native'

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Tabler Icons
+title: "Tabler Icons"
 slug: tabler-icons
+description: "Large SVG icon collection suitable for Preact UI."
 shortDescription: Large SVG icon collection suitable for Preact UI.
 category: ui
 compatibilityStatus: native

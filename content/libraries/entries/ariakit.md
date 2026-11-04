@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Ariakit
+title: "Ariakit"
 slug: ariakit
+description: "Accessible React component toolkit relevant as a benchmark."
 shortDescription: Accessible React component toolkit relevant as a benchmark.
 category: ui
 compatibilityStatus: experimental

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'XState Store Preact'
+title: "XState Store Preact"
 slug: 'xstate-store-preact'
+description: "Official Preact bindings for @xstate/store selectors and triggers."
 shortDescription: 'Official Preact bindings for @xstate/store selectors and triggers.'
 category: 'state-management'
 compatibilityStatus: 'native'

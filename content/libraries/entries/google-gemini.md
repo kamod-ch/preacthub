@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Google Gemini
+title: "Google Gemini"
 slug: google-gemini
+description: "Google's multimodal AI API for text, image and code generation."
 shortDescription: Google's multimodal AI API for text, image and code generation.
 category: ai-developer-apis
 subcategories:

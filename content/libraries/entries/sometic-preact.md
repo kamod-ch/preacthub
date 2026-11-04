@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Sometic Preact'
+title: "Sometic Preact"
 slug: 'sometic-preact'
+description: "Thin Preact external-store adapter for Sometic state with snapshot and subscription APIs."
 shortDescription: 'Thin Preact external-store adapter for Sometic state with snapshot and subscription APIs.'
 category: 'state-management'
 compatibilityStatus: 'experimental'

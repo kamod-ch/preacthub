@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Groq
+title: "Groq"
 slug: groq-api
+description: "Fast inference API for open-source and commercial language models."
 shortDescription: Fast inference API for open-source and commercial language models.
 category: ai-developer-apis
 subcategories:

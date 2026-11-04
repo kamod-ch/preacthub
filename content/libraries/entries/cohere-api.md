@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Cohere
+title: "Cohere"
 slug: cohere-api
+description: "Enterprise NLP API for generation, embeddings, reranking and classification."
 shortDescription: Enterprise NLP API for generation, embeddings, reranking and classification.
 category: ai-developer-apis
 subcategories:

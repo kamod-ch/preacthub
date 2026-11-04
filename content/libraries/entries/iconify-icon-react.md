@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: '@iconify-icon/react'
+title: "@iconify-icon/react"
 slug: iconify-icon-react
+description: "Iconify component package relevant through React compatibility and web components."
 shortDescription: >-
   Iconify component package relevant through React compatibility and web
   components.

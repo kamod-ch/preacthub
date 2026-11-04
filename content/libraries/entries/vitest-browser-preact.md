@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Vitest Browser Preact'
+title: "Vitest Browser Preact"
 slug: 'vitest-browser-preact'
+description: "Browser-context renderer for Preact components in Vitest 4+."
 shortDescription: 'Browser-context renderer for Preact components in Vitest 4+.'
 category: 'testing'
 compatibilityStatus: 'native'

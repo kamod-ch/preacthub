@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: AG Grid
+title: "AG Grid"
 slug: ag-grid
+description: "Enterprise-grade data grid relevant for comparison and compat testing."
 shortDescription: Enterprise-grade data grid relevant for comparison and compat testing.
 category: ui
 compatibilityStatus: compat

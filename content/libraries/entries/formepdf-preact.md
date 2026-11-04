@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Forme PDF Preact'
+title: "Forme PDF Preact"
 slug: 'formepdf-preact'
+description: "Native Preact adapter for the Forme declarative PDF component model."
 shortDescription: 'Native Preact adapter for the Forme declarative PDF component model.'
 category: 'developer-tools'
 compatibilityStatus: 'native'

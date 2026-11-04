@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Chroma
+title: "Chroma"
 slug: chroma
+description: "Embedding database for building LLM applications with semantic search."
 shortDescription: Embedding database for building LLM applications with semantic search.
 category: ai-infrastructure
 subcategories:

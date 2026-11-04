@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-transition-group
+title: "preact-transition-group"
 slug: preact-transition-group
+description: "Transition components for enter and leave animations in Preact."
 shortDescription: Transition components for enter and leave animations in Preact.
 category: animation
 compatibilityStatus: native

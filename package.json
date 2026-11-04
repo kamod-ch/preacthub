@@ -6,7 +6,9 @@
   "author": "Klaus Zahiragic <watzak>",
   "scripts": {
     "dev": "preactpress dev",
-    "check": "preactpress check",
+    "check": "tsx scripts/sync-library-doc-metadata.ts --check && tsx scripts/sync-doc-check-links.ts --check && preactpress check",
+    "sync:doc-metadata": "tsx scripts/sync-library-doc-metadata.ts",
+    "sync:doc-check-links": "tsx scripts/sync-doc-check-links.ts",
     "validate:catalog": "tsx scripts/validate-catalog.ts",
     "check:links": "tsx scripts/check-library-links.ts",
     "verify:seo": "tsx scripts/verify-seo.ts",

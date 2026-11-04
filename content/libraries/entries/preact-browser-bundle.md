@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Preact Browser Bundle'
+title: "Preact Browser Bundle"
 slug: 'preact-browser-bundle'
+description: "Single-file CDN distribution bundling Preact, HTM, and Preact Signals with no dependencies."
 shortDescription: 'Single-file CDN distribution bundling Preact, HTM, and Preact Signals with no dependencies.'
 category: 'build-tools'
 compatibilityStatus: 'native'

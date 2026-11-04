@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'QTI3 Player Preact'
+title: "QTI3 Player Preact"
 slug: 'longsightgroup-qti3-player-preact'
+description: "Preact TSX adapter for the qti3 QTI 3 assessment item player web component."
 shortDescription: 'Preact TSX adapter for the qti3 QTI 3 assessment item player web component.'
 category: 'ui'
 compatibilityStatus: 'native'

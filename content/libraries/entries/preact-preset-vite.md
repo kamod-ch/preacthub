@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: '@preact/preset-vite'
+title: "@preact/preset-vite"
 slug: preact-preset-vite
+description: "Official Vite preset for Preact projects."
 shortDescription: Official Vite preset for Preact projects.
 category: developer-tools
 compatibilityStatus: native

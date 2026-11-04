@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: nano-jsx
+title: "nano-jsx"
 slug: nano-jsx
+description: "Small JSX/VDOM alternative useful as a comparison point."
 shortDescription: Small JSX/VDOM alternative useful as a comparison point.
 category: developer-tools
 compatibilityStatus: experimental

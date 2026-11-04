@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Vercel AI SDK
+title: "Vercel AI SDK"
 slug: vercel-ai-sdk
+description: "TypeScript toolkit for building AI-powered applications and agents."
 shortDescription: TypeScript toolkit for building AI-powered applications and agents.
 category: agent-frameworks
 categories:

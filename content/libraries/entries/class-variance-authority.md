@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: class-variance-authority
+title: "class-variance-authority"
 slug: class-variance-authority
+description: "Framework-independent utility for variant-based class composition."
 shortDescription: Framework-independent utility for variant-based class composition.
 category: ui
 compatibilityStatus: native

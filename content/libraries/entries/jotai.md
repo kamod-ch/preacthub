@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Jotai
+title: "Jotai"
 slug: jotai
+description: "Atomic state library generally evaluated through preact/compat."
 shortDescription: Atomic state library generally evaluated through preact/compat.
 category: state-management
 compatibilityStatus: compat

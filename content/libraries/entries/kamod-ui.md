@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: kamod-ui
+title: "kamod-ui"
 slug: kamod-ui
+description: "Preact UI component library from the Kamod ecosystem."
 shortDescription: Preact UI component library from the Kamod ecosystem.
 category: ui
 compatibilityStatus: native

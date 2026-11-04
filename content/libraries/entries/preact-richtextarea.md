@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-richtextarea
+title: "preact-richtextarea"
 slug: preact-richtextarea
+description: "Rich textarea input component for Preact applications."
 shortDescription: Rich textarea input component for Preact applications.
 category: forms
 compatibilityStatus: native

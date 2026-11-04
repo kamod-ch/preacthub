@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Heroicons
+title: "Heroicons"
 slug: heroicons
+description: "SVG-first icon set that can be embedded directly in Preact."
 shortDescription: SVG-first icon set that can be embedded directly in Preact.
 category: ui
 compatibilityStatus: native

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Praxis Kit'
+title: "Praxis Kit"
 slug: 'praxis-kit'
+description: "Contract-driven component factory with a dedicated Preact adapter subpath."
 shortDescription: 'Contract-driven component factory with a dedicated Preact adapter subpath.'
 category: 'developer-tools'
 compatibilityStatus: 'experimental'

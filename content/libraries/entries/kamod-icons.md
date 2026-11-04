@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: kamod-icons
+title: "kamod-icons"
 slug: kamod-icons
+description: "Preact-native icon package from the Kamod ecosystem."
 shortDescription: Preact-native icon package from the Kamod ecosystem.
 category: ui
 compatibilityStatus: native

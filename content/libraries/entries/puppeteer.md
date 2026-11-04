@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Puppeteer
+title: "Puppeteer"
 slug: puppeteer
+description: "Node.js library for controlling headless Chrome and Chromium."
 shortDescription: Node.js library for controlling headless Chrome and Chromium.
 category: browser-automation
 subcategories:

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: urql
+title: "urql"
 slug: urql
+description: "GraphQL client with React bindings that can be evaluated via compat."
 shortDescription: GraphQL client with React bindings that can be evaluated via compat.
 category: data-fetching
 compatibilityStatus: compat

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: wired-elements
+title: "wired-elements"
 slug: wired-elements
+description: "Sketch-style Web Components that can be used in Preact markup."
 shortDescription: Sketch-style Web Components that can be used in Preact markup.
 category: ui
 compatibilityStatus: native

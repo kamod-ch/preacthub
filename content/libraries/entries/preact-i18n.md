@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-i18n
+title: "preact-i18n"
 slug: preact-i18n
+description: "Internationalization helpers built for Preact."
 shortDescription: Internationalization helpers built for Preact.
 category: i18n
 compatibilityStatus: native

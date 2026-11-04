@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Phosphor Icons
+title: "Phosphor Icons"
 slug: phosphor-icons
+description: "Flexible icon family to evaluate via SVG or compatibility adapters."
 shortDescription: Flexible icon family to evaluate via SVG or compatibility adapters.
 category: ui
 compatibilityStatus: experimental

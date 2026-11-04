@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Preact Signals
+title: "Preact Signals"
 slug: preact-signals
+description: "Fine-grained reactive state primitives built by the Preact team."
 shortDescription: Fine-grained reactive state primitives built by the Preact team.
 category: state-management
 compatibilityStatus: native

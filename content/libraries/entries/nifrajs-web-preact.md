@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Nifra Preact Renderer'
+title: "Nifra Preact Renderer"
 slug: 'nifrajs-web-preact'
+description: "Preact rendering adapter for Nifra with streaming SSR, hydration, and framework helpers."
 shortDescription: 'Preact rendering adapter for Nifra with streaming SSR, hydration, and framework helpers.'
 category: 'ssr'
 compatibilityStatus: 'experimental'

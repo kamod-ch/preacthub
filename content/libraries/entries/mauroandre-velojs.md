@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'VeloJS'
+title: "VeloJS"
 slug: 'mauroandre-velojs'
+description: "Experimental full-stack framework combining Hono, Preact SSR, hydration, and Vite transforms."
 shortDescription: 'Experimental full-stack framework combining Hono, Preact SSR, hydration, and Vite transforms.'
 category: 'ssr'
 compatibilityStatus: 'experimental'

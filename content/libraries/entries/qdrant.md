@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Qdrant
+title: "Qdrant"
 slug: qdrant
+description: "Vector database and similarity search engine for AI applications."
 shortDescription: Vector database and similarity search engine for AI applications.
 category: ai-infrastructure
 subcategories:

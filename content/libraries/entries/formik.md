@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Formik
+title: "Formik"
 slug: formik
+description: "Established React form library relevant for compatibility checks."
 shortDescription: Established React form library relevant for compatibility checks.
 category: forms
 compatibilityStatus: compat

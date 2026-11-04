@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Kamod AI Audit
+title: "Kamod AI Audit"
 slug: kamod-ai-audit
+description: "Open-source audit engine for AI-agent readiness, semantic HTML, SEO, accessibility and structured data."
 shortDescription: >-
   Open-source audit engine for AI-agent readiness, semantic HTML, SEO,
   accessibility and structured data.

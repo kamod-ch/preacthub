@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Mixed Signals'
+title: "Mixed Signals"
 slug: 'mixed-signals'
+description: "Transport-agnostic RPC and signal reflection built on Preact Signals Core."
 shortDescription: 'Transport-agnostic RPC and signal reflection built on Preact Signals Core.'
 category: 'state-management'
 compatibilityStatus: 'native'

@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: WebdriverIO
+title: "WebdriverIO"
 slug: webdriverio
+description: "Next-gen browser and mobile automation test framework for Node.js."
 shortDescription: Next-gen browser and mobile automation test framework for Node.js.
 category: browser-automation
 subcategories:

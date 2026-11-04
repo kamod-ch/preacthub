@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Storeon
+title: "Storeon"
 slug: storeon
+description: "Event-based state manager with a small footprint."
 shortDescription: Event-based state manager with a small footprint.
 category: state-management
 compatibilityStatus: native

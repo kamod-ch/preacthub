@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Deepgram
+title: "Deepgram"
 slug: deepgram-api
+description: "Speech-to-text and audio intelligence API."
 shortDescription: Speech-to-text and audio intelligence API.
 category: ai-developer-apis
 subcategories:

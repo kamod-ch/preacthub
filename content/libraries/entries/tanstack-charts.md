@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'TanStack Charts'
+title: "TanStack Charts"
 slug: 'tanstack-charts'
+description: "Headless chart definitions with an official Preact adapter export."
 shortDescription: 'Headless chart definitions with an official Preact adapter export.'
 category: 'charts'
 compatibilityStatus: 'native'

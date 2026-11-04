@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'OpenComponents Preact Compiler'
+title: "OpenComponents Preact Compiler"
 slug: 'oc-template-preact-compiler'
+description: "Compiler for building Preact components in the OpenComponents template system."
 shortDescription: 'Compiler for building Preact components in the OpenComponents template system.'
 category: 'build-tools'
 compatibilityStatus: 'native'

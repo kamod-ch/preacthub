@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: HTM
+title: "HTM"
 slug: htm
+description: "JSX-free tagged template syntax that pairs naturally with Preact."
 shortDescription: JSX-free tagged template syntax that pairs naturally with Preact.
 category: developer-tools
 compatibilityStatus: native

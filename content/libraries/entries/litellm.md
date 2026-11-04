@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: LiteLLM
+title: "LiteLLM"
 slug: litellm
+description: "Unified API gateway for calling multiple LLM providers with consistent interfaces."
 shortDescription: Unified API gateway for calling multiple LLM providers with consistent interfaces.
 category: ai-infrastructure
 subcategories:

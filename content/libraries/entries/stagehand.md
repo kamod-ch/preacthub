@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Stagehand
+title: "Stagehand"
 slug: stagehand
+description: "AI-powered browser automation framework for natural language control."
 shortDescription: AI-powered browser automation framework for natural language control.
 category: browser-automation
 categories:

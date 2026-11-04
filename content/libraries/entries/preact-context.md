@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-context
+title: "preact-context"
 slug: preact-context
+description: "Historical context helper predating modern Preact context APIs."
 shortDescription: Historical context helper predating modern Preact context APIs.
 category: state-management
 compatibilityStatus: native

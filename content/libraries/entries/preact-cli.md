@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: preact-cli
+title: "preact-cli"
 slug: preact-cli
+description: "Historical command-line tooling for Preact projects."
 shortDescription: Historical command-line tooling for Preact projects.
 category: developer-tools
 compatibilityStatus: native

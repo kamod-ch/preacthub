@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Embla Carousel
+title: "Embla Carousel"
 slug: embla-carousel
+description: "Carousel engine with framework-independent core APIs."
 shortDescription: Carousel engine with framework-independent core APIs.
 category: ui
 compatibilityStatus: native

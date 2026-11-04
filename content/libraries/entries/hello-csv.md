@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: 'Hello CSV'
+title: "Hello CSV"
 slug: 'hello-csv'
+description: "Drop-in CSV importer workflow with Preact adapter and framework-agnostic bundled API."
 shortDescription: 'Drop-in CSV importer workflow with Preact adapter and framework-agnostic bundled API.'
 category: 'forms'
 compatibilityStatus: 'native'

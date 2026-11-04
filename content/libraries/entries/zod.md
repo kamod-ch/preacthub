@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Zod
+title: "Zod"
 slug: zod
+description: "TypeScript-first schema validation often paired with Preact forms and loaders."
 shortDescription: TypeScript-first schema validation often paired with Preact forms and loaders.
 category: forms
 compatibilityStatus: unverified

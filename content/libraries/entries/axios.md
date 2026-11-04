@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Axios
+title: "Axios"
 slug: axios
+description: "Popular promise-based HTTP client independent of Preact."
 shortDescription: Popular promise-based HTTP client independent of Preact.
 category: data-fetching
 compatibilityStatus: native

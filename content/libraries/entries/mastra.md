@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Mastra
+title: "Mastra"
 slug: mastra
+description: "TypeScript framework for building AI agents, workflows and integrations."
 shortDescription: TypeScript framework for building AI agents, workflows and integrations.
 category: agent-frameworks
 subcategories:

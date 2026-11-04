@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: ECharts
+title: "ECharts"
 slug: echarts
+description: "Feature-rich charting toolkit for interactive visualizations."
 shortDescription: Feature-rich charting toolkit for interactive visualizations.
 category: charts
 compatibilityStatus: unverified

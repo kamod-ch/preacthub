@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Astro Preact Integration
+title: "Astro Preact Integration"
 slug: astro-preact
+description: "Astro integration for rendering Preact components and islands."
 shortDescription: Astro integration for rendering Preact components and islands.
 category: ssr
 compatibilityStatus: native

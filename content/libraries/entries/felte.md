@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: Felte
+title: "Felte"
 slug: felte
+description: "Framework-spanning form library worth tracking for Preact usage."
 shortDescription: Framework-spanning form library worth tracking for Preact usage.
 category: forms
 compatibilityStatus: experimental

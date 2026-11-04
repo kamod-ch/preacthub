@@ -1,7 +1,9 @@
 ---
 entryType: library
 name: TanStack Query
+title: "TanStack Query"
 slug: tanstack-query
+description: "Async state management and data fetching for Preact applications."
 shortDescription: Async state management and data fetching for Preact applications.
 category: data-fetching
 compatibilityStatus: unverified
