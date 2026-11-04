@@ -138,8 +138,8 @@ function NavCatalogDropdown({
   routePath: string;
   open: boolean;
   onToggle: () => void;
-  menuRef: RefObject<HTMLDivElement>;
-  toggleRef: RefObject<HTMLButtonElement>;
+  menuRef: RefObject<HTMLDivElement | null>;
+  toggleRef: RefObject<HTMLButtonElement | null>;
   categoryCounts?: Record<string, number>;
 }) {
   const active = section === "preact" ? isPreactSectionActive(routePath) : isAiSectionActive(routePath);

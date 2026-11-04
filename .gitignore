@@ -20,3 +20,4 @@ docs/*
 !docs/import/
 docs/import/*
 !docs/import/preacthub-candidates.md
+pi-session/

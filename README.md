@@ -15,7 +15,7 @@ Hosting: automated **All-Inkl FTPS deploy** on push to `main` (see [domain and d
 - **Detail pages** with install snippets, SSR notes, limitations, and compare links
 - A **GitHub-based submission flow** — no PreactHub account required
 
-PreactHub 0.1 is an editorial directory, not a live npm/GitHub metrics dashboard.
+PreactHub 0.2 is an editorial directory, not a live npm/GitHub metrics dashboard.
 
 ## Development
 
