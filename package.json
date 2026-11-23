@@ -20,6 +20,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "lint": "oxlint . --ignore-pattern node_modules --ignore-pattern dist",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
     "new:library": "node scripts/new-library.mjs",
     "new:category": "node scripts/new-category.mjs",
     "verify:library": "node scripts/verify-library.mjs",
@@ -39,6 +41,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.3",
     "@kamod-ch/preactpress": "^3.3.0",
     "@preact/preset-vite": "^2.10.6",
     "@tailwindcss/vite": "^4.3.5",
